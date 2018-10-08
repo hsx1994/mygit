@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:tx="http://www.springframework.org/schema/tx" 
+        xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd"
+        > 
+		
+		<!-- ======================；连接数据库的配置=============== -->
+    	 <!--配置数据源-->
+	    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+			<property name="url" value="jdbc:mysql://127.0.0.1:3306/shop"></property>
+			<property name="username" value="root"></property>
+			<property name="password" value=""></property>
+		</bean>
+		
+		<!--配置sqlSessionFactory 并将数据源注入-->
+	    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	        <!--注入数据源-->
+	        <property name="dataSource" ref="dataSource"/>
+	        <!--指定要使用到到mybatis配置文件-->
+	        <property name="configLocation" value="classpath:config.xml"/>
+	        <!--用于配置mapper映射xml-->
+	        <property name="mapperLocations" value="classpath*:com/project/bean/*.xml"/>
+	    </bean>
+	    
+	
+</beans>
