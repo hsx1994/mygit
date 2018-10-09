@@ -1,12 +1,14 @@
 package com.woniu.cbd.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 /**
  * 企业合约内容信息
  * @author hsx
  *
  */
-public class CompanyBargainBean {
+public class CompanyBargainBean implements Serializable {
+	private static final long serialVersionUID = 1L;
 	//企业合约ID
 	private int id;
 	//企业合约中的企业名称

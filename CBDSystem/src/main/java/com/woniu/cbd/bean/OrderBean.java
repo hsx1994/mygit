@@ -1,12 +1,14 @@
 package com.woniu.cbd.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 /**
  * 个人用户租赁订单信息
  * @author hsx
  *
  */
-public class OrderBean {
+public class OrderBean implements Serializable {
+	private static final long serialVersionUID = 1L;
 	//个人用户租赁ID
 	private int id;
 	//个人用户租赁开始时间

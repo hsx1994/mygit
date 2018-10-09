@@ -1,12 +1,14 @@
 package com.woniu.cbd.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 /**
  * 第三方提供的车位的信息
  * @author hsx 
  *
  */
-public class OtherParkingBean {
+public class OtherParkingBean implements Serializable {
+	private static final long serialVersionUID = 1L;
 	//第三方提供的车位ID
 	private int id;
 	//第三方提供的车位地址

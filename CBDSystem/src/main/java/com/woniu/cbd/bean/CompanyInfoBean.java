@@ -1,10 +1,14 @@
 package com.woniu.cbd.bean;
+
+import java.io.Serializable;
+
 /**
  * 企业用户信息
  * @author hsx
  *
  */
-public class CompanyInfoBean {
+public class CompanyInfoBean implements Serializable {
+	private static final long serialVersionUID = 1L;
 	//企业用户ID
 	private int id;
 	//企业用户用户名

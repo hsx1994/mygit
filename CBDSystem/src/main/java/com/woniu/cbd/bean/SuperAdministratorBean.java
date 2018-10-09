@@ -1,10 +1,14 @@
 package com.woniu.cbd.bean;
+
+import java.io.Serializable;
+
 /**
  * 超级管理员的信息
  * @author hsx
  *
  */
-public class SuperAdministratorBean {
+public class SuperAdministratorBean implements Serializable {
+	private static final long serialVersionUID = 1L;
 	//超级管理员ID
 	private int id;
 	//超级管理员账号

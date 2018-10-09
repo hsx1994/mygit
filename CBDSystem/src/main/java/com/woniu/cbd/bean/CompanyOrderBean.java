@@ -1,12 +1,14 @@
 package com.woniu.cbd.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 /**
  * 企业用户租赁记录
  * @author hsx
  *
  */
-public class CompanyOrderBean {
+public class CompanyOrderBean implements Serializable {
+	private static final long serialVersionUID = 1L;
 	//企业用户租赁记录ID
 	private int id;
 	//企业用户租赁状态(0:未付款,1:已付款，在租,2:已取消)

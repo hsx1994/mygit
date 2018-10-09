@@ -30,7 +30,7 @@
   <!-- 配置过滤器 -->
   <filter>
   	<filter-name>charsetFilter</filter-name>
-  	<filter-class>com.project.filter.CharserFilter</filter-class>
+  	<filter-class>com.woniu.cbd.filter.CharserFilter</filter-class>
   </filter>
   <filter-mapping>
   	<filter-name>charsetFilter</filter-name>

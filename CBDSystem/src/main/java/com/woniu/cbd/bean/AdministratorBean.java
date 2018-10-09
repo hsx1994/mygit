@@ -1,12 +1,14 @@
 package com.woniu.cbd.bean;
 
+import java.io.Serializable;
 import java.util.List;
 /**
  * 后台管理员的信息
  * @author hsx
  *
  */
-public class AdministratorBean {
+public class AdministratorBean implements Serializable{
+	private static final long serialVersionUID = 1L;
 	//后台管理员ID
 	private int id;
 	//后台管理员用户名

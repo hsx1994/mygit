@@ -1,10 +1,14 @@
 package com.woniu.cbd.bean;
+
+import java.io.Serializable;
+
 /**
  * 普通用户信息表
  * @author hsx
  *
  */
-public class UserBean {
+public class UserBean implements Serializable {
+	private static final long serialVersionUID = 1L;
 	//普通用户ID
 	private int id;
 	//普通用户用户名
