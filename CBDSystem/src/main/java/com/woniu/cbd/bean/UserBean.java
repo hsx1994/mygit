@@ -1,16 +1,31 @@
 package com.woniu.cbd.bean;
-
+/**
+ * 普通用户信息表
+ * @author hsx
+ *
+ */
 public class UserBean {
+	//普通用户ID
 	private int id;
+	//普通用户用户名
 	private String name;
+	//普通用户密码
 	private String pass;
+	//普通用户账号真实姓名
 	private String realName;
+	//普通用户地址
 	private String address;
+	//普通用户电话
 	private String tel;
+	//普通用户身份证号
 	private String idcard;
+	//普通用户职业
 	private String job;
+	//普通用户邮箱
 	private String email;
+	//普通用户订单完成次数
 	private int orderCount;
+	//普通用户被投诉次数
 	private int complaintCount;
 	
 	public int getId() {

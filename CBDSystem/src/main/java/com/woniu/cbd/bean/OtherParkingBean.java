@@ -1,14 +1,25 @@
 package com.woniu.cbd.bean;
 
 import java.util.Date;
-
+/**
+ * 第三方提供的车位的信息
+ * @author hsx 
+ *
+ */
 public class OtherParkingBean {
+	//第三方提供的车位ID
 	private int id;
+	//第三方提供的车位地址
 	private String address;
+	//第三方提供的车位车位号
 	private String parkingNum;
+	//第三方提供的车位图片
 	private String img;
+	//第三方提供的车位价格
 	private int price;
+	//第三方提供的车位开始时间
 	private Date startTime;
+	//第三方提供的车位结束时间
 	private Date endTime;
 	
 	public int getId() {

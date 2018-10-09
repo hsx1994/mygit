@@ -1,16 +1,35 @@
 package com.woniu.cbd.bean;
 
 import java.util.Date;
-
+/**
+ * 企业合约内容信息
+ * @author hsx
+ *
+ */
 public class CompanyBargainBean {
+	//企业合约ID
 	private int id;
+	//企业合约中的企业名称
+	private String name;
+	//企业合约编号
 	private String number;
+	//企业合约复印件
 	private String img;
+	//企业合约开始时间
 	private Date startTime;
+	//企业合约结束时间
 	private Date endTime;
+	//企业合约租赁车位描述(车位号)
 	private String parkingDes;
+	//企业合约状态(0:正在用,1:续约,2:毁约)
 	private int state;
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getId() {
 		return id;
 	}

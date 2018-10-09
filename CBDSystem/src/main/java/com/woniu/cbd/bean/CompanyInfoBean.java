@@ -1,13 +1,25 @@
 package com.woniu.cbd.bean;
-
+/**
+ * 企业用户信息
+ * @author hsx
+ *
+ */
 public class CompanyInfoBean {
+	//企业用户ID
 	private int id;
+	//企业用户用户名
 	private String name;
+	//企业用户密码
 	private String pass;
+	//企业名称
 	private String comName;
+	//企业地址(楼层)
 	private String address;
+	//企业用户联系人
 	private String contact;
+	//企业用户电话
 	private String tel;
+	//企业用户邮箱
 	private String email;
 	
 	public int getId() {

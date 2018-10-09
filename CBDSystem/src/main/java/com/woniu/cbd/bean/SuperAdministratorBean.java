@@ -1,10 +1,19 @@
 package com.woniu.cbd.bean;
-
-public class AuperAdministratorBean {
+/**
+ * 超级管理员的信息
+ * @author hsx
+ *
+ */
+public class SuperAdministratorBean {
+	//超级管理员ID
 	private int id;
+	//超级管理员账号
 	private String name;
+	//超级管理员密码
 	private String pass;
+	//超级管理员工号
 	private String jobNumber;
+	//超级管理员真实姓名
 	private String realName;
 	
 	public int getId() {

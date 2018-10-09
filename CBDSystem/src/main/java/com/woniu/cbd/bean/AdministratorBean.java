@@ -1,14 +1,25 @@
 package com.woniu.cbd.bean;
 
 import java.util.List;
-
+/**
+ * 后台管理员的信息
+ * @author hsx
+ *
+ */
 public class AdministratorBean {
+	//后台管理员ID
 	private int id;
+	//后台管理员用户名
 	private String name;
+	//后台管理员密码
 	private String pass;
+	//后台管理员工号
 	private String jobNumber;
+	//后台管理员真实姓名
 	private String realName;
+	//后台管理员电话
 	private String tel;
+	//后台管理员权限
 	private List<String> limit;
 	
 	

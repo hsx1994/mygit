@@ -1,18 +1,33 @@
 package com.woniu.cbd.bean;
 
 import java.util.Date;
-
+/**
+ * 第三方合约内容信息
+ * @author hsx
+ *
+ */
 public class BargainBean {
+	//第三方合约ID
 	private int id;
+	//第三方合约编号
 	private String number;
+	//第三方合约企业名称
 	private String company;
+	//第三方合约企业联系人
 	private String contact;
+	//第三方合约联系人电话
 	private String tel;
+	//第三方合约企业地址
 	private String address;
+	//第三方合约复印件
 	private String img;
+	//第三方合约开始时间
 	private Date startTime;
+	//第三方合约结束时间
 	private Date endTime;
+	//第三方合约涉及车位描述(车位号)
 	private String parkingDes;
+	//第三方合约状态(0:正在用,1:续约,2:毁约)
 	private int state;
 	
 	public int getId() {
