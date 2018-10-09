@@ -13,6 +13,12 @@
         http://www.springframework.org/schema/aop/spring-aop.xsd"
         > 
 		
+		
+		 <!-- 组件扫描器 -->
+   	    <context:component-scan base-package="com.woniu.cbd.service"/>
+	    <context:component-scan base-package="com.woniu.cbd.dao"/>
+	    
+	    
 		<!-- ======================；连接数据库的配置=============== -->
     	 <!--配置数据源-->
 	    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -29,8 +35,15 @@
 	        <!--指定要使用到到mybatis配置文件-->
 	        <property name="configLocation" value="classpath:config.xml"/>
 	        <!--用于配置mapper映射xml-->
-	        <property name="mapperLocations" value="classpath*:com/project/bean/*.xml"/>
+	        <property name="mapperLocations" value="classpath*:com/woniu/cbd/bean/*.xml"/>
 	    </bean>
 	    
-	
+	    <!-- 配置事务管理器 -->
+		<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+			<property name="dataSource" ref="dataSource"></property>
+		</bean>	
+		
+		<!-- 基于注解的方式来配置事务: -->
+		<tx:annotation-driven transaction-manager="transactionManager"/>
+		
 </beans>

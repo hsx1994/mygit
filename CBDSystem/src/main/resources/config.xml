@@ -6,7 +6,6 @@
 	
 	<!-- 设置类型别名 -->
 	<typeAliases>
-		 <!-- <typeAlias alias="user" type="com.project.bean.UserBean"/> -->
-		 <package name="com.project.bean"/>
+		 <package name="com.woniu.cbd.bean"/>
 	</typeAliases>
 </configuration>
