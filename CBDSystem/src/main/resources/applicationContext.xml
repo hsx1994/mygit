@@ -32,13 +32,13 @@
 		</bean>
 		
 		<!--配置sqlSessionFactory 并将数据源注入-->
-	    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	    <bean id="factory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	        <!--注入数据源-->
 	        <property name="dataSource" ref="dataSource"/>
 	        <!--指定要使用到到mybatis配置文件-->
 	        <property name="configLocation" value="classpath:config.xml"/>
 	        <!--用于配置mapper映射xml-->
-	        <property name="mapperLocations" value="classpath*:com/woniu/cbd/bean/*.xml"/>
+	        <property name="mapperLocations" value="classpath:com/woniu/cbd/bean/*.xml"/>
 	    </bean>
 	    
 	    <!-- 配置事务管理器 -->

@@ -7,7 +7,7 @@
 <mapper namespace="orderMapper">
 
 	<select id="findByParkingId" parameterType="int" resultMap="map1">
-		select * from t_order where parkingId=#{parkingId};
+		select * from t_order where or_p_id=#{parkingId};
 	</select>
 	<resultMap type="OrderBean" id="map1">
 		<id property="id" column="or_id"/>

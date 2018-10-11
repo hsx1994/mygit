@@ -6,13 +6,18 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.dao.IOrderDao;
-
+@Repository
 public class OrderDaoImpl implements IOrderDao {
 	@Autowired
 	private SqlSessionFactory factory;
+	
+	public void setFactory(SqlSessionFactory factory) {
+		this.factory = factory;
+	}
 	/**
 	 * 通过车位的id查找当前车位的所有订单
 	 */

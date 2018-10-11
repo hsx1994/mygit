@@ -58,5 +58,11 @@ public class OrderBean implements Serializable {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+	@Override
+	public String toString() {
+		return "OrderBean [id=" + id + ", startTime=" + startTime
+				+ ", endTime=" + endTime + ", parkingId=" + parkingId
+				+ ", userId=" + userId + ", state=" + state + "]";
+	}
 	
 }
