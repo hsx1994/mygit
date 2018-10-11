@@ -4,18 +4,41 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 企业合约管理 -->
 <mapper namespace="companyBargainMapper">
+	<!-- 添加企业合约，签约续约 -->
 	<insert id="companyBargainAdd" parameterType="CompanyBargainBean"
 		useGeneratedKeys="true" keyProperty="id">
 		insert into
 		t_company_bargain(cb_number,cb_start_time,cb_end_time,cb_img,cb_parking_describe,cb_cname)
 		values(#{number},#{startTime},#{endTime},#{parkingDes},#{name})
 	</insert>
+	
 	<!-- 毁约，废弃该合约 -->
 	<delete id="companyBargainDelete" parameterType="int">
 		update t_company_bargain set cb_state=1 where cb_id=#{id}
 	</delete>
 	
+	<!-- 更新合约状态 -->
+	<delete id="companyBargainDelete" parameterType="CompanyBargainBean">
+		update t_company_bargain set cb_state=#{state} where cb_id=#{id}
+	</delete>
+	
+	<!-- 根据公司名模糊查询某个企业合约 -->
 	<select id="companyBargainSelect" parameterType="CompanyBargainBean" resultMap="selectMap">
-		select * from t_company_bargain where cb_name like "%#{name}"
+		select * from t_company_bargain where cb_name like "%"#{name}
 	</select>
+	
+	<!-- 查询所有企业合约 -->
+	<select id="allCompanyBargainMapper" resultMap="selectMap">
+		select * from t_bargain
+	</select>
+	<resultMap type="CompanyBargainBean" id="selectMap">
+		<id column="cb_id" property="id"></id>
+		<result column="cb_numbe" property="number"/>
+		<result column="cb_cname" property="name"/>
+		<result column="cb_start_time" property="startTime"/>
+		<result column="cb_end_time" property="endTime"/>
+		<result column="cb_img" property="img"/>
+		<result column="cb_parking_describe" property="parkingDes"/>
+		<result column="cb_state" property="state"/>
+	</resultMap>
 </mapper>

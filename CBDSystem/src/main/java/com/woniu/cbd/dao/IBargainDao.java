@@ -1,5 +1,7 @@
 package com.woniu.cbd.dao;
 
+import java.util.List;
+
 import com.woniu.cbd.bean.BargainBean;
 
 /**
@@ -36,4 +38,10 @@ public interface IBargainDao {
 	 * @return
 	 */
 	public BargainBean bargainSelect(BargainBean bean);
+	
+	/**
+	 * 查询所有第三方合约的信息
+	 * @return
+	 */
+	public List<BargainBean> allBargainSelect();
 }

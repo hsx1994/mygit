@@ -1,5 +1,7 @@
 package com.woniu.cbd.service;
 
+import java.util.List;
+
 import com.woniu.cbd.bean.BargainBean;
 
 /**
@@ -8,6 +10,7 @@ import com.woniu.cbd.bean.BargainBean;
  *
  */
 public interface IBargainService {
+	
 	/**
 	 * 添加第三方合约，跟第三方企业签订合约
 	 * @param bean
@@ -35,4 +38,10 @@ public interface IBargainService {
 	 * @return
 	 */
 	public BargainBean bargainSelect(BargainBean bean);
+	
+	/**
+	 * 查询所有第三方合约的信息
+	 * @return
+	 */
+	public List<BargainBean> allBargainSelect();
 }

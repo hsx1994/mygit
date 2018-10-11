@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 第三方车位合约管理 -->
 <mapper namespace="bargainMapper">
-	<insert id="bargainAdd" parameterType="CompanyBargainBean"
+	<insert id="bargainAdd" parameterType="BargainBean"
 		useGeneratedKeys="true" keyProperty="id">
 		insert into
 		t_bargain(b_number,b_company,b_contact,b_tel,b_address,b_start_time,b_end_time,b_img,b_parking_describe,b_state)
@@ -16,7 +16,31 @@
 		update t_bargain set b_state=1 where b_id=#{id}
 	</delete>
 	
-	<select id="companyBargainSelect" parameterType="CompanyBargainBean" resultMap="selectMap">
-		select * from t_bargain where b_name like "%#{company}"
+	<!-- 更新合约状态 -->
+	<update id="bargainUpdate" parameterType="BargainBean">
+		update t_bargain set b_state=#{state} where b_id=#{id}
+	</update>
+	
+	<!-- 通过企业名称模糊查询单个合约 -->
+	<select id="selectBargainByCompanyName" parameterType="CompanyBargainBean" resultType="BargainBean">
+		select * from t_bargain where b_name like "%"#{company}
 	</select>
+	
+	<!-- 查询所有第三方合约 -->
+	<select id="bargainSelect" resultMap="selectMap">
+		select * from t_bargain
+	</select>
+	<resultMap type="BargainBean" id="selectMap">
+		<id column="b_id" property="id"></id>
+		<result column="b_number" property="number"/>
+		<result column="b_company" property="company"/>
+		<result column="b_contact" property="contact"/>
+		<result column="b_tel" property="tel"/>
+		<result column="b_address" property="address"/>
+		<result column="b_start_time" property="startTime"/>
+		<result column="b_end_time" property="endTime"/>
+		<result column="b_img" property="img"/>
+		<result column="b_parking_describe" property="parkingDes"/>
+		<result column="b_state" property="state"/>
+	</resultMap>
 </mapper>

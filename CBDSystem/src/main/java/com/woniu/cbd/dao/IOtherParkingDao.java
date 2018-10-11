@@ -26,16 +26,15 @@ public interface IOtherParkingDao {
 	public int otherParkingDelete(int[] id);
 	
 	/**
-	 * 修改第三方车位信息
-	 * @param bean
-	 * @return
-	 */
-	public int otherParkingUpdate(OtherParkingBean bean);
-	
-	/**
-	 * 查询第三方车位信息
+	 * 查询某个第三方车位信息
 	 * @param bean
 	 * @return
 	 */
 	public OtherParkingBean otherParkingSelect(OtherParkingBean bean);
+	
+	/**
+	 * 查询所有第三方车位信息
+	 * @return
+	 */
+	public List<OtherParkingBean> allOtherParkingSelect();
 }

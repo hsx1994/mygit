@@ -1,5 +1,7 @@
 package com.woniu.cbd.dao;
 
+import java.util.List;
+
 import com.woniu.cbd.bean.CompanyBargainBean;
 
 /**
@@ -31,9 +33,15 @@ public interface ICompanyBargainDao {
 	public int companyBargainUpdate(CompanyBargainBean bean);
 	
 	/**
-	 * 查询企业合约的信息
+	 * 查询某个企业合约的信息
 	 * @param bean
 	 * @return
 	 */
 	public CompanyBargainBean companyBargainSelect(CompanyBargainBean bean);
+	
+	/**
+	 * 查询所有的企业合约信息
+	 * @return
+	 */
+	public List<CompanyBargainBean> allCompanyBargainSelect();
 }

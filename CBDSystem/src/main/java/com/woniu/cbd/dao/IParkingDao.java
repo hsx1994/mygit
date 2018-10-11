@@ -1,5 +1,7 @@
 package com.woniu.cbd.dao;
 
+import java.util.List;
+
 import com.woniu.cbd.bean.ParkingBean;
 
 /**
@@ -8,14 +10,9 @@ import com.woniu.cbd.bean.ParkingBean;
  *
  */
 public interface IParkingDao {
-	/**
-	 * 添加车位信息
-	 * @return
-	 */
-	public int parkingAdd(ParkingBean bean);
 	
 	/**
-	 * 删除某车位信息(不再系统中管理该车位)
+	 * 删除某车位信息(不再在系统中管理该车位)
 	 * 一般为合约失效或者包租婆放弃续租
 	 * @param bean
 	 * @return
@@ -23,16 +20,31 @@ public interface IParkingDao {
 	public int parkingDelete(int id);
 	
 	/**
-	 * 更改车位的部分信息
+	 * 查询申请状态的车位
 	 * @param bean
 	 * @return
 	 */
-	public int parkingUpdate(ParkingBean bean);
+	public List<ParkingBean> parkingSelect();
 	
 	/**
-	 * 查询某车位的详细信息
-	 * @param bean
+	 * 车位通过申请
+	 * @param id
 	 * @return
 	 */
-	public ParkingBean parkingSelect(ParkingBean bean);
+	public int passApply(int id);
+	
+	/**
+	 * 车位没有通过申请
+	 * @param id
+	 * @return
+	 */
+	public int passApplyFail(int id);
+	
+	/**
+	 * 车位已租出
+	 * @param id
+	 * @return
+	 */
+	public int parkingRenting(int id);
+	
 }

@@ -1,5 +1,7 @@
 package com.woniu.cbd.service;
 
+import java.util.List;
+
 import com.woniu.cbd.bean.CompanyBargainBean;
 
 /**
@@ -8,6 +10,7 @@ import com.woniu.cbd.bean.CompanyBargainBean;
  * 
  */
 public interface ICompanyBargainService {
+	
 	/**
 	 * 添加企业合约，跟企业用户签订合约
 	 * @param bean
@@ -30,9 +33,15 @@ public interface ICompanyBargainService {
 	public boolean companyBargainUpdate(CompanyBargainBean bean);
 	
 	/**
-	 * 查询企业合约的信息
+	 * 查询某个企业合约的信息
 	 * @param bean
 	 * @return
 	 */
 	public CompanyBargainBean companyBargainSelect(CompanyBargainBean bean);
+	
+	/**
+	 * 查询所有的企业合约信息
+	 * @return
+	 */
+	public List<CompanyBargainBean> allCompanyBargainSelect();
 }

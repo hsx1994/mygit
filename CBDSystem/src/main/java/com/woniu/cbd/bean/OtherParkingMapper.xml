@@ -28,7 +28,7 @@
 	</select>
 	
 	<!-- 查询所有第三方车位信息 -->
-	<select id="otherParkingSelect" resultMap="map">
+	<select id="allOtherParkingSelect" resultMap="map">
 		select * from t_other_parking
 	</select>
 	<resultMap type="OtherParkingBean" id="map">

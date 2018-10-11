@@ -23,7 +23,7 @@ public class ParkingBean implements Serializable {
 	private Date startTime;
 	//个人出租车位结束时间
 	private Date endTime;
-	//个人出租车位状态(0:申请,1:审核通过,已待租,2:已租出,3:审核未通过)
+	//个人出租车位状态(0:申请,1:审核通过,2:审核未通过)
 	private int state;
 	//个人出租车位产权证号
 	private String certificate;

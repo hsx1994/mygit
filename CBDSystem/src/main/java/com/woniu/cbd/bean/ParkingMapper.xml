@@ -35,12 +35,17 @@
 	</update>
 	
 	<!-- 车位当前已租出 -->
-	<update id="passApply" parameterType="int">
+	<update id="parkingRenting" parameterType="int">
 		update parking set p_state=2 where p_id=#{id}
 	</update>
 	
 	<!-- 未通过审核 -->
-	<update id="passApply" parameterType="int">
+	<update id="passApplyFail" parameterType="int">
 		update parking set p_state=3 where p_id=#{id}
+	</update>
+	
+	<!-- 删除某个车位 -->
+	<update id="parkingDelete" parameterType="int">
+		update parking set p_delete=1 where p_id=#{id}
 	</update>
 </mapper>
