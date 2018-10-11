@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="orderMapper">
+
+	<select id="findByParkingId" parameterType="int" resultMap="map1">
+		select * from t_order where parkingId=#{parkingId};
+	</select>
+	<resultMap type="OrderBean" id="map1">
+		<id property="id" column="or_id"/>
+		<result property="startTime" column="or_start_time"/>
+		<result property="endTime" column="or_end_time"/>
+		<result property="parkingId" column="or_p_id"/>
+		<result property="userId" column="or_u_id"/>
+		<result property="state" column="or_state"/>
+	</resultMap>
+	
+	<select id="findByName" parameterType="String" resultMap="map2">
+		select * from user where u_name=#{name};
+	</select>
+	<resultMap type="UserBean" id="map2">
+		<id property="id" column="u_id"/>
+		<result property="name" column="u_name"/>
+		<result property="password" column="u_password"/>
+	</resultMap>
+</mapper>

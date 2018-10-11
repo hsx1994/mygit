@@ -9,12 +9,16 @@ import java.util.Date;
  */
 public class OrderBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	//个人用户租赁ID
+	//订单ID
 	private int id;
 	//个人用户租赁开始时间
 	private Date startTime;
 	//个人用户租赁结束时间
 	private Date endTime;
+	//订单车位ID
+	private int parkingId;
+	//个人用户ID
+	private int userId;
 	//个人用户租赁状态(0:未付款,1:已付款，在租,2:已取消)
 	private int state;
 	
@@ -41,6 +45,18 @@ public class OrderBean implements Serializable {
 	}
 	public void setState(int state) {
 		this.state = state;
+	}
+	public int getParkingId() {
+		return parkingId;
+	}
+	public void setParkingId(int parkingId) {
+		this.parkingId = parkingId;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
 }
