@@ -23,7 +23,7 @@ public class CompanyBargainBean implements Serializable {
 	private Date endTime;
 	//企业合约租赁车位描述(车位号)
 	private String parkingDes;
-	//企业合约状态(0:正在用,1:续约,2:毁约)
+	//企业合约状态(0:正在用,2:毁约)
 	private int state;
 	
 	public String getName() {

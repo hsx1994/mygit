@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 第三方车位合约管理 -->
+<mapper namespace="bargainMapper">
+	<insert id="bargainAdd" parameterType="CompanyBargainBean"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into
+		t_bargain(b_number,b_company,b_contact,b_tel,b_address,b_start_time,b_end_time,b_img,b_parking_describe,b_state)
+		values(#{number},#{company},#{contact},#{tel},#{address},#{startTime},#{endTime},#{img},#{parkingDes},#{state})
+	</insert>
+	
+	<!-- 毁约，废弃该合约 -->
+	<delete id="bargainDelete" parameterType="int">
+		update t_bargain set b_state=1 where b_id=#{id}
+	</delete>
+	
+	<select id="companyBargainSelect" parameterType="CompanyBargainBean" resultMap="selectMap">
+		select * from t_bargain where b_name like "%#{company}"
+	</select>
+</mapper>

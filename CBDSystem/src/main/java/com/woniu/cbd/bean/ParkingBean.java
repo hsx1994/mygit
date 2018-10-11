@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 /**
  * 个人出租车位信息
- * @author Administrator
+ * @author hsx
  *
  */
 public class ParkingBean implements Serializable {

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 企业合约管理 -->
+<mapper namespace="companyBargainMapper">
+	<insert id="companyBargainAdd" parameterType="CompanyBargainBean"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into
+		t_company_bargain(cb_number,cb_start_time,cb_end_time,cb_img,cb_parking_describe,cb_cname)
+		values(#{number},#{startTime},#{endTime},#{parkingDes},#{name})
+	</insert>
+	<!-- 毁约，废弃该合约 -->
+	<delete id="companyBargainDelete" parameterType="int">
+		update t_company_bargain set cb_state=1 where cb_id=#{id}
+	</delete>
+	
+	<select id="companyBargainSelect" parameterType="CompanyBargainBean" resultMap="selectMap">
+		select * from t_company_bargain where cb_name like "%#{name}"
+	</select>
+</mapper>
