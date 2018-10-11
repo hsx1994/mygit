@@ -22,8 +22,8 @@
 	</update>
 	
 	<!-- 通过企业名称模糊查询单个合约 -->
-	<select id="selectBargainByCompanyName" parameterType="CompanyBargainBean" resultType="BargainBean">
-		select * from t_bargain where b_name like "%"#{company}
+	<select id="selectBargainByCompanyName" parameterType="CompanyBargainBean" resultMap="selectMap">
+		select * from t_bargain where b_company like "%"#{company}"%"
 	</select>
 	
 	<!-- 查询所有第三方合约 -->

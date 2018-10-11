@@ -43,8 +43,8 @@ public class BargainServiceImpl implements IBargainService {
 	}
 
 	@Override
-	public BargainBean bargainSelect(BargainBean bean) {
-		BargainBean bargain = dao.bargainSelect(bean);
+	public List<BargainBean> bargainSelect(BargainBean bean) {
+		List<BargainBean> bargain = dao.bargainSelect(bean);
 		return bargain;
 	}
 

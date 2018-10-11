@@ -26,13 +26,13 @@
     	 <!--配置数据源-->
 	    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 			<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-			<property name="url" value="jdbc:mysql://192.168.6.3:3306/test"></property>
+			<property name="url" value="jdbc:mysql://127.0.0.1:3306/test"></property>
 			<property name="username" value="root"></property>
 			<property name="password" value="123456"></property>
 		</bean>
 		
 		<!--配置sqlSessionFactory 并将数据源注入-->
-	    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	    <bean id="fa" class="org.mybatis.spring.SqlSessionFactoryBean">
 	        <!--注入数据源-->
 	        <property name="dataSource" ref="dataSource"/>
 	        <!--指定要使用到到mybatis配置文件-->
@@ -48,5 +48,5 @@
 		
 		<!-- 基于注解的方式来配置事务: -->
 		<tx:annotation-driven transaction-manager="transactionManager"/>
-		
+		<bean id="qwe" class="com.woniu.cbd.bean.BargainBean"></bean>
 </beans>

@@ -1,7 +1,6 @@
 package com.woniu.cbd.bean;
 
 import java.io.Serializable;
-import java.util.List;
 /**
  * 后台管理员的信息
  * @author hsx
@@ -21,9 +20,8 @@ public class AdministratorBean implements Serializable{
 	private String realName;
 	//后台管理员电话
 	private String tel;
-	//后台管理员权限
-	private List<String> limit;
-	
+	//后台管理员权限(四种权限对应8421，多种用加法计算)
+	private int limit;
 	
 	public String getRealName() {
 		return realName;
@@ -61,10 +59,10 @@ public class AdministratorBean implements Serializable{
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	public List<String> getLimit() {
+	public int getLimit() {
 		return limit;
 	}
-	public void setLimit(List<String> limit) {
+	public void setLimit(int limit) {
 		this.limit = limit;
 	}
 	

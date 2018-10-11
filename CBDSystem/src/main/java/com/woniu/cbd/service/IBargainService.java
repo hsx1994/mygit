@@ -37,7 +37,7 @@ public interface IBargainService {
 	 * @param bean
 	 * @return
 	 */
-	public BargainBean bargainSelect(BargainBean bean);
+	public List<BargainBean> bargainSelect(BargainBean bean);
 	
 	/**
 	 * 查询所有第三方合约的信息

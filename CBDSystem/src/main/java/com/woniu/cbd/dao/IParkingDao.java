@@ -40,11 +40,5 @@ public interface IParkingDao {
 	 */
 	public int passApplyFail(int id);
 	
-	/**
-	 * 车位已租出
-	 * @param id
-	 * @return
-	 */
-	public int parkingRenting(int id);
 	
 }

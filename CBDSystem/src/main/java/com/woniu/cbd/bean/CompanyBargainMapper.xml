@@ -18,13 +18,13 @@
 	</delete>
 	
 	<!-- 更新合约状态 -->
-	<delete id="companyBargainDelete" parameterType="CompanyBargainBean">
+	<delete id="companyBargainUpdate" parameterType="CompanyBargainBean">
 		update t_company_bargain set cb_state=#{state} where cb_id=#{id}
 	</delete>
 	
 	<!-- 根据公司名模糊查询某个企业合约 -->
 	<select id="companyBargainSelect" parameterType="CompanyBargainBean" resultMap="selectMap">
-		select * from t_company_bargain where cb_name like "%"#{name}
+		select * from t_company_bargain where cb_name like "%"#{name}"%"
 	</select>
 	
 	<!-- 查询所有企业合约 -->

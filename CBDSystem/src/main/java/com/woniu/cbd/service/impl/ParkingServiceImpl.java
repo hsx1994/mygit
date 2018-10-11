@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.woniu.cbd.bean.ParkingBean;
 import com.woniu.cbd.dao.IParkingDao;
-import com.woniu.cbd.service.IParkintService;
+import com.woniu.cbd.service.IParkingService;
 
 @Service
-public class ParkingServiceImpl implements IParkintService {
+public class ParkingServiceImpl implements IParkingService {
 	
 	@Autowired
 	private IParkingDao dao;

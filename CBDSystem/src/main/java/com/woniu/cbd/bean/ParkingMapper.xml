@@ -7,7 +7,7 @@
 
 	<!-- 查询正在申请状态的个人出租车位，仅后台管理员可见 -->
 	<select id="applyParkingSelect" resultMap="apply">
-		select * from parking where p_state=0
+		select * from t_parking where p_state=0
 	</select>
 	
 	<resultMap type="ParkingBean" id="apply">
@@ -26,26 +26,21 @@
 	
 	<!-- 查询所有个人出租车位 -->
 	<select id="allParkingSelect" resultMap="apply">
-		select * from parking
+		select * from t_parking
 	</select>
 	
 	<!-- 通过审核 -->
 	<update id="passApply" parameterType="int">
-		update parking set p_state=1 where p_id=#{id}
-	</update>
-	
-	<!-- 车位当前已租出 -->
-	<update id="parkingRenting" parameterType="int">
-		update parking set p_state=2 where p_id=#{id}
+		update t_parking set p_state=1 where p_id=#{id}
 	</update>
 	
 	<!-- 未通过审核 -->
 	<update id="passApplyFail" parameterType="int">
-		update parking set p_state=3 where p_id=#{id}
+		update t_parking set p_state=2 where p_id=#{id}
 	</update>
 	
 	<!-- 删除某个车位 -->
 	<update id="parkingDelete" parameterType="int">
-		update parking set p_delete=1 where p_id=#{id}
+		update t_parking set p_delete=1 where p_id=#{id}
 	</update>
 </mapper>

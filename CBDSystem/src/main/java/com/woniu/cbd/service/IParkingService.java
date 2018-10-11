@@ -9,7 +9,7 @@ import com.woniu.cbd.bean.ParkingBean;
  * @author hsx
  *
  */
-public interface IParkintService {
+public interface IParkingService {
 	/**
 	 * 删除某车位信息(不再在系统中管理该车位)
 	 * 一般为合约失效或者包租婆放弃续租

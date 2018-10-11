@@ -48,9 +48,9 @@ public class BargainDaoImpl implements IBargainDao {
 	}
 
 	@Override
-	public BargainBean bargainSelect(BargainBean bean) {
+	public List<BargainBean> bargainSelect(BargainBean bean) {
 		SqlSession session = fa.openSession();
-		BargainBean bargain = session.selectOne("bargainMapper.selectBargainByCompanyName", bean);
+		List<BargainBean> bargain = session.selectList("bargainMapper.selectBargainByCompanyName", bean);
 		
 		session.close();
 		return bargain;
@@ -59,8 +59,7 @@ public class BargainDaoImpl implements IBargainDao {
 	@Override
 	public List<BargainBean> allBargainSelect() {
 		SqlSession session = fa.openSession();
-		List<BargainBean> bargain = session.selectOne("bargainMapper.bargainSelect");
-		
+		List<BargainBean> bargain = session.selectList("bargainMapper.bargainSelect");
 		session.close();
 		return bargain;
 	}

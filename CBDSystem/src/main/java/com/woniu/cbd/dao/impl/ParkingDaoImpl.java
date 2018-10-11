@@ -55,15 +55,4 @@ public class ParkingDaoImpl implements IParkingDao {
 		session.close();
 		return row;
 	}
-
-	@Override
-	public int parkingRenting(int id) {
-		SqlSession session = fa.openSession();
-		int row = session.update("parkingMapper.parkingRenting",id);
-		
-		session.commit();
-		session.close();
-		return row;
-	}
-
 }
