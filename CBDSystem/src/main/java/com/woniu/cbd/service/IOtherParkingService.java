@@ -22,7 +22,7 @@ public interface IOtherParkingService {
 	 * @param id
 	 * @return
 	 */
-	public boolean otherParkingDelete(int[] id);
+	public boolean otherParkingDelete(Integer[] id);
 	
 	/**
 	 * 查询第三方车位信息

@@ -36,11 +36,11 @@ public class OrderServiceImpl implements IOrderService {
 			return b;
 		}
 		//如果订单时间段不在车位可租时间段内,订单不成立
-		ParkingBean parking = parkingDao.findParkingById(order.getParkingId());
+		ParkingBean parking = parkingDao.findParkingById(order.getParking().getId());
 		if ((order.getStartTime().compareTo(parking.getStartTime())<0)||(order.getEndTime().compareTo(parking.getEndTime())>0)) {
 			return b;
 		}
-		List<OrderBean> orderList = orderDao.findByParkingId(order.getParkingId());
+		List<OrderBean> orderList = orderDao.findByParkingId(order.getParking().getId());
 		
 		if (orderList.size() != 0) {
 			b = true;

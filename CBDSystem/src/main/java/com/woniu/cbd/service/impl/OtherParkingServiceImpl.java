@@ -25,7 +25,7 @@ public class OtherParkingServiceImpl implements IOtherParkingService {
 	}
 
 	@Override
-	public boolean otherParkingDelete(int[] id) {
+	public boolean otherParkingDelete(Integer[] id) {
 		int row = dao.otherParkingDelete(id);
 		if(row > 0){
 			return true;

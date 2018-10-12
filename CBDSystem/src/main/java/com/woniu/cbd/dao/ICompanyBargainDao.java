@@ -33,11 +33,11 @@ public interface ICompanyBargainDao {
 	public int companyBargainUpdate(CompanyBargainBean bean);
 	
 	/**
-	 * 查询某个企业合约的信息
+	 * 通过企业名查询所有该企业合约的信息
 	 * @param bean
 	 * @return
 	 */
-	public CompanyBargainBean companyBargainSelect(CompanyBargainBean bean);
+	public List<CompanyBargainBean> companyBargainSelect(CompanyBargainBean bean);
 	
 	/**
 	 * 查询所有的企业合约信息

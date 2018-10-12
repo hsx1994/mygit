@@ -22,6 +22,11 @@
         </foreach >
 	</update>
 	
+	<!-- 查询第三方合约关联的车位信息 -->
+	<select id="otherParkingInBargainSelect" parameterType="int" resultMap="map">
+		select * from t_other_parking where ot_bargain_id=#{id}
+	</select>
+	
 	<!-- 查询某个第三方车位信息 -->
 	<select id="otherParkingSelect" parameterType="OtherParkingBean" resultType="OtherParkingBean">
 		select * from t_other_parking where ot_id=#{id}
@@ -40,5 +45,8 @@
 		<result column="ot_start_time" property="startTime"/>
 		<result column="ot_end_time" property="endTime"/>
 		<result column="ot_bargain_id" property="bargainId"/>
+		<association property="bargain" javaType="BargainBean" select="bargainMapper.findById" column="ot_bargain_id"/>
+		<collection property="order" ofType="CompanyOrderBean" select="companyOrderMapper" column="ot_id"></collection>
 	</resultMap>
+	
 </mapper>

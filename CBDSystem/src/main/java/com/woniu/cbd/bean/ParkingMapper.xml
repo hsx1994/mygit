@@ -18,6 +18,8 @@
 		<result column="p_certificate" property="certificate"/>
 		<result column="p_certi_img" property="certImg"/>
 		<result column="p_apply_time" property="applyTime"/>
+		<association property="user" javaType="UserBean" select="userMapper.findById" column="p_u_id" />
+		<collection property="orders" ofType="OrderBean" select="orderMapper.findByParkingId" column="p_id"></collection>
 	</resultMap>
 	
 	<!-- 通过车位id查找车位的信息 -->

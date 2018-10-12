@@ -8,8 +8,8 @@
 	<insert id="companyBargainAdd" parameterType="CompanyBargainBean"
 		useGeneratedKeys="true" keyProperty="id">
 		insert into
-		t_company_bargain(cb_number,cb_start_time,cb_end_time,cb_img,cb_parking_describe,cb_cname)
-		values(#{number},#{startTime},#{endTime},#{parkingDes},#{name})
+		t_company_bargain(cb_number,cb_c_id,cb_start_time,cb_end_time,cb_img,cb_cname,cb_contact,cb_tel)
+		values(#{number},#{company.id},#{startTime},#{endTime},#{name},#{contact},#{tel})
 	</insert>
 	
 	<!-- 毁约，废弃该合约 -->
@@ -38,7 +38,10 @@
 		<result column="cb_start_time" property="startTime"/>
 		<result column="cb_end_time" property="endTime"/>
 		<result column="cb_img" property="img"/>
-		<result column="cb_parking_describe" property="parkingDes"/>
 		<result column="cb_state" property="state"/>
+		<result column="cb_contact" property="contact"/>
+		<result column="cb_tel" property="tel"/>
+		<association property="company" javaType="CompanyInfoBean" select="CompanyInfoMapper.findById" column="cb_c_id"></association>
+		<collection property="comOrder" ofType="CompanyOrderBean" select="companyOrderMapper.findByCompanyBargainId" column="cb_id"/>
 	</resultMap>
 </mapper>

@@ -94,12 +94,6 @@ public class BargainBean implements Serializable {
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
-//	public String getParkingDes() {
-//		return parkingDes;
-//	}
-//	public void setParkingDes(String parkingDes) {
-//		this.parkingDes = parkingDes;
-//	}
 	public int getState() {
 		return state;
 	}

@@ -30,8 +30,16 @@ public class CompanyBargainBean implements Serializable {
 	private int state;
 	//企业合约包含的订单集合
 	private List<CompanyOrderBean> comOrder;
+	//企业合约对应的企业信息
+	private CompanyInfoBean company;
 	
 	
+	public CompanyInfoBean getCompany() {
+		return company;
+	}
+	public void setCompany(CompanyInfoBean company) {
+		this.company = company;
+	}
 	public String getContact() {
 		return contact;
 	}
