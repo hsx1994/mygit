@@ -1,6 +1,7 @@
 package com.woniu.cbd.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 企业用户信息
@@ -25,7 +26,16 @@ public class CompanyInfoBean implements Serializable {
 	private String tel;
 	//企业用户邮箱
 	private String email;
+	//企业用户的订单信息
+	private List<CompanyOrderBean> comOrder;
 	
+	
+	public List<CompanyOrderBean> getComOrder() {
+		return comOrder;
+	}
+	public void setComOrder(List<CompanyOrderBean> comOrder) {
+		this.comOrder = comOrder;
+	}
 	public int getId() {
 		return id;
 	}
