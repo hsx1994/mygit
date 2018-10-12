@@ -19,6 +19,6 @@
 	</resultMap>
 	
 	<insert id="addOrder" parameterType="OrderBean" keyProperty="id" useGeneratedKeys="true">
-		insert into t_order(or_start_time,or_end_time,or_p_id,or_u_id) values(#{startTime},#{endTime},#{parkingId},#{userId});
+		insert into t_order(or_start_time,or_end_time,or_p_id,or_u_id) values(#{startTime},#{endTime},#{parking.id},#{user.id});
 	</insert>
 </mapper>
