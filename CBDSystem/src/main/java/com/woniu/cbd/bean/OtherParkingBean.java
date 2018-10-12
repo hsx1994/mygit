@@ -2,6 +2,7 @@ package com.woniu.cbd.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 /**
  * 第三方提供的车位的信息
  * @author hsx 
@@ -24,14 +25,29 @@ public class OtherParkingBean implements Serializable {
 	//第三方提供的车位结束时间
 	private Date endTime;
 	//关联的第三方合约的ID
-	private int bargainId;
+	private BargainBean bargain;
+	//关联的企业合约的ID
+	private CompanyBargainBean comBargain;
+	//第三方车位出租产生的企业订单
+	private List<CompanyOrderBean> order;
 	
-	
-	public int getBargainId() {
-		return bargainId;
+	public List<CompanyOrderBean> getOrder() {
+		return order;
 	}
-	public void setBargainId(int bargainId) {
-		this.bargainId = bargainId;
+	public void setOrder(List<CompanyOrderBean> order) {
+		this.order = order;
+	}
+	public CompanyBargainBean getComBargain() {
+		return comBargain;
+	}
+	public void setComBargain(CompanyBargainBean comBargain) {
+		this.comBargain = comBargain;
+	}
+	public BargainBean getBargain() {
+		return bargain;
+	}
+	public void setBargain(BargainBean bargain) {
+		this.bargain = bargain;
 	}
 	public int getId() {
 		return id;

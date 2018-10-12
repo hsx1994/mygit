@@ -4,12 +4,15 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class ComplainBean implements Serializable{
+	private static final long serialVersionUID = 1L;
 	//个人用户投诉ID
 	private int id;
 	//个人用户投诉者
 	private UserBean user;
 	//个人用户投诉的订单
 	private OrderBean order;
+	//个人用户被投诉者
+	private UserBean buser;
 	//个人用户投诉内容
 	private String content;
 	//个人用户投诉状态(0:暂缓状态,1:投诉生效,2:投诉无效)
@@ -17,6 +20,12 @@ public class ComplainBean implements Serializable{
 	//个人用户投诉时间
 	private Date time;
 	
+	public UserBean getBuser() {
+		return buser;
+	}
+	public void setBuser(UserBean buser) {
+		this.buser = buser;
+	}
 	public int getId() {
 		return id;
 	}

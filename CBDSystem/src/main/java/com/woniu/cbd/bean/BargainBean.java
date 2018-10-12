@@ -2,6 +2,7 @@ package com.woniu.cbd.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 /**
  * 第三方合约内容信息
  * @author hsx
@@ -27,11 +28,20 @@ public class BargainBean implements Serializable {
 	private Date startTime;
 	//第三方合约结束时间
 	private Date endTime;
-	//第三方合约涉及车位描述(车位号)
-	private String parkingDes;
+//	//第三方合约涉及车位描述(车位号)
+//	private String parkingDes;
 	//第三方合约状态(0:正在用,2:毁约)
 	private int state;
+	//第三方合约包含的第三方车位集合
+	private List<OtherParkingBean> parking;
 	
+	
+	public List<OtherParkingBean> getParking() {
+		return parking;
+	}
+	public void setParking(List<OtherParkingBean> parking) {
+		this.parking = parking;
+	}
 	public int getId() {
 		return id;
 	}
@@ -86,12 +96,12 @@ public class BargainBean implements Serializable {
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
-	public String getParkingDes() {
-		return parkingDes;
-	}
-	public void setParkingDes(String parkingDes) {
-		this.parkingDes = parkingDes;
-	}
+//	public String getParkingDes() {
+//		return parkingDes;
+//	}
+//	public void setParkingDes(String parkingDes) {
+//		this.parkingDes = parkingDes;
+//	}
 	public int getState() {
 		return state;
 	}

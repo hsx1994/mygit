@@ -2,6 +2,7 @@ package com.woniu.cbd.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 /**
  * 企业合约内容信息
  * @author hsx
@@ -21,11 +22,19 @@ public class CompanyBargainBean implements Serializable {
 	private Date startTime;
 	//企业合约结束时间
 	private Date endTime;
-	//企业合约租赁车位描述(车位号)
-	private String parkingDes;
+//	//企业合约租赁车位描述(车位号)
+//	private String parkingDes;
 	//企业合约状态(0:正在用,2:毁约)
 	private int state;
+	//企业合约包含的订单集合
+	private List<CompanyOrderBean> comOrder;
 	
+	public List<CompanyOrderBean> getComOrder() {
+		return comOrder;
+	}
+	public void setComOrder(List<CompanyOrderBean> comOrder) {
+		this.comOrder = comOrder;
+	}
 	public String getName() {
 		return name;
 	}
@@ -62,12 +71,12 @@ public class CompanyBargainBean implements Serializable {
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
-	public String getParkingDes() {
-		return parkingDes;
-	}
-	public void setParkingDes(String parkingDes) {
-		this.parkingDes = parkingDes;
-	}
+//	public String getParkingDes() {
+//		return parkingDes;
+//	}
+//	public void setParkingDes(String parkingDes) {
+//		this.parkingDes = parkingDes;
+//	}
 	public int getState() {
 		return state;
 	}

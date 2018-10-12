@@ -2,6 +2,7 @@ package com.woniu.cbd.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 /**
  * 个人出租车位信息
  * @author hsx
@@ -31,7 +32,24 @@ public class ParkingBean implements Serializable {
 	private String certImg;
 	//个人出租车位申请时间
 	private Date applyTime;
+	//个人车位订单集合
+	private List<OrderBean> orders;
+	//个人车位对应的包租婆信息
+	private UserBean user;
 	
+	
+	public UserBean getUser() {
+		return user;
+	}
+	public void setUser(UserBean user) {
+		this.user = user;
+	}
+	public List<OrderBean> getOrders() {
+		return orders;
+	}
+	public void setOrders(List<OrderBean> orders) {
+		this.orders = orders;
+	}
 	public int getId() {
 		return id;
 	}
