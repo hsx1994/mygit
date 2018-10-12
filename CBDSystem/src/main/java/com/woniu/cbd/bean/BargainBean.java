@@ -29,7 +29,7 @@ public class BargainBean implements Serializable {
 	private Date endTime;
 	//第三方合约涉及车位描述(车位号)
 	private String parkingDes;
-	//第三方合约状态(0:正在用,1:续约,2:毁约)
+	//第三方合约状态(0:正在用,2:毁约)
 	private int state;
 	
 	public int getId() {

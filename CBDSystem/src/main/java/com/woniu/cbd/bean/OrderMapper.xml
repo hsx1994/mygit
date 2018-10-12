@@ -5,7 +5,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="orderMapper">
-
+	<!-- 通过车位id查找该车位的所有订单信息 -->
 	<select id="findByParkingId" parameterType="int" resultMap="map1">
 		select * from t_order where or_p_id=#{parkingId};
 	</select>
@@ -18,12 +18,4 @@
 		<result property="state" column="or_state"/>
 	</resultMap>
 	
-	<select id="findByName" parameterType="String" resultMap="map2">
-		select * from user where u_name=#{name};
-	</select>
-	<resultMap type="UserBean" id="map2">
-		<id property="id" column="u_id"/>
-		<result property="name" column="u_name"/>
-		<result property="password" column="u_password"/>
-	</resultMap>
 </mapper>

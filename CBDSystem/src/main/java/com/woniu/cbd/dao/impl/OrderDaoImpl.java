@@ -13,7 +13,7 @@ import com.woniu.cbd.dao.IOrderDao;
 @Repository
 public class OrderDaoImpl implements IOrderDao {
 	@Autowired
-	private SqlSessionFactory factory;
+	private SqlSessionFactory fa;
 	
 	public void setFactory(SqlSessionFactory factory) {
 		this.factory = factory;
@@ -25,7 +25,7 @@ public class OrderDaoImpl implements IOrderDao {
 	public List<OrderBean> findByParkingId(int parkingId) {
 		List<OrderBean> list = new ArrayList<OrderBean>();
 		
-		SqlSession session = factory.openSession(true);
+		SqlSession session = fa.openSession(true);
 		
 		list = session.selectList("orderMapper.findByParkingId", parkingId);
 		
@@ -34,7 +34,7 @@ public class OrderDaoImpl implements IOrderDao {
 	}
 	@Override
 	public boolean addOrder(OrderBean order) {
-		SqlSession session = factory.openSession(true);
+		SqlSession session = fa.openSession(true);
 		if(session.insert("orderMapper.addOrder", order) == 0){
 			session.close();
 			return false;

@@ -23,7 +23,16 @@ public class OtherParkingBean implements Serializable {
 	private Date startTime;
 	//第三方提供的车位结束时间
 	private Date endTime;
+	//关联的第三方合约的ID
+	private int bargainId;
 	
+	
+	public int getBargainId() {
+		return bargainId;
+	}
+	public void setBargainId(int bargainId) {
+		this.bargainId = bargainId;
+	}
 	public int getId() {
 		return id;
 	}
