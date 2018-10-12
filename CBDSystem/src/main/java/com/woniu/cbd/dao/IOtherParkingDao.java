@@ -23,7 +23,7 @@ public interface IOtherParkingDao {
 	 * @param id
 	 * @return
 	 */
-	public int otherParkingDelete(int[] id);
+	public int otherParkingDelete(Integer[] id);
 	
 	/**
 	 * 查询某个第三方车位信息

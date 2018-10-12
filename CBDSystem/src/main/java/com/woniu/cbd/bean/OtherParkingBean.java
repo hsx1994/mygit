@@ -24,10 +24,8 @@ public class OtherParkingBean implements Serializable {
 	private Date startTime;
 	//第三方提供的车位结束时间
 	private Date endTime;
-	//关联的第三方合约的ID
+	//关联的第三方合约信息
 	private BargainBean bargain;
-	//关联的企业合约的ID
-	private CompanyBargainBean comBargain;
 	//第三方车位出租产生的企业订单
 	private List<CompanyOrderBean> order;
 	
@@ -36,12 +34,6 @@ public class OtherParkingBean implements Serializable {
 	}
 	public void setOrder(List<CompanyOrderBean> order) {
 		this.order = order;
-	}
-	public CompanyBargainBean getComBargain() {
-		return comBargain;
-	}
-	public void setComBargain(CompanyBargainBean comBargain) {
-		this.comBargain = comBargain;
 	}
 	public BargainBean getBargain() {
 		return bargain;

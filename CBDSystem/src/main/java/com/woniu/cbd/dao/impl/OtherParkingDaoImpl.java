@@ -27,7 +27,7 @@ public class OtherParkingDaoImpl implements IOtherParkingDao {
 	}
 
 	@Override
-	public int otherParkingDelete(int[] id) {
+	public int otherParkingDelete(Integer[] id) {
 		SqlSession session = fa.openSession();
 		int row = session.insert("otherParkingMapper.otherParkingDelete", id);
 		

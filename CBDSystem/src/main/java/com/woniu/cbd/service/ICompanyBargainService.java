@@ -33,11 +33,11 @@ public interface ICompanyBargainService {
 	public boolean companyBargainUpdate(CompanyBargainBean bean);
 	
 	/**
-	 * 查询某个企业合约的信息
+	 * 根据企业名称查询该企业所有合约的信息
 	 * @param bean
 	 * @return
 	 */
-	public CompanyBargainBean companyBargainSelect(CompanyBargainBean bean);
+	public List<CompanyBargainBean> companyBargainSelect(CompanyBargainBean bean);
 	
 	/**
 	 * 查询所有的企业合约信息

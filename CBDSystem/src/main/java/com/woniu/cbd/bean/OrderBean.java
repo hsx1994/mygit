@@ -16,7 +16,7 @@ public class OrderBean implements Serializable {
 	private Date startTime;
 	//个人用户租赁结束时间
 	private Date endTime;
-	//订单车位ID
+	//订单车位信息
 	private ParkingBean parking;
 	//订单对应的投诉集合
 	private List<ComplainBean> complain;
