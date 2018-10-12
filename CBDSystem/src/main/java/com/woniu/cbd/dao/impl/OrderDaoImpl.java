@@ -15,9 +15,6 @@ public class OrderDaoImpl implements IOrderDao {
 	@Autowired
 	private SqlSessionFactory fa;
 	
-	public void setFactory(SqlSessionFactory factory) {
-		this.factory = factory;
-	}
 	/**
 	 * 通过车位的id查找当前车位的所有订单
 	 */

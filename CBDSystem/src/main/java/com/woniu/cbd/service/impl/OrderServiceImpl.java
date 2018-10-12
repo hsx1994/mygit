@@ -66,8 +66,7 @@ public class OrderServiceImpl implements IOrderService {
 				b = orderDao.addOrder(order);
 			}
 		}else {
-			/*b = orderDao.addOrder(order);*/
-			b = true;
+			b = orderDao.addOrder(order);
 		}
 		return b;
 	}
