@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 区分sql块，不同文件中sql语句id可能重复，给每个文件命名 -->
+<mapper namespace="useMapper">
+    <!--根据用户id查询用户真实姓名  -->
+	<select id="findbyId" parameterType="int" resultMap="User">
+		select * from t_user_info where u_l_id=#{id} 
+	</select>
+	<resultMap type="UserBean" id="User">
+	 <result property="realName" column="u_realname"/>
+	</resultMap>
+</mapper>
