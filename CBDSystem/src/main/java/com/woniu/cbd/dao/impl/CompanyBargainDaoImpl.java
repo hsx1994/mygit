@@ -64,4 +64,13 @@ public class CompanyBargainDaoImpl implements ICompanyBargainDao {
 		return list;
 	}
 
+	@Override
+	public List<CompanyBargainBean> companyBargainSelectByState(int state) {
+		SqlSession session = fa.openSession();
+		List<CompanyBargainBean> list = session.selectList("companyBargainMapper.fingCompanyBargainByState",state);
+		
+		session.close();
+		return list;
+	}
+
 }

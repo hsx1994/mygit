@@ -31,6 +31,11 @@
 		select * from t_bargain where b_id=#{id}
 	</select>
 	
+	<!-- 根据状态查询合约 -->
+	<select id="fingBargainByState" parameterType="int" resultMap="selectMap">
+		select * from t_bargain where b_state=#{state}
+	</select>
+	
 	<!-- 查询所有第三方合约 -->
 	<select id="bargainSelect" resultMap="selectMap">
 		select * from t_bargain
@@ -47,6 +52,6 @@
 		<result column="b_img" property="img"/>
 		<result column="b_parking_describe" property="parkingDes"/>
 		<result column="b_state" property="state"/>
-		<collection property="parking" ofType="OtherParkingBean" select="otherParkingMapper" column="b_id"></collection>
+		<collection property="parking" ofType="OtherParkingBean" select="otherParkingMapper.otherParkingInBargainSelect" column="b_id" />
 	</resultMap>
 </mapper>

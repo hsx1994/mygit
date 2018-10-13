@@ -27,9 +27,14 @@
 		select * from t_company_bargain where cb_name like "%"#{name}"%"
 	</select>
 	
+	<!-- 根据状态查询企业合约 -->
+	<select id="fingCompanyBargainByState" parameterType="int" resultMap="selectMap">
+		select * from t_company_bargain where cb_state=#{state}
+	</select>
+	
 	<!-- 查询所有企业合约 -->
-	<select id="allCompanyBargainMapper" resultMap="selectMap">
-		select * from t_bargain
+	<select id="allCompanyBargainSelect" resultMap="selectMap">
+		select * from t_company_bargain
 	</select>
 	<resultMap type="CompanyBargainBean" id="selectMap">
 		<id column="cb_id" property="id"></id>
