@@ -1,10 +1,12 @@
 package com.woniu.cbd.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.winiu.cbd.util.DateUtil;
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
 import com.woniu.cbd.dao.IOrderDao;
@@ -31,18 +33,24 @@ public class OrderServiceImpl implements IOrderService {
 	@Override
 	public boolean privateOrder(OrderBean order) {
 		boolean b = false;
+		ParkingBean parking = parkingDao.findParkingById(order.getParking().getId());
+		
+		//如果订单开始结束时间时过去时间,订单不成立
+		if (order.getStartTime().compareTo(new Date())<0||order.getEndTime().compareTo(new Date())<=0) {
+			return b;
+		}
 		//如果订单开始时间大于等于结束时间,订单不成立
 		if (order.getStartTime().compareTo(order.getEndTime())>=0) {
 			return b;
 		}
 		//如果订单时间段不在车位可租时间段内,订单不成立
-		ParkingBean parking = parkingDao.findParkingById(order.getParking().getId());
 		if ((order.getStartTime().compareTo(parking.getStartTime())<0)||(order.getEndTime().compareTo(parking.getEndTime())>0)) {
 			return b;
 		}
 		List<OrderBean> orderList = orderDao.findByParkingId(order.getParking().getId());
-		
+	
 		if (orderList.size() != 0) {
+			System.out.println("进入判断");
 			b = true;
 			for (OrderBean orderBean : orderList) {
 				//如果订单开始时间在其他订单时间段内,订单不成立
@@ -63,9 +71,11 @@ public class OrderServiceImpl implements IOrderService {
 			}
 			//判断完后标志位依然为true,表示该订单正确,可以生成
 			if (b) {
+				order.setPay(DateUtil.timeMinus(order.getStartTime(), order.getEndTime())*parking.getPrice());
 				b = orderDao.addOrder(order);
 			}
 		}else {
+			order.setPay(DateUtil.timeMinus(order.getStartTime(), order.getEndTime())*parking.getPrice());
 			b = orderDao.addOrder(order);
 		}
 		return b;

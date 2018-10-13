@@ -24,7 +24,9 @@ public class OrderBean implements Serializable {
 	private UserBean user;
 	//个人用户租赁状态(0:未付款,1:已付款，在租,2:已取消)
 	private int state;
-	
+	//订单总金额
+	private double pay;
+
 	public int getId() {
 		return id;
 	}
@@ -66,5 +68,11 @@ public class OrderBean implements Serializable {
 	}
 	public void setComplain(List<ComplainBean> complain) {
 		this.complain = complain;
+	}
+	public double getPay() {
+		return pay;
+	}
+	public void setPay(double pay) {
+		this.pay = pay;
 	}
 }
