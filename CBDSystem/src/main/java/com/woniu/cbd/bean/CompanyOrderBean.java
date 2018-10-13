@@ -17,6 +17,8 @@ public class CompanyOrderBean implements Serializable {
 	private Date startTime;
 	//企业用户租赁结束时间
 	private Date endTime;
+	//企业租车订单关联的车位信息
+	private OtherParkingBean otherParking;
 	//企业租车订单关联的企业合约信息
 	private CompanyBargainBean comBargain;
 	//企业订单关联的企业信息
@@ -59,4 +61,12 @@ public class CompanyOrderBean implements Serializable {
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
+	public OtherParkingBean getOtherParking() {
+		return otherParking;
+	}
+	public void setOtherParking(OtherParkingBean otherParking) {
+		this.otherParking = otherParking;
+	}
+	
+	
 }

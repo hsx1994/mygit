@@ -13,9 +13,12 @@
 		<id property="id" column="or_id"/>
 		<result property="startTime" column="or_start_time"/>
 		<result property="endTime" column="or_end_time"/>
-		<result property="parkingId" column="or_p_id"/>
-		<result property="userId" column="or_u_id"/>
+		<!-- <result property="parkingId" column="or_p_id"/>
+		<result property="userId" column="or_u_id"/> -->
 		<result property="state" column="or_state"/>
+		<association property="parking" javaType="ParkingBean" select="parkingMapper.findParkingById" column="or_p_id"></association>
+		<association property="user" javaType="UserBean" select="userMapper.findById" column="or_u_id"></association>
+		<collection property="complain" ofType="ComplainBean" select="complainMapper.findByOrderId" column="id"></collection>
 	</resultMap>
 	
 	<insert id="addOrder" parameterType="OrderBean" keyProperty="id" useGeneratedKeys="true">
