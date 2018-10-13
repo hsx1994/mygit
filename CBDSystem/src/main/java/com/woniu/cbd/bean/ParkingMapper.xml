@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 个人车位管理 -->
+<mapper namespace="parkingMapper">
+
+	<!-- 车位信息bean -->
+	<resultMap type="ParkingBean" id="apply">
+		<id column="p_id" property="id"/>
+		<result column="p_address" property="address"/>
+		<result column="p_parking_number" property="parkingNum"/>
+		<result column="p_img" property="img"/>
+		<result column="p_price" property="price"/>
+		<result column="p_start_time" property="startTime"/>
+		<result column="p_end_time" property="endTime"/>
+		<result column="p_state" property="state"/>
+		<result column="p_certificate" property="certificate"/>
+		<result column="p_certi_img" property="certImg"/>
+		<result column="p_apply_time" property="applyTime"/>
+		<association property="user" javaType="UserBean" select="userMapper.findById" column="p_u_id" />
+		<collection property="orders" ofType="OrderBean" select="orderMapper.findByParkingId" column="p_id"></collection>
+	</resultMap>
+	
+	<!-- 通过车位id查找车位的信息 -->
+	<select id="findParkingById" parameterType="int" resultMap="apply">
+		select * from t_parking where p_id = #{parkingId}
+	</select>
+
+
+	<!-- 查询正在申请状态的个人出租车位，仅后台管理员可见 -->
+	<select id="applyParkingSelect" resultMap="apply">
+		select * from t_parking where p_state=0
+	</select>
+	
+	<!-- 查询所有个人出租车位 -->
+	<select id="allParkingSelect" resultMap="apply">
+		select * from t_parking
+	</select>
+	
+	<!-- 通过审核 -->
+	<update id="passApply" parameterType="int">
+		update t_parking set p_state=1 where p_id=#{id}
+	</update>
+	
+	<!-- 未通过审核 -->
+	<update id="passApplyFail" parameterType="int">
+		update t_parking set p_state=2 where p_id=#{id}
+	</update>
+	
+	<!-- 删除某个车位 -->
+	<update id="parkingDelete" parameterType="int">
+		update t_parking set p_delete=1 where p_id=#{id}
+	</update>
+</mapper>
