@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 区分sql块，不同文件中sql语句id可能重复，给每个文件命名 -->
+<mapper namespace="otherparkingMapper">
+	<!--查看企业的所有车位 -->
+	<select id="showcompanyall" resultMap="map">
+		select * from
+		t_other_parking
+	</select>
+	<resultMap type="OtherParkingBean" id="map">
+		<id property="id" column="ot_id" />
+		<result property="address" column="ot_address" />
+		<result property="parkingNum" column="ot_parking_number" />
+		<result property="img" column="ot_img" />
+		<result property="price" column="ot_price" />
+		<result property="startTime" column="ot_start_time" />
+		<result property="endTime" column="ot_end_time" />
+
+	</resultMap>
+
+	<!--企业查看单个企业车位的信息 -->
+	<select id="showcompanypark" parameterType="int" resultType="OtherParkingBean">
+
+		select ot_id as id,ot_address as address,ot_parking_number as
+		parkingNum,ot_img as img,ot_price as price,ot_start_time as
+		startTime,ot_end_time as endTime
+		from t_other_parking
+	</select>
+
+	<!--企业批量租赁企业车位 -->
+	<select id="companylease"></select>
+
+	<!--企业查看自己的合约 -->
+	<select id="companycontract" parameterType="int" resultMap="map1">
+		select * from t_company_bargain where cb_c_id=#{id}
+	</select>
+	<resultMap type="CompanyBargainBean" id="map1">
+		<id property="id" column="cb_id" />
+		<result property="name" column="cb_cname" />
+		<result property="number" column="cb_numbe" />
+		<result property="img" column="cb_img" />
+		<result property="startTime" column="cb_start_time" />
+		<result property="endTime" column="cb_end_time" />
+		<result property="parkingDes" column="cb_parking_describe" />
+		<result property="state" column="cb_state" />
+	</resultMap>
+
+
+
+</mapper>
