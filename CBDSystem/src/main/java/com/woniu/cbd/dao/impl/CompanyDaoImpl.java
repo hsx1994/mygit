@@ -21,37 +21,28 @@ public class CompanyDaoImpl implements ICompanyDao {
 	@Override
 	public List<OtherParkingBean> ShowComPanyParkAll() {
 		// TODO Auto-generated method stub
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		List<OtherParkingBean> bean = session.selectList("otherparkingMapper.showcompanyall");
 		session.close();
 		return bean;
 	}
 
-	// 企业查看租赁记录
+	// 企业查看单个车位信息
 	@Override
-	public List<OtherParkingBean> ShowComPanyPark(int c_id) {
+	public OtherParkingBean ShowComPanyPark(int c_id) {
 		// TODO Auto-generated method stub
-		SqlSession session = fa.openSession();
-		List<OtherParkingBean> bean = session.selectList("otherparkingMapper.showcompanypark", c_id);
+		SqlSession session = fa.openSession(true);
+		OtherParkingBean bean = session.selectOne("otherparkingMapper.showcompanypark", c_id);
 		session.close();
 		return bean;
 	}
 
-	// 企业批量租赁车位
-	@Override
-	public int CompanyLease(List<OtherParkingBean> other) {
-		// TODO Auto-generated method stub
-		SqlSession session = fa.openSession();
-		int num = session.insert("companyorderMapper.companylease", other);
-		session.close();
-		return num;
-	}
 
 	// 前台查看企业合约
 	@Override
 	public List<CompanyBargainBean> CompanyContract(String name) {
 		// TODO Auto-generated method stub
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		List<CompanyBargainBean> bean = session.selectOne("companyBargainMapper.companycontract", name);
 		session.close();
 		return bean;

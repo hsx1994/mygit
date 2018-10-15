@@ -5,11 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.servlet.ModelAndView;
 
 import com.woniu.cbd.bean.ParkingBean;
 import com.woniu.cbd.service.IParkingService;
-import com.woniu.cbd.service.IUserService;
 
 @Controller
 public class ParkingController {
@@ -91,26 +92,65 @@ public class ParkingController {
 		return mav;
 
 	}
-	
-	
-	   // 抢租客根据价格查询上架车位
-		@RequestMapping("/findbynum.do")
-		public ModelAndView  SelectParkByNum(int price) {
-			ModelAndView mav = new ModelAndView();
-			List<ParkingBean> bean = park.SelectPark(price);
-			if (bean != null) {
-				System.out.println("查询到车位");
-				mav.addObject(bean);
-				mav.setViewName("");
-			} else {
-				System.out.println("满足条件的为空");
-				mav.addObject("空");
-				mav.setViewName("");
-			}
-			return mav;
 
+	// 抢租客根据价格查询上架车位
+	@RequestMapping("/findbynum.do")
+	public ModelAndView SelectParkByNum(int price) {
+		ModelAndView mav = new ModelAndView();
+		List<ParkingBean> bean = park.SelectPark(price);
+		if (bean != null) {
+			System.out.println("查询到车位");
+			mav.addObject(bean);
+			mav.setViewName("");
+		} else {
+			System.out.println("满足条件的为空");
+			mav.addObject("空");
+			mav.setViewName("");
 		}
-		
+		return mav;
 
+	}
 
+	@RequestMapping("/15")
+	public @ResponseBody String parkingDelete(Integer id) {
+		String result = "删除失败";
+		boolean re = park.parkingDelete(id);
+		if (re) {
+			result = "删除成功";
+		}
+
+		return result;
+	}
+
+	@RequestMapping("/16")
+	public ModelAndView parkingSelect() {
+		ModelAndView mav = new ModelAndView();
+		List<ParkingBean> list = park.parkingSelect();
+		mav.addObject("allParking", list);
+		mav.setViewName("");
+
+		return mav;
+	}
+
+	@RequestMapping("/17")
+	public @ResponseBody String passApply(Integer id) {
+		String result = "通过失败";
+		boolean re = park.passApply(id);
+		if (re) {
+			result = "通过成功";
+		}
+
+		return result;
+	}
+
+	@RequestMapping("/18")
+	public @ResponseBody String passApplyFail(Integer id) {
+		String result = "失败";
+		boolean re = park.passApplyFail(id);
+		if (re) {
+			result = "成功";
+		}
+
+		return result;
+	}
 }

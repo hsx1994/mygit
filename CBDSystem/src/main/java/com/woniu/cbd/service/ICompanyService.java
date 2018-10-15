@@ -7,10 +7,8 @@ import com.woniu.cbd.bean.OtherParkingBean;
 public interface ICompanyService {
 		//用于企业查看可租赁的企业车位车位
 		public List<OtherParkingBean> ShowCompanyPark();
-		//用于企业查看自己的租赁记录
-		public List<OtherParkingBean> ShowCompanyPark(int c_id);
-		//用于企业批量租赁车位
-		public boolean CompanyLease(List<OtherParkingBean> other);
+		//用于企业查看单个车位信息
+		public OtherParkingBean ShowCompanyPark(int c_id);
 		//前台用于企业查询企业合同
 		public List<CompanyBargainBean> CompanyContract(String name);
 }

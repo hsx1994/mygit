@@ -23,22 +23,12 @@ public class CompanyServiceImpl implements ICompanyService {
 	}
 
 	@Override
-	public List<OtherParkingBean> ShowCompanyPark(int c_id) {
+	public OtherParkingBean ShowCompanyPark(int c_id) {
 		// TODO Auto-generated method stub
-		List<OtherParkingBean> bean=dao.ShowComPanyPark(c_id);
+		OtherParkingBean bean=dao.ShowComPanyPark(c_id);
 		return bean;
 	}
 
-	@Override
-	public boolean CompanyLease(List<OtherParkingBean> other) {
-		// TODO Auto-generated method stub
-		int num=dao.CompanyLease(other);
-		if(num>0){
-			return true;
-		}else{
-		return false;
-		}
-	}
 
 	@Override
 	public List<CompanyBargainBean> CompanyContract(String name) {

@@ -15,8 +15,9 @@
 		<result property="startTime" column="co_start_time"/>
 		<result property="endTime" column="co_end_time"/>
 		<result property="state" column="co_state"/>
-		<association property="comBargain" javaType="CompanyBargainBean" select="CompanyBargainMapper.findById" column="co_cb_id"></association>
-		<association property="otherParking" javaType="OtherParkingBean" select="OtherParkingMapper.findParkingById" column="co_ot_id"></association>
+		<!--功能拓展  -->
+		<!-- <association property="comBargain" javaType="CompanyBargainBean" select="companyBargainMapper.findById" column="co_cb_id"></association>
+		<association property="otherParking" javaType="OtherParkingBean" select="otherParkingMapper.findParkingById" column="co_ot_id"></association> -->
 		<!-- <association property="company" javaType="CompanyBean" select="CompanyMapper.findById" column="or_c_id"></association> -->
 	</resultMap>
 	
@@ -32,5 +33,19 @@
 	<!-- 通过车位id查找该车位的所有订单信息 -->
 	<select id="findByOtherParkingId" parameterType="int" resultMap="map1">
 		select * from t_company_order where co_ot_id=#{id} and co_delete=0
+	</select>
+	
+	<!-- 更新订单状态 -->
+	<update id="updateCompanyOrder" parameterType="CompanyOrderBean">
+		update t_company_order 
+		<set>
+			<if test="state != null">co_state = #{state}</if>
+		</set>
+		where co_id = #{id}
+	</update>
+	
+	<!-- 通过企业查询企业订单记录  -->
+	<select id="selectCompanyOrder" parameterType="int" resultMap="map1">
+	    select * from t_company_order where co_c_id=#{id} 
 	</select>
 </mapper>
