@@ -7,13 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.woniu.cbd.bean.ParkingBean;
-import com.woniu.cbd.service.IParkService;
+import com.woniu.cbd.service.IParkingService;
 import com.woniu.cbd.service.IUserService;
 
 @Controller
-public class ParkController {
+public class ParkingController {
 	@Autowired
-	private IParkService park;
+	private IParkingService park;
 
 	@Autowired
 	private IUserService user;

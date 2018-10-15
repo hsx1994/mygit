@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
-import com.woniu.cbd.dao.IParkDao;
+import com.woniu.cbd.dao.IParkingDao;
 @Repository
-public class ParkDaoImpl implements IParkDao {
+public class ParkingDaoImpl implements IParkingDao {
 	// spring容器注入一个工厂对象
 	@Autowired
 	private SqlSessionFactory fa;

@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 import com.woniu.cbd.bean.ComplainBean;
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
-import com.woniu.cbd.dao.IParkDao;
-import com.woniu.cbd.service.IParkService;
+import com.woniu.cbd.dao.IParkingDao;
+import com.woniu.cbd.service.IParkingService;
 @Service
-public class ParkServiceimpl implements IParkService {
+public class ParkingServiceimpl implements IParkingService {
 	@Autowired
-    private IParkDao dao;
+    private IParkingDao dao;
     
 	
 	//包租婆批量添加功能

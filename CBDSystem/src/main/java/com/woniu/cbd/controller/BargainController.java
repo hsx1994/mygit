@@ -85,24 +85,4 @@ public class BargainController {
 
 		return mav;
 	}
-	
-	@RequestMapping("/99")
-	public ModelAndView findUseingBargain(){
-		ModelAndView mav = new ModelAndView();
-		List<BargainBean> bargain = service.bargainSelectByState(0);
-		mav.addObject("useingBargain", bargain);
-		mav.setViewName("");
-		
-		return mav;
-	}
-	
-	@RequestMapping("/99999")
-	public ModelAndView findUnseingBargain(){
-		ModelAndView mav = new ModelAndView();
-		List<BargainBean> bargain = service.bargainSelectByState(1);
-		mav.addObject("unuseingBargain", bargain);
-		mav.setViewName("");
-		
-		return mav;
-	}
 }

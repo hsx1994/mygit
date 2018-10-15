@@ -83,24 +83,4 @@ public class CompanyBargainController {
 
 		return mav;
 	}
-	
-	@RequestMapping("/999")
-	public ModelAndView findUseingBargain(){
-		ModelAndView mav = new ModelAndView();
-		List<CompanyBargainBean> bargain = service.companyBargainSelectByState(0);
-		mav.addObject("useingCompanyBargain", bargain);
-		mav.setViewName("");
-		
-		return mav;
-	}
-	
-	@RequestMapping("/9999")
-	public ModelAndView findUnseingBargain(){
-		ModelAndView mav = new ModelAndView();
-		List<CompanyBargainBean> bargain = service.companyBargainSelectByState(1);
-		mav.addObject("unuseingCompanyBargain", bargain);
-		mav.setViewName("");
-		
-		return mav;
-	}
 }

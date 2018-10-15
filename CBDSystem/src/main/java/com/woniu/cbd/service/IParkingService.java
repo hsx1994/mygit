@@ -7,7 +7,7 @@ import com.woniu.cbd.bean.ComplainBean;
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
 
-public interface IParkService {
+public interface IParkingService {
 	//用于包租婆申请发布新的车位
     public boolean AddPark(List<ParkingBean> park);
    

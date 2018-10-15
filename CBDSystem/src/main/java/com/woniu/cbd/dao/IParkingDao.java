@@ -6,7 +6,7 @@ import java.util.List;
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
 
-public interface IParkDao {
+public interface IParkingDao {
     //批量添加
 	int AddPark(List<ParkingBean> park);
     //查看自己的申请记录
