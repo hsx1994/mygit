@@ -49,4 +49,10 @@
 		<association property="company" javaType="CompanyInfoBean" select="CompanyInfoMapper.findById" column="cb_c_id"></association>
 		<collection property="comOrder" ofType="CompanyOrderBean" select="companyOrderMapper.findByCompanyBargainId" column="cb_id"/>
 	</resultMap>
+	
+	<!--前台企业通过企业名查询该企业的合约  -->
+	<select id="companycontract" parameterType="String" resultMap="selectMap">
+	    select * from t_company_bargain where cb_cname=#{name}
+	
+	</select>
 </mapper>

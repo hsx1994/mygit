@@ -117,3 +117,5 @@ public class ParkingBean implements Serializable {
 		this.applyTime = applyTime;
 	}
 }
+	
+

@@ -28,16 +28,8 @@ public class CompanyInfoBean implements Serializable {
 	private String email;
 	//企业用户的订单信息
 	private List<CompanyOrderBean> comOrder;
-	//企业用户的合约信息
-	private List<CompanyBargainBean> bargain;
 	
 	
-	public List<CompanyBargainBean> getBargain() {
-		return bargain;
-	}
-	public void setBargain(List<CompanyBargainBean> bargain) {
-		this.bargain = bargain;
-	}
 	public List<CompanyOrderBean> getComOrder() {
 		return comOrder;
 	}

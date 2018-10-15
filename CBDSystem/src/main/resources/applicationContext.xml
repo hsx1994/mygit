@@ -12,6 +12,7 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/context
+
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 组件扫描器 -->
@@ -51,5 +52,37 @@
 
 	<!-- 基于注解的方式来配置事务: -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
-
+		
+		<!-- 组件扫描器 -->
+   	    <context:component-scan base-package="com.woniu.cbd.service"/>
+	    <context:component-scan base-package="com.woniu.cbd.dao"/>
+	    
+	    
+		<!-- ======================；连接数据库的配置=============== -->
+    	 <!--配置数据源-->
+	    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+			<property name="url" value="jdbc:mysql://192.168.6.244:3306/test"></property>
+			<property name="username" value="root"></property>
+			<property name="password" value="123456"></property>
+		</bean>
+		
+		<!--配置sqlSessionFactory 并将数据源注入-->
+	    <bean id="fa" class="org.mybatis.spring.SqlSessionFactoryBean">
+	        <!--注入数据源-->
+	        <property name="dataSource" ref="dataSource"/>
+	        <!--指定要使用到到mybatis配置文件-->
+	        <property name="configLocation" value="classpath:config.xml"/>
+	        <!--用于配置mapper映射xml-->
+	        <property name="mapperLocations" value="classpath*:com/woniu/cbd/bean/*.xml"/>
+	    </bean>
+	    
+	    <!-- 配置事务管理器 -->
+		<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+			<property name="dataSource" ref="dataSource"></property>
+		</bean>	
+		
+		<!-- 基于注解的方式来配置事务: -->
+		<tx:annotation-driven transaction-manager="transactionManager"/>
+		
 </beans>

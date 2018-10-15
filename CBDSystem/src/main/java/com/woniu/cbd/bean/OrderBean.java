@@ -76,3 +76,4 @@ public class OrderBean implements Serializable {
 		this.pay = pay;
 	}
 }
+

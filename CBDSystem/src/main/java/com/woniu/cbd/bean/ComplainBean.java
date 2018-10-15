@@ -62,5 +62,11 @@ public class ComplainBean implements Serializable{
 	}
 	public void setTime(Date time) {
 		this.time = time;
+	}
+	@Override
+	public String toString() {
+		return "ComplainBean [id=" + id + ", user=" + user + ", order=" + order + ", buser=" + buser + ", content="
+				+ content + ", state=" + state + ", time=" + time + "]";
 	}	
+	
 }
