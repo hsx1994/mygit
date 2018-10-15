@@ -18,38 +18,34 @@ public class BargainDaoImpl implements IBargainDao {
 	
 	@Override
 	public int bargainAdd(BargainBean bean) {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		int id = session.insert("bargainMapper.bargainAdd", bean);
 		
-		session.commit();
 		session.close();
 		return id;
 	}
 
 	@Override
 	public int bargainDelete(int id) {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		int row = session.update("bargainMapper.bargainDelete",id);
 		
-		session.commit();
 		session.close();
 		return row;
 	}
 
 	@Override
 	public int bargainUpdate(BargainBean bean) {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		int row = session.update("bargainMapper.bargainUpdate",bean);
 		
-		session.commit();
 		session.close();
-		
 		return row;
 	}
 
 	@Override
 	public List<BargainBean> bargainSelect(BargainBean bean) {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		List<BargainBean> bargain = session.selectList("bargainMapper.selectBargainByCompanyName", bean);
 		
 		session.close();
@@ -58,16 +54,18 @@ public class BargainDaoImpl implements IBargainDao {
 
 	@Override
 	public List<BargainBean> allBargainSelect() {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		List<BargainBean> bargain = session.selectList("bargainMapper.bargainSelect");
+		
 		session.close();
 		return bargain;
 	}
 
 	@Override
 	public List<BargainBean> bargainSelectByState(int state) {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		List<BargainBean> bargain = session.selectList("bargainMapper.fingBargainByState",state);
+		
 		session.close();
 		return bargain;
 	}

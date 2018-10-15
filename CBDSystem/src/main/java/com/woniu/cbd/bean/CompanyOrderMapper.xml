@@ -15,8 +15,9 @@
 		<result property="startTime" column="co_start_time"/>
 		<result property="endTime" column="co_end_time"/>
 		<result property="state" column="co_state"/>
+		<!--功能拓展  -->
 		<association property="comBargain" javaType="CompanyBargainBean" select="companyBargainMapper.findById" column="co_cb_id"></association>
-		<association property="otherParking" javaType="OtherParkingBean" select="otherParkingMapper.otherParkingSelect" column="co_ot_id"></association>
+		<association property="otherParking" javaType="OtherParkingBean" select="otherParkingMapper.findParkingById" column="co_ot_id"></association>
 		<!-- <association property="company" javaType="CompanyBean" select="CompanyMapper.findById" column="or_c_id"></association> -->
 	</resultMap>
 	
@@ -42,4 +43,9 @@
 		</set>
 		where co_id = #{id}
 	</update>
+	
+	<!-- 通过企业查询企业订单记录  -->
+	<select id="selectCompanyOrder" parameterType="int" resultMap="map1">
+	    select * from t_company_order where co_c_id=#{id} 
+	</select>
 </mapper>

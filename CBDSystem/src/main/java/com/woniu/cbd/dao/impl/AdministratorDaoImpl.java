@@ -45,6 +45,9 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 		SqlSession session = fa.openSession(true);
 		// 执行sql删除语句，返回影响行数
 		int row = session.update("AdministratorMapper.administratorDelete", id);
+		
+		// 关闭session
+		session.close();
 		// 根据返回影响行数判断书否删除成功
 		if (row > 0) {
 			// 大于0，删除成功
@@ -61,6 +64,9 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 		SqlSession session = fa.openSession(true);
 		// 执行sql,接受执行sql返回的影响 行数
 		int row = session.delete("AdministratorMapper.administratorUpdate", ab);
+		
+		// 关闭session
+		session.close();
 		// 判断更新是否成功
 		if (row > 0) {
 			result = true;
@@ -75,6 +81,9 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 		SqlSession session = fa.openSession(true);
 		// 执行sql，获取结果集
 		AdministratorBean bean = session.selectOne("AdministratorMapper.administratorSelect", lb);
+		
+		// 关闭session
+		session.close();
 		return bean;
 	}
 
@@ -85,6 +94,9 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 		SqlSession session = fa.openSession(true);
 		// 执行sql，获取结果集
 		List<AdministratorBean> list = session.selectList("AdministratorMapper.administratorSelectAll");
+		
+		// 关闭session
+		session.close();
 		return list;
 	}
 

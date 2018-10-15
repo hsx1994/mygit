@@ -1,6 +1,7 @@
 package com.woniu.cbd.bean;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 /**

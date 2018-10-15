@@ -18,5 +18,12 @@ public class CompanyOrderServiceImpl implements ICompanyOrderService{
 		boolean b = dao.addCompanyOrder(companyOrders);
 		return b;
 	}
+	//企业查看企业租赁记录
+	@Override
+	public List<CompanyOrderBean> selectCompanyOrder(int id) {
+		// TODO Auto-generated method stub
+		List<CompanyOrderBean> bean=dao.selectCompanyOrder(id);
+		return bean;
+	}
 
 }

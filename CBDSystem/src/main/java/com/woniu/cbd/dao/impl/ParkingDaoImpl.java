@@ -17,7 +17,8 @@ public class ParkingDaoImpl implements IParkingDao {
 	private SqlSessionFactory fa;
     //包租婆批量添加个人车位
 	@Override
-	public int AddPark(List<ParkingBean> park) {
+
+	public int AddParking(List<ParkingBean> park) {
 		SqlSession session = fa.openSession(true);
 		int num=session.insert("parkingMapper.addParking", park);
 		session.close();
