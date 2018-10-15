@@ -11,6 +11,6 @@ public interface ICompanyService {
 		public List<OtherParkingBean> ShowCompanyPark(int c_id);
 		//用于企业批量租赁车位
 		public boolean CompanyLease(List<OtherParkingBean> other);
-		//用于企业查询企业合同
-		public List<CompanyBargainBean> CompanyContract(int cid);
+		//前台用于企业查询企业合同
+		public List<CompanyBargainBean> CompanyContract(String name);
 }

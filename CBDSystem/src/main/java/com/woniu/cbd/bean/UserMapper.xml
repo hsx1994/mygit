@@ -3,12 +3,21 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 区分sql块，不同文件中sql语句id可能重复，给每个文件命名 -->
-<mapper namespace="useMapper">
-    <!--根据用户id查询用户真实姓名  -->
-	<select id="findbyId" parameterType="int" resultMap="User">
-		select * from t_user_info where u_l_id=#{id} 
+<mapper namespace="userMapper">
+	<!--根据用户id查询用户真实姓名 -->
+	<select id="findById" parameterType="int" resultMap="user">
+		select *
+		from t_user_info where u_id=#{id}
 	</select>
-	<resultMap type="UserBean" id="User">
-	 <result property="realName" column="u_realname"/>
+	<!--UserBean -->
+	<resultMap type="UserBean" id="user">
+		<result property="realName" column="u_realname" />
+		<result property="address" column="u_address" />
+		<result property="tel" column="u_tel" />
+		<result property="idcard" column="u_idcard" />
+		<result property="job" column="u_profession" />
+		<result property="email" column="u_email" />
+		<result property="orderCount" column="u_order_count" />
+		<result property="complaintCount" column="u_complaint_count" />
 	</resultMap>
 </mapper>

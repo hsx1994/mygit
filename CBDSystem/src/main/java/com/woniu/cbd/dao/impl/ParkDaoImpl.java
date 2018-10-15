@@ -43,15 +43,6 @@ public class ParkDaoImpl implements IParkDao {
 		session.close();
 		return bean;
 	}
-    //抢租客根据模糊查询
-	@Override
-	public List<ParkingBean> SelectPark(String num) {
-		// TODO Auto-generated method stub
-		SqlSession session = fa.openSession();
-		List<ParkingBean> bean=session.selectList("parkingMapper.shownum",num);
-		session.close();
-		return bean;
-	}
     //抢租客根据价格查询
 	@Override
 	public List<ParkingBean> SelectPark(int price) {
@@ -61,7 +52,7 @@ public class ParkDaoImpl implements IParkDao {
 		session.close();
 		return bean;
 	}
-    //抢租客查询指定的车位的信息
+    //抢租客查询指定车位的信息
 	@Override
 	public ParkingBean SelectParkOne(int id) {
 		// TODO Auto-generated method stub
@@ -70,22 +61,13 @@ public class ParkDaoImpl implements IParkDao {
 		session.close();
 		return bean;
 	}
-    //抢租客根据车位号来查询
+    //抢租客根据车位号来模糊查询
 	@Override
 	public List<ParkingBean> SelectParkByNum(String num) {
 		// TODO Auto-generated method stub
 		SqlSession session = fa.openSession();
 		List<ParkingBean> bean=session.selectList("parkingMapper.findbynum",num);
 		return bean;
-	}
-	//抢租客租赁车位
-	@Override
-	public int Lease(OrderBean bean) {
-		// TODO Auto-generated method stub
-		SqlSession session = fa.openSession();
-		int num=session.insert("orderMapper.lease",bean);
-		session.close();
-		return num;
 	}
 
 }

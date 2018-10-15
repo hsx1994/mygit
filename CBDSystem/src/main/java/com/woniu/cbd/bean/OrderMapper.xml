@@ -6,44 +6,82 @@
 <mapper namespace="orderMapper">
 
 	<!--抢租客查看自己的租赁记录 -->
-	<select id="showlog" parameterType="int" resultMap="map">
+	<select id="showlog" parameterType="int" resultMap="order">
 		select * from
 		t_order where or_u_id=#{id}
 	</select>
-	<resultMap type="OrderBean" id="map">
+	
+	<!-- <resultMap type="OrderBean" id="map">
 		<id property="id" column="or_id" />
 		<result property="startTime" column="or_start_time" />
 		<result property="endTime" column="or_end_time" />
 		<result property="state" column="or_state" />
-		<!--查询车位的车位号,车位的所有人 -->
+		查询车位的车位号,车位的所有人
 		<association property="parking" javaType="ParkingBean"
 			select="parkingMapper.findnumbyid" column="or_p_id"></association>
-		<!--查询订单的投诉集合 -->
+		查询订单的投诉集合
 		<collection property="complain" ofType="java.util.List"
 			select="complaintMapper.findcomplaint" column="or_id"></collection>
-		<!--查询车位的租赁人 -->
-		<!-- <association property="userId" javaType="UserBean"
-	    select="userMapper.selectlog" column="or_u_id"></association> -->
-	</resultMap>
+		查询车位的租赁人
+		<association property="userId" javaType="UserBean"
+	    select="userMapper.selectlog" column="or_u_id"></association>
+	</resultMap> -->
 
 
 	<!--包租婆查看自己的被租赁记录 -->
-	<select id="selectlog" parameterType="int" resultMap="map1">
+	<!-- <select id="selectlog" parameterType="int" resultMap="order">
 		select *
 		from t_order where or_p_id =#{id}
-	</select>
-	<resultMap type="OrderBean" id="map1">
+	</select> -->
+	<!-- <resultMap type="OrderBean" id="map1">
 		<id property="id" column="or_id" />
 		<result property="startTime" column="or_start_time" />
 		<result property="endTime" column="or_end_time" />
 		<result property="state" column="or_state" />
-		<!--查询订单的投诉集合 -->
+		查询订单的投诉集合
 		<collection property="complain" ofType="java.util.List"
 			select="complaintMapper.findcomplaint" column="or_id"></collection>
-		<!--查询租赁人的真实姓名 -->
-		<!-- <association property="user" javaType="UserBean" select="userMapper.selectlog" 
-			column="or_u_id"></association> -->
+		查询租赁人的真实姓名
+		<association property="user" javaType="UserBean" select="userMapper.selectlog" 
+			column="or_u_id"></association>
+	</resultMap> -->
+	
+	<!-- 封装成一个完整的OrderBean -->
+	<resultMap type="OrderBean" id="order">
+		<id property="id" column="or_id"/>
+		<result property="startTime" column="or_start_time"/>
+		<result property="endTime" column="or_end_time"/>
+		<!-- <result property="parkingId" column="or_p_id"/>
+		<result property="userId" column="or_u_id"/> -->
+		<result property="state" column="or_state"/>
+		<result property="pay" column="or_pay"/>
+		<association property="parking" javaType="ParkingBean" select="parkingMapper.findParkingById" column="or_p_id"></association>
+		<association property="user" javaType="UserBean" select="userMapper.findById" column="or_u_id"></association>
+		<collection property="complain" ofType="ComplainBean" select="complainMapper.findByOrderId" column="id"></collection>
 	</resultMap>
+	
+	<!-- 通过车位id查找该车位的所有订单信息 -->
+	<select id="findByParkingId" parameterType="int" resultMap="order">
+		select * from t_order where or_p_id=#{parkingId};
+	</select>
+	<!-- 通过订单Id查找当前订单 -->
+	<select id="findByOrderId" parameterType="int" resultMap="order">
+		select * from t_order where or_id=#{parkingId};
+	</select>
+	
+	<!-- 更新订单状态 -->
+	<update id="updateOrder" parameterType="OrderBean">
+		update t_order 
+		<set>
+			<if test="state != null">or_state = #{state}</if>
+		</set>
+		where or_id = #{id}
+	</update>
+	
+	
+	<insert id="addOrder" parameterType="OrderBean" keyProperty="id" useGeneratedKeys="true">
+		insert into t_order(or_start_time,or_end_time,or_p_id,or_u_id,or_pay) values(#{startTime},#{endTime},#{parking.id},#{user.id},#{pay});
+	</insert>
 
 
 </mapper>

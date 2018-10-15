@@ -41,9 +41,9 @@ public class CompanyServiceImpl implements ICompanyService {
 	}
 
 	@Override
-	public List<CompanyBargainBean> CompanyContract(int cid) {
+	public List<CompanyBargainBean> CompanyContract(String name) {
 		// TODO Auto-generated method stub
-		List<CompanyBargainBean> bean=dao.CompanyContract(cid);
+		List<CompanyBargainBean> bean=dao.CompanyContract(name);
 		return bean;
 	}
 

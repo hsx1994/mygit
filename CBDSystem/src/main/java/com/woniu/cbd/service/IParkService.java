@@ -16,9 +16,7 @@ public interface IParkService {
     public List<ParkingBean> ShowAll();
     //用于抢租客通过时间查询自己需要的车位信息
     public List<ParkingBean> SelectPark(Date date);
-    //用于抢租客通过模糊查询自己需要的车位信息
-    public List<ParkingBean> SelectPark(String num);
-    //用于抢租客通过车位号查询自己需要的车位信息
+    //用于抢租客通过车位号模糊查询自己需要的车位信息
     public List<ParkingBean> SelectParkByNum(String num);
     //用于抢租客通过价格查询自己需要的车位信息
     public List<ParkingBean> SelectPark(int price);
@@ -26,8 +24,6 @@ public interface IParkService {
     public ParkingBean SelectParkOne(int id);
     
    
-    //用于抢租客租赁车位,表中此车位软删除
-    public boolean Lease(OrderBean bean);
     
 
 

@@ -4,7 +4,8 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 区分sql块，不同文件中sql语句id可能重复，给每个文件命名 -->
 <mapper namespace="parkingMapper">
-	<!--包租婆的申请上架的车位 -->
+
+	<!--包租婆的申请批量上架的车位 -->
 	<insert id="addParking" parameterType="java.util.List">
 		insert into t_parking
 		(p_u_id,p_address,p_parking_number,p_img,p_price,p_start_time,p_end_time,p_certificate,p_certi_img)
@@ -16,85 +17,116 @@
 	</insert>
 
 	<!--查看包租婆的申请上架的记录 -->
-	<select id="showme" parameterType="int" resultMap="map">
+	<select id="showme" parameterType="int" resultMap="apply">
 		select * from
-		t_parking where p_u_id=#{id}
+		t_parking where p_u_id=#{id} and p_delete=0
 	</select>
-	<resultMap type="ParkingBean" id="map">
-		<id property="id" column="p_id" />
-		<result property="address" column="p_address" />
-		<result property="parkingNum" column="p_parking_number" />
-		<result property="img" column="p_img" />
-		<result property="price" column="p_price" />
-		<result property="startTime" column="p_start_time" />
-		<result property="endTime" column="p_end_time" />
-		<result property="certificate" column="p_certificate" />
-		<result property="certImg" column="p_certti_img" />
-		<result property="applyTime" column="p_apply_time" />
-		<result property="state" column="p_state" />
+
+	<!-- 车位信息bean -->
+	<resultMap type="ParkingBean" id="apply">
+		<id column="p_id" property="id" />
+		<result column="p_address" property="address" />
+		<result column="p_parking_number" property="parkingNum" />
+		<result column="p_img" property="img" />
+		<result column="p_price" property="price" />
+		<result column="p_start_time" property="startTime" />
+		<result column="p_end_time" property="endTime" />
+		<result column="p_state" property="state" />
+		<result column="p_certificate" property="certificate" />
+		<result column="p_certi_img" property="certImg" />
+		<result column="p_apply_time" property="applyTime" />
+
+
+		<association property="user" javaType="UserBean"
+			select="userMapper.findById" column="p_u_id" />
+			
+		<collection property="orders" ofType="OrderBean"
+			select="orderMapper.findByParkingId" column="p_id"></collection>
+
 	</resultMap>
+	
+	<!-- 通过车位id查找车位的信息 -->
+	<select id="findParkingById" parameterType="int" resultMap="apply">
+		select * from t_parking where p_id=#{parkingId} and p_delete=0
+	</select>
 
 	<!--查看包租婆的租赁历史记录 通过车位表查询到包租婆所属车位的id -->
-	<select id="showmelog" parameterType="int" resultMap="maplog">
+	<select id="showmelog" parameterType="int" resultMap="apply">
 		select *
 		from
-		t_parking where p_u_id=#{id}
+		t_parking where p_u_id=#{id} and p_delete=0
 	</select>
-	<resultMap type="ParkingBean" id="maplog">
-		<result property="parkingNum" column="p_parking_number" />
-		<collection property="orders" ofType="java.util.List"
-			select="orderMapper.selectlog" column="p_id"></collection>
-	</resultMap>
 
+	<!-- 查询正在申请状态的个人出租车位，仅后台管理员可见 -->
+	<select id="applyParkingSelect" resultMap="apply">
+		select * from
+		t_parking where p_state=0 and p_delete=0
+	</select>
 
 
 	<!--抢租客查看所有的上架车位，无论是否租赁 -->
-	<select id="showall" resultMap="map">
+	<select id="showall" resultMap="apply">
 		select * from t_parking where
-		p_state=1
+		p_state=1 and p_delete=0
+	</select>
+
+	<!-- 查询所有个人出租车位 -->
+	<select id="allParkingSelect" resultMap="apply">
+		select * from t_parking
+		where p_delete=0
 	</select>
 
 	<!--抢租客根据上架时间时间来查询上架车位 -->
-	<select id="showdate" parameterType="Date" resultMap="map">
+	<select id="showdate" parameterType="Date" resultMap="apply">
 		select *
-		from t_parking where p_state=1 and p_apply_time=#{date}
+		from t_parking where p_state=1 and p_apply_time=#{date} and
+		p_delete=0
 	</select>
 
-	<!--抢租客模糊查询商家车位 -->
-	<select id="shownum" parameterType="String" resultMap="map">
-		select *
-		from t_parking where p_state=1 and
-		concat('address','p_parking_number','p_price','p_certificate')like
-		'%#{num}%'
-	</select>
 
 	<!--抢租客根据价格来查询上架车位 -->
-	<select id="showprice" parameterType="int" resultMap="map">
+	<select id="showprice" parameterType="int" resultMap="apply">
 		select *
-		from t_parking where p_state=1 and p_price=#{price}
+		from t_parking where p_state=1 and p_price=#{price} and p_delete=0
 	</select>
 
 	<!--抢租客根据车位id查询单个信息 -->
-	<select id="showone" parameterType="int" resultMap="map">
-		select * from
-		t_parking where p_state=1 and p_id=#{id}
+	<select id="showone" parameterType="int" resultMap="apply">
+		select *
+		from
+		t_parking where p_state=1 and p_id=#{id} and p_delete=0
 	</select>
 
-	<!--抢租客根据车位号查询上架车位信息 -->
-	<select id="findbynum" parameterType="String" resultMap="map">
-		select *
-		from t_parking where p_state=1 and p_parking_number=#{number}
+	<!--抢租客根据车位号模糊查询查询上架车位信息 -->
+	<select id="findbynum" parameterType="String" resultMap="apply">
+		select
+		*
+		from t_parking where p_state=1 and p_parking_number LIKE
+		"%"#{number}"%" and
+		p_delete=0
 	</select>
 
 	<!--根据车位id查询车位号和车位所有人的名称 -->
-	<select id="findnumbyid" parameterType="int" resultMap="map1">
-		select * from t_parking where p_id=#{id}
+	<select id="findnumbyid" parameterType="int" resultMap="apply">
+		select *
+		from t_parking where p_id=#{id}
 	</select>
-	<resultMap type="ParkingBean" id="map1">
-	    <result property="parkingNum" column="p_parking_number"/>
-	    <!-- <association property="user" javaType="UserBean" select="userMapper.findbyId" column="p_u_id"></association> -->
-	</resultMap>
 
+	<!-- 通过审核 -->
+	<update id="passApply" parameterType="int">
+		update t_parking set
+		p_state=1 where p_id=#{id} and p_delete=0
+	</update>
 
+	<!-- 未通过审核 -->
+	<update id="passApplyFail" parameterType="int">
+		update t_parking set
+		p_state=2 where p_id=#{id} and p_delete=0
+	</update>
 
+	<!-- 删除某个车位 -->
+	<update id="parkingDelete" parameterType="int">
+		update t_parking set
+		p_delete=1 where p_id=#{id}
+	</update>
 </mapper>

@@ -8,10 +8,12 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.woniu.cbd.bean.CompanyBargainBean;
 import com.woniu.cbd.bean.ComplainBean;
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
 import com.woniu.cbd.bean.UserBean;
+import com.woniu.cbd.dao.ICompanyDao;
 import com.woniu.cbd.dao.IParkDao;
 import com.woniu.cbd.dao.IUserDao;
 
@@ -42,11 +44,11 @@ public class TestMain {
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		IParkDao dao = (IParkDao) context.getBean("parkDaoImpl");
-		List<ParkingBean> bean=dao.SelectParkByNum("9527");
+		List<ParkingBean> bean=dao.SelectParkByNum("952");
 	    System.out.println(bean);
 		
 	}
-	//根据时间查询单个车位
+	//根据车位id查询单个车位
 		@Test
 		public void test9(){
 			@SuppressWarnings("resource")
@@ -66,7 +68,7 @@ public class TestMain {
 	    System.out.println(bean);
 		
 	}
-	//包租婆批量添加
+	//包租婆批量添加，测试成功
 	@Test
 	public void test4(){
 		@SuppressWarnings("resource")
@@ -88,7 +90,7 @@ public class TestMain {
 	    System.out.println(bea);
 		
 	}
-	//包租婆查看自己被租赁的记录
+	//包租婆查看自己被租赁的记录，测试除了抢租客名成功
 	@Test
 	public void test5(){
 		@SuppressWarnings("resource")
@@ -98,7 +100,7 @@ public class TestMain {
 	    System.out.println(bean);
 		
 	}
-	//抢租客查看自己的租赁记录
+	//抢租客查看自己的租赁记录，测试除了包租婆人名成功
 	@Test
 	public void test6(){
 		@SuppressWarnings("resource")
@@ -108,7 +110,7 @@ public class TestMain {
 	    System.out.println(bean);
 		
 	}
-	//抢租客针对订单添加投诉信息
+	//抢租客针对订单添加投诉信息，测试成功
 	@Test
 	public void test7(){
 		@SuppressWarnings("resource")
@@ -121,7 +123,7 @@ public class TestMain {
 		user.setId(1);
 		user1.setId(2);
 		order.setId(1);
-		bean.setContent("添加个人订单评论测试");
+		bean.setContent("添加个人订单评论测试3");
 		bean.setBuser(user);
 		bean.setUser(user1);
 		bean.setOrder(order);
@@ -131,5 +133,15 @@ public class TestMain {
 	    
 		
 	}
+	//企业名查询企业合约.测试成功
+		@Test
+		public void test10(){
+			@SuppressWarnings("resource")
+			ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+			ICompanyDao dao = (ICompanyDao) context.getBean("companyDaoImpl");
+			List<CompanyBargainBean> bean=dao.CompanyContract("yiyi");
+		    System.out.println(bean);
+			
+		}
 
 }

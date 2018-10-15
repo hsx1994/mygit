@@ -17,7 +17,7 @@ public class ParkServiceimpl implements IParkService {
     private IParkDao dao;
     
 	
-	//包租婆功能
+	//包租婆批量添加功能
 	@Override
 	public boolean AddPark(List<ParkingBean> park) {
 		// TODO Auto-generated method stub
@@ -31,14 +31,14 @@ public class ParkServiceimpl implements IParkService {
 		
 	}
 	
-    //抢租客功能
+    //抢租客查看所有上架车位功能
 	@Override
 	public List<ParkingBean> ShowAll() {
 		// TODO Auto-generated method stub
 		List<ParkingBean> bean = dao.ShowAll();
 		return bean;
 	}
-
+    //根据日期上架
 	@Override
 	public List<ParkingBean> SelectPark(Date date) {
 		// TODO Auto-generated method stub
@@ -46,20 +46,14 @@ public class ParkServiceimpl implements IParkService {
 		return bean;
 	}
 
-	@Override
-	public List<ParkingBean> SelectPark(String num) {
-		// TODO Auto-generated method stub
-		List<ParkingBean> bean=dao.SelectPark(num);
-		return bean;
-	}
-
+    //根据价格查询
 	@Override
 	public List<ParkingBean> SelectPark(int price) {
 		// TODO Auto-generated method stub
 		List<ParkingBean> bean=dao.SelectPark(price);
 		return bean;
 	}
-
+    //查询单个车位
 	@Override
 	public ParkingBean SelectParkOne(int id) {
 		// TODO Auto-generated method stub
@@ -67,18 +61,8 @@ public class ParkServiceimpl implements IParkService {
 		return bean;
 	}
 	
-    //抢租客的租赁
-	@Override
-	public boolean Lease(OrderBean bean) {
-		// TODO Auto-generated method stub
-		int num=dao.Lease(bean);
-		if(num>0){
-			return true;
-		}else{
-		return false;
-		}
-	}
-	
+  
+    //车位号模糊查询	
 	@Override
 	public List<ParkingBean> SelectParkByNum(String num) {
 		// TODO Auto-generated method stub
