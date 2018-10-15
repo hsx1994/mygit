@@ -2,7 +2,6 @@ package com.woniu.cbd.bean;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import java.util.List;
 /**
  * 第三方提供的车位的信息

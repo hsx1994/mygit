@@ -2,7 +2,6 @@ package com.woniu.cbd.bean;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import java.util.List;
 /**
  * 个人出租车位信息
@@ -117,13 +116,4 @@ public class ParkingBean implements Serializable {
 	public void setApplyTime(Date applyTime) {
 		this.applyTime = applyTime;
 	}
-	@Override
-	public String toString() {
-		return "ParkingBean [id=" + id + ", address=" + address
-				+ ", parkingNum=" + parkingNum + ", img=" + img + ", price="
-				+ price + ", startTime=" + startTime + ", endTime=" + endTime
-				+ ", state=" + state + ", certificate=" + certificate
-				+ ", certImg=" + certImg + ", applyTime=" + applyTime + "]";
-	}
-	
 }

@@ -40,6 +40,13 @@ public interface IBargainService {
 	public List<BargainBean> bargainSelect(BargainBean bean);
 	
 	/**
+	 * 通过合约状态查询所有该状态的合约信息
+	 * @param state
+	 * @return
+	 */
+	public List<BargainBean> bargainSelectByState(int state);
+	
+	/**
 	 * 查询所有第三方合约的信息
 	 * @return
 	 */

@@ -40,6 +40,13 @@ public interface IBargainDao {
 	public List<BargainBean> bargainSelect(BargainBean bean);
 	
 	/**
+	 * 根据合约状态查询该状态所有合约信息
+	 * @param bean
+	 * @return
+	 */
+	public List<BargainBean> bargainSelectByState(int state);
+	
+	/**
 	 * 查询所有第三方合约的信息
 	 * @return
 	 */

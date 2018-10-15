@@ -5,23 +5,39 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="orderMapper">
-	<!-- 通过车位id查找该车位的所有订单信息 -->
-	<select id="findByParkingId" parameterType="int" resultMap="map1">
-		select * from t_order where or_p_id=#{parkingId};
-	</select>
-	<resultMap type="OrderBean" id="map1">
+	<!-- 封装成一个完整的OrderBean -->
+	<resultMap type="OrderBean" id="order">
 		<id property="id" column="or_id"/>
 		<result property="startTime" column="or_start_time"/>
 		<result property="endTime" column="or_end_time"/>
 		<!-- <result property="parkingId" column="or_p_id"/>
 		<result property="userId" column="or_u_id"/> -->
 		<result property="state" column="or_state"/>
+		<result property="pay" column="or_pay"/>
 		<association property="parking" javaType="ParkingBean" select="parkingMapper.findParkingById" column="or_p_id"></association>
 		<association property="user" javaType="UserBean" select="userMapper.findById" column="or_u_id"></association>
 		<collection property="complain" ofType="ComplainBean" select="complainMapper.findByOrderId" column="id"></collection>
 	</resultMap>
+	<!-- 通过车位id查找该车位的所有订单信息 -->
+	<select id="findByParkingId" parameterType="int" resultMap="order">
+		select * from t_order where or_p_id=#{parkingId};
+	</select>
+	<!-- 通过订单Id查找当前订单 -->
+	<select id="findByOrderId" parameterType="int" resultMap="order">
+		select * from t_order where or_id=#{parkingId};
+	</select>
+	
+	<!-- 更新订单状态 -->
+	<update id="updateOrder" parameterType="OrderBean">
+		update t_order 
+		<set>
+			<if test="state != null">or_state = #{state}</if>
+		</set>
+		where or_id = #{id}
+	</update>
+	
 	
 	<insert id="addOrder" parameterType="OrderBean" keyProperty="id" useGeneratedKeys="true">
-		insert into t_order(or_start_time,or_end_time,or_p_id,or_u_id) values(#{startTime},#{endTime},#{parking.id},#{user.id});
+		insert into t_order(or_start_time,or_end_time,or_p_id,or_u_id,or_pay) values(#{startTime},#{endTime},#{parking.id},#{user.id},#{pay});
 	</insert>
 </mapper>

@@ -56,4 +56,10 @@ public class BargainServiceImpl implements IBargainService {
 		return list;
 	}
 
+	@Override
+	public List<BargainBean> bargainSelectByState(int state) {
+		List<BargainBean> list = dao.bargainSelectByState(state);
+		return list;
+	}
+
 }

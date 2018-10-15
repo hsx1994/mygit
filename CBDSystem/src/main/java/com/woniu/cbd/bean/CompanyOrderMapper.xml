@@ -5,9 +5,10 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="companyOrderMapper">
-	<!-- 通过车位id查找该车位的所有订单信息 -->
+
+	<!-- 通过合约ID查企业订单信息 -->
 	<select id="findByCompanyBargainId" parameterType="int" resultMap="map1">
-		select * from t_order where or_p_id=#{parkingId};
+		select * from t_company_order where co_cb_id=#{parkingId};
 	</select>
 	<resultMap type="CompanyOrderBean" id="map1">
 		<id property="id" column="co_id"/>
@@ -19,7 +20,14 @@
 		<!-- <association property="company" javaType="CompanyBean" select="CompanyMapper.findById" column="or_c_id"></association> -->
 	</resultMap>
 	
+	<!-- 新增企业订单 -->
 	<insert id="addCompanyOrder" parameterType="CompanyOrderBean" keyProperty="id" useGeneratedKeys="true">
 		insert into t_company_order(co_start_time,co_end_time,co_p_id,co_u_id) values(#{startTime},#{endTime},#{otherParking.id},#{comBargain.id});
 	</insert>
+	
+	
+	<!-- 通过车位id查找该车位的所有订单信息 -->
+	<select id="findByOtherParkingId" parameterType="int" resultMap="map1">
+		select * from t_company_order where co_ot_id=#{id} and co_delete=0
+	</select>
 </mapper>
