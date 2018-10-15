@@ -16,4 +16,23 @@
 	<resultMap type="ComplainBean" id="Complaint">
 	 <result property="content" column="com_content"/>
 	</resultMap>
+	
+	
+	<!-- 查看所有待处理的投诉信息 -->
+	<select id="findAllComplain"  resultMap="map1">
+		select * from t_complain where com_state=0
+	</select>
+	<resultMap type="complainBean" id="map1">
+		<id column="com_id" property="id"/>
+		<result column="com_content" property="content"/>
+		<result column="com_time" property="time"/>
+		<association property="user" javaType="UserBean" select="userMapper.findById" column="com_u_id"></association>
+		<association property="buser" javaType="UserBean" select="userMapper.findById" column="com_bc_u_id"></association>
+		<association property="order" javaType="OrderBean" select="orderMapper.findByOrderId" column="com_o_id"></association>
+	</resultMap>
+	
+	<!-- 更新投诉信息状态 -->
+	<select id="updateComplainState" >
+		update t_complain set com_state=#{state} where com_id=#{id}
+	</select>
 </mapper>

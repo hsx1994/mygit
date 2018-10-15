@@ -15,7 +15,13 @@ import com.woniu.cbd.bean.ParkingBean;
 import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.dao.ICompanyDao;
 import com.woniu.cbd.dao.IUserDao;
+import com.woniu.cbd.dao.impl.CompanyDaoImpl;
+import com.woniu.cbd.dao.impl.ComplainDaoImpl;
 
 public class TestMain {
-
+	@Test
+	public void test(){
+		ComplainBean com = new ComplainDaoImpl().findAllComplain();
+		System.out.println(com);
+	}
 }
