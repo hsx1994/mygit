@@ -92,5 +92,4 @@ public class AdministratorBean implements Serializable {
 		this.limit = limit;
 	}
 
-
 }
