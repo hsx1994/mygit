@@ -12,7 +12,7 @@ public interface ICompanyDao {
 	public List<OtherParkingBean> ShowComPanyPark(int c_id);
     //企业批量租赁车位
 	public int CompanyLease(List<OtherParkingBean> other);
-    //前台企业id查询企业合同
+    //前台企业查询企业合同
 	public List<CompanyBargainBean> CompanyContract(String name);
 
 }

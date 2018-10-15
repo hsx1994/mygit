@@ -9,7 +9,7 @@ import com.woniu.cbd.bean.ParkingBean;
 
 public interface IParkingService {
 	//用于包租婆申请发布新的车位
-    public boolean AddPark(List<ParkingBean> park);
+    public boolean AddParking(List<ParkingBean> park);
    
     
     //用于抢租客查看所有的个人车位信息，无论是否被租赁

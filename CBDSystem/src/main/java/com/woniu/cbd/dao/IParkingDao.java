@@ -8,7 +8,7 @@ import com.woniu.cbd.bean.ParkingBean;
 
 public interface IParkingDao {
     //批量添加
-	int AddPark(List<ParkingBean> park);
+	int AddParking(List<ParkingBean> park);
     //查看自己的申请记录
 	List<ParkingBean> ShowAll();
     //日期查询
