@@ -74,7 +74,7 @@
 
 
 	<!--企业查看自己的所有车位 -->
-	<select id="showcompanyall" parameterType="int" resultMap="map">
+	<select id="showCompanyAll" parameterType="int" resultMap="map">
 		select * from select * from t_company_bargain where ot_id=#{id} and
 		ot_delete=0
 	</select>
