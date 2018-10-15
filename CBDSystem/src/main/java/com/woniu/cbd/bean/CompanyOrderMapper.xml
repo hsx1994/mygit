@@ -16,8 +16,8 @@
 		<result property="endTime" column="co_end_time"/>
 		<result property="state" column="co_state"/>
 		<!--功能拓展  -->
-		<!-- <association property="comBargain" javaType="CompanyBargainBean" select="companyBargainMapper.findById" column="co_cb_id"></association>
-		<association property="otherParking" javaType="OtherParkingBean" select="otherParkingMapper.findParkingById" column="co_ot_id"></association> -->
+		<association property="comBargain" javaType="CompanyBargainBean" select="companyBargainMapper.findById" column="co_cb_id"></association>
+		<association property="otherParking" javaType="OtherParkingBean" select="otherParkingMapper.findParkingById" column="co_ot_id"></association>
 		<!-- <association property="company" javaType="CompanyBean" select="CompanyMapper.findById" column="or_c_id"></association> -->
 	</resultMap>
 	

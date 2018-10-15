@@ -19,17 +19,15 @@ public class ParkingController {
 
 	// 包租婆批量添加车位信息
 	@RequestMapping("/application.do")
-	public String ApplicationParking(List<ParkingBean> parking) {
+	public @ResponseBody String ApplicationParking(List<ParkingBean> parking) {
 		boolean num = park.AddParking(parking);
+		String result = "失败";
 		if (num) {
 			System.out.println("包租婆添加车位成功");
-			return "xxx.jsp";
-
-		} else {
-			System.out.println("包租婆添加车位失败");
-			return "xxx.jsp";
+			result = "成功";
 
 		}
+		return result;
 
 	}
 
@@ -40,7 +38,7 @@ public class ParkingController {
 		List<ParkingBean> bean = park.ShowAll();
 		if (bean != null) {
 			System.out.println("查询到车位");
-			mav.addObject(bean);
+			mav.addObject("all",bean);
 			mav.setViewName("");
 
 		} else {
@@ -55,12 +53,12 @@ public class ParkingController {
 
 	// 抢租客查看单个上架车位
 	@RequestMapping("/showOne.do")
-	public ModelAndView ShowOne(int id) {
+	public ModelAndView ShowOne(Integer id) {
 		ModelAndView mav = new ModelAndView();
 		ParkingBean bean = park.SelectParkOne(id);
 		if (bean != null) {
 			System.out.println("查询到车位");
-			mav.addObject(bean);
+			mav.addObject("one",bean);
 			mav.setViewName("");
 
 		} else {
@@ -80,7 +78,7 @@ public class ParkingController {
 		List<ParkingBean> bean = park.SelectParkByNum(num);
 		if (bean != null) {
 			System.out.println("查询到车位");
-			mav.addObject(bean);
+			mav.addObject("num",bean);
 			mav.setViewName("");
 
 		} else {
@@ -94,13 +92,13 @@ public class ParkingController {
 	}
 
 	// 抢租客根据价格查询上架车位
-	@RequestMapping("/findbynum.do")
-	public ModelAndView SelectParkByNum(int price) {
+	@RequestMapping("/findbyprice.do")
+	public ModelAndView SelectPark(Integer price) {
 		ModelAndView mav = new ModelAndView();
 		List<ParkingBean> bean = park.SelectPark(price);
 		if (bean != null) {
 			System.out.println("查询到车位");
-			mav.addObject(bean);
+			mav.addObject("price",bean);
 			mav.setViewName("");
 		} else {
 			System.out.println("满足条件的为空");
