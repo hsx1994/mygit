@@ -69,5 +69,15 @@ public class ParkingDaoImpl implements IParkingDao {
 		List<ParkingBean> bean=session.selectList("parkingMapper.findbynum",num);
 		return bean;
 	}
+	/**
+	 * 通过车位的id查找车位的信息
+	 */
+	@Override
+	public ParkingBean findParkingById(int parkingId) {
+		SqlSession session = fa.openSession(true);
+		ParkingBean parking = session.selectOne("parkingMapper.findParkingById", parkingId);
+		session.close();
+		return parking;
+	}
 
 }

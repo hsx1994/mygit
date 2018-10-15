@@ -33,4 +33,13 @@
 	<select id="findByOtherParkingId" parameterType="int" resultMap="map1">
 		select * from t_company_order where co_ot_id=#{id} and co_delete=0
 	</select>
+	
+	<!-- 更新订单状态 -->
+	<update id="updateCompanyOrder" parameterType="CompanyOrderBean">
+		update t_company_order 
+		<set>
+			<if test="state != null">co_state = #{state}</if>
+		</set>
+		where co_id = #{id}
+	</update>
 </mapper>

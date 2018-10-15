@@ -24,24 +24,6 @@
 		<association property="user" javaType="UserBean" select="userMapper.findById" column="or_u_id"></association>
 		<collection property="complain" ofType="ComplainBean" select="complainMapper.findByOrderId" column="id"></collection>
 	</resultMap>
-	<!-- 通过车位id查找该车位的所有订单信息 -->
-	<select id="findByParkingId" parameterType="int" resultMap="order">
-		select * from t_order where or_p_id=#{parkingId};
-	</select>
-	<!-- 通过订单Id查找当前订单 -->
-	<select id="findByOrderId" parameterType="int" resultMap="order">
-		select * from t_order where or_id=#{parkingId};
-	</select>
-	
-	<!-- 更新订单状态 -->
-	<update id="updateOrder" parameterType="OrderBean">
-		update t_order 
-		<set>
-			<if test="state != null">or_state = #{state}</if>
-		</set>
-		where or_id = #{id}
-	</update>
-	
 	
 	<!-- 通过车位id查找该车位的所有订单信息 -->
 	<select id="findByParkingId" parameterType="int" resultMap="order">

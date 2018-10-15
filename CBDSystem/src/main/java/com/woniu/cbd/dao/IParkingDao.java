@@ -19,5 +19,11 @@ public interface IParkingDao {
 	ParkingBean SelectParkOne(int id);
     //车位号模糊查询
 	List<ParkingBean> SelectParkByNum(String num);
+	/**
+	 * 通过车位id查找车位的全部信息
+	 * @param parkingId
+	 * @return
+	 */
+	public ParkingBean findParkingById(int parkingId);
 
 }

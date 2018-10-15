@@ -1,12 +1,9 @@
-package com.woniu.cbd.dao;
+package com.woniu.cbd.service;
 
 import java.util.List;
 
 import com.woniu.cbd.bean.CompanyOrderBean;
 
-public interface ICompanyOrderDao {
-	
+public interface ICompanyOrderService {
 	public boolean addCompanyOrder(List<CompanyOrderBean> companyOrders);
-	
-	public boolean changeState(CompanyOrderBean order);
 }
