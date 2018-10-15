@@ -12,27 +12,11 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/context
-
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 组件扫描器 -->
 	<context:component-scan base-package="com.woniu.cbd.service" />
 	<context:component-scan base-package="com.woniu.cbd.dao" />
-	
-	<!-- <context:component-scan base-package="anotation"/> -->
-
-	<!-- ======================；连接数据库的配置=============== -->
-	<!--配置数据源 -->
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://192.168.6.244:3306/test"></property>
-		<property name="username" value="root"></property>
-		<property name="password" value="123456"></property>
-	</bean>
-	<!--<bean id="ab">
- 	<property name=""></property> 
-	</bean>-->
 
 	<!--配置sqlSessionFactory 并将数据源注入 -->
 	<bean id="fa" class="org.mybatis.spring.SqlSessionFactoryBean">
