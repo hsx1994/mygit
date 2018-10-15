@@ -50,5 +50,4 @@ public class SuperAdministratorBean implements Serializable {
 	public void setRealName(String realName) {
 		this.realName = realName;
 	}
-
 }

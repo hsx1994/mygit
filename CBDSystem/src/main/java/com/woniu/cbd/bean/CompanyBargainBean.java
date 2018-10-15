@@ -2,6 +2,7 @@ package com.woniu.cbd.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 /**
  * 企业合约内容信息
  * @author hsx
@@ -17,15 +18,46 @@ public class CompanyBargainBean implements Serializable {
 	private String number;
 	//企业合约复印件
 	private String img;
+	//企业联系人
+	private String contact;
+	//联系人电话
+	private String tel;
 	//企业合约开始时间
 	private Date startTime;
 	//企业合约结束时间
 	private Date endTime;
-	//企业合约租赁车位描述(车位号)
-	private String parkingDes;
-	//企业合约状态(0:正在用,1:续约,2:毁约)
+	//企业合约状态(0:正在用,2:毁约)
 	private int state;
+	//企业合约包含的订单集合
+	private List<CompanyOrderBean> comOrder;
+	//企业合约对应的企业信息
+	private CompanyInfoBean company;
 	
+	
+	public CompanyInfoBean getCompany() {
+		return company;
+	}
+	public void setCompany(CompanyInfoBean company) {
+		this.company = company;
+	}
+	public String getContact() {
+		return contact;
+	}
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public List<CompanyOrderBean> getComOrder() {
+		return comOrder;
+	}
+	public void setComOrder(List<CompanyOrderBean> comOrder) {
+		this.comOrder = comOrder;
+	}
 	public String getName() {
 		return name;
 	}
@@ -62,12 +94,12 @@ public class CompanyBargainBean implements Serializable {
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
-	public String getParkingDes() {
-		return parkingDes;
-	}
-	public void setParkingDes(String parkingDes) {
-		this.parkingDes = parkingDes;
-	}
+//	public String getParkingDes() {
+//		return parkingDes;
+//	}
+//	public void setParkingDes(String parkingDes) {
+//		this.parkingDes = parkingDes;
+//	}
 	public int getState() {
 		return state;
 	}

@@ -2,6 +2,8 @@ package com.woniu.cbd.bean;
 
 import java.io.Serializable;
 
+import java.util.List;
+
 /**
  * 普通用户信息表
  * @author hsx
@@ -31,7 +33,16 @@ public class UserBean implements Serializable {
 	private int orderCount;
 	//普通用户被投诉次数
 	private int complaintCount;
+	//包租婆所拥有的车位集合
+	private List<ParkingBean> parking;
 	
+	
+	public List<ParkingBean> getParking() {
+		return parking;
+	}
+	public void setParking(List<ParkingBean> parking) {
+		this.parking = parking;
+	}
 	public int getId() {
 		return id;
 	}

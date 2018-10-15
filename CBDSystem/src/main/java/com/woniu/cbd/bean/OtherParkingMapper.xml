@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 第三方车位管理 -->
+<mapper namespace="otherParkingMapper">
+	<!-- 批量添加第三方车位 -->
+	<insert id="otherParkingAdd" parameterType="java.util.List">
+		insert into t_other_parking
+            (ot_address,ot_parking_number,ot_img,ot_price,ot_start_time,ot_end_time,ot_bargain_id)
+            values
+             <foreach collection ="list" item="bean" index= "index" separator =",">
+                 (#{bean.address},#{bean.parkingNum},#{bean.img},#{bean.price},#{bean.startTime},#{bean.endTime})
+             </foreach >
+	</insert>
+	
+	<!-- 批量删除第三方车位 -->
+	<update id="otherParkingDelete" parameterType="int">
+		update t_other_parking set delete=1 where ot_id in
+		<foreach collection ="array" item="id" open="(" separator ="," close=")">
+                 #{id}
+        </foreach >
+	</update>
+	
+	<!-- 查询第三方合约关联的车位信息 -->
+	<select id="otherParkingInBargainSelect" parameterType="int" resultMap="map">
+		select * from t_other_parking where ot_bargain_id=#{id}
+	</select>
+	
+	<!-- 查询某个第三方车位信息 -->
+	<select id="otherParkingSelect" parameterType="OtherParkingBean" resultType="OtherParkingBean">
+		select * from t_other_parking where ot_id=#{id}
+	</select>
+	
+	<!-- 查询所有第三方车位信息 -->
+	<select id="allOtherParkingSelect" resultMap="map">
+		select * from t_other_parking
+	</select>
+	<resultMap type="OtherParkingBean" id="map">
+		<id column="ot_id" property="id"/>
+		<result column="ot_address" property="address"/>
+		<result column="ot_parking_number" property="parkingNum"/>
+		<result column="ot_img" property="img"/>
+		<result column="ot_price" property="price"/>
+		<result column="ot_start_time" property="startTime"/>
+		<result column="ot_end_time" property="endTime"/>
+		<result column="ot_bargain_id" property="bargainId"/>
+		<association property="bargain" javaType="BargainBean" select="bargainMapper.findById" column="ot_bargain_id"/>
+		<collection property="order" ofType="CompanyOrderBean" select="companyOrderMapper" column="ot_id"></collection>
+	</resultMap>
+	
+</mapper>

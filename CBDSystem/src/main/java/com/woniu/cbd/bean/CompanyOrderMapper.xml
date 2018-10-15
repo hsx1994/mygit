@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="companyOrderMapper">
+	<!-- 通过车位id查找该车位的所有订单信息 -->
+	<select id="findByCompanyBargainId" parameterType="int" resultMap="map1">
+		select * from t_order where or_p_id=#{parkingId};
+	</select>
+	<resultMap type="CompanyOrderBean" id="map1">
+		<id property="id" column="co_id"/>
+		<result property="startTime" column="co_start_time"/>
+		<result property="endTime" column="co_end_time"/>
+		<result property="state" column="co_state"/>
+		<association property="comBargain" javaType="CompanyBargainBean" select="CompanyBargainMapper.findById" column="co_cb_id"></association>
+		<association property="otherParking" javaType="OtherParkingBean" select="OtherParkingMapper.findParkingById" column="co_ot_id"></association>
+		<!-- <association property="company" javaType="CompanyBean" select="CompanyMapper.findById" column="or_c_id"></association> -->
+	</resultMap>
+	
+	<insert id="addCompanyOrder" parameterType="CompanyOrderBean" keyProperty="id" useGeneratedKeys="true">
+		insert into t_company_order(co_start_time,co_end_time,co_p_id,co_u_id) values(#{startTime},#{endTime},#{otherParking.id},#{comBargain.id});
+	</insert>
+</mapper>
