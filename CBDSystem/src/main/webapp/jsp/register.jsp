@@ -54,5 +54,17 @@
 </c:forEach>
 </form>
 <hr>
+
+
+<form action="/CBDSystem/16.do" method="post">
+<label>提交： </label><input type="submit"><br/><br/>
+<c:forEach items="${allParking}" var="ab" >
+		<tr>
+
+			 <td align = "center">${ab.id}</td>
+		 </tr>
+
+</c:forEach>
+</form>
 </body>
 </html>

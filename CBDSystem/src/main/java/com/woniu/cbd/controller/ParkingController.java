@@ -64,13 +64,13 @@ public class ParkingController {
 		return result;
 	}
 	
-	@RequestMapping("/16")
-	public ModelAndView parkingSelect(){
+	@RequestMapping("/16.do")
+	public ModelAndView parkingSelect(){	
 		ModelAndView mav = new ModelAndView();
 		List<ParkingBean> list = park.parkingSelect();
 		mav.addObject("allParking",list);
-		mav.setViewName("");
-		
+		mav.setViewName("jsp/register.jsp");
+		System.out.println(list.size());
 		return mav;
 	}
 	
