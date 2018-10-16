@@ -23,7 +23,6 @@ public class CompanyOrderBean implements Serializable {
 	// 企业租车订单关联的车位信息
 	private OtherParkingBean otherParking;
 	// 企业租车订单关联的企业合约信息
-
 	private CompanyBargainBean comBargain;
 	// 企业订单关联的企业信息
 	private CompanyInfoBean company;
@@ -83,5 +82,4 @@ public class CompanyOrderBean implements Serializable {
 	public void setOtherParking(OtherParkingBean otherParking) {
 		this.otherParking = otherParking;
 	}
-
 }

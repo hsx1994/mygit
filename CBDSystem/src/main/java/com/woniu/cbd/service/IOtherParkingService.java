@@ -37,4 +37,10 @@ public interface IOtherParkingService {
 	 * @return
 	 */
 	public List<OtherParkingBean> allOtherParkingSelect();
+	
+	// 用于企业查看可租赁的企业车位车位
+	public List<OtherParkingBean> showCompanyParkingAll(int id);
+
+	// 用于企业查看单个车位信息
+	public OtherParkingBean showCompanyParkingById(int c_id);
 }
