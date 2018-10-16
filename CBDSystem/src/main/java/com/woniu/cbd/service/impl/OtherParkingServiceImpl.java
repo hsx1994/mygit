@@ -44,5 +44,19 @@ public class OtherParkingServiceImpl implements IOtherParkingService {
 		List<OtherParkingBean> list = dao.allOtherParkingSelect();
 		return list;
 	}
+	//企业查看自己的所有车位
+	@Override
+	public List<OtherParkingBean> showCompanyParkingAll(int id) {
+		// TODO Auto-generated method stub
+		List<OtherParkingBean> bean=dao.showComPanyParkingAll(id);
+		return bean;
+	}
+    //企业查看单个车位
+	@Override
+	public OtherParkingBean showCompanyParkingById(int id) {
+		// TODO Auto-generated method stub
+		OtherParkingBean bean=dao.showCompanyParkingById(id);
+		return bean;
+	}
 
 }

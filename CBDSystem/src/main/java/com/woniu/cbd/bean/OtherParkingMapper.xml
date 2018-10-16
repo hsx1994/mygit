@@ -57,21 +57,12 @@
 		<result column="ot_price" property="price" />
 		<result column="ot_start_time" property="startTime" />
 		<result column="ot_end_time" property="endTime" />
-		<association property="bargain" javaType="BargainBean"
-			select="bargainMapper.findById" column="ot_bargain_id" />
-		<collection property="order" ofType="CompanyOrderBean"
-			select="companyOrderMapper.findByOtherParkingId" column="ot_id"></collection>
+		<association property="bargain" javaType="BargainBean" select="bargainMapper.findById" column="ot_bargain_id" />
+		<collection property="order" ofType="CompanyOrderBean" select="companyOrderMapper.findByOtherParkingId" column="ot_id"></collection>
 	</resultMap>
 
-	<!--前台企业查看单个企业车位的信息 -->
-	<select id="showCompanyPark" parameterType="int" resultType="OtherParkingBean">
-
-		select * from t_other_parking and ot_delete=0 where co_ot_id=#{id}
-	</select>
-
-	<!--企业查看自己的所有车位 -->
-	<select id="showCompanyAllByCid" parameterType="int" resultMap="map">
-		select * from t_other_parking where ot_id=#{id} and
-		ot_delete=0
+	<!--通过车位id查询企业车位信息  -->
+	<select id="findParkingById" parameterType="int" resultMap="map">
+	    select * from t_other_parking where ot_id=#{id} and ot_delete=0
 	</select>
 </mapper>

@@ -46,13 +46,13 @@
 		<result column="cb_state" property="state"/>
 		<result column="cb_contact" property="contact"/>
 		<result column="cb_tel" property="tel"/>
-		<association property="company" javaType="CompanyInfoBean" select="CompanyInfoMapper.findById" column="cb_c_id"></association>
+		<!-- <association property="company" javaType="CompanyInfoBean" select="CompanyInfoMapper.findById" column="cb_c_id"></association> -->
 		<collection property="comOrder" ofType="CompanyOrderBean" select="companyOrderMapper.findByCompanyBargainId" column="cb_id"/>
 	</resultMap>
 	
-	<!--前台企业通过企业名查询该企业的合约  -->
-	<select id="companycontract" parameterType="String" resultMap="selectMap">
-	    select * from t_company_bargain where cb_cname=#{name}
+	<!--前台企业通过企业id查询该企业的合约  -->
+	<select id="companyBargainById" parameterType="int" resultMap="selectMap">
+	    select * from t_company_bargain where cb_c_id=#{id}
 	</select>
 	
 </mapper>
