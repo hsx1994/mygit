@@ -20,9 +20,9 @@ public class CompanyDaoImpl implements ICompanyDao {
 	// 查看企业的所有车位
 	@Override
 	public List<OtherParkingBean> ShowComPanyParkAll() {
-		// TODO Auto-generated method stub
 		SqlSession session = fa.openSession(true);
-		List<OtherParkingBean> bean = session.selectList("otherparkingMapper.showcompanyall");
+		List<OtherParkingBean> bean = session.selectList("otherParkingMapper.showCompanyAllByCid");
+		
 		session.close();
 		return bean;
 	}
@@ -30,9 +30,9 @@ public class CompanyDaoImpl implements ICompanyDao {
 	// 企业查看单个车位信息
 	@Override
 	public OtherParkingBean ShowComPanyPark(int c_id) {
-		// TODO Auto-generated method stub
 		SqlSession session = fa.openSession(true);
-		OtherParkingBean bean = session.selectOne("otherparkingMapper.showcompanypark", c_id);
+		OtherParkingBean bean = session.selectOne("otherParkingMapper.showCompanyParking", c_id);
+		
 		session.close();
 		return bean;
 	}
@@ -41,9 +41,9 @@ public class CompanyDaoImpl implements ICompanyDao {
 	// 前台查看企业合约
 	@Override
 	public List<CompanyBargainBean> CompanyContract(String name) {
-		// TODO Auto-generated method stub
 		SqlSession session = fa.openSession(true);
 		List<CompanyBargainBean> bean = session.selectOne("companyBargainMapper.companycontract", name);
+		
 		session.close();
 		return bean;
 	}
