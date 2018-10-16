@@ -2,9 +2,12 @@ package com.woniu.cbd.service;
 
 import java.util.List;
 
+
+import com.woniu.cbd.bean.CompanyInfoBean;
 import com.woniu.cbd.bean.ComplainBean;
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
+import com.woniu.cbd.bean.RegisterBean;
 
 public interface IUserService {
 	// 用于包租婆查看自己申请发布的车位
@@ -18,5 +21,25 @@ public interface IUserService {
 
 	// 用于抢租客针对订单的投诉信息
 	public boolean AddComplaint(ComplainBean bean);
+	
+	/**向数据库中添加一条用户信息	
+	 ** @param user	 
+	 ** @return int	 
+	 **/	
 
+	public int addUser(RegisterBean user);
+		/**
+		 * 修改数据库中个人信息
+		 * @param user
+		 * @return
+		 */
+
+	public int updateUser(RegisterBean user);
+	/***
+	 * 修改数据库中企业信息
+	 * @param company
+	 * @return
+	 */
+
+	public int updateCompany(CompanyInfoBean company);
 }

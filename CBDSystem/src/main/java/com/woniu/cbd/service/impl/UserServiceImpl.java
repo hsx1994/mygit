@@ -4,14 +4,21 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionException;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.woniu.cbd.bean.CompanyInfoBean;
 import com.woniu.cbd.bean.ComplainBean;
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
+import com.woniu.cbd.bean.RegisterBean;
 import com.woniu.cbd.dao.IUserDao;
 import com.woniu.cbd.service.IUserService;
 
 @Service
+
 public class UserServiceImpl implements IUserService {
 
 	@Autowired
@@ -53,5 +60,62 @@ public class UserServiceImpl implements IUserService {
 		    return false;
 		    }
 	}
+	
+	/**
+	 * 注册个人信息
+	 */
+	@Override
+	@Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED, rollbackFor = TransactionException.class)
+	public int addUser(RegisterBean user) {
+	
+		int row=0;
+		int result = 0;
+		if(user.getName() == null || user.getPass()==null){
+			result = 0;
+		}else{
+			result = 1;
+			System.out.println("result+"+result);
+			
+		}
+		System.out.println("result"+result);
+		int resultinfor=0;
+		if(user.getAddress() == null || user.getEmail()==null ||user.getIdcard()==null||user.getJob()==null||user.getRealName()==null){
+			resultinfor = 0;
+		}else{
+			resultinfor = 1;
+			System.out.println("resultinfor+"+resultinfor);
+		}
+		System.out.println("resultinfor"+resultinfor);
+		if(result!=0&&resultinfor!=0){
+			row=1;
+		}
+		return row;
+	}
 
+	/**
+	 * 修改信息
+	 */
+	@Override
+	public int updateUser(RegisterBean user) {
+		int row=0;
+		int result = dao.updateUser(user);
+		System.out.println(result);
+		
+		if(result>0){
+			row=1;
+		}
+		return row;
+	}
+
+	@Override
+	public int updateCompany(CompanyInfoBean company) {
+		int row=0;
+		int result = dao.updateCompany(company);
+		System.out.println(result);
+		
+		if(result>0){
+			row=1;
+		}
+		return row;
+	}
 }

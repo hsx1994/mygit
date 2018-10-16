@@ -1,17 +1,14 @@
 package com.woniu.cbd.bean;
 
 import java.io.Serializable;
-import java.util.List;
 
-/**
- * 普通用户信息表
- * @author hsx
- *
- */
-public class UserBean implements Serializable {
+
+public class RegisterBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	//普通用户ID
 	private int id;
+	//用户角色ID
+	private int role;
 	//普通用户用户名
 	private String name;
 	//普通用户密码
@@ -32,21 +29,17 @@ public class UserBean implements Serializable {
 	private int orderCount;
 	//普通用户被投诉次数
 	private int complaintCount;
-	//包租婆所拥有的车位集合
-	private List<ParkingBean> parking;
-	
-	
-	public List<ParkingBean> getParking() {
-		return parking;
-	}
-	public void setParking(List<ParkingBean> parking) {
-		this.parking = parking;
-	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getRole() {
+		return role;
+	}
+	public void setRole(int role) {
+		this.role = role;
 	}
 	public String getName() {
 		return name;
@@ -107,6 +100,14 @@ public class UserBean implements Serializable {
 	}
 	public void setComplaintCount(int complaintCount) {
 		this.complaintCount = complaintCount;
+	}
+	@Override
+	public String toString() {
+		return "RegisterBean [id=" + id + ", role=" + role + ", name=" + name
+				+ ", pass=" + pass + ", realName=" + realName + ", address="
+				+ address + ", tel=" + tel + ", idcard=" + idcard + ", job="
+				+ job + ", email=" + email + ", orderCount=" + orderCount
+				+ ", complaintCount=" + complaintCount + "]";
 	}
 	
 }
