@@ -19,10 +19,10 @@ public class CompanyDaoImpl implements ICompanyDao {
 
 	// 查看企业的所有车位
 	@Override
-	public List<OtherParkingBean> ShowComPanyParkAll() {
+	public List<OtherParkingBean> ShowComPanyParkAll(int id) {
 		// TODO Auto-generated method stub
 		SqlSession session = fa.openSession(true);
-		List<OtherParkingBean> bean = session.selectList("otherparkingMapper.showcompanyall");
+		List<OtherParkingBean> bean = session.selectList("otherparkingMapper.showCompanyAllByCid",id);
 		session.close();
 		return bean;
 	}

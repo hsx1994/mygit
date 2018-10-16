@@ -2,6 +2,7 @@ package com.woniu.cbd.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import java.util.List;
 /**
  * 个人出租车位信息
@@ -116,6 +117,7 @@ public class ParkingBean implements Serializable {
 	public void setApplyTime(Date applyTime) {
 		this.applyTime = applyTime;
 	}
+
 }
 	
 
