@@ -44,7 +44,7 @@ public interface IOtherParkingDao {
 	public List<OtherParkingBean> allOtherParkingSelect();
 
 	// 前台查看企业的所有车位
-	public List<OtherParkingBean> showComPanyParkingAll(int id);
+	public List<OtherParkingBean> showCompanyParkingAll(int id);
 
 	// 企业查看单个车位信息
 	public OtherParkingBean showCompanyParkingById(int c_id);
