@@ -43,5 +43,14 @@ public class CompanyOrderDaoImpl implements ICompanyOrderDao {
 			return true;
 		}
 	}
+	//前台查看企业订单记录
+	@Override
+	public List<CompanyOrderBean> selectCompanyOrder(int id) {
+		// TODO Auto-generated method stub
+		SqlSession session = fa.openSession(true);
+		List<CompanyOrderBean> bean=session.selectList("companyOrderMapper.selectCompanyOrder", id);
+		session.close();
+		return bean;
+	}
 
 }

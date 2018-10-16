@@ -22,9 +22,9 @@ public class UserDaoImpl implements IUserDao {
 	// 包租婆查看上架记录
 	@Override
 	public List<ParkingBean> ShowMe(int id) {
-		// TODO Auto-generated method stub
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		List<ParkingBean> bean = session.selectList("parkingMapper.showme", id);
+		
 		session.close();
 		return bean;
 	}
@@ -32,9 +32,9 @@ public class UserDaoImpl implements IUserDao {
 	// 包租婆查看被租赁记录
 	@Override
 	public List<ParkingBean> SelectLog(int id) {
-		// TODO Auto-generated method stub
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		List<ParkingBean> bean = session.selectList("parkingMapper.showmelog", id);
+		
 		session.close();
 		return bean;
 	}
@@ -42,9 +42,9 @@ public class UserDaoImpl implements IUserDao {
 	// 抢租客查看租赁记录
 	@Override
 	public List<OrderBean> ShowLog(int id) {
-		// TODO Auto-generated method stub
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		List<OrderBean> bean = session.selectList("orderMapper.showlog", id);
+		
 		session.close();
 		return bean;
 	}
@@ -52,9 +52,9 @@ public class UserDaoImpl implements IUserDao {
 	// 抢租客添加投诉信息
 	@Override
 	public int AddComplaint(ComplainBean bean) {
-		// TODO Auto-generated method stub
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		int num = session.insert("complaintMapper.addcomplaint", bean);
+		
 		session.close();
 		return num;
 	}

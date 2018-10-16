@@ -18,37 +18,34 @@ public class CompanyBargainDaoImpl implements ICompanyBargainDao {
 
 	@Override
 	public int companyBargainAdd(CompanyBargainBean bean) {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		int id = session.insert("companyBargainMapper.companyBargainAdd", bean);
 		
-		session.commit();
 		session.close();
 		return id;
 	}
 
 	@Override
 	public int companyBargainDelete(int id) {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		int row = session.insert("companyBargainMapper.companyBargainDelete", id);
 		
-		session.commit();
 		session.close();
 		return row;
 	}
 
 	@Override
 	public int companyBargainUpdate(CompanyBargainBean bean) {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		int row = session.insert("companyBargainMapper.companyBargainUpdate", bean);
 		
-		session.commit();
 		session.close();
 		return row;
 	}
 
 	@Override
 	public List<CompanyBargainBean> companyBargainSelect(CompanyBargainBean bean) {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		List<CompanyBargainBean> bargain = session.selectList("companyBargainMapper.companyBargainSelect",bean);
 		
 		session.close();
@@ -57,7 +54,7 @@ public class CompanyBargainDaoImpl implements ICompanyBargainDao {
 
 	@Override
 	public List<CompanyBargainBean> allCompanyBargainSelect() {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		List<CompanyBargainBean> list = session.selectList("companyBargainMapper.allCompanyBargainMapper");
 		
 		session.close();
@@ -66,7 +63,7 @@ public class CompanyBargainDaoImpl implements ICompanyBargainDao {
 
 	@Override
 	public List<CompanyBargainBean> companyBargainSelectByState(int state) {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		List<CompanyBargainBean> list = session.selectList("companyBargainMapper.fingCompanyBargainByState",state);
 		
 		session.close();
