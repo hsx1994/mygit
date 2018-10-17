@@ -63,7 +63,7 @@ public class UserController {
 	}
 
 	// 手机发送验证码测试
-	@RequestMapping("/num.do")
+	@RequestMapping("/phone.do")
 	public ModelAndView Num(HttpServletRequest request, String number) throws ClientException {
 		ModelAndView mav = new ModelAndView();
 		System.out.println(number);
