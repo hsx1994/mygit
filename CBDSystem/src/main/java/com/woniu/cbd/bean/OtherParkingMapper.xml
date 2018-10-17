@@ -57,6 +57,23 @@
 		<collection property="order" ofType="CompanyOrderBean" select="companyOrderMapper.findByOtherParkingId" column="ot_id"></collection>
 	</resultMap>
 
+	<!--前台企业查看单个企业车位的信息 -->
+	<select id="showcompanypark" parameterType="int" resultType="OtherParkingBean">
+
+		select ot_id as id,ot_address as address,ot_parking_number as
+		parkingNum,ot_img as img,ot_price as price,ot_start_time as
+		startTime,ot_end_time as endTime
+		from t_other_parking and ot_delete=0
+	</select>
+
+
+
+	<!--企业查看自己的所有车位 -->
+	<select id="showCompanyAllByCid" parameterType="int" resultMap="map">
+		select * from  t_company_bargain where ot_id=#{id} and
+		ot_delete=0
+	</select>
+	
 	<!--通过车位id查询第三方车位信息  -->
 	<select id="findParkingById" parameterType="int" resultMap="map">
 	    select * from t_other_parking where ot_id=#{id} and ot_delete=0
