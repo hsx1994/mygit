@@ -95,13 +95,12 @@
 		t_parking where p_state=1 and p_id=#{id} and p_delete=0
 	</select>
 
-	<!--抢租客根据车位号模糊查询查询上架车位信息 -->
+	<!--抢租客模糊查询查询上架车位信息 -->
 	<select id="findbynum" parameterType="String" resultMap="apply">
 		select
 		*
-		from t_parking where p_state=1 and p_parking_number LIKE
-		"%"#{number}"%" and
-		p_delete=0
+		from t_parking where p_state=1 and CONCAT(p_address,p_parking_number,p_price) like "%" #{number} "%" and
+		p_delete=0	
 	</select>
 
 	<!--根据车位id查询车位号和车位所有人的名称 -->
