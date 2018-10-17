@@ -59,11 +59,12 @@ public class UserServiceImpl implements IUserService {
 	 * 注册个人信息
 	 */
 	@Override
-	@Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED, rollbackFor = TransactionException.class)
-	public int addUser(RegisterBean user) {
+	public boolean addUser(RegisterBean user) {
 		int row = dao.addUser(user);
-		
-			return row;
+		if(row>0){
+			return true;
+		}
+		return false;	
 		
 //	
 //		int row=0;

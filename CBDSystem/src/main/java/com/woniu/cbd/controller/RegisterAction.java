@@ -7,7 +7,6 @@ import java.util.List;
 
 
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,27 +35,21 @@ public class RegisterAction {
 		System.out.println("user+"+user);
 		
 		System.out.println("service+"+service);
-		String result = "添加失败";
-		int re = service.addUser(user);
-		if (re>0) {
-			result = "添加成功";
+		boolean row = service.addUser(user);
+		
+		if(row = true){
+			return "jsp/Success.jsp";	
+		}else{
+			model.addAttribute("user",user);
+			System.out.println("model+"+model);
+			if(res.hasErrors()){
+				System.out.println("res+"+res);
+				List<ObjectError> list = res.getAllErrors();
+				
+				model.addAttribute("allErrors",list);
+			}
+			return "jsp/PersonalRegister.jsp";	
 		}
-		return result;
-//		int row = service.addUser(user);
-//		
-//		if(row>0){
-//			return "jsp/Success.jsp";	
-//		}else{
-//			model.addAttribute("user",user);
-//			System.out.println("model+"+model);
-//			if(res.hasErrors()){
-//				System.out.println("res+"+res);
-//				List<ObjectError> list = res.getAllErrors();
-//				
-//				model.addAttribute("allErrors",list);
-//			}
-//			return "jsp/PersonalRegister.jsp";	
-//		}
 
 	}
 	/***

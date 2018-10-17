@@ -28,7 +28,7 @@ public interface IUserService {
 	 ** @param user	 
 	 ** @return int	 
 	 **/
-	public int addUser(RegisterBean user);
+	public boolean addUser(RegisterBean user);
 		/**
 		 * 修改数据库中个人信息
 		 * @param user

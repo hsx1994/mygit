@@ -54,9 +54,10 @@ public class UserDaoImpl implements IUserDao {
 	// 抢租客添加投诉信息
 	@Override
 	public int AddComplaint(ComplainBean bean) {
-		SqlSession session = fa.openSession(true);
-		int num = session.insert("complaintMapper.addcomplaint", bean);
-		
+		// TODO Auto-generated method stub
+		SqlSession session = fa.openSession();
+		int num = session.insert("com.woniu.cbd.dao.IComplainDao.addcomplaint", bean);
+
 		session.close();
 		return num;
 	}
@@ -64,8 +65,8 @@ public class UserDaoImpl implements IUserDao {
 	@Override
 	public int addUser(RegisterBean user) {
 		SqlSession session = fa.openSession(true);
-		int row = session.insert("complaintMapper.addcomplaint", user);
-		
+		int row = session.insert("RegisterMapper.addUser", user);
+		session.commit();
 		session.close();
 		return row;
 	}
