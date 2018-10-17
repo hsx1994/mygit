@@ -65,7 +65,7 @@ public class UserDaoImpl implements IUserDao {
 	@Override
 	public int addUser(RegisterBean user) {
 		SqlSession session = fa.openSession(true);
-		int row = session.insert("RegisterMapper.addUser", user);
+		int row = session.insert("com.woniu.cbd.dao.IUserDao.addUser", user);
 		session.commit();
 		session.close();
 		return row;
@@ -73,8 +73,11 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public int addUserInfor(RegisterBean user) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = fa.openSession(true);
+		int row = session.insert("com.woniu.cbd.dao.IUserDao.addUserInfor", user);
+		session.commit();
+		session.close();
+		return row;
 	}
 
 	@Override

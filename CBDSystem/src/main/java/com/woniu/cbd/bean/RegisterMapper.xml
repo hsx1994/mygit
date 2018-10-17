@@ -6,12 +6,12 @@
 <mapper namespace="com.woniu.cbd.dao.IUserDao">
 	
 	<insert id="addUserInfor" parameterType="RegisterBean">
-		insert into t_user_info(u_l_id,u_address,u_complaint_count,u_email,u_idcard,u_order_count,u_profession,u_realname,u_tel
-		) values(#{role},#{address},#{complaintCount},#{email},#{idcard},#{orderCount},#{job},#{realName},#{tel});
+		insert into t_user_info(u_address,u_email,u_idcard,u_profession,u_realname,u_tel
+		) values(#{address},#{email},#{idcard},#{job},#{realName},#{tel});
 	</insert>
 	
 	<insert id="addUser" parameterType="RegisterBean">
-		insert into t_login(l_name,l_password,l_role)values(#{name},#{pass},#{role});
+		insert into t_login(l_name,l_password)values(#{name},#{password});
 	</insert>
 	
 

@@ -12,7 +12,7 @@ public class RegisterBean implements Serializable{
 	//普通用户用户名
 	private String name;
 	//普通用户密码
-	private String pass;
+	private String password;
 	//普通用户账号真实姓名
 	private String realName;
 	//普通用户地址
@@ -48,10 +48,10 @@ public class RegisterBean implements Serializable{
 		this.name = name;
 	}
 	public String getPass() {
-		return pass;
+		return password;
 	}
-	public void setPass(String pass) {
-		this.pass = pass;
+	public void setPass(String password) {
+		this.password = password;
 	}
 	public String getRealName() {
 		return realName;
@@ -104,7 +104,7 @@ public class RegisterBean implements Serializable{
 	@Override
 	public String toString() {
 		return "RegisterBean [id=" + id + ", role=" + role + ", name=" + name
-				+ ", pass=" + pass + ", realName=" + realName + ", address="
+				+ ", password=" + password + ", realName=" + realName + ", address="
 				+ address + ", tel=" + tel + ", idcard=" + idcard + ", job="
 				+ job + ", email=" + email + ", orderCount=" + orderCount
 				+ ", complaintCount=" + complaintCount + "]";

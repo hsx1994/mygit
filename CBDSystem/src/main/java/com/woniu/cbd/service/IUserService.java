@@ -35,7 +35,7 @@ public interface IUserService {
 		 * @return
 		 */
 
-	public int updateUser(RegisterBean user);
+	public boolean updateUser(RegisterBean user);
 	/***
 	 * 修改数据库中企业信息
 	 * @param company

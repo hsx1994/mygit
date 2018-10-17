@@ -95,15 +95,12 @@ public class UserServiceImpl implements IUserService {
 	 * 修改信息
 	 */
 	@Override
-	public int updateUser(RegisterBean user) {
-		int row=0;
-		int result = dao.updateUser(user);
-		System.out.println(result);
-		
-		if(result>0){
-			row=1;
+	public boolean updateUser(RegisterBean user) {
+		int row = dao.addUser(user);
+		if(row>0){
+			return true;
 		}
-		return row;
+		return false;	
 	}
 
 	@Override

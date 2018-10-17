@@ -7,13 +7,22 @@ import java.util.List;
 
 
 
+
+
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.woniu.cbd.bean.CompanyInfoBean;
 import com.woniu.cbd.bean.RegisterBean;
@@ -24,32 +33,25 @@ public class RegisterAction {
 	@Autowired
 	private IUserService service;
 
-	@RequestMapping("personl.do")
+	@RequestMapping("/personl.do")
 	/***
 	 * 注册是否成功
 	 * @param user
 	 * @return
 	 */
 	
-	public String addUser(Model model, @Validated RegisterBean user,BindingResult res) {
-		System.out.println("user+"+user);
-		
+	public @ResponseBody boolean addUser( RegisterBean user) {
+		System.out.println(user);
 		System.out.println("service+"+service);
 		boolean row = service.addUser(user);
-		
-		if(row = true){
-			return "jsp/Success.jsp";	
-		}else{
-			model.addAttribute("user",user);
-			System.out.println("model+"+model);
-			if(res.hasErrors()){
-				System.out.println("res+"+res);
-				List<ObjectError> list = res.getAllErrors();
-				
-				model.addAttribute("allErrors",list);
-			}
-			return "jsp/PersonalRegister.jsp";	
+		String result = "失败";
+		if (row) {
+			System.out.println("成功");
+			result = "成功";
+
 		}
+		return row;
+		
 
 	}
 	/***
@@ -58,13 +60,15 @@ public class RegisterAction {
 	 * @return
 	 */
 
-	public String updateUser(@Validated RegisterBean user){
-		int row = service.updateUser(user);
-		if(row>0){
-			return "/某页面";	
-		}else{
-			return "/ModificationPersonal.jsp";	
+	public boolean updateUser(@Validated RegisterBean user){
+		boolean row = service.updateUser(user);
+		String result = "失败";
+		if (row) {
+			System.out.println("成功");
+			result = "成功";
+
 		}
+		return row;
 	}
 	
 	/***

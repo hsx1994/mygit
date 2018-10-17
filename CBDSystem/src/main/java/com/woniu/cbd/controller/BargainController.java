@@ -76,7 +76,7 @@ public class BargainController {
 		return mav;
 	}
 
-	@RequestMapping("/findUnseingBargain.do")
+	@RequestMapping("/findUseingBargain.do")
 	public ModelAndView findUseingBargain(Integer page) {
 		ModelAndView mav = new ModelAndView();
 		
