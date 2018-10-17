@@ -69,5 +69,13 @@ public class CompanyBargainDaoImpl implements ICompanyBargainDao {
 		session.close();
 		return list;
 	}
+	// 前台查看企业合约
+	@Override
+	public List<CompanyBargainBean> companyBargainById(int id) {
+		SqlSession session = fa.openSession(true);
+		List<CompanyBargainBean> bean = session.selectList("companyBargainMapper.companyBargainById",id);
+		session.close();
+		return bean;
+	}
 
 }
