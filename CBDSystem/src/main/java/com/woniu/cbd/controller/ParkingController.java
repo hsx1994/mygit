@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.ParkingBean;
 import com.woniu.cbd.service.IParkingService;
 
@@ -33,20 +34,16 @@ public class ParkingController {
 
 	// 抢租客查看所有上架车位
 	@RequestMapping("/showall.do")
-	public ModelAndView ShowAll() {
+	public ModelAndView ShowAll(Integer page) {
 		ModelAndView mav = new ModelAndView();
+		
+		PageHelper.startPage(page,10,true);
 		List<ParkingBean> bean = park.ShowAll();
-		if (bean != null) {
-			System.out.println("查询到车位");
-			mav.addObject("all",bean);
-			mav.setViewName("");
-
-		} else {
-			System.out.println("满足条件的为空");
-			mav.addObject("查询为空");
-			mav.setViewName("");
-
-		}
+		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
+		
+		mav.addObject("all",pageInfo);
+		mav.setViewName("");
+		
 		return mav;
 
 	}
@@ -56,24 +53,17 @@ public class ParkingController {
 	public ModelAndView ShowOne(Integer id) {
 		ModelAndView mav = new ModelAndView();
 		ParkingBean bean = park.SelectParkOne(id);
-		if (bean != null) {
-			System.out.println("查询到车位");
-			mav.addObject("one",bean);
-			mav.setViewName("");
+		
+		mav.addObject("one",bean);
+		mav.setViewName("");
 
-		} else {
-			System.out.println("满足条件的为空");
-			mav.addObject("空");
-			mav.setViewName("");
-
-		}
 		return mav;
 
 	}
 
 	// 抢租客车位号模糊查询上架车位
 	@RequestMapping("/findbynum.do")
-	public ModelAndView SelectParkByNum(String num) {
+	public ModelAndView SelectParkByNum(String num,Integer page) {
 		ModelAndView mav = new ModelAndView();
 		List<ParkingBean> bean = park.SelectParkByNum(num);
 		if (bean != null) {
@@ -85,7 +75,6 @@ public class ParkingController {
 			System.out.println("满足条件的为空");
 			mav.addObject("空");
 			mav.setViewName("");
-
 		}
 		return mav;
 
@@ -93,15 +82,17 @@ public class ParkingController {
 
 	// 抢租客根据价格查询上架车位
 	@RequestMapping("/findbyprice.do")
-	public ModelAndView SelectPark(Integer price) {
+	public ModelAndView SelectPark(Integer price,Integer page) {
 		ModelAndView mav = new ModelAndView();
+		
+		PageHelper.startPage(page,10,true);
 		List<ParkingBean> bean = park.SelectPark(price);
+		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
+		
 		if (bean != null) {
-			System.out.println("查询到车位");
-			mav.addObject("price",bean);
+			mav.addObject("price",pageInfo);
 			mav.setViewName("");
 		} else {
-			System.out.println("满足条件的为空");
 			mav.addObject("空");
 			mav.setViewName("");
 		}
@@ -109,7 +100,7 @@ public class ParkingController {
 
 	}
 
-	@RequestMapping("/15")
+	@RequestMapping("/parkingDelete.do")
 	public @ResponseBody String parkingDelete(Integer id) {
 		String result = "删除失败";
 		boolean re = park.parkingDelete(id);
@@ -120,17 +111,21 @@ public class ParkingController {
 		return result;
 	}
 
-	@RequestMapping("/16")
-	public ModelAndView parkingSelect() {
+	@RequestMapping("/parkingSelect.do")
+	public ModelAndView parkingSelect(Integer page) {
 		ModelAndView mav = new ModelAndView();
+		
+		PageHelper.startPage(page,10,true);
 		List<ParkingBean> list = park.parkingSelect();
-		mav.addObject("allParking", list);
+		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(list);
+		
+		mav.addObject("allParking", pageInfo);
 		mav.setViewName("");
 
 		return mav;
 	}
 
-	@RequestMapping("/17")
+	@RequestMapping("/passApply.do")
 	public @ResponseBody String passApply(Integer id) {
 		String result = "通过失败";
 		boolean re = park.passApply(id);
@@ -141,7 +136,7 @@ public class ParkingController {
 		return result;
 	}
 
-	@RequestMapping("/18")
+	@RequestMapping("/passApplyFail.do")
 	public @ResponseBody String passApplyFail(Integer id) {
 		String result = "失败";
 		boolean re = park.passApplyFail(id);

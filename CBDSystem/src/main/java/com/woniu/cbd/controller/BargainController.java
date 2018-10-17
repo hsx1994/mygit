@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.BargainBean;
 import com.woniu.cbd.service.IBargainService;
 
@@ -16,7 +18,7 @@ public class BargainController {
 	@Autowired
 	private IBargainService service;
 
-	@RequestMapping("/1")
+	@RequestMapping("/bargainAdd.do")
 	public @ResponseBody String bargainAdd(BargainBean bean) {
 		String result = "添加失败";
 		boolean re = service.bargainAdd(bean);
@@ -26,7 +28,7 @@ public class BargainController {
 		return result;
 	}
 
-	@RequestMapping("/2")
+	@RequestMapping("/bargainDelete.do")
 	public @ResponseBody String bargainDelete(Integer id) {
 		String result = "删除失败";
 		boolean re = service.bargainDelete(id);
@@ -36,7 +38,7 @@ public class BargainController {
 		return result;
 	}
 
-	@RequestMapping("/3")
+	@RequestMapping("/bargainUpdate.do")
 	public @ResponseBody String bargainUpdate(BargainBean bean) {
 		String result = "更改失败";
 		boolean re = service.bargainUpdate(bean);
@@ -46,41 +48,57 @@ public class BargainController {
 		return result;
 	}
 
-	@RequestMapping("/4")
-	public ModelAndView bargainSelect(BargainBean bean) {
+	@RequestMapping("/bargainSelect.do")
+	public ModelAndView bargainSelect(BargainBean bean,Integer page) {
 		ModelAndView mav = new ModelAndView();
+		
+		PageHelper.startPage(page,10,true);
 		List<BargainBean> bargain = service.bargainSelect(bean);
-		mav.addObject("bargain", bargain);
+		PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(bargain);
+		
+		mav.addObject("bargain", pageInfo);
 		mav.setViewName("");
 
 		return mav;
 	}
 
-	@RequestMapping("/5")
-	public ModelAndView allBargainSelect() {
+	@RequestMapping("/allBargainSelect.do")
+	public ModelAndView allBargainSelect(Integer page) {
 		ModelAndView mav = new ModelAndView();
+		
+		PageHelper.startPage(page,10,true);
 		List<BargainBean> bargain = service.allBargainSelect();
-		mav.addObject("allBargain", bargain);
+		PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(bargain);
+		
+		mav.addObject("allBargain", pageInfo);
 		mav.setViewName("");
 
 		return mav;
 	}
 
-	@RequestMapping("/99")
-	public ModelAndView findUseingBargain() {
+	@RequestMapping("/findUnseingBargain.do")
+	public ModelAndView findUseingBargain(Integer page) {
 		ModelAndView mav = new ModelAndView();
+		
+		PageHelper.startPage(page,10,true);
 		List<BargainBean> bargain = service.bargainSelectByState(0);
-		mav.addObject("useingBargain", bargain);
+		PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(bargain);
+		
+		mav.addObject("useingBargain", pageInfo);
 		mav.setViewName("");
 
 		return mav;
 	}
 
-	@RequestMapping("/99999")
-	public ModelAndView findUnseingBargain() {
+	@RequestMapping("/findUnseingBargain.do")
+	public ModelAndView findUnseingBargain(Integer page) {
 		ModelAndView mav = new ModelAndView();
+
+		PageHelper.startPage(page,10,true);
 		List<BargainBean> bargain = service.bargainSelectByState(1);
-		mav.addObject("unuseingBargain", bargain);
+		PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(bargain);
+		
+		mav.addObject("unuseingBargain", pageInfo);
 		mav.setViewName("");
 
 		return mav;
