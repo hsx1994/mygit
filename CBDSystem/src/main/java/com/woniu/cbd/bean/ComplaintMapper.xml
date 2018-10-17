@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- 区分sql块，不同文件中sql语句id可能重复，给每个文件命名 -->
-<mapper namespace="complaintMapper">
+<!-- 区分sql块，不同文件中sql语句id可能重复，给每个文件命名complaintMapper -->
+<mapper namespace="com.woniu.cbd.dao.IComplainDao">
 	<!--抢租客添加投诉信息 -->
 	<insert id="addcomplaint" parameterType="ComplainBean">
 		insert into t_complaint(com_u_id,com_o_id,com_content,com_bc_u_id)
@@ -20,10 +20,11 @@
 	
 	<!-- 查看所有待处理的投诉信息 -->
 	<select id="findAllComplain"  resultMap="map1">
-		select * from t_complain where com_state=0
+		select * from t_complaint where com_state=0 
 	</select>
-	<resultMap type="complainBean" id="map1">
+	<resultMap type="ComplainBean" id="map1">
 		<id column="com_id" property="id"/>
+		<result column="com_state" property="state"/>
 		<result column="com_content" property="content"/>
 		<result column="com_time" property="time"/>
 		<association property="user" javaType="UserBean" select="userMapper.findById" column="com_u_id"></association>
@@ -31,8 +32,16 @@
 		<association property="order" javaType="OrderBean" select="orderMapper.findByOrderId" column="com_o_id"></association>
 	</resultMap>
 	
+	<!-- 后台分页查询投诉信息 -->
+		<select id="findComplainByPage" parameterType="int" resultMap="map1">
+			select * from t_complaint where com_state=0 limit #{num}, 10
+		</select>
+	<!-- 查询投诉信息总数 -->
+	<select id="findTotal" resultType="int">
+		select count(*) from t_complaint where com_state=0
+	</select>
 	<!-- 更新投诉信息状态 -->
 	<select id="updateComplainState" >
-		update t_complain set com_state=#{state} where com_id=#{id}
+		update t_complaint set com_state=#{state} where com_id=#{id}
 	</select>
 </mapper>

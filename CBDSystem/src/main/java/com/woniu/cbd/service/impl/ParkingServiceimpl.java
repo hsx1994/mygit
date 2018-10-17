@@ -17,9 +17,9 @@ public class ParkingServiceimpl implements IParkingService {
 	
 	//包租婆批量添加功能
 	@Override
-	public boolean AddPark(List<ParkingBean> park) {
+	public boolean AddParking(List<ParkingBean> park) {
 		// TODO Auto-generated method stub
-		int num=dao.AddPark(park);
+		int num=dao.AddParking(park);
 		if(num>0){
 			return true;
 			

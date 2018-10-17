@@ -17,9 +17,9 @@ public class ParkingDaoImpl implements IParkingDao {
 	private SqlSessionFactory fa;
     //包租婆批量添加个人车位
 	@Override
-	public int AddPark(List<ParkingBean> park) {
+	public int AddParking(List<ParkingBean> park) {
 		// TODO Auto-generated method stub
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		int num=session.insert("parkingMapper.addParking", park);
 		session.close();
 		return num;
@@ -28,7 +28,7 @@ public class ParkingDaoImpl implements IParkingDao {
 	@Override
 	public List<ParkingBean> ShowAll() {
 		// TODO Auto-generated method stub
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		List<ParkingBean> bean=session.selectList("parkingMapper.showall");
 		session.close();
 		return bean;
@@ -37,7 +37,7 @@ public class ParkingDaoImpl implements IParkingDao {
 	@Override
 	public List<ParkingBean> SelectPark(Date date) {
 		// TODO Auto-generated method stub
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		List<ParkingBean> bean=session.selectList("parkingMapper.showdate",date);
 		session.close();
 		return bean;
@@ -46,7 +46,7 @@ public class ParkingDaoImpl implements IParkingDao {
 	@Override
 	public List<ParkingBean> SelectPark(int price) {
 		// TODO Auto-generated method stub
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		List<ParkingBean> bean=session.selectList("parkingMapper.showprice",price);
 		session.close();
 		return bean;
@@ -55,7 +55,7 @@ public class ParkingDaoImpl implements IParkingDao {
 	@Override
 	public ParkingBean SelectParkOne(int id) {
 		// TODO Auto-generated method stub
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		ParkingBean bean=session.selectOne("parkingMapper.showone",id);
 		session.close();
 		return bean;
@@ -64,8 +64,9 @@ public class ParkingDaoImpl implements IParkingDao {
 	@Override
 	public List<ParkingBean> SelectParkByNum(String num) {
 		// TODO Auto-generated method stub
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		List<ParkingBean> bean=session.selectList("parkingMapper.findbynum",num);
+		session.close();
 		return bean;
 	}
 	
@@ -83,17 +84,16 @@ public class ParkingDaoImpl implements IParkingDao {
 	
 	@Override
 	public int parkingDelete(int id) {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		int row = session.update("parkingMapper.parkingDelete", id);
 		
-		session.commit();
 		session.close();
 		return row;
 	}
 
 	@Override
 	public List<ParkingBean> parkingSelect() {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		List<ParkingBean> list = session.selectList("parkingMapper.applyParkingSelect");
 		
 		session.close();
@@ -102,20 +102,16 @@ public class ParkingDaoImpl implements IParkingDao {
 
 	@Override
 	public int passApply(int id) {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		int row = session.update("parkingMapper.passApply",id);
-		
-		session.commit();
 		session.close();
 		return row;
 	}
 
 	@Override
 	public int passApplyFail(int id) {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		int row = session.update("parkingMapper.passApplyFail",id);
-		
-		session.commit();
 		session.close();
 		return row;
 	}

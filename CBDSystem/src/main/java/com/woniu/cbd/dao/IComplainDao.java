@@ -1,6 +1,9 @@
 package com.woniu.cbd.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
+
 import com.woniu.cbd.bean.ComplainBean;
 
 public interface IComplainDao {
@@ -16,5 +19,17 @@ public interface IComplainDao {
 	 * 管理员查看所有待处理投诉的业务
 	 * @return 
 	 */
-	public ComplainBean findAllComplain();
+	public List<ComplainBean> findAllComplain();
+	
+	/**
+	 * 根据页码显示待处理投诉的信息
+	 * @return
+	 */
+	public List<ComplainBean> findComplainByPage(int page);
+	
+	/**
+	 * 查询所有待处理投诉数量
+	 * @return
+	 */
+	public int findTotal();
 }

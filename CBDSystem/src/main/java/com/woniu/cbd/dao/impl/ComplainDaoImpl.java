@@ -1,5 +1,7 @@
 package com.woniu.cbd.dao.impl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,10 @@ public class ComplainDaoImpl implements IComplainDao {
 	
 	@Autowired
 	private SqlSessionFactory fa;
+	
 	@Override
 	public void updateComplainState(int state, int id) {
+		
 		SqlSession session = fa.openSession();
 		IComplainDao dao = session.getMapper(IComplainDao.class);
 		dao.updateComplainState(state, id);
@@ -23,16 +27,33 @@ public class ComplainDaoImpl implements IComplainDao {
 	}
 
 	@Override
-	public ComplainBean findAllComplain() {
+	public List<ComplainBean> findAllComplain() {
 		
 		SqlSession session = fa.openSession();
-		/*IComplainDao dao = session.getMapper(IComplainDao.class);
-		ComplainBean bean = dao.findAllComplain();*/
-		
-		ComplainBean bean = session.selectOne("complainMapper.findAllComplain");
+		List<ComplainBean> list = session.selectList("com.woniu.cbd.dao.IComplainDao.findAllComplain");
 		session.close();
 		
-		return bean;
+		return list;
+	}
+
+	@Override
+	public List<ComplainBean> findComplainByPage(int page) {
+		
+		SqlSession session = fa.openSession();
+		IComplainDao dao = session.getMapper(IComplainDao.class);
+		List<ComplainBean> list = dao.findComplainByPage(page);
+		session.close();
+		return list;
+	}
+
+	@Override
+	public int findTotal() {
+		
+		SqlSession session = fa.openSession();
+		IComplainDao dao = session.getMapper(IComplainDao.class);
+		int total = dao.findTotal();
+		session.close();
+		return total;
 	}
 
 }
