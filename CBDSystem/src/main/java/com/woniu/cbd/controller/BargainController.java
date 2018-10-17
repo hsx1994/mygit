@@ -89,13 +89,13 @@ public class BargainController {
 		ModelAndView mav = new ModelAndView();
 		
 		PageHelper.startPage(page,10,true);
-		List<BargainBean> bargain = service.bargainSelectByState(0);
-		PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(bargain);
+		List<BargainBean> list = service.bargainSelectByState(0);
+		PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(list);
 		
-		if(bargain != null){
-			mav.addObject("useingBargain", pageInfo);
+		if(list != null){
+			mav.addObject("pageinfo", pageInfo);
 		} else {
-			mav.addObject("useingBargain","尚未签订合约");
+			mav.addObject("pageinfo","尚未签订合约");
 		}
 		mav.setViewName("");
 

@@ -7,5 +7,9 @@ function showComplain(pages){
 			"page":pages
 		},
 		dataType:"json",
+		success:function(data){
+			window.location.href=data;
+		}
 	});
 }
+showComplain(1);

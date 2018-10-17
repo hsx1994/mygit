@@ -64,9 +64,15 @@
             </table>
         </td>
     </tr>
-   <!-- <tr>
-        <td align="left" valign="top" class="fenye"> 1/1 页&nbsp;&nbsp;<a href="#" target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;<a href="#" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;<a href="#" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;<a href="#" target="mainFrame" onFocus="this.blur()">尾页</a></td>
-    </tr>-->
+    <tr>
+        <td align="left" valign="top" class="fenye"> 
+       		<a href="list?page=${pageinfo.firstPage}" target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
+	        <a href="list?page=${pageinfo.prePage}" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
+	        ${pageinfo.pageNum}/${pageinfo.pages} 页&nbsp;&nbsp;
+	        <a href="list?page=${pageinfo.nextPage}" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
+	        <a href="list?page=${pageinfo.lastPage}" target="mainFrame" onFocus="this.blur()">尾页</a>
+        </td>
+    </tr>
 </table>
 </body>
 </html>
