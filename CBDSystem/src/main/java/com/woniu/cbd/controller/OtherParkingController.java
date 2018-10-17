@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.OtherParkingBean;
 import com.woniu.cbd.service.IOtherParkingService;
 
@@ -49,10 +51,14 @@ public class OtherParkingController {
 	}
 
 	@RequestMapping("/allOtherParkingSelect.do")
-	public ModelAndView allOtherParkingSelect() {
+	public ModelAndView allOtherParkingSelect(Integer page) {
 		ModelAndView mav = new ModelAndView();
+		
+		PageHelper.startPage(page,10,true);
 		List<OtherParkingBean> parking = service.allOtherParkingSelect();
-		mav.addObject("allOtherParking", parking);
+		PageInfo<OtherParkingBean> pageInfo = new PageInfo<OtherParkingBean>(parking);
+		
+		mav.addObject("allOtherParking", pageInfo);
 		mav.setViewName("");
 
 		return mav;
@@ -60,10 +66,14 @@ public class OtherParkingController {
 
 	// 企业查看自己的所有车位
 	@RequestMapping("/showComPanyParkingAll.do")
-	public ModelAndView showComPanyParkingAll(Integer id) {
+	public ModelAndView showComPanyParkingAll(Integer id,Integer page) {
 		ModelAndView mav = new ModelAndView();
+		
+		PageHelper.startPage(page,10,true);
 		List<OtherParkingBean> parking = service.showCompanyParkingAll(id);
-		mav.addObject("companyParking", parking);
+		PageInfo<OtherParkingBean> pageInfo = new PageInfo<OtherParkingBean>(parking);
+		
+		mav.addObject("companyParking", pageInfo);
 		mav.setViewName("");
 
 		return mav;

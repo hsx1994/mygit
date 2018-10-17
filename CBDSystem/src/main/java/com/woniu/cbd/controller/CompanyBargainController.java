@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.CompanyBargainBean;
 import com.woniu.cbd.service.ICompanyBargainService;
 
@@ -45,40 +47,56 @@ public class CompanyBargainController {
 	}
     //企业查看合约
 	@RequestMapping("/companyBargainSelect.do")
-	public ModelAndView companyBargainSelect(CompanyBargainBean bean) {
+	public ModelAndView companyBargainSelect(CompanyBargainBean bean,Integer page) {
 		ModelAndView mav = new ModelAndView();
+
+		PageHelper.startPage(page,10,true);
 		List<CompanyBargainBean> bargain = service.companyBargainSelect(bean);
-		mav.addObject("companBargain", bargain);
+		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(bargain);
+		
+		mav.addObject("companBargain", pageInfo);
 		mav.setViewName("");
 
 		return mav;
 	}
 
 	@RequestMapping("/allCompanyBargainSelect.do")
-	public ModelAndView allCompanyBargainSelect() {
+	public ModelAndView allCompanyBargainSelect(Integer page) {
 		ModelAndView mav = new ModelAndView();
+		
+		PageHelper.startPage(page,10,true);
 		List<CompanyBargainBean> bargain = service.allCompanyBargainSelect();
-		mav.addObject("allCompanyBargain", bargain);
+		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(bargain);
+		
+		mav.addObject("allCompanyBargain", pageInfo);
 		mav.setViewName("");
 
 		return mav;
 	}
 
 	@RequestMapping("/findUseingCompanyBargain.do")
-	public ModelAndView findUseingCompanyBargain() {
+	public ModelAndView findUseingCompanyBargain(Integer page) {
 		ModelAndView mav = new ModelAndView();
+		
+		PageHelper.startPage(page,10,true);
 		List<CompanyBargainBean> bargain = service.companyBargainSelectByState(0);
-		mav.addObject("useingCompanyBargain", bargain);
+		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(bargain);
+		
+		mav.addObject("useingCompanyBargain", pageInfo);
 		mav.setViewName("");
 
 		return mav;
 	}
 
 	@RequestMapping("/findUnseingCompanyBargain.do")
-	public ModelAndView findUnseingCompanyBargain() {
+	public ModelAndView findUnseingCompanyBargain(Integer page) {
 		ModelAndView mav = new ModelAndView();
+
+		PageHelper.startPage(page,10,true);
 		List<CompanyBargainBean> bargain = service.companyBargainSelectByState(1);
-		mav.addObject("unuseingCompanyBargain", bargain);
+		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(bargain);
+		
+		mav.addObject("unuseingCompanyBargain", pageInfo);
 		mav.setViewName("");
 
 		return mav;

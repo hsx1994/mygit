@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.BargainBean;
 import com.woniu.cbd.service.IBargainService;
 
@@ -47,40 +49,56 @@ public class BargainController {
 	}
 
 	@RequestMapping("/bargainSelect.do")
-	public ModelAndView bargainSelect(BargainBean bean) {
+	public ModelAndView bargainSelect(BargainBean bean,Integer page) {
 		ModelAndView mav = new ModelAndView();
+		
+		PageHelper.startPage(page,10,true);
 		List<BargainBean> bargain = service.bargainSelect(bean);
-		mav.addObject("bargain", bargain);
+		PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(bargain);
+		
+		mav.addObject("bargain", pageInfo);
 		mav.setViewName("");
 
 		return mav;
 	}
 
 	@RequestMapping("/allBargainSelect.do")
-	public ModelAndView allBargainSelect() {
+	public ModelAndView allBargainSelect(Integer page) {
 		ModelAndView mav = new ModelAndView();
+		
+		PageHelper.startPage(page,10,true);
 		List<BargainBean> bargain = service.allBargainSelect();
-		mav.addObject("allBargain", bargain);
+		PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(bargain);
+		
+		mav.addObject("allBargain", pageInfo);
 		mav.setViewName("");
 
 		return mav;
 	}
 
 	@RequestMapping("/findUnseingBargain.do")
-	public ModelAndView findUseingBargain() {
+	public ModelAndView findUseingBargain(Integer page) {
 		ModelAndView mav = new ModelAndView();
+		
+		PageHelper.startPage(page,10,true);
 		List<BargainBean> bargain = service.bargainSelectByState(0);
-		mav.addObject("useingBargain", bargain);
+		PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(bargain);
+		
+		mav.addObject("useingBargain", pageInfo);
 		mav.setViewName("");
 
 		return mav;
 	}
 
 	@RequestMapping("/findUnseingBargain.do")
-	public ModelAndView findUnseingBargain() {
+	public ModelAndView findUnseingBargain(Integer page) {
 		ModelAndView mav = new ModelAndView();
+
+		PageHelper.startPage(page,10,true);
 		List<BargainBean> bargain = service.bargainSelectByState(1);
-		mav.addObject("unuseingBargain", bargain);
+		PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(bargain);
+		
+		mav.addObject("unuseingBargain", pageInfo);
 		mav.setViewName("");
 
 		return mav;
