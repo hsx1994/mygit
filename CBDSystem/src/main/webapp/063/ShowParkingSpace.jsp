@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>车位展示页面</title>
 <!-- 引入css样式 -->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="063/css/style.css" rel="stylesheet" type="text/css"
+	media="all" />
+<!-- 引入js文件 -->
+<script type="text/javascript" src="063/js/jquery.min.js"></script>
 </head>
 <body>
 	<div class="wrap">
@@ -14,7 +18,7 @@
 			<div class="header">
 				<div class="header-bot">
 					<div class="logo">
-						<a href="index.html"><img src="images/logo.png" alt="" /></a>
+						<a href="index.html"><img src="063/images/logo.png" alt="" /></a>
 					</div>
 					<div class="f-right">
 						<p class="welcome-msg">Welcome to our online CBDSystem!</p>
@@ -58,152 +62,46 @@
 							<span><span>Top</span> sellers</span>
 						</h4>
 					</div>
-					<div class="section group">
-						<div class="col_1_of_4 span_1_of_4">
-							<div class="product-desc">
-								<img src="images/1.jpg"  alt=""  height="233px" width="366px" />
-								<h4>点击查看详情</h4>
+					<!-- ***************************************** 车位展示部分 *****************************************************-->
+					<div class=parkingmain>
+						<c:forEach items="${all}" var="parking" >
+						<% 
+						int m=1;
+						m++;
+						if(m>6){
+						m=1;
+						}
+						 %>
+							<!--隐藏车位id  -->
+							<%-- <input id="${parking.id}" class="hidden" type="text" value="${parking.id}"> --%>
+						
+							<div class="parking">
+								<div class="imge">
+									<img src="${parking.img}" alt="" />
+								</div>
+								<div class="prod-inner">地址：${parking.address}</div>
+								<div class="prod-inner">
+									<span class="price">${parking.price}元/小时</span> <a
+										onclick="getId();" href="/CBDSystem/showOne.do?id=${parking.id}" class="button" rel="nofollow">查看该车位</a>
+									<div class="clear"></div>
+								</div>
 							</div>
-							<div class="prod-inner">
-								<span class="price">$12.50</span> <a href="single.html"
-									class="button" rel="nofollow">关注该车位</a>
-								<div class="clear"></div>
-							</div>
-						</div>
-						<div class="col_1_of_4 span_1_of_4">
-							<div class="product-desc">
-								<img src="images/2.jpg" alt="" height="233px" width="366px"/>
-								<h4>点击查看详情</h4>
-							</div>
-							<div class="prod-inner">
-								<span class="price">$12.50</span> <a href="single.html"
-									class="button" rel="nofollow">关注该车位</a>
-								<div class="clear"></div>
-							</div>
-						</div>
-						<div class="col_1_of_4 span_1_of_4">
-							<div class="product-desc">
-								<img src="images/3.jpg" alt="" height="233px" width="366px"/>
-								<h4>点击查看详情</h4>
-							</div>
-							<div class="prod-inner">
-								<span class="price">$12.50</span> <a href="single.html"
-									class="button" rel="nofollow">关注该车位</a>
-								<div class="clear"></div>
-							</div>
-						</div>
-						<div class="col_1_of_4 span_1_of_4">
-							<div class="product-desc">
-								<img src="images/4.jpg" alt="" height="233px" width="366px"/>
-								<h4>点击查看详情</h4>
-							</div>
-							<div class="prod-inner">
-								<span class="price">$12.50</span> <a href="single.html"
-									class="button" rel="nofollow">关注该车位</a>
-								<div class="clear"></div>
-							</div>
-						</div>
-						<div class="clear"></div>
+							<div></div>
+						</c:forEach>
 					</div>
+					<!-- ***************************************** 分页部分 *****************************************************-->
+					<div class="page">
+						<div id="" class="content-bottom-paging">末页</div>
+						<div id="" class="content-bottom-paging">下一页</div>
+						<div id="page" class="content-bottom-paging">1/1</div>
+						<div id="" class="content-bottom-paging">上一页</div>
+						<div id="" class="content-bottom-paging">首页</div>
+					</div>
+
 				</div>
-				<div class="content-top">
-					<div class="sellers">
-						<h4>
-							<span><span>Featured</span> Products</span>
-						</h4>
-					</div>
-					<div class="section group">
-						<div class="col_1_of_4 span_1_of_4">
-							<div class="product-desc">
-								<img src="images/5.jpg" alt="" height="233px" width="366px"/>
-								<h4>点击查看详情</h4>
-							</div>
-							<div class="prod-inner">
-								<span class="price">$12.50</span> <a href="single.html"
-									class="button" rel="nofollow">关注该车位</a>
-								<div class="clear"></div>
-							</div>
-						</div>
-						<div class="col_1_of_4 span_1_of_4">
-							<div class="product-desc">
-								<img src="images/6.jpg" alt=""  height="233px" width="366px"/>
-								<h4>点击查看详情</h4>
-							</div>
-							<div class="prod-inner">
-								<span class="price">$12.50</span> <a href="single.html"
-									class="button" rel="nofollow">关注该车位</a>
-								<div class="clear"></div>
-							</div>
-						</div>
-						<div class="col_1_of_4 span_1_of_4">
-							<div class="product-desc">
-								<img src="images/1.jpg" alt=""  height="233px" width="366px"/>
-								<h4>点击查看详情</h4>
-							</div>
-							<div class="prod-inner">
-								<span class="price">$12.50</span> <a href="single.html"
-									class="button" rel="nofollow">关注该车位</a>
-								<div class="clear"></div>
-							</div>
-						</div>
-						<div class="col_1_of_4 span_1_of_4">
-							<div class="product-desc">
-								<img src="images/2.jpg" alt=""  height="233px" width="366px"/>
-								<h4>点击查看详情</h4>
-							</div>
-							<div class="prod-inner">
-								<span class="price">$12.50</span> <a href="single.html"
-									class="button" rel="nofollow">关注该车位</a>
-								<div class="clear"></div>
-							</div>
-						</div>
-						<div class="clear"></div>
-					</div>
-				</div>
-				<hr >
-			 <div class="content-bottom-paging">
-			 <div id=""  class="content-bottom-paging">末页</div>
-			 <div id=""  class="content-bottom-paging">下一页</div>
-			 <div id="page"  class="content-bottom-paging">1/1</div>
-			 <!-- <div class="content-bottom-paging">1</div> -->
-			 <div id=""  class="content-bottom-paging">上一页</div>
-			 <div id=""  class="content-bottom-paging">首页</div>
-			 </div> 
-				<!-- <div class="content-bottom">
-					<div class="col_1_of_3 span_1_of_3">
-						<div class="banner-wrap bottom_banner color_link">
-							<a href="#" class="main_link"> <figure> <img
-									src="images/delivery.png" alt="" /></figure>
-								<h5>
-									<span>Free Shipping</span><br> on orders over $99.
-								</h5>
-								<p>This offer is valid on all our store items.</p>
-							</a>
-						</div>
-					</div> -->
-					<!-- <div class="col_1_of_3 span_1_of_3">
-						<div class="banner-wrap bottom_banner">
-							<a href="#" class="main_link"> <figure> <img
-									src="images/phone.png" alt="" /></figure>
-								<h5>
-									Order online <br> <span>1(800) 234-5678</span>
-								</h5>
-								<p>
-									Hours: 8am-11pm PST M-Th; 8am-9pm PST Fri<br>
-								</p>
-							</a>
-						</div>
-					</div> -->
-					<!-- <div class="col_1_of_3 span_1_of_3">
-						<div class="banner-wrap bottom_banner color_dark">
-							<a href="#" class="main_link"> <figure> <img
-									src="images/gift.png" alt="" /></figure>
-								<h5>Discount</h5>
-								<p>Choose from any of our extensive range</p>
-							</a>
-						</div>
-					</div> -->
-					<div class="clear"></div>
+
+
+				<div class="clear"></div>
 				<!-- </div> -->
 			</div>
 			<div class="footer">
@@ -258,6 +156,8 @@
 		</div>
 	</div>
 </body>
+<!-- 引入外部js文件 -->
+<script type="text/javascript" src="063/js/ShowParkingSpace.js"></script>
 </html>
 
 

@@ -2,8 +2,6 @@ package com.woniu.cbd.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.woniu.cbd.bean.AdministratorBean;
-import com.woniu.cbd.service.impl.AdministratorServiceImpl;
+import com.woniu.cbd.service.IAdministratorService;
 
 /**
  * 描述 ：处理普通管理员所有前后端交互功能
@@ -24,7 +22,7 @@ import com.woniu.cbd.service.impl.AdministratorServiceImpl;
 public class AdministratorAction {
 	// 自动注入业务层的实现类
 	@Autowired
-	private AdministratorServiceImpl service;
+	private IAdministratorService service;
 
 	/**
 	 * 描述:完成添加业务
@@ -82,9 +80,9 @@ public class AdministratorAction {
 	public String show(Model model) {
 		// 存储查询结果
 		List<AdministratorBean> list = null;
-		// 接收后台处理完删除后的结果
+		// 接收后台的结果
 		list = service.showAdministrator();
-		// 向页面传参
+		// 向页面传送查询所有车位的结果
 		model.addAttribute("ablist", list);
 		return "/jsp/register.jsp";
 	}

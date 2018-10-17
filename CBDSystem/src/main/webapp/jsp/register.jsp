@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="js/ShowParkingSpace.js"></script>
 <title>普通管理员添加页面</title>
 </head>
 <body>
@@ -56,15 +57,17 @@
 <hr>
 
 
-<form action="/CBDSystem/16.do" method="post">
-<label>提交： </label><input type="submit"><br/><br/>
+<form id="from1" action="/CBDSystem/16.do" method="post">
+ <label>提交： </label><input type="submit"><br/><br/>  
+ 提交：
 <c:forEach items="${allParking}" var="ab" >
 		<tr>
 
 			 <td align = "center">${ab.id}</td>
 		 </tr>
 
-</c:forEach>
-</form>
+</c:forEach> 
+ </form>
 </body>
+ <script type="text/javascript" src="../063/js/ShowParkingSpace.js"></script>
 </html>

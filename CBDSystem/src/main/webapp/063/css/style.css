@@ -1802,5 +1802,31 @@ span.price-tax{
 #page{
 	margin-top:5px;
 }
-
-
+.page{
+/* 	 border:1px solid red;  */
+	width:980px;
+	height:20px;
+	float:right;
+}
+.parking{
+	/*  border:1px solid red;  */
+	width:367px;
+	height:400px;
+	float:left;
+}
+.parkingmain{
+	/* border:1px solid red;  */
+	width:1477px;
+	height:672px;
+	margin:0 auto;
+}
+img{
+	height:233px;
+	width:300px;
+	margin-left:24px;
+} 
+/* .hidden{
+	width:200px;
+	height:100px;
+	clear:both;
+} */

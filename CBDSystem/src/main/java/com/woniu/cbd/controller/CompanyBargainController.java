@@ -43,7 +43,7 @@ public class CompanyBargainController {
 		}
 		return result;
 	}
-
+    //企业查看合约
 	@RequestMapping("/9")
 	public ModelAndView bargainSelect(CompanyBargainBean bean) {
 		ModelAndView mav = new ModelAndView();
@@ -83,4 +83,5 @@ public class CompanyBargainController {
 
 		return mav;
 	}
+	
 }

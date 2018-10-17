@@ -2,6 +2,7 @@ package com.woniu.cbd.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import java.util.List;
 /**
  * 第三方提供的车位的信息
@@ -83,4 +84,5 @@ public class OtherParkingBean implements Serializable {
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
+	
 }
