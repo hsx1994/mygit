@@ -1,5 +1,6 @@
 package com.woniu.cbd.service.impl;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,6 @@ import com.woniu.cbd.dao.IUserDao;
 import com.woniu.cbd.service.IUserService;
 
 @Service
-
 public class UserServiceImpl implements IUserService {
 
 	@Autowired
@@ -27,7 +27,6 @@ public class UserServiceImpl implements IUserService {
 	//查看包租婆的发布记录
 	@Override
 	public List<ParkingBean> ShowMe(int id) {
-		// TODO Auto-generated method stub
 		List<ParkingBean> bean = dao.ShowMe(id);
 		return bean;
 	}
@@ -35,7 +34,6 @@ public class UserServiceImpl implements IUserService {
 	// 查看包租婆的被租赁记录
 	@Override
 	public List<ParkingBean> SelectLog(int id) {
-		// TODO Auto-generated method stub
 		List<ParkingBean> bean=dao.SelectLog(id);
 		return bean;
 	}
@@ -43,7 +41,6 @@ public class UserServiceImpl implements IUserService {
 	// 查看抢租客的租赁记录
 	@Override
 	public List<OrderBean> ShowLog(int id) {
-		// TODO Auto-generated method stub
 		List<OrderBean> bean=dao.ShowLog(id);
 		return bean;
 	}
@@ -51,14 +48,11 @@ public class UserServiceImpl implements IUserService {
 	// 抢租客针对记录添加投诉信息
 	@Override
 	public boolean AddComplaint(ComplainBean bean) {
-		// TODO Auto-generated method stub
 		int num=dao.AddComplaint(bean);
 		if(num>0){
 			return true;
-			}else{
-				 
-		    return false;
-		    }
+			}
+		return false;
 	}
 	
 	/**
@@ -67,29 +61,33 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	@Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED, rollbackFor = TransactionException.class)
 	public int addUser(RegisterBean user) {
-	
-		int row=0;
-		int result = 0;
-		if(user.getName() == null || user.getPass()==null){
-			result = 0;
-		}else{
-			result = 1;
-			System.out.println("result+"+result);
-			
-		}
-		System.out.println("result"+result);
-		int resultinfor=0;
-		if(user.getAddress() == null || user.getEmail()==null ||user.getIdcard()==null||user.getJob()==null||user.getRealName()==null){
-			resultinfor = 0;
-		}else{
-			resultinfor = 1;
-			System.out.println("resultinfor+"+resultinfor);
-		}
-		System.out.println("resultinfor"+resultinfor);
-		if(result!=0&&resultinfor!=0){
-			row=1;
-		}
-		return row;
+		int row = dao.addUser(user);
+		
+			return row;
+		
+//	
+//		int row=0;
+//		int result = 0;
+//		if(user.getName() == null || user.getPass()==null){
+//			result = 0;
+//		}else{
+//			result = 1;
+//			System.out.println("result+"+result);
+//			
+//		}
+//		System.out.println("result"+result);
+//		int resultinfor=0;
+//		if(user.getAddress() == null || user.getEmail()==null ||user.getIdcard()==null||user.getJob()==null||user.getRealName()==null){
+//			resultinfor = 0;
+//		}else{
+//			resultinfor = 1;
+//			System.out.println("resultinfor+"+resultinfor);
+//		}
+//		System.out.println("resultinfor"+resultinfor);
+//		if(result!=0&&resultinfor!=0){
+//			row=1;
+//		}
+//		return row;
 	}
 
 	/**

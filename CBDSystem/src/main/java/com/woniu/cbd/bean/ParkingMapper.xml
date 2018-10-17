@@ -107,7 +107,7 @@
 	<!--根据车位id查询车位号和车位所有人的名称 -->
 	<select id="findnumbyid" parameterType="int" resultMap="apply">
 		select *
-		from t_parking where p_id=#{id}
+		from t_parking where p_id=#{id} and p_delete=0
 	</select>
 
 	<!-- 通过审核 -->

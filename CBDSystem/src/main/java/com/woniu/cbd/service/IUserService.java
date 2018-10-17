@@ -1,5 +1,6 @@
 package com.woniu.cbd.service;
 
+
 import java.util.List;
 
 
@@ -20,13 +21,13 @@ public interface IUserService {
 	public List<OrderBean> ShowLog(int id);
 
 	// 用于抢租客针对订单的投诉信息
+		
 	public boolean AddComplaint(ComplainBean bean);
 	
 	/**向数据库中添加一条用户信息	
 	 ** @param user	 
 	 ** @return int	 
-	 **/	
-
+	 **/
 	public int addUser(RegisterBean user);
 		/**
 		 * 修改数据库中个人信息
