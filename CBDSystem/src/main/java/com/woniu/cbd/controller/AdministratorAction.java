@@ -23,7 +23,7 @@ public class AdministratorAction {
 	// 自动注入业务层的实现类
 	@Autowired
 	private IAdministratorService service;
-
+	
 	/**
 	 * 描述:完成添加业务
 	 * 

@@ -16,7 +16,7 @@ public class BargainController {
 	@Autowired
 	private IBargainService service;
 
-	@RequestMapping("/1")
+	@RequestMapping("/bargainAdd.do")
 	public @ResponseBody String bargainAdd(BargainBean bean) {
 		String result = "添加失败";
 		boolean re = service.bargainAdd(bean);
@@ -26,7 +26,7 @@ public class BargainController {
 		return result;
 	}
 
-	@RequestMapping("/2")
+	@RequestMapping("/bargainDelete.do")
 	public @ResponseBody String bargainDelete(Integer id) {
 		String result = "删除失败";
 		boolean re = service.bargainDelete(id);
@@ -36,7 +36,7 @@ public class BargainController {
 		return result;
 	}
 
-	@RequestMapping("/3")
+	@RequestMapping("/bargainUpdate.do")
 	public @ResponseBody String bargainUpdate(BargainBean bean) {
 		String result = "更改失败";
 		boolean re = service.bargainUpdate(bean);
@@ -46,7 +46,7 @@ public class BargainController {
 		return result;
 	}
 
-	@RequestMapping("/4")
+	@RequestMapping("/bargainSelect.do")
 	public ModelAndView bargainSelect(BargainBean bean) {
 		ModelAndView mav = new ModelAndView();
 		List<BargainBean> bargain = service.bargainSelect(bean);
@@ -56,7 +56,7 @@ public class BargainController {
 		return mav;
 	}
 
-	@RequestMapping("/5")
+	@RequestMapping("/allBargainSelect.do")
 	public ModelAndView allBargainSelect() {
 		ModelAndView mav = new ModelAndView();
 		List<BargainBean> bargain = service.allBargainSelect();
@@ -66,7 +66,7 @@ public class BargainController {
 		return mav;
 	}
 
-	@RequestMapping("/99")
+	@RequestMapping("/findUnseingBargain.do")
 	public ModelAndView findUseingBargain() {
 		ModelAndView mav = new ModelAndView();
 		List<BargainBean> bargain = service.bargainSelectByState(0);
@@ -76,7 +76,7 @@ public class BargainController {
 		return mav;
 	}
 
-	@RequestMapping("/99999")
+	@RequestMapping("/findUnseingBargain.do")
 	public ModelAndView findUnseingBargain() {
 		ModelAndView mav = new ModelAndView();
 		List<BargainBean> bargain = service.bargainSelectByState(1);

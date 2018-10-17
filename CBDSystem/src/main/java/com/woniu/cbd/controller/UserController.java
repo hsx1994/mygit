@@ -16,24 +16,21 @@ public class UserController {
 	@Autowired
 	private IUserService user;
 	
-	// 包租婆查看自己的申请记录
+	// 包租婆查看自己的车位信息
 	@RequestMapping("/showme.do")
 	public ModelAndView ShowMe(Integer id) {
 		ModelAndView mav = new ModelAndView();
 		List<ParkingBean> bean = user.ShowMe(id);
 		if(bean !=null){
-			System.out.println("查询成功");
 			mav.addObject("application",bean);
 			mav.setViewName("");
 		}else{
-			System.out.println("查询为空");
 			mav.addObject(" ");
 			mav.setViewName("");
 		}
 		return mav;
-		
-
 	}
+	
 
 	// 包租婆查看自己的被租赁记录
 	@RequestMapping("/selectlog.do")
@@ -43,8 +40,8 @@ public class UserController {
 		mav.setViewName("");
 		mav.addObject("lease",bean);
 		return mav;
-
 	}
+	
 	//抢租客查看租赁记录
 	@RequestMapping("/showlog.do")
 	public ModelAndView ShowLog(Integer id){
@@ -53,6 +50,5 @@ public class UserController {
 		mav.addObject("Lease",bean);
 		mav.setViewName("");
 		return mav;
-		
 	}
 }

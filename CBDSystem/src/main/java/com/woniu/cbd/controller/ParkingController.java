@@ -109,7 +109,7 @@ public class ParkingController {
 
 	}
 
-	@RequestMapping("/15")
+	@RequestMapping("/parkingDelete.do")
 	public @ResponseBody String parkingDelete(Integer id) {
 		String result = "删除失败";
 		boolean re = park.parkingDelete(id);
@@ -120,7 +120,7 @@ public class ParkingController {
 		return result;
 	}
 
-	@RequestMapping("/16")
+	@RequestMapping("/parkingSelect.do")
 	public ModelAndView parkingSelect() {
 		ModelAndView mav = new ModelAndView();
 		List<ParkingBean> list = park.parkingSelect();
@@ -130,7 +130,7 @@ public class ParkingController {
 		return mav;
 	}
 
-	@RequestMapping("/17")
+	@RequestMapping("/passApply.do")
 	public @ResponseBody String passApply(Integer id) {
 		String result = "通过失败";
 		boolean re = park.passApply(id);
@@ -141,7 +141,7 @@ public class ParkingController {
 		return result;
 	}
 
-	@RequestMapping("/18")
+	@RequestMapping("/passApplyFail.do")
 	public @ResponseBody String passApplyFail(Integer id) {
 		String result = "失败";
 		boolean re = park.passApplyFail(id);

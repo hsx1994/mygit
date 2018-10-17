@@ -17,7 +17,7 @@ public class OtherParkingController {
 	@Autowired
 	private IOtherParkingService service;
 
-	@RequestMapping("/11")
+	@RequestMapping("/otherParkingAdd.do")
 	public @ResponseBody String otherParkingAdd(List<OtherParkingBean> list) {
 		String result = "添加失败";
 		boolean re = service.otherParkingAdd(list);
@@ -28,7 +28,7 @@ public class OtherParkingController {
 		return result;
 	}
 
-	@RequestMapping("/12")
+	@RequestMapping("/otherParkingDelete.do")
 	public @ResponseBody String otherParkingDelete(Integer[] id) {
 		String result = "删除失败";
 		boolean re = service.otherParkingDelete(id);
@@ -38,7 +38,7 @@ public class OtherParkingController {
 		return result;
 	}
 
-	@RequestMapping("/13")
+	@RequestMapping("/otherParkingSelect.do")
 	public ModelAndView otherParkingSelect(OtherParkingBean bean) {
 		ModelAndView mav = new ModelAndView();
 		OtherParkingBean parking = service.otherParkingSelect(bean);
@@ -48,7 +48,7 @@ public class OtherParkingController {
 		return mav;
 	}
 
-	@RequestMapping("/14")
+	@RequestMapping("/allOtherParkingSelect.do")
 	public ModelAndView allOtherParkingSelect() {
 		ModelAndView mav = new ModelAndView();
 		List<OtherParkingBean> parking = service.allOtherParkingSelect();
@@ -59,7 +59,7 @@ public class OtherParkingController {
 	}
 
 	// 企业查看自己的所有车位
-	@RequestMapping("/9.do")
+	@RequestMapping("/showComPanyParkingAll.do")
 	public ModelAndView showComPanyParkingAll(Integer id) {
 		ModelAndView mav = new ModelAndView();
 		List<OtherParkingBean> parking = service.showCompanyParkingAll(id);
@@ -70,7 +70,7 @@ public class OtherParkingController {
 	}
 
 	// 企业查看自己的单个车位
-	@RequestMapping("/999")
+	@RequestMapping("/showCompanyParkingById.do")
 	public ModelAndView showCompanyParkingById(Integer id) {
 		ModelAndView mav = new ModelAndView();
 		OtherParkingBean bean = service.showCompanyParkingById(id);
