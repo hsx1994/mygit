@@ -54,7 +54,6 @@ public class UserDaoImpl implements IUserDao {
 	public int AddComplaint(ComplainBean bean) {
 		SqlSession session = fa.openSession(true);
 		int num = session.insert("complaintMapper.addcomplaint", bean);
-		
 		session.close();
 		return num;
 	}

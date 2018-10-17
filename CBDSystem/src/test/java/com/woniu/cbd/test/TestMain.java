@@ -1,5 +1,4 @@
 package com.woniu.cbd.test;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +14,6 @@ import com.woniu.cbd.bean.OtherParkingBean;
 import com.woniu.cbd.bean.ParkingBean;
 import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.dao.ICompanyBargainDao;
-import com.woniu.cbd.dao.ICompanyInfoDao;
 import com.woniu.cbd.dao.IOtherParkingDao;
 import com.woniu.cbd.dao.IParkingDao;
 import com.woniu.cbd.dao.IUserDao;
@@ -81,7 +79,7 @@ public class TestMain {
 	public void test4() {
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		IParkingDao dao = (IParkingDao) context.getBean("parkDaoImpl");
+		IParkingDao dao = (IParkingDao) context.getBean("parkingDaoImpl");
 		ParkingBean p = new ParkingBean();
 		UserBean user = new UserBean();
 		user.setId(2);
@@ -99,7 +97,7 @@ public class TestMain {
 
 	}
 
-	// 包租婆查看自己被租赁的记录，测试除了抢租客名成功
+	// 包租婆查看自己被租赁的记录，测试成功
 	@Test
 	public void test5() {
 		@SuppressWarnings("resource")
@@ -110,7 +108,7 @@ public class TestMain {
 
 	}
 
-	// 抢租客查看自己的租赁记录，测试除了包租婆人名成功
+	// 抢租客查看自己的租赁记录，测试成功
 	@Test
 	public void test6() {
 		@SuppressWarnings("resource")
@@ -134,7 +132,7 @@ public class TestMain {
 		user.setId(1);
 		user1.setId(2);
 		order.setId(1);
-		bean.setContent("添加个人订单评论测试3");
+		bean.setContent("添加个人订单投诉测试5");
 		bean.setBuser(user);
 		bean.setUser(user1);
 		bean.setOrder(order);
@@ -175,5 +173,4 @@ public class TestMain {
 		System.out.println(bean);
 
 	}
-
 }
