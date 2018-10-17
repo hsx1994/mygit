@@ -174,7 +174,7 @@
                     </div>
                 </div>
                 <div class="part4 text-center" style="display:none">
-                	<h3>恭喜${}，您已注册成功</h3>
+                	<h3>恭喜，您已注册成功</h3>
                     <p class="c-666 f-mt30 f-mb50">页面将在 <strong id="times" class="f-size18">10</strong> 秒钟后，跳转到 <a href="login.jsp" class="c-blue">登录</a></p>
                 </div>          
             </div>
