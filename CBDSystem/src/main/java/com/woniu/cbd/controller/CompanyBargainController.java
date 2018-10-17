@@ -54,7 +54,11 @@ public class CompanyBargainController {
 		List<CompanyBargainBean> bargain = service.companyBargainSelect(bean);
 		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(bargain);
 		
-		mav.addObject("companBargain", pageInfo);
+		if(bargain != null){
+			mav.addObject("companBargain", pageInfo);
+		} else {
+			mav.addObject("companBargain","尚未签订合约");
+		}
 		mav.setViewName("");
 
 		return mav;
@@ -68,7 +72,11 @@ public class CompanyBargainController {
 		List<CompanyBargainBean> bargain = service.allCompanyBargainSelect();
 		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(bargain);
 		
-		mav.addObject("allCompanyBargain", pageInfo);
+		if(bargain != null){
+			mav.addObject("allCompanyBargain", pageInfo);
+		} else {
+			mav.addObject("allCompanyBargain","尚未签订合约");
+		}
 		mav.setViewName("");
 
 		return mav;
@@ -82,7 +90,11 @@ public class CompanyBargainController {
 		List<CompanyBargainBean> bargain = service.companyBargainSelectByState(0);
 		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(bargain);
 		
-		mav.addObject("useingCompanyBargain", pageInfo);
+		if(bargain != null){
+			mav.addObject("useingCompanyBargain", pageInfo);
+		} else {
+			mav.addObject("useingCompanyBargain","尚未签订合约");
+		}
 		mav.setViewName("");
 
 		return mav;
@@ -96,7 +108,11 @@ public class CompanyBargainController {
 		List<CompanyBargainBean> bargain = service.companyBargainSelectByState(1);
 		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(bargain);
 		
-		mav.addObject("unuseingCompanyBargain", pageInfo);
+		if(bargain != null){
+			mav.addObject("unuseingCompanyBargain", pageInfo);
+		} else {
+			mav.addObject("unuseingCompanyBargain","没有已废弃合约");
+		}
 		mav.setViewName("");
 
 		return mav;
