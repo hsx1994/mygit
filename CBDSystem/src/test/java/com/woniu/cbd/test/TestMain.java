@@ -1,6 +1,5 @@
 package com.woniu.cbd.test;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,7 +7,6 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.CompanyBargainBean;
@@ -18,13 +16,15 @@ import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
 import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.controller.ComplainController;
-import com.woniu.cbd.dao.ICompanyDao;
 import com.woniu.cbd.dao.ICompanyOrderDao;
 import com.woniu.cbd.dao.IComplainDao;
 import com.woniu.cbd.dao.IParkingDao;
 import com.woniu.cbd.dao.IUserDao;
-import com.woniu.cbd.dao.impl.CompanyDaoImpl;
 import com.woniu.cbd.dao.impl.ComplainDaoImpl;
+import com.woniu.cbd.bean.BargainBean;
+import com.woniu.cbd.service.IBargainService;
+import com.woniu.cbd.service.IParkingService;
+import com.woniu.cbd.service.impl.BargainServiceImpl;
 
 public class TestMain {
 	

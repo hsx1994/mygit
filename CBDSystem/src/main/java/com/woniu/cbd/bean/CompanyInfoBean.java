@@ -1,6 +1,7 @@
 package com.woniu.cbd.bean;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 /**
@@ -28,6 +29,8 @@ public class CompanyInfoBean implements Serializable {
 	private String email;
 	//企业用户的订单信息
 	private List<CompanyOrderBean> comOrder;
+	//企业用户的合约信息
+	private List<CompanyBargainBean> comBargain;
 	
 	
 	public List<CompanyOrderBean> getComOrder() {
@@ -84,4 +87,11 @@ public class CompanyInfoBean implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public List<CompanyBargainBean> getComBargain() {
+		return comBargain;
+	}
+	public void setComBargain(List<CompanyBargainBean> comBargain) {
+		this.comBargain = comBargain;
+	}
+	
 }

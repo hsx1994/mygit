@@ -51,4 +51,9 @@ public interface ICompanyBargainDao {
 	 * @return
 	 */
 	public List<CompanyBargainBean> allCompanyBargainSelect();
+	
+    //根据企业的id查看企业的合约
+	public List<CompanyBargainBean> companyBargainById(int id);
+	
+	
 }

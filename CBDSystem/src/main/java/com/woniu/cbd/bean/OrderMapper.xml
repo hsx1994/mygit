@@ -19,12 +19,15 @@
 			column="or_u_id"/> -->
 		<result property="state" column="or_state" />
 		<result property="pay" column="or_pay" />
+
 		<association property="parking" javaType="ParkingBean"
 			select="parkingMapper.findParkingById" column="or_p_id"></association>
 		<association property="user" javaType="UserBean"
 			select="userMapper.findById" column="or_u_id"></association>
 		<collection property="complain" ofType="ComplainBean"
-			select="com.woniu.cbd.dao.IComplainDao.findcomplaint" column="id"></collection>
+			select="com.woniu.cbd.dao.IComplainDao.findcomplaint" column="id">
+		</collection>
+
 	</resultMap>
 
 	<!-- 通过车位id查找该车位的所有订单信息 -->
@@ -45,8 +48,6 @@
 		</set>
 		where or_id = #{id}
 	</update>
-
-
 
 	<!-- 个人添加订单 -->
 	<insert id="addOrder" parameterType="OrderBean" keyProperty="id"

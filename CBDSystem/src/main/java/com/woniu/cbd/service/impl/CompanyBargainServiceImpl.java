@@ -59,5 +59,12 @@ public class CompanyBargainServiceImpl implements ICompanyBargainService {
 		List<CompanyBargainBean> list = dao.companyBargainSelectByState(state);
 		return list;
 	}
+	//企业查看自己的合约
+	@Override
+	public List<CompanyBargainBean> companyBargainById(int id) {
+		// TODO Auto-generated method stub
+		List<CompanyBargainBean> bean=dao.companyBargainById(id);
+		return bean;
+	}
 
 }
