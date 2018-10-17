@@ -56,7 +56,11 @@ public class BargainController {
 		List<BargainBean> bargain = service.bargainSelect(bean);
 		PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(bargain);
 		
-		mav.addObject("bargain", pageInfo);
+		if(bargain != null){
+			mav.addObject("bargain", pageInfo);
+		} else {
+			mav.addObject("bargain","尚未签订合约");
+		}
 		mav.setViewName("");
 
 		return mav;
@@ -70,7 +74,11 @@ public class BargainController {
 		List<BargainBean> bargain = service.allBargainSelect();
 		PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(bargain);
 		
-		mav.addObject("allBargain", pageInfo);
+		if(bargain != null){
+			mav.addObject("allBargain", pageInfo);
+		} else {
+			mav.addObject("allBargain","尚未签订合约");
+		}
 		mav.setViewName("");
 
 		return mav;
@@ -81,16 +89,20 @@ public class BargainController {
 		ModelAndView mav = new ModelAndView();
 		
 		PageHelper.startPage(page,10,true);
-		List<BargainBean> bargain = service.bargainSelectByState(0);
-		PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(bargain);
+		List<BargainBean> list = service.bargainSelectByState(0);
+		PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(list);
 		
-		mav.addObject("useingBargain", pageInfo);
+		if(list != null){
+			mav.addObject("pageinfo", pageInfo);
+		} else {
+			mav.addObject("pageinfo","尚未签订合约");
+		}
 		mav.setViewName("");
 
 		return mav;
 	}
 
-	@RequestMapping("/findUnseingBargain.do")
+	@RequestMapping("/findUnuseingBargain.do")
 	public ModelAndView findUnseingBargain(Integer page) {
 		ModelAndView mav = new ModelAndView();
 
@@ -98,7 +110,11 @@ public class BargainController {
 		List<BargainBean> bargain = service.bargainSelectByState(1);
 		PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(bargain);
 		
-		mav.addObject("unuseingBargain", pageInfo);
+		if(bargain != null){
+			mav.addObject("unuseingBargain", pageInfo);
+		} else {
+			mav.addObject("unuseingBargain","没有废弃的合约");
+		}
 		mav.setViewName("");
 
 		return mav;

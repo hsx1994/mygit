@@ -28,12 +28,11 @@ public class UserController {
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
 		
 		if(bean != null){
-			mav.addObject("application",pageInfo);
-			mav.setViewName("");
+			mav.addObject("application",pageInfo);	
 		}else{
 			mav.addObject("application","尚未添加车位");
-			mav.setViewName("");
 		}
+		mav.setViewName("");
 		return mav;
 	}
 	
@@ -41,25 +40,35 @@ public class UserController {
 	// 包租婆查看自己的被租赁记录
 	@RequestMapping("/selectlog.do")
 	public ModelAndView SelectLog(Integer id,Integer page) {
+		ModelAndView mav = new ModelAndView();
+		
 		PageHelper.startPage(page,5,true);
 		List<ParkingBean> bean = user.SelectLog(id);
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
+		if(bean != null){
+			mav.addObject("lease",pageInfo);	
+		} else {
+			mav.addObject("lease","尚未有车位被租赁");
+		}
 		
-		ModelAndView mav = new ModelAndView();
 		mav.setViewName("");
-		mav.addObject("lease",pageInfo);
 		return mav;
 	}
 	
 	//抢租客查看租赁记录
 	@RequestMapping("/showlog.do")
 	public ModelAndView ShowLog(Integer id,Integer page){
+		ModelAndView mav = new ModelAndView();
+	
 		PageHelper.startPage(page,5,true);
-		List<OrderBean>bean=user.ShowLog(id);
+		List<OrderBean> bean=user.ShowLog(id);
 		PageInfo<OrderBean> pageInfo = new PageInfo<OrderBean>(bean);
 		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("Lease",pageInfo);
+		if(bean != null){
+			mav.addObject("Lease",pageInfo);
+		} else {
+			mav.addObject("Lease","尚未租过车位");
+		}
 		mav.setViewName("");
 		return mav;
 	}
