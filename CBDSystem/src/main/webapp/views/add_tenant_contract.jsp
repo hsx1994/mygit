@@ -49,62 +49,62 @@
     </tr>
     <tr>
         <td align="left" valign="top">
-            <form method="post" action="">
+            <form method="post" action="/CBDSystem/companyBargainAdd.do">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">合&nbsp; 同&nbsp; 编&nbsp; 号：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word">
+                            <input type="text" name="number" value="${bean.number }" class="text-word">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">企业用户名称：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word">
+                            <input type="text" name="company.comName" value="${bean.company.comName }" class="text-word">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">对 方 联 系 人：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word">
+                            <input type="text" name="contact" value="${bean.contact }" class="text-word">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">联&nbsp; 系&nbsp; 电&nbsp; 话：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word" id="1">
+                            <input type="text" name="tel" value="${bean.tel }" class="text-word" id="1">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">合同生效日期：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word" id="2">
+                            <input type="text" name="startTime" value="${bean.startTime }" class="text-word" id="2">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">合同截至日期：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word" id="3">
+                            <input type="text" name="endTime" value="${bean.endTime }" class="text-word" id="3">
                         </td>
                     </tr>
-                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+                   <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">合 同 复 印 件：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word" id="4">
+                            <input type="text" name="img" value="${bean.img }" class="text-word" id="4">
                         </td>
                     </tr>
-                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+                    <%--  <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">车&nbsp; 位&nbsp; 编&nbsp; 号：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word" id="5">
+                            <input type="text" name="parkingNumber" value="${parkingNumber }" class="text-word" id="5">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">车&nbsp; 位&nbsp; 地&nbsp; 址：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word" id="6">
+                            <input type="text" name="address" value="${address }" class="text-word" id="6">
                         </td>
-                    </tr>
+                    </tr> --%>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">&nbsp;</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">

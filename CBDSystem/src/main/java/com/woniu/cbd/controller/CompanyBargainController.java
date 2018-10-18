@@ -1,8 +1,14 @@
 package com.woniu.cbd.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -10,14 +16,24 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.CompanyBargainBean;
+import com.woniu.cbd.bean.CompanyInfoBean;
 import com.woniu.cbd.service.ICompanyBargainService;
+import com.woniu.cbd.service.ICompanyInfoService;
 
+@Controller
 public class CompanyBargainController {
 	@Autowired
 	private ICompanyBargainService service;
-
+	@Autowired
+	private ICompanyInfoService cis;
+	
 	@RequestMapping("/companyBargainAdd.do")
 	public @ResponseBody String companyBargainAdd(CompanyBargainBean bean) {
+		CompanyInfoBean company = cis.findByCompanyName(bean.getCompany().getComName());
+		if(company == null){
+			return "该企业用户不存在";
+		}
+		bean.setCompany(company);
 		String result = "添加失败";
 		boolean re = service.companyBargainAdd(bean);
 		if (re) {
@@ -116,6 +132,17 @@ public class CompanyBargainController {
 		mav.setViewName("");
 
 		return mav;
+	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		format.setLenient(false);  //是否需要严格转化
+		
+		//使用springmvc封装好的类进行格式转换
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
+		
 	}
 	
 }

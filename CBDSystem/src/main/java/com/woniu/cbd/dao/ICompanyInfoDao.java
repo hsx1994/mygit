@@ -17,4 +17,13 @@ public interface ICompanyInfoDao {
     * @return
     */
    public List<CompanyInfoBean> findAllCompany();
+
+   
+	/**
+	 * 
+	 * @param comName
+	 * @return
+	 */
+   public CompanyInfoBean findByCompanyName(String comName);
+   
 }

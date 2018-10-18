@@ -1,10 +1,6 @@
 package com.woniu.cbd.dao.impl;
 
 import java.util.List;
-
-
-
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +15,11 @@ public class CompanyInfoDaoImpl implements ICompanyInfoDao {
 	@Autowired
 	private SqlSessionFactory fa;
 
-	
-	
 	@Override
 	public List<CompanyInfoBean> fuzzyQuery(String condition) {
 		
 		SqlSession session = fa.openSession();
 		List<CompanyInfoBean> list = session.selectList("companyInfoMapper.fuzzyQuery",condition);
-		System.out.println(list.size());
 		
 		session.close();
 		return list;
@@ -37,9 +30,17 @@ public class CompanyInfoDaoImpl implements ICompanyInfoDao {
 	public List<CompanyInfoBean> findAllCompany() {
 		SqlSession session = fa.openSession();
 		List<CompanyInfoBean> list = session.selectList("companyInfoMapper.findAllCompany");
-		System.out.println(list.size());
+		
 		session.close();
 		return list;
 	}
 
+
+	@Override
+	public CompanyInfoBean findByCompanyName(String comName) {
+		SqlSession session = fa.openSession();
+		CompanyInfoBean bean = session.selectOne("companyInfoMapper.findByCompanyName",comName);
+		return bean;
+	}
+	
 }
