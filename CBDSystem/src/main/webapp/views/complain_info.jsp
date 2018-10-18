@@ -79,15 +79,15 @@
     <tr>
         <td align="left" valign="top" class="fenye">
 
-	        <a href="/CBDSystem/showComplain.do?page=${pageinfo.firstPage}" target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
+	        <a href="#" onclick="showComplain(${pageinfo.firstPage})"  target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
 	        <c:if test="${pageinfo.hasPreviousPage}">
-	        <a href="/CBDSystem/showComplain.do?page=${pageinfo.prePage}" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
+	        <a href="#"onclick="showComplain(${pageinfo.prePage})" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
 	        </c:if>
 	        ${pageinfo.pageNum}/${pageinfo.pages} 页&nbsp;&nbsp;
 	        <c:if test="${pageinfo.hasNextPage}">
-	        <a href="/CBDSystem/showComplain.do?page=${pageinfo.nextPage}" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
+	        <a href="#"onclick="showComplain(${pageinfo.nextPage})" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
 	        </c:if>
-	        <a href="/CBDSystem/showComplain.do?page=${pageinfo.lastPage}" target="mainFrame" onFocus="this.blur()">尾页</a>
+	        <a href="#" onclick="showComplain(${pageinfo.lastPage})" target="mainFrame" onFocus="this.blur()">尾页</a>
 	    </td>
     </tr>
     
