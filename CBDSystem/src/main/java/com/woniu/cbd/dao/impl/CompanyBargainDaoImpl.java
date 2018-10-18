@@ -55,7 +55,7 @@ public class CompanyBargainDaoImpl implements ICompanyBargainDao {
 	@Override
 	public List<CompanyBargainBean> allCompanyBargainSelect() {
 		SqlSession session = fa.openSession(true);
-		List<CompanyBargainBean> list = session.selectList("companyBargainMapper.allCompanyBargainMapper");
+		List<CompanyBargainBean> list = session.selectList("companyBargainMapper.allCompanyBargainSelect");
 		
 		session.close();
 		return list;

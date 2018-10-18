@@ -18,16 +18,11 @@ public class CompanyOrderDaoImpl implements ICompanyOrderDao {
 	 * 批量插入企业订单
 	 */
 	@Override
-	public boolean addCompanyOrder(List<CompanyOrderBean> companyOrders) {
+	public int addCompanyOrder(List<CompanyOrderBean> companyOrders) {
 		SqlSession session = fa.openSession(true);
 		int result = session.insert("companyOrderMapper.addCompanyOrder", companyOrders);
-		if (result==0) {
-			session.close();
-			return false;
-		}else {
-			session.close();
-			return true;
-		}
+		session.close();
+		return result;
 	}
 	/**
 	 * 修改企业订单的状态

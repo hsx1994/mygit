@@ -88,9 +88,8 @@ public class AdministratorAction {
 		list = service.showAdministrator();
 		PageInfo<AdministratorBean> pageInfo = new PageInfo<AdministratorBean>(list);
 		// 向页面传参
-		model.addAttribute("pagrinfo", pageInfo);
+		model.addAttribute("pageinfo", pageInfo);
 		model.addAttribute("list", list);
 		return "/jsp/register.jsp";
 	}
-
 }

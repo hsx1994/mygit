@@ -69,5 +69,13 @@ public class OtherParkingDaoImpl implements IOtherParkingDao {
 			session.close();
 			return bean;
 		}
+		//通过车位编号查找车位详细信息
+		@Override
+		public List<OtherParkingBean> findByParkingNumber(String[] parkingNumber) {
+			SqlSession session = fa.openSession(true);
+			List<OtherParkingBean> list = session.selectList("otherParkingMapper.findByParkingNumber", parkingNumber);
+			session.close();
+			return list;
+		}
 	
 }
