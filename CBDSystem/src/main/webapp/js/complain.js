@@ -6,13 +6,10 @@ function showComplain(pages){
 		data:{
 			"page":pages
 		},
-		/*dataType:"json",*/
+		dataType:"json",
 		success:function(data){
-			alert(666)
-			console.info(data);
+			window.location.href=data;
 		}
-		
 	});
 }
-
 showComplain(1);

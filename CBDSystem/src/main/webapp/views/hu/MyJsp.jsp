@@ -37,7 +37,7 @@
 				//接受服务器响应回来的内容
 				var obj = xmlhttp.responseText;
 				//同dom操作将数据显示到页面
-				alert(11);
+				alert("验证码发送成功");
 			}
 		}
 	}
@@ -64,7 +64,7 @@
 			dataType : "json",
 			success : function(data) {
 				if (data == "注册成功") {
-					window.location.href = "login.html";
+					window.location.href = "login.jsp";
 
 				} else {
 					window.location.href = "regist.jsp";
