@@ -182,15 +182,7 @@
     </div>
 </div>
 <div class="m-sPopBg" style="z-index:998;"></div>
-<div class="m-sPopCon regcon">
-	<div class="m-sPopTitle"><strong>服务协议条款</strong><b id="sPopClose" class="m-sPopClose" onClick="closeClause()">×</b></div>
-    <div class="apply_up_content">
-    	<pre class="f-r0">
-		<strong>同意以下服务条款，提交注册信息</strong>
-        </pre>
-    </div>
-    <center><a class="btn btn-blue btn-lg f-size12 b-b0 b-l0 b-t0 b-r0 f-pl50 f-pr50 f-r3" href="javascript:closeClause();">已阅读并同意此条款</a></center>
-</div>
+
 <script>
 $(function(){	
 	//第一页的确定按钮
@@ -225,8 +217,5 @@ $(function(){
 });
 function showcode(){$("#verifyYz").show();}
 </script>
-<div style="text-align:center;">
-<p>更多源码：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
-</div>
 </body>
 </html>
