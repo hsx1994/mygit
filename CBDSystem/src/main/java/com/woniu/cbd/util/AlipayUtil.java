@@ -22,28 +22,29 @@ import com.alipay.demo.trade.model.result.AlipayF2FQueryResult;
 import com.alipay.demo.trade.service.AlipayTradeService;
 import com.alipay.demo.trade.service.impl.AlipayTradeServiceImpl;
 import com.alipay.demo.trade.utils.ZxingUtils;
+import com.woniu.cbd.bean.OrderBean;
 
 public class AlipayUtil {
-	public static String getQRcode(HttpServletRequest request){
+	public static String getQRcode(HttpServletRequest request,OrderBean order){
 		String image = null;
 		
 		Log log = LogFactory.getLog("trade_precreate");
 
-	    if(request.getParameter("outTradeNo")!=null){
+	    if(order.getId()!=0){
 	        // 一定要在创建AlipayTradeService之前设置参数
 	        Configs.init("zfbinfo.properties");
 	        AlipayTradeService tradeService = new AlipayTradeServiceImpl.ClientBuilder().build();
 
 	        // (必填) 商户网站订单系统中唯一订单号，64个字符以内，只能包含字母、数字、下划线，
 	        // 需保证商户系统端不能重复，建议通过数据库sequence生成，
-	        String outTradeNo = request.getParameter("outTradeNo");
+	        String outTradeNo = String.valueOf(order.getId());
 
 	        // (必填) 订单标题，粗略描述用户的支付目的。如“喜士多（浦东店）消费”
-	        String subject = request.getParameter("subject");
+	        String subject = "CBDSystem车位租赁支付";
 
 	        // (必填) 订单总金额，单位为元，不能超过1亿元
 	        // 如果同时传入了【打折金额】,【不可打折金额】,【订单总金额】三者,则必须满足如下条件:【订单总金额】=【打折金额】+【不可打折金额】
-	        String totalAmount = request.getParameter("totalAmount");
+	        String totalAmount = String.valueOf(order.getPay());
 
 	        // (可选) 订单不可打折金额，可以配合商家平台配置折扣活动，如果酒水不参与打折，则将对应金额填写至此字段
 	        // 如果该值未传入,但传入了【订单总金额】,【打折金额】,则该值默认为【订单总金额】-【打折金额】
@@ -72,13 +73,7 @@ public class AlipayUtil {
 	        // 商品明细列表，需填写购买商品详细信息，
 	        List<GoodsDetail> goodsDetailList = new ArrayList<GoodsDetail>();
 	        // 创建一个商品信息，参数含义分别为商品id（使用国标）、名称、单价（单位为分）、数量，如果需要添加商品类别，详见GoodsDetail
-	        GoodsDetail goods1 = GoodsDetail.newInstance("goods_id001", "全麦小面包", 1500, 1);
-	        // 创建好一个商品后添加至商品明细列表
-	        goodsDetailList.add(goods1);
-
-	        // 继续创建并添加第一条商品信息，用户购买的产品为“黑人牙刷”，单价为5.05元，购买了两件
-	        GoodsDetail goods2 = GoodsDetail.newInstance("goods_id002", "黑人牙刷", 505, 2);
-	        goodsDetailList.add(goods2);
+	   
 
 	       // AlipayTradePrecreateContentBuilder builder = new AlipayTradePrecreateContentBuilder()
 	        		
@@ -109,8 +104,7 @@ public class AlipayUtil {
 
 	                /*out.println("<img src=\"" + fileName + "\" />");
 	                out.println("filePath:" + filePath);*/
-	                image = "<img src=\"" + fileName + "\" />";
-	                System.out.println(image);
+	                image =fileName;
 	                ZxingUtils.getQRCodeImge(res.getQrCode(), 256, filePath);
 	                break;
 
@@ -132,18 +126,18 @@ public class AlipayUtil {
 		return image;
 	}
 	
-	public static String QueryState(HttpServletRequest request){
+	public static String QueryState(HttpServletRequest request,int orderId){
 		String payState = null;
 		Log log = LogFactory.getLog("trade_query");
 
-		if(request.getParameter("outTradeNo")!=null){
+		if(orderId!=0){
 			// 一定要在创建AlipayTradeService之前设置参数
 			Configs.init("zfbinfo.properties");
 
 			AlipayTradeService tradeService = new AlipayTradeServiceImpl.ClientBuilder().build();
 
 			// (必填) 商户订单号，通过此商户订单号查询当面付的交易状态
-			String outTradeNo = request.getParameter("outTradeNo");
+			String outTradeNo = String.valueOf(orderId);
 	        AlipayTradeQueryRequestBuilder builder = new AlipayTradeQueryRequestBuilder()
 	        		.setOutTradeNo(outTradeNo);
 			AlipayF2FQueryResult result = tradeService.queryTradeResult(builder);
