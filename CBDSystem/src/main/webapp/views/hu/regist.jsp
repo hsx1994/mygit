@@ -210,10 +210,15 @@
         </pre>
 		</div>
 		<center>
-			<a
-				class="btn btn-blue btn-lg f-size12 b-b0 b-l0 b-t0 b-r0 f-pl50 f-pr50 f-r3"
+			<a class="btn btn-blue btn-lg f-size12 b-b0 b-l0 b-t0 b-r0 f-pl50 f-pr50 f-r3"
 				href="javascript:closeClause();">已阅读并同意此条款</a>
 		</center>
+	</div>
+	
+	<div style="text-align:center;">
+		<p>
+			更多源码：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
+		</p>
 	</div>
 	<script>
 $(function(){	
@@ -247,40 +252,8 @@ $(function(){
 		});		
 	});	
 });
-function showcode(){$("#verifyYz").show();}
-
-function send(){
-		$.ajax({
-				url:"../../regist.do",
-				type:"post",
-				contentType:"application/json;charset=utf-8",
-				async:true,
-				data:
-				{
-				 name:$("#name").val(),
-				 password:$("#password").val(),
-				 realName:${"#realName"}.val(),
-				 idcard:$("#idcard").val(),
-	             address:$("#address").val(),
-	             job:$("#job").val(),
-	             email:$("#email").val(),
-	             tel:$("#tel").val()
-				
-				},
-				datatype: "json",
-				success:function(data){
-					alert(data);
-				}
-			});
-	}
-
-
+function showcode(){$("#verifyYz").show();};
 </script>
-	<div style="text-align:center;">
-		<p>
-			更多源码：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
-		</p>
-	</div>
 </body>
 </html>
 
