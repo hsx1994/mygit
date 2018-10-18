@@ -94,11 +94,5 @@ public class UserBean implements Serializable {
 	public void setComplaintCount(int complaintCount) {
 		this.complaintCount = complaintCount;
 	}
-	@Override
-	public String toString() {
-		return "UserBean [id=" + id + ", realName=" + realName + ", address=" + address + ", tel=" + tel + ", idcard="
-				+ idcard + ", job=" + job + ", email=" + email + ", orderCount=" + orderCount + ", complaintCount="
-				+ complaintCount + ", parking=" + parking + "]";
-	}
 	
 }
