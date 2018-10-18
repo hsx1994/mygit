@@ -114,8 +114,10 @@ public class UserController {
 	}
 	//注册测试
 	@RequestMapping("/regist.do")
-	public @ResponseBody String Regist(HttpServletRequest request, UserBean user){
+	public @ResponseBody String Regist(UserBean user,String name,String password){
 		System.out.println(user);
+		System.out.println(name);
+		System.out.println(password);
 		return null;
 		
 	}
