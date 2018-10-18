@@ -43,7 +43,6 @@ public class CompanyInfoBean implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
 	public String getComName() {
 		return comName;
 	}

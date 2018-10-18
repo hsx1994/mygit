@@ -8,10 +8,10 @@ function showComplain(pages){
 		},
 		/*dataType:"json",*/
 		success:function(data){
-			alert(666)
+		/*window.parent.mainFrame.location.href=data;*/
 			console.info(data);
+			
 		}
-		
 	});
 }
 
