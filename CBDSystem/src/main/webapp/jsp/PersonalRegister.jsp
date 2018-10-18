@@ -254,6 +254,7 @@ $(function(){
 function showcode(){$("#verifyYz").show();}
 
 </script>
+
 	<script type="text/javascript">
 function send(){
 	var name=$("#name").val();
@@ -273,15 +274,15 @@ function send(){
 				 "email":email,
 	 			"tel":tel
 	 			}
-	alert(user)
+	alert(name,password,realName,idcard,address,job,email,tel);
 		$.ajax({
 				url:"../personl.do",
-				type:"get",
+				type:"post",
 				contentType:"application/json;charset=utf-8",
 				async:true,
-				data:
-				JSON.stringify(user)
-				,
+				data:{name:$("#name").val()},
+				/* JSON.stringify(user)
+				, */
 				datatype: "json",
 				success:function(data){
 					alert(data);

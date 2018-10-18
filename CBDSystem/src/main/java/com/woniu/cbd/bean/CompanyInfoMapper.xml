@@ -8,5 +8,13 @@
 	<select id="findById" parameterType="int" resultType="CompanyInfoBean">
 		select * from t_company_info where c_id=#{id}
 	</select>
+	<insert id="addcompanyInfo" parameterType="CompanyInfoBean">
+		insert into t_user_info(u_address,u_email,u_idcard,u_profession,u_realname,u_tel
+		) values(#{address},#{email},#{idcard},#{job},#{realName},#{tel});
+	</insert>
+	
+	<insert id="addUser" parameterType="CompanyInfoBean">
+		insert into t_login(l_name,l_password)values(#{name},#{password});
+	</insert>
 	
 </mapper>

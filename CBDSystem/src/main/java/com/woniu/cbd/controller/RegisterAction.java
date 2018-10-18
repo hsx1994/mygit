@@ -40,17 +40,16 @@ public class RegisterAction {
 	 * @return
 	 */
 	
-	public @ResponseBody boolean addUser( RegisterBean user) {
-		System.out.println(user);
-		System.out.println("service+"+service);
-		boolean row = service.addUser(user);
-		String result = "失败";
-		if (row) {
-			System.out.println("成功");
-			result = "成功";
+	public @ResponseBody boolean addUser(String name) {
+		System.out.println(name);
+//		boolean row = service.addUser(user);
+//		String result = "失败";
+//		if (row) {
+//			System.out.println("成功");
+//			result = "成功";
 
-		}
-		return row;
+		
+		return true;
 		
 
 	}
