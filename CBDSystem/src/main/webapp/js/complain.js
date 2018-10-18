@@ -1,18 +1,18 @@
 //显示所有待受理的投诉信息
-function showComplain(pages){
+/*function showComplain(pages){
 	$.ajax({
 		url:"/CBDSystem/showComplain.do",
 		type:"post",
 		data:{
 			"page":pages
 		},
-		/*dataType:"json",*/
+		dataType:"html",
 		success:function(data){
-		/*window.parent.mainFrame.location.href=data;*/
-			console.info(data);
-			
+		window.parent.mainFrame.location.href=data;
+			$("#aaa").html(data)
 		}
 	});
-}
+}*/
 
-showComplain(1);
+/*showComplain(1);*/
+

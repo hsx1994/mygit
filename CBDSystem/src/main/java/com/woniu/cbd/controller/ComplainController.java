@@ -33,7 +33,7 @@ public class ComplainController {
 	@RequestMapping("showComplain.do")
 	public ModelAndView showComplain(Integer page){
 		System.out.println(page);
-		ModelAndView mv = new ModelAndView();
+		ModelAndView model = new ModelAndView();
 		//设置分页处理 (第page页，每页显示10个，必须写在sql语句之前，不然分页不能生效，true可以省略)
 		PageHelper.startPage(page,3,true);
 		List<ComplainBean> list = service.showComplain();
@@ -41,11 +41,10 @@ public class ComplainController {
 		PageInfo<ComplainBean> pageInfo = new PageInfo<ComplainBean>(list);
 		System.out.println(pageInfo.getList());
 		System.out.println(pageInfo);
-		/*model.addAttribute("pageinfo",pageInfo);
-		mv.addObject("pageinfo",pageInfo);
-		mv.addObject("list",list);*/
-		mv.setViewName("views/complain_info.jsp");
-		return mv;
+		model.addObject("pageinfo",pageInfo);
+		model.addObject("list",list);
+		model.setViewName("views/complain_info.jsp");
+		return model;
 		
 	}
 	/**
@@ -60,6 +59,6 @@ public class ComplainController {
 		String result = service.acceptComplain(state, id);
 		
 		return result;
-		
+			
 	}
 }
