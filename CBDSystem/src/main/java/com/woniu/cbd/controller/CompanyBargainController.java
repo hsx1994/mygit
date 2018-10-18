@@ -19,6 +19,7 @@ import com.woniu.cbd.bean.CompanyBargainBean;
 import com.woniu.cbd.bean.CompanyInfoBean;
 import com.woniu.cbd.service.ICompanyBargainService;
 import com.woniu.cbd.service.ICompanyInfoService;
+import com.woniu.cbd.service.ICompanyOrderService;
 
 @Controller
 public class CompanyBargainController {
@@ -26,9 +27,12 @@ public class CompanyBargainController {
 	private ICompanyBargainService service;
 	@Autowired
 	private ICompanyInfoService cis;
-	
-	@RequestMapping("companyBargainAdd.do")
-	public @ResponseBody String companyBargainAdd(CompanyBargainBean bean) {
+	@Autowired
+	private ICompanyOrderService orderService;
+
+	@RequestMapping("/companyBargainAdd.do")
+	public @ResponseBody String companyBargainAdd(CompanyBargainBean bean,String[] parkingNumber,String[] address) {
+
 		CompanyInfoBean company = cis.findByCompanyName(bean.getCompany().getComName());
 		if(company == null){
 			return "该企业用户不存在";
@@ -38,6 +42,7 @@ public class CompanyBargainController {
 		boolean re = service.companyBargainAdd(bean);
 		if (re) {
 			result = "添加成功";
+			orderService.addCompanyOrder(bean,parkingNumber);
 		}
 		return result;
 	}
