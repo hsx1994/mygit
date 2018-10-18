@@ -33,6 +33,12 @@ public class CompanyBargainBean implements Serializable {
 	// 企业合约包含的订单集合
 	private List<CompanyOrderBean> comOrder;
 
+	
+	
+	public CompanyBargainBean() {
+		
+	}
+
 	public String getContact() {
 		return contact;
 	}
@@ -112,4 +118,13 @@ public class CompanyBargainBean implements Serializable {
 	public void setState(int state) {
 		this.state = state;
 	}
+
+	@Override
+	public String toString() {
+		return "CompanyBargainBean [id=" + id + ", company=" + company
+				+ ", number=" + number + ", img=" + img + ", contact="
+				+ contact + ", tel=" + tel + ", startTime=" + startTime
+				+ ", endTime=" + endTime + ", state=" + state + "]";
+	}
+	 
 }
