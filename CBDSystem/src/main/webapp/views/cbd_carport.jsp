@@ -1,5 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<script type="text/javascript" src="../js/pageinfo.js"></script>
+<div id="aaa">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -7,6 +9,7 @@
     <link href="../css/css.css" type="text/css" rel="stylesheet" />
     <link href="../css/main.css" type="text/css" rel="stylesheet" />
     <link rel="shortcut icon" href="../images/main/favicon.ico" />
+    <script type="text/javascript" src="/CBDSystem/js/jQuery-2.2.2.js"></script>
     <style>
         body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
         #searchmain{ font-size:12px;}
@@ -27,7 +30,7 @@
         .bggray{ background:#f9f9f9}
     </style>
 </head>
-<body>
+<body onload="showPort(1)">
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
     <tr>
@@ -57,25 +60,28 @@
                     <th align="center" valign="middle" class="borderright">车位编号</th>
                     <th align="center" valign="middle" class="borderright">车位所在详细地址</th>
                 </tr>
-                <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                    <td align="center" valign="middle" class="borderright borderbottom">1222332</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">成都市天府广场创业中心159号</td>
+                <c:forEach begin="0" step="1" items="${list}" var="obj">
+				<tr class="bggray" onMouseOut="this.style.backgroundColor='#f9f9f9'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+                    <td align="center" valign="middle" class="borderright borderbottom">${obj.parkingNum}</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${obj.address }</td>
                 </tr>
-                <tr class="bggray" onMouseOut="this.style.backgroundColor='#f9f9f9'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                    <td align="center" valign="middle" class="borderright borderbottom">2</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">成都市天府广场创业中心158号</td>
-                </tr>
+				</c:forEach>
             </table></td>
     </tr>
     <tr>
         <td align="left" valign="top" class="fenye"> &nbsp;&nbsp;
-        	<a href="list?page=${pageinfo.firstPage}" target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
-	        <a href="list?page=${pageinfo.prePage}" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
+        	<a href="#" onclick="showPort(${pageinfo.firstPage})"  target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
+	        <c:if test="${pageinfo.hasPreviousPage}">
+	        <a href="#"onclick="showPort(${pageinfo.prePage})" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
+	        </c:if>
 	        ${pageinfo.pageNum}/${pageinfo.pages} 页&nbsp;&nbsp;
-	        <a href="list?page=${pageinfo.nextPage}" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
-	        <a href="list?page=${pageinfo.lastPage}" target="mainFrame" onFocus="this.blur()">尾页</a>
+	        <c:if test="${pageinfo.hasNextPage}">
+	        <a href="#"onclick="showPort(${pageinfo.nextPage})" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
+	        </c:if>
+	        <a href="#" onclick="showPort(${pageinfo.lastPage})" target="mainFrame" onFocus="this.blur()">尾页</a>
         </td>
     </tr>
 </table>
 </body>
 </html>
+</div>

@@ -19,7 +19,7 @@ public class OtherParkingController {
 	@Autowired
 	private IOtherParkingService service;
 
-	@RequestMapping("/otherParkingAdd.do")
+	@RequestMapping("otherParkingAdd.do")
 	public @ResponseBody String otherParkingAdd(List<OtherParkingBean> list) {
 		String result = "添加失败";
 		boolean re = service.otherParkingAdd(list);
@@ -30,7 +30,7 @@ public class OtherParkingController {
 		return result;
 	}
 
-	@RequestMapping("/otherParkingDelete.do")
+	@RequestMapping("otherParkingDelete.do")
 	public @ResponseBody String otherParkingDelete(Integer[] id) {
 		String result = "删除失败";
 		boolean re = service.otherParkingDelete(id);
@@ -40,7 +40,7 @@ public class OtherParkingController {
 		return result;
 	}
 
-	@RequestMapping("/otherParkingSelect.do")
+	@RequestMapping("otherParkingSelect.do")
 	public ModelAndView otherParkingSelect(OtherParkingBean bean) {
 		ModelAndView mav = new ModelAndView();
 		OtherParkingBean parking = service.otherParkingSelect(bean);
@@ -50,7 +50,7 @@ public class OtherParkingController {
 		return mav;
 	}
 
-	@RequestMapping("/allOtherParkingSelect.do")
+	@RequestMapping("allOtherParkingSelect.do")
 	public ModelAndView allOtherParkingSelect(Integer page) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -58,14 +58,15 @@ public class OtherParkingController {
 		List<OtherParkingBean> parking = service.allOtherParkingSelect();
 		PageInfo<OtherParkingBean> pageInfo = new PageInfo<OtherParkingBean>(parking);
 		
-		mav.addObject("allOtherParking", pageInfo);
-		mav.setViewName("");
+		mav.addObject("pageinfo", pageInfo);
+		mav.addObject("list",parking);
+		mav.setViewName("views/cbd_carport.jsp");
 
 		return mav;
 	}
 
 	// 企业查看自己的所有车位
-	@RequestMapping("/showComPanyParkingAll.do")
+	@RequestMapping("showCompanyParkingAll.do")
 	public ModelAndView showComPanyParkingAll(Integer id,Integer page) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -73,14 +74,15 @@ public class OtherParkingController {
 		List<OtherParkingBean> parking = service.showCompanyParkingAll(id);
 		PageInfo<OtherParkingBean> pageInfo = new PageInfo<OtherParkingBean>(parking);
 		
-		mav.addObject("companyParking", pageInfo);
-		mav.setViewName("");
+		mav.addObject("pageinfo", pageInfo);
+		mav.addObject("list",parking);
+		mav.setViewName("views/cbd_carport.jsp");
 
 		return mav;
 	}
 
 	// 企业查看自己的单个车位
-	@RequestMapping("/showCompanyParkingById.do")
+	@RequestMapping("showCompanyParkingById.do")
 	public ModelAndView showCompanyParkingById(Integer id) {
 		ModelAndView mav = new ModelAndView();
 		OtherParkingBean bean = service.showCompanyParkingById(id);

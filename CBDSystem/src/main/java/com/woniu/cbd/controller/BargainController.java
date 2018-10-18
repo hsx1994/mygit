@@ -18,7 +18,7 @@ public class BargainController {
 	@Autowired
 	private IBargainService service;
 
-	@RequestMapping("/bargainAdd.do")
+	@RequestMapping("bargainAdd.do")
 	public @ResponseBody String bargainAdd(BargainBean bean) {
 		String result = "添加失败";
 		boolean re = service.bargainAdd(bean);
@@ -28,7 +28,7 @@ public class BargainController {
 		return result;
 	}
 
-	@RequestMapping("/bargainDelete.do")
+	@RequestMapping("bargainDelete.do")
 	public @ResponseBody String bargainDelete(Integer id) {
 		String result = "删除失败";
 		boolean re = service.bargainDelete(id);
@@ -38,7 +38,7 @@ public class BargainController {
 		return result;
 	}
 
-	@RequestMapping("/bargainUpdate.do")
+	@RequestMapping("bargainUpdate.do")
 	public @ResponseBody String bargainUpdate(BargainBean bean) {
 		String result = "更改失败";
 		boolean re = service.bargainUpdate(bean);
@@ -48,7 +48,7 @@ public class BargainController {
 		return result;
 	}
 
-	@RequestMapping("/bargainSelect.do")
+	@RequestMapping("bargainSelect.do")
 	public ModelAndView bargainSelect(BargainBean bean,Integer page) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -57,16 +57,17 @@ public class BargainController {
 		PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(bargain);
 		
 		if(bargain != null){
-			mav.addObject("bargain", pageInfo);
+			mav.addObject("pageinfo", pageInfo);
+			mav.addObject("list",bargain);
 		} else {
 			mav.addObject("bargain","尚未签订合约");
 		}
-		mav.setViewName("");
+		mav.setViewName("views/out_contract_info.jsp");
 
 		return mav;
 	}
 
-	@RequestMapping("/allBargainSelect.do")
+	@RequestMapping("allBargainSelect.do")
 	public ModelAndView allBargainSelect(Integer page) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -75,7 +76,8 @@ public class BargainController {
 		PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(bargain);
 		
 		if(bargain != null){
-			mav.addObject("allBargain", pageInfo);
+			mav.addObject("pageinfo", pageInfo);
+			mav.addObject("list",bargain);
 		} else {
 			mav.addObject("allBargain","尚未签订合约");
 		}
@@ -84,7 +86,7 @@ public class BargainController {
 		return mav;
 	}
 
-	@RequestMapping("/findUseingBargain.do")
+	@RequestMapping("findUseingBargain.do")
 	public ModelAndView findUseingBargain(Integer page) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -94,15 +96,16 @@ public class BargainController {
 		
 		if(list != null){
 			mav.addObject("pageinfo", pageInfo);
+			mav.addObject("list",list);
 		} else {
 			mav.addObject("pageinfo","尚未签订合约");
 		}
-		mav.setViewName("");
+		mav.setViewName("views/out_contract_info.jsp");
 
 		return mav;
 	}
 
-	@RequestMapping("/findUnuseingBargain.do")
+	@RequestMapping("findUnuseingBargain.do")
 	public ModelAndView findUnseingBargain(Integer page) {
 		ModelAndView mav = new ModelAndView();
 
@@ -112,10 +115,11 @@ public class BargainController {
 		
 		if(bargain != null){
 			mav.addObject("unuseingBargain", pageInfo);
+			mav.addObject("list",bargain);
 		} else {
 			mav.addObject("unuseingBargain","没有废弃的合约");
 		}
-		mav.setViewName("");
+		mav.setViewName("views/out_history_contract.jsp");
 
 		return mav;
 	}
