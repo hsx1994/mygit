@@ -66,6 +66,12 @@ public class TestMain {
 		dao.fuzzyQuery("蜗牛");
 		dao.findAllCompany();
 	}
+	@Test
+	public void test2(){
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		IComplainDao dao = context.getBean(ComplainDaoImpl.class);
+		System.out.println(dao.findComplainById(9));
+	}
 	
 
 }

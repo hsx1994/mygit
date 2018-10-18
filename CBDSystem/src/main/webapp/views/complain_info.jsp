@@ -69,7 +69,7 @@
 						<td align="center" valign="middle" class="borderright borderbottom">${obj.user.realName }</td>
 	                    <td align="center" valign="middle" class="borderright borderbottom">${obj.buser.realName }</td>
 	                    <td align="center" valign="middle" class="borderright borderbottom">${obj.time }</td>
-	                    <td align="center" valign="middle" class="borderbottom"><a href="/CBDSystem/views/complain_details.jsp?list=${list }" target="mainFrame" onFocus="this.blur()" class="add">处理</a></td>
+	                    <td align="center" valign="middle" class="borderbottom"><a href="/CBDSystem/views/complain_details.jsp?id=${obj.id }" target="mainFrame" onFocus="this.blur()" class="add">处理</a></td>
                 	</tr>
 				</c:forEach>
 
