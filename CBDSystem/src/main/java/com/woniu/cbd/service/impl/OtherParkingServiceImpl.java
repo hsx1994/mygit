@@ -56,5 +56,20 @@ public class OtherParkingServiceImpl implements IOtherParkingService {
 		OtherParkingBean bean=dao.showCompanyParkingById(id);
 		return bean;
 	}
+	/**
+	 * 查看车位的所有区域信息
+	 */
+	@Override
+	public List<String> findAddressByGroup() {
+		return dao.findAddressByGroup();
+	}
+	/**
+	 * 查看某区域车位的所有编号
+	 */
+	@Override
+	public List<String> findParkingNumberByAddress(String address) {
+		// TODO Auto-generated method stub
+		return dao.findParkingNumberByAddress(address);
+	}
 
 }

@@ -48,6 +48,21 @@ public interface IOtherParkingDao {
 
 	// 企业查看单个车位信息
 	public OtherParkingBean showCompanyParkingById(int c_id);
-
+	/**
+	 * 通过车位编号查找车位id
+	 * @param parkingNumber
+	 * @return
+	 */
 	public List<OtherParkingBean> findByParkingNumber(String[] parkingNumber);
+	/**
+	 * 查询车位所有的区域信息
+	 * @return
+	 */
+	public List<String> findAddressByGroup();
+	
+	/**
+	 * 查询某区域所有车位的编号
+	 * @return
+	 */
+	public List<String> findParkingNumberByAddress(String address);
 }

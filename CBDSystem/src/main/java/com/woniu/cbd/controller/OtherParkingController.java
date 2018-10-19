@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -87,5 +88,22 @@ public class OtherParkingController {
 		mav.addObject("companyPark", bean);
 		mav.setViewName("");
 		return mav;
+	}
+	
+	// 车位区域信息
+	@RequestMapping("/showAddress.do")
+	public @ResponseBody List<String> showParkingAddress() {
+		List<String> list = service.findAddressByGroup();
+		return list;
+	}
+
+	/**
+	 * 查找某区域车位的所有编号
+	 * @return
+	 */
+	@RequestMapping("/showParkingNumber.do")
+	public @ResponseBody List<String> showParkingNumber(String address) {
+		List<String> list = service.findParkingNumberByAddress(address);
+		return list;
 	}
 }

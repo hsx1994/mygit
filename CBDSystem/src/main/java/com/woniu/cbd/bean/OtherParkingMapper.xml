@@ -87,4 +87,13 @@
 			#{parkingNumber}
 		</foreach>
 	</select>
+	<!-- 查询车位的所有区域 -->
+	<select id="findAddressByGroup" resultType="String">
+		select ot_address from t_other_parking GROUP BY ot_address
+	</select>
+	
+	<!-- 查询某区域所有车位的编号 -->
+	<select id="findParkingNumberByAddress" resultType="String" parameterType="String">
+		select ot_parking_number from t_other_parking where ot_address = #{address}
+	</select>
 </mapper>

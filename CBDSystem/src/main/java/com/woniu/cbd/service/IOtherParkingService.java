@@ -43,4 +43,14 @@ public interface IOtherParkingService {
 
 	// 用于企业查看单个车位信息
 	public OtherParkingBean showCompanyParkingById(int c_id);
+	/**
+	 * 查询车位的所有区域信息
+	 * @return
+	 */
+	public List<String> findAddressByGroup();
+	/**
+	 * 查询某区域所有车位的编号
+	 * @return
+	 */
+	public List<String> findParkingNumberByAddress(String address);
 }

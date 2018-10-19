@@ -77,5 +77,23 @@ public class OtherParkingDaoImpl implements IOtherParkingDao {
 			session.close();
 			return list;
 		}
-	
+		/**
+		 * 查询车位的所有区域信息
+		 */
+		@Override
+		public List<String> findAddressByGroup() {
+			SqlSession session = fa.openSession(true);
+			List<String> list = session.selectList("otherParkingMapper.findAddressByGroup");
+			session.close();
+			return list;
+		}
+
+		@Override
+		public List<String> findParkingNumberByAddress(String address) {
+			SqlSession session = fa.openSession(true);
+			List<String> list = session.selectList("otherParkingMapper.findParkingNumberByAddress",address);
+			session.close();
+			return list;
+		}
+		
 }
