@@ -1,44 +1,53 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>用户登录界面</title>
-<link href="" rel="stylesheet" type="text/css" />
-</head>
-<body>
-	<span style="color: red;">${errorMsg}</span>
-	<form id="form1" action="/CBDSystem/login.do" method="post">
-		<span><a href="login.jsp">用户登录</a></span><br/>
-		<span><a href="register.jsp">用户注册</a></span> <br/><br/>
-		
-		<span class="left login-text">用户名：</span>
-		<span style="left"> 
-			<input id="Text1" type="text" class="txt" name="name" value="${user.userName }"/>
-		</span>
-		<br/><br/>
-		
-		<span class="left login-text">密&nbsp;&nbsp; 码：</span> 
-		<span style="left"> 
-			<input id="Text2" type="password" class="txt" name="password" />
-		</span>
-		<br/><br/>
-		
-		<span class="left login-text">验证码：</span> 
-		<span style="left">
-				<input id="Text3" type="text" class="txt" name="checkcode" style="width: 90px" />
-		</span>
-        <br/>
+<base href="<%=basePath%>">
 
-        
-        <input type="submit"  value="登录">
-         <br/>
-        <br/>
-        <br/>
-        <br/>
-        <span>CBD停车场系统</span>
+<title>My JSP 'login.jsp' starting page</title>
+
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+<script type="text/javascript" src="js/public/jquery.1.9.1.js"></script>
+
+</head>
+
+<body>
+	<form>
+		<input type="text" name="loginname" id="loginname"><br /> <input
+			type="password" name="passworde" id="password"><br /> <input
+			type="button" value="登录" onclick="login()">
 	</form>
 </body>
+<script type="text/javascript">
+	function login() {
+		$.ajax({
+			url : "login.do",
+			type : "post",
+			async : true,
+			data : {
+				"name" : $("#loginname").val(),
+				"password" : $("#password").val()
+			},
+			dataType : "json",
+			success : function(data) {
+				if (data.result == true) {
+					alert("登录成功");
+				}
+			}
+		})
+
+	}
+</script>
 </html>
 

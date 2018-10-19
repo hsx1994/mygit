@@ -14,8 +14,8 @@ public class CompanyBargainBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	// 企业合约ID
 	private int id;
-	// 企业合约中的企业名称
-	private String name;
+	// 企业合约中的企业信息
+	private CompanyInfoBean company;
 	// 企业合约编号
 	private String number;
 	// 企业合约复印件
@@ -32,6 +32,12 @@ public class CompanyBargainBean implements Serializable {
 	private int state;
 	// 企业合约包含的订单集合
 	private List<CompanyOrderBean> comOrder;
+
+	
+	
+	public CompanyBargainBean() {
+		
+	}
 
 	public String getContact() {
 		return contact;
@@ -57,12 +63,12 @@ public class CompanyBargainBean implements Serializable {
 		this.comOrder = comOrder;
 	}
 
-	public String getName() {
-		return name;
+	public CompanyInfoBean getCompany() {
+		return company;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCompany(CompanyInfoBean company) {
+		this.company = company;
 	}
 
 	public int getId() {
@@ -112,4 +118,13 @@ public class CompanyBargainBean implements Serializable {
 	public void setState(int state) {
 		this.state = state;
 	}
+
+	@Override
+	public String toString() {
+		return "CompanyBargainBean [id=" + id + ", company=" + company
+				+ ", number=" + number + ", img=" + img + ", contact="
+				+ contact + ", tel=" + tel + ", startTime=" + startTime
+				+ ", endTime=" + endTime + ", state=" + state + "]";
+	}
+	 
 }

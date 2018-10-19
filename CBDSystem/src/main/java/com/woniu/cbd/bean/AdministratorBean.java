@@ -14,10 +14,6 @@ public class AdministratorBean implements Serializable {
 	private int id;
 	// 登录表id
 	private int lid;
-	// 后台管理员用户名
-	private String name;
-	// 后台管理员密码
-	private String pass;
 	// 后台管理员工号
 	private String jobNumber;
 	// 后台管理员真实姓名
@@ -33,14 +29,6 @@ public class AdministratorBean implements Serializable {
 
 	public void setRealName(String realName) {
 		this.realName = realName;
-	}
-
-	public String getPass() {
-		return pass;
-	}
-
-	public void setPass(String pass) {
-		this.pass = pass;
 	}
 
 	public int getId() {
@@ -65,14 +53,6 @@ public class AdministratorBean implements Serializable {
 
 	public void setJobNumber(String jobNumber) {
 		this.jobNumber = jobNumber;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getTel() {

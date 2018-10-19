@@ -15,9 +15,9 @@ public class ParkingDaoImpl implements IParkingDao {
 	// spring容器注入一个工厂对象
 	@Autowired
 	private SqlSessionFactory fa;
+	
     //包租婆批量添加个人车位
 	@Override
-
 	public int AddParking(List<ParkingBean> park) {
 		SqlSession session = fa.openSession(true);
 		int num=session.insert("parkingMapper.addParking", park);

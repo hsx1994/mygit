@@ -55,7 +55,7 @@ public class CompanyBargainDaoImpl implements ICompanyBargainDao {
 	@Override
 	public List<CompanyBargainBean> allCompanyBargainSelect() {
 		SqlSession session = fa.openSession(true);
-		List<CompanyBargainBean> list = session.selectList("companyBargainMapper.allCompanyBargainMapper");
+		List<CompanyBargainBean> list = session.selectList("companyBargainMapper.allCompanyBargainSelect");
 		
 		session.close();
 		return list;
@@ -64,10 +64,18 @@ public class CompanyBargainDaoImpl implements ICompanyBargainDao {
 	@Override
 	public List<CompanyBargainBean> companyBargainSelectByState(int state) {
 		SqlSession session = fa.openSession(true);
-		List<CompanyBargainBean> list = session.selectList("companyBargainMapper.fingCompanyBargainByState",state);
+		List<CompanyBargainBean> list = session.selectList("companyBargainMapper.findCompanyBargainByState",state);
 		
 		session.close();
 		return list;
+	}
+	// 前台查看企业合约
+	@Override
+	public List<CompanyBargainBean> companyBargainById(int id) {
+		SqlSession session = fa.openSession(true);
+		List<CompanyBargainBean> bean = session.selectList("companyBargainMapper.companyBargainById",id);
+		session.close();
+		return bean;
 	}
 
 }

@@ -8,53 +8,86 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.OtherParkingBean;
 import com.woniu.cbd.service.IOtherParkingService;
 
 @Controller
 public class OtherParkingController {
-	
+
 	@Autowired
 	private IOtherParkingService service;
-	
-	@RequestMapping("/11")
-	public @ResponseBody String otherParkingAdd(List<OtherParkingBean> list){
+
+	@RequestMapping("otherParkingAdd.do")
+	public @ResponseBody String otherParkingAdd(List<OtherParkingBean> list) {
 		String result = "添加失败";
 		boolean re = service.otherParkingAdd(list);
-		if(re){
+		if (re) {
 			result = "添加成功";
 		}
-		
+
 		return result;
 	}
-	
-	@RequestMapping("/12")
-	public @ResponseBody String otherParkingDelete(Integer[] id){
+
+	@RequestMapping("otherParkingDelete.do")
+	public @ResponseBody String otherParkingDelete(Integer[] id) {
 		String result = "删除失败";
 		boolean re = service.otherParkingDelete(id);
-		if(re){
+		if (re) {
 			result = "删除成功";
 		}
 		return result;
 	}
-	
-	@RequestMapping("/13")
-	public ModelAndView otherParkingSelect(OtherParkingBean bean){
+
+	@RequestMapping("otherParkingSelect.do")
+	public ModelAndView otherParkingSelect(OtherParkingBean bean) {
 		ModelAndView mav = new ModelAndView();
 		OtherParkingBean parking = service.otherParkingSelect(bean);
-		mav.addObject("otherParking",parking);
+		mav.addObject("otherParking", parking);
 		mav.setViewName("");
-		
+
 		return mav;
 	}
-	
-	@RequestMapping("/14")
-	public ModelAndView allOtherParkingSelect(){
+
+	@RequestMapping("allOtherParkingSelect.do")
+	public ModelAndView allOtherParkingSelect(Integer page) {
 		ModelAndView mav = new ModelAndView();
-		List<OtherParkingBean> parking = service.allOtherParkingSelect();
-		mav.addObject("allOtherParking", parking);
-		mav.setViewName("");
 		
+		PageHelper.startPage(page,10,true);
+		List<OtherParkingBean> parking = service.allOtherParkingSelect();
+		PageInfo<OtherParkingBean> pageInfo = new PageInfo<OtherParkingBean>(parking);
+		
+		mav.addObject("pageinfo", pageInfo);
+		mav.addObject("list",parking);
+		mav.setViewName("views/cbd_carport.jsp");
+
+		return mav;
+	}
+
+	// 企业查看自己的所有车位
+	@RequestMapping("showCompanyParkingAll.do")
+	public ModelAndView showComPanyParkingAll(Integer id,Integer page) {
+		ModelAndView mav = new ModelAndView();
+		
+		PageHelper.startPage(page,10,true);
+		List<OtherParkingBean> parking = service.showCompanyParkingAll(id);
+		PageInfo<OtherParkingBean> pageInfo = new PageInfo<OtherParkingBean>(parking);
+		
+		mav.addObject("pageinfo", pageInfo);
+		mav.addObject("list",parking);
+		mav.setViewName("views/cbd_carport.jsp");
+
+		return mav;
+	}
+
+	// 企业查看自己的单个车位
+	@RequestMapping("showCompanyParkingById.do")
+	public ModelAndView showCompanyParkingById(Integer id) {
+		ModelAndView mav = new ModelAndView();
+		OtherParkingBean bean = service.showCompanyParkingById(id);
+		mav.addObject("companyPark", bean);
+		mav.setViewName("");
 		return mav;
 	}
 }

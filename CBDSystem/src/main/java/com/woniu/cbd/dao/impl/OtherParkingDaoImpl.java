@@ -52,4 +52,30 @@ public class OtherParkingDaoImpl implements IOtherParkingDao {
 		return list;
 	}
 	
+	    // 查看企业的所有车位,使用了查询合约的懒加载
+		@Override
+		public List<OtherParkingBean> showCompanyParkingAll(int id) {
+			SqlSession session = fa.openSession(true);
+			List<OtherParkingBean> bean = session.selectList("companyBargainMapper.companyBargainById", id);
+			session.close();
+			return bean;
+		}
+
+		// 企业查看单个车位信息
+		@Override
+		public OtherParkingBean showCompanyParkingById(int id) {
+			SqlSession session = fa.openSession(true);
+			OtherParkingBean bean = session.selectOne("otherParkingMapper.findParkingById", id);
+			session.close();
+			return bean;
+		}
+		//通过车位编号查找车位详细信息
+		@Override
+		public List<OtherParkingBean> findByParkingNumber(String[] parkingNumber) {
+			SqlSession session = fa.openSession(true);
+			List<OtherParkingBean> list = session.selectList("otherParkingMapper.findByParkingNumber", parkingNumber);
+			session.close();
+			return list;
+		}
+	
 }

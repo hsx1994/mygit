@@ -46,8 +46,7 @@
 	<select id="administratorSelectAll" resultType="AdministratorBean">
 		select a_id as
 		id,a_job_number as jobNumber,a_name as realName, a_tel
-		as tel,a_limit
-		as `limit` from t_administrator
+		as tel from t_administrator
 
 	</select>
 

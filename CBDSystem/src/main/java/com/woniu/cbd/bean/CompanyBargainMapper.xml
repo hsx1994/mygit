@@ -8,8 +8,8 @@
 	<insert id="companyBargainAdd" parameterType="CompanyBargainBean"
 		useGeneratedKeys="true" keyProperty="id">
 		insert into
-		t_company_bargain(cb_number,cb_c_id,cb_start_time,cb_end_time,cb_img,cb_cname,cb_contact,cb_tel)
-		values(#{number},#{company.id},#{startTime},#{endTime},#{name},#{contact},#{tel})
+		t_company_bargain(cb_numbe,cb_c_id,cb_start_time,cb_end_time,cb_img,cb_contact,cb_tel)
+		values(#{number},#{company.id},#{startTime},#{endTime},#{img},#{contact},#{tel})
 	</insert>
 	
 	<!-- 毁约，废弃该合约 -->
@@ -28,7 +28,7 @@
 	</select>
 	
 	<!-- 根据状态查询企业合约 -->
-	<select id="fingCompanyBargainByState" parameterType="int" resultMap="selectMap">
+	<select id="findCompanyBargainByState" parameterType="int" resultMap="selectMap">
 		select * from t_company_bargain where cb_state=#{state}
 	</select>
 	
@@ -39,20 +39,22 @@
 	<resultMap type="CompanyBargainBean" id="selectMap">
 		<id column="cb_id" property="id"></id>
 		<result column="cb_numbe" property="number"/>
-		<result column="cb_cname" property="name"/>
 		<result column="cb_start_time" property="startTime"/>
 		<result column="cb_end_time" property="endTime"/>
 		<result column="cb_img" property="img"/>
 		<result column="cb_state" property="state"/>
 		<result column="cb_contact" property="contact"/>
 		<result column="cb_tel" property="tel"/>
-		<association property="company" javaType="CompanyInfoBean" select="CompanyInfoMapper.findById" column="cb_c_id"></association>
+
+		<association property="company" javaType="CompanyInfoBean" select="companyInfoMapper.findById" column="cb_c_id"/>
 		<collection property="comOrder" ofType="CompanyOrderBean" select="companyOrderMapper.findByCompanyBargainId" column="cb_id"/>
+		
 	</resultMap>
-	
-	<!--前台企业通过企业名查询该企业的合约  -->
-	<select id="companycontract" parameterType="String" resultMap="selectMap">
-	    select * from t_company_bargain where cb_cname=#{name}
+
+	<!--前台企业通过企业id查询该企业的合约  -->
+	<select id="companyBargainById" parameterType="int" resultMap="selectMap">
+	    select * from t_company_bargain where cb_c_id=#{id}
 	</select>
+	
 	
 </mapper>

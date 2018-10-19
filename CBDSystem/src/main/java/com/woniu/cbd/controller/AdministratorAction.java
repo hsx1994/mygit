@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.AdministratorBean;
 import com.woniu.cbd.service.IAdministratorService;
 
@@ -17,13 +20,13 @@ import com.woniu.cbd.service.IAdministratorService;
  * @author wt
  *
  */
-@RequestMapping("/Administrator")
+
 @Controller
 public class AdministratorAction {
 	// 自动注入业务层的实现类
 	@Autowired
 	private IAdministratorService service;
-
+	
 	/**
 	 * 描述:完成添加业务
 	 * 
@@ -76,15 +79,19 @@ public class AdministratorAction {
 	}
 
 	
-	@RequestMapping("/findAll.do")
-	public String show(Model model) {
+	@RequestMapping("findAll.do")
+	public ModelAndView show(Integer page) {
+		ModelAndView mav = new ModelAndView();
+		PageHelper.startPage(page,10,true);
 		// 存储查询结果
 		List<AdministratorBean> list = null;
-		// 接收后台处理完删除后的结果
+		// 所有后台管理员信息集合
 		list = service.showAdministrator();
+		PageInfo<AdministratorBean> pageInfo = new PageInfo<AdministratorBean>(list);
 		// 向页面传参
-		model.addAttribute("ablist", list);
-		return "/jsp/register.jsp";
+		mav.addObject("pageinfo",pageInfo);
+		mav.addObject("list",list);
+		mav.setViewName("views/all_admin_info.jsp");
+		return mav;
 	}
-
 }

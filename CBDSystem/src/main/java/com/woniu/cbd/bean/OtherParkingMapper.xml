@@ -3,12 +3,8 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 区分sql块，不同文件中sql语句id可能重复，给每个文件命名 -->
-<mapper namespace="otherparkingMapper">
-	<!--查看前台企业的所有车位 -->
-	<select id="showCompanyAll" resultMap="map">
-		select * from
-		t_other_parking and ot_delete=0
-	</select>	
+<mapper namespace="otherParkingMapper">
+
     <!-- 第三方车位管理 -->
 	<!-- 批量添加第三方车位 -->
 	<insert id="otherParkingAdd" parameterType="java.util.List">
@@ -57,10 +53,8 @@
 		<result column="ot_price" property="price" />
 		<result column="ot_start_time" property="startTime" />
 		<result column="ot_end_time" property="endTime" />
-		<association property="bargain" javaType="BargainBean"
-			select="bargainMapper.findById" column="ot_bargain_id" />
-		<collection property="order" ofType="CompanyOrderBean"
-			select="companyOrderMapper.findByOtherParkingId" column="ot_id"></collection>
+		<association property="bargain" javaType="BargainBean" select="bargainMapper.findById" column="ot_bargain_id" />
+		<collection property="order" ofType="CompanyOrderBean" select="companyOrderMapper.findByOtherParkingId" column="ot_id"></collection>
 	</resultMap>
 
 	<!--前台企业查看单个企业车位的信息 -->
@@ -72,9 +66,25 @@
 		from t_other_parking and ot_delete=0
 	</select>
 
+
+
 	<!--企业查看自己的所有车位 -->
 	<select id="showCompanyAllByCid" parameterType="int" resultMap="map">
-		select * from t_company_bargain where ot_id=#{id} and
+		select * from  t_company_bargain where ot_id=#{id} and
 		ot_delete=0
+	</select>
+	
+	<!--通过车位id查询第三方车位信息  -->
+	<select id="findParkingById" parameterType="int" resultMap="map">
+	    select * from t_other_parking where ot_id=#{id} and ot_delete=0
+	</select>
+	
+	<!-- 通过车位编号查询第三方车位信息 -->
+	<select id="findByParkingNumber" parameterType="java.util.List" resultMap="map">
+		select ot_id from t_other_parking where ot_parking_number in 
+		<foreach collection="array" item="parkingNumber" open="(" separator=","
+			close=")">
+			#{parkingNumber}
+		</foreach>
 	</select>
 </mapper>
