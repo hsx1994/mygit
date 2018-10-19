@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	密&nbsp码：<input type="text" id="password" name="password"value="${user.pass}"> --%>
     <br>
    	 点击前往完善信息：<br>
-	<a href="jsp/PersonalRegister.jsp"> <button type="submit" >个人用户注册</button> </a><br>
+	<a href="jsp/PersonalRegister.jsp"> <button type="submit" >个人用户注册</button> </a><br><br><br>
 	
 	  <a href="jsp/EnterpriseRegister.jsp"> <button type="submit">企业用户注册</button> </a>
 	  

@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <div class="wrap">
 	<div class="logo">
-	  用户名：&nbsp&nbsp<input type="text" name="name"value=${user.name}><br><br>
+	
 	  密&nbsp&nbsp码：&nbsp&nbsp&nbsp<input type="text" name="password"value=${user.password}><br><br>
 	  电&nbsp&nbsp话：&nbsp&nbsp&nbsp<input type="text" name="tel"value=${user.tel}><br><br>
    	  地&nbsp&nbsp址：&nbsp&nbsp&nbsp<input type="text" name="address"value=${user.address}><br><br>

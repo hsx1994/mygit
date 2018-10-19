@@ -33,6 +33,15 @@
 					</ul>
 				</div>
 				<div class="reg-box" id="verifyCheck" style="margin-top:20px;">
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				填写用户角色 ：<select id="role" name="role">
+								<option></option>
+								<option value="rent">包租用户</option>
+								<option value="row">抢租用户</option>
+							</select>
+							
+				
 					<div class="part1">
 						<div class="item col-xs-12">
 							<span class="intelligent-label f-fl"><b class="ftx04">*</b>用户名：</span>
@@ -170,14 +179,14 @@
 						<div class="item col-xs-12">
 							<span class="intelligent-label f-fl"><b class="ftx04">*</b>验证码：</span>
 							<div class="f-fl item-ifo">
-								<input type="text" maxlength="6" id="verifyNo"
+								<input type="text" maxlength="6" id="code"
 									class="txt03 f-r3 f-fl required" tabindex="4"
 									style="width:167px" data-valid="isNonEmpty||isInt"
 									data-error="验证码不能为空||请输入6位数字验证码" /> <span
 									class="btn btn-gray f-r3 f-ml5 f-size13" id="time_box" disabled
 									style="width:97px;display:none;">发送验证码</span> <span
 									class="btn btn-gray f-r3 f-ml5 f-size13" id="verifyYz"
-									style="width:97px;">发送验证码</span> <span
+									style="width:97px;" onclick="phone()">发送验证码</span> <span
 									class="ie8 icon-close close hide" style="right:130px"></span> <label
 									class="icon-sucessfill blank hide"></label> <label
 									class="focus" style="display:none"><span>请查收手机短信，并填写短信中的验证码（此验证码3分钟内有效）</span></label>
@@ -251,12 +260,58 @@ $(function(){
 		});		
 	});	
 });
-function showcode(){$("#verifyYz").show();}
+function showcode(){$("#verifyYz").show();
+}
+
+
+function phone() {
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("post", "../phone.do", true);
+		xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xmlhttp.send("number=" + $("#tel").val());
+		//处理响应，监控状态码
+		xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.status == 200 && xmlhttp.readyState == 4) {
+				//接受服务器响应回来的内容
+				var obj = xmlhttp.responseText;
+				//同dom操作将数据显示到页面
+				alert("验证码发送成功");
+			}
+		}
+	};
+
+function send(){
+		$.ajax({
+				url:"../regist.do",
+				type:"post",
+				data:
+				{
+				 role:$("#role option:selected").val(),
+				 name:$("#name").val(),
+				 password:$("#password").val(),
+			     realName:$("#realName").val(),
+			     idcard:$("#idcard").val(),
+	             address:$("#address").val(),
+	             job:$("#job").val(),
+	             email:$("#email").val(),
+	             tel:$("#tel").val(),
+	             code:$("#code").val() 
+			},
+				datatype: "json",
+				success:function(data){
+					alert(data);
+				}
+			});
+	};
+
+
 
 </script>
 
+<!-- 
 	<script type="text/javascript">
 function send(){
+	var role=$("#role").val();
 	var name=$("#name").val();
 	var password=$("#password").val();
 	var realName=$("#realName").val();
@@ -265,24 +320,33 @@ function send(){
 	var job = $("#job").val();
 	var email=$("#email").val();
 	var tel=$("#tel").val();
-	var user={"name":name,
-	 			 "password":password,
-	 			 "realName":realName,
-	 			 "idcard":idcard,
-				 "address":address,
-				 "job" :job,
-				 "email":email,
-	 			"tel":tel
+	var user={
+				/* "code":code, */
+				name:$("#name").val(),
+	 			 password:$("#password").val(),
+	 			 realName:$("#realName").val(),
+	 			 idcard:$("#idcard").val(),
+				 address:$("#address").val(),
+				job:$("#job").val(),
+				email:$("#email").val(),
+	 			tel:$("#tel").val()
 	 			}
-	alert(name,password,realName,idcard,address,job,email,tel);
+	alert(user);
 		$.ajax({
 				url:"../personl.do",
 				type:"post",
 				contentType:"application/json;charset=utf-8",
-				async:true,
-				data:{name:$("#name").val()},
-				/* JSON.stringify(user)
-				, */
+				data:
+				JSON.stringify(user),
+				/* code:$("#code").val(),
+				name:$("#name").val(),
+	 			 password:$("#password").val(),
+	 			 realName:$("#realName").val(),
+	 			 idcard:$("#idcard").val(),
+				 address:$("#address").val(),
+				job:$("#job").val(),
+				email:$("#email").val(),
+	 			tel:$("#tel").val() */
 				datatype: "json",
 				success:function(data){
 					alert(data);
@@ -300,7 +364,7 @@ function send(){
 				}
 			}); */
 	}
-</script>
+</script> -->
 	<div style="text-align:center;"></div>
 
 </body>

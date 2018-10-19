@@ -13,6 +13,7 @@ public class UserBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//普通用户ID
 	private int id;
+	
 	//普通用户账号真实姓名
 	private String realName;
 	//普通用户地址

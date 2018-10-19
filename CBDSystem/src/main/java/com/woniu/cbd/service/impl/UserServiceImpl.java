@@ -12,9 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.woniu.cbd.bean.CompanyInfoBean;
 import com.woniu.cbd.bean.ComplainBean;
+import com.woniu.cbd.bean.LoginBean;
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
 import com.woniu.cbd.bean.RegisterBean;
+import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.dao.IUserDao;
 import com.woniu.cbd.service.IUserService;
 
@@ -59,44 +61,28 @@ public class UserServiceImpl implements IUserService {
 	 * 注册个人信息
 	 */
 	@Override
-	public boolean addUser(RegisterBean user) {
-		int row = dao.addUser(user);
+	public boolean addUser(LoginBean bean) {
+		int row = dao.addUser(bean);
 		if(row>0){
 			return true;
 		}
 		return false;	
-		
-//	
-//		int row=0;
-//		int result = 0;
-//		if(user.getName() == null || user.getPass()==null){
-//			result = 0;
-//		}else{
-//			result = 1;
-//			System.out.println("result+"+result);
-//			
-//		}
-//		System.out.println("result"+result);
-//		int resultinfor=0;
-//		if(user.getAddress() == null || user.getEmail()==null ||user.getIdcard()==null||user.getJob()==null||user.getRealName()==null){
-//			resultinfor = 0;
-//		}else{
-//			resultinfor = 1;
-//			System.out.println("resultinfor+"+resultinfor);
-//		}
-//		System.out.println("resultinfor"+resultinfor);
-//		if(result!=0&&resultinfor!=0){
-//			row=1;
-//		}
-//		return row;
+	}
+	@Override
+	public boolean addUserInfor(UserBean bean) {
+		int row = dao.addUserInfor(bean);
+		if(row>0){
+			return true;
+		}
+		return false;	
 	}
 
 	/**
 	 * 修改信息
 	 */
 	@Override
-	public boolean updateUser(RegisterBean user) {
-		int row = dao.addUser(user);
+	public boolean updateUser(UserBean user) {
+		int row = dao.updateUser(user);
 		if(row>0){
 			return true;
 		}

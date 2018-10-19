@@ -9,9 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import com.woniu.cbd.bean.CompanyInfoBean;
 import com.woniu.cbd.bean.ComplainBean;
+import com.woniu.cbd.bean.LoginBean;
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
 import com.woniu.cbd.bean.RegisterBean;
+import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.dao.IUserDao;
 
 @Repository
@@ -63,25 +65,25 @@ public class UserDaoImpl implements IUserDao {
 	}
 
 	@Override
-	public int addUser(RegisterBean user) {
+	public int addUser(LoginBean bean) {
 		SqlSession session = fa.openSession(true);
-		int row = session.insert("com.woniu.cbd.dao.IUserDao.addUser", user);
-		session.commit();
+		int row = session.insert("userMapper.addUser", bean);
+		
 		session.close();
 		return row;
 	}
 
 	@Override
-	public int addUserInfor(RegisterBean user) {
+	public int addUserInfor(UserBean bean) {
 		SqlSession session = fa.openSession(true);
-		int row = session.insert("com.woniu.cbd.dao.IUserDao.addUserInfor", user);
-		session.commit();
+		int row = session.insert("userMapper.addUserInfor", bean);
+		
 		session.close();
 		return row;
 	}
 
 	@Override
-	public int updateUser(RegisterBean user) {
+	public int updateUser(UserBean bean) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
