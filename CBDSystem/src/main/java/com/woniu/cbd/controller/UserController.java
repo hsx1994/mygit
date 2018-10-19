@@ -19,7 +19,7 @@ public class UserController {
 	private IUserService user;
 	
 	// 包租婆查看自己的车位信息
-	@RequestMapping("/showme.do")
+	@RequestMapping("showme.do")
 	public ModelAndView ShowMe(Integer id,Integer page) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -28,7 +28,8 @@ public class UserController {
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
 		
 		if(bean != null){
-			mav.addObject("application",pageInfo);	
+			mav.addObject("pageinfo",pageInfo);	
+			mav.addObject("list",bean);
 		}else{
 			mav.addObject("application","尚未添加车位");
 		}
@@ -38,7 +39,7 @@ public class UserController {
 	
 
 	// 包租婆查看自己的被租赁记录
-	@RequestMapping("/selectlog.do")
+	@RequestMapping("selectlog.do")
 	public ModelAndView SelectLog(Integer id,Integer page) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -46,7 +47,8 @@ public class UserController {
 		List<ParkingBean> bean = user.SelectLog(id);
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
 		if(bean != null){
-			mav.addObject("lease",pageInfo);	
+			mav.addObject("pageinfo",pageInfo);
+			mav.addObject("list",bean);
 		} else {
 			mav.addObject("lease","尚未有车位被租赁");
 		}
@@ -56,7 +58,7 @@ public class UserController {
 	}
 	
 	//抢租客查看租赁记录
-	@RequestMapping("/showlog.do")
+	@RequestMapping("showlog.do")
 	public ModelAndView ShowLog(Integer id,Integer page){
 		ModelAndView mav = new ModelAndView();
 	
@@ -65,7 +67,8 @@ public class UserController {
 		PageInfo<OrderBean> pageInfo = new PageInfo<OrderBean>(bean);
 		
 		if(bean != null){
-			mav.addObject("Lease",pageInfo);
+			mav.addObject("pageinfo",pageInfo);
+			mav.addObject("list",bean);
 		} else {
 			mav.addObject("Lease","尚未租过车位");
 		}

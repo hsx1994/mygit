@@ -61,11 +61,10 @@ public class OrderDaoImpl implements IOrderDao {
 	 * 通过订单id查找订单
 	 */
 	@Override
-	public OrderBean findByOrderId(int parkingId) {
+	public OrderBean findByOrderId(int orderId) {
 		OrderBean order = null;
 		SqlSession session = fa.openSession(true);
-		order = session.selectOne("orderMapper.findByOrderId", parkingId);
-		session.close();
+		order = session.selectOne("orderMapper.findByOrderId", orderId);
 		return order;
 	}
 }

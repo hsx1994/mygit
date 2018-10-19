@@ -7,4 +7,8 @@ public interface IOrderService {
 	public boolean privateOrder(OrderBean order);
 	
 	public boolean companyOrder();
+	
+	public OrderBean findOrderById(int id);
+	
+	public boolean changeOrderState(OrderBean order);
 }

@@ -19,7 +19,7 @@ public class CompanyOrderController {
 	private ICompanyOrderService service;
 
 	// 前台企业查看自己订单
-	@RequestMapping("/selectcompanyorder.do")
+	@RequestMapping("selectcompanyorder.do")
 	public ModelAndView SelectCompanyOrder(Integer id,Integer page) {
 		ModelAndView mav = new ModelAndView();
 
@@ -27,7 +27,8 @@ public class CompanyOrderController {
 		List<CompanyOrderBean> order = service.selectCompanyOrder(id);
 		PageInfo<CompanyOrderBean> pageInfo = new PageInfo<CompanyOrderBean>(order);
 		
-		mav.addObject("order",pageInfo);
+		mav.addObject("pageinfo",pageInfo);
+		mav.addObject("list",order);
 		mav.setViewName("");
 		return mav;
 	}

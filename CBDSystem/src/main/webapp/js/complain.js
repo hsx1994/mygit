@@ -1,4 +1,4 @@
-//显示所有待受理的投诉信息
+/*//显示所有待受理的投诉信息
 function showComplain(pages){
 	$.ajax({
 		url:"/CBDSystem/showComplain.do",
@@ -8,11 +8,11 @@ function showComplain(pages){
 		},
 		dataType:"html",
 		success:function(data){
-		/*window.parent.mainFrame.location.href=data;*/
+		window.parent.mainFrame.location.href=data;
 			$("#aaa").html(data)
 		}
 	});
-}
+}*/
 
 //显示指定待处理投诉的详细详细
 function showDetailsComplain(id){

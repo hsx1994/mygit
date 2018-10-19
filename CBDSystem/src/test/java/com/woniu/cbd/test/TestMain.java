@@ -6,37 +6,18 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import org.springframework.web.servlet.ModelAndView;
-
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-
-
-
 import com.woniu.cbd.bean.CompanyBargainBean;
 import com.woniu.cbd.bean.CompanyInfoBean;
-import com.woniu.cbd.bean.CompanyOrderBean;
-import com.woniu.cbd.bean.ComplainBean;
-import com.woniu.cbd.bean.OrderBean;
-import com.woniu.cbd.bean.ParkingBean;
-import com.woniu.cbd.bean.UserBean;
-import com.woniu.cbd.controller.ComplainController;
 import com.woniu.cbd.dao.ICompanyInfoDao;
-import com.woniu.cbd.dao.ICompanyOrderDao;
 import com.woniu.cbd.dao.IComplainDao;
-import com.woniu.cbd.dao.IParkingDao;
-import com.woniu.cbd.dao.IUserDao;
+import com.woniu.cbd.dao.IOtherParkingDao;
 import com.woniu.cbd.dao.impl.CompanyInfoDaoImpl;
 import com.woniu.cbd.dao.impl.ComplainDaoImpl;
-import com.woniu.cbd.bean.BargainBean;
-import com.woniu.cbd.service.IBargainService;
-import com.woniu.cbd.service.IParkingService;
-import com.woniu.cbd.service.impl.BargainServiceImpl;
 import com.woniu.cbd.service.ICompanyBargainService;
 import com.woniu.cbd.service.impl.CompanyBargainServiceImpl;
 
-
 public class TestMain {
+
 	
 	/**
 	 * 后台分页插件，分页测试
@@ -73,6 +54,13 @@ public class TestMain {
 		System.out.println(dao.findComplainById(9));
 	}
 	
+
+
+	@Test
+	public void test3() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		IOtherParkingDao dao = (IOtherParkingDao) context.getBean("otherParkingDaoImpl");
+	}
 
 }
 
