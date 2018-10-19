@@ -10,7 +10,7 @@
 	<select id="findAllCompany"  resultMap="map">
 		select * from t_company_info where c_delete=0
 	</select>
-	
+	<!-- 根据id查询企业 -->
 	<select id="findById" parameterType="int" resultMap="map">
 		select * from t_company_info where c_id=#{id}
 	</select>
@@ -21,11 +21,16 @@
 		 AND CONCAT(c_name,c_tel,c_address,c_contact) like "%" #{condition} "%"
 		 AND c_delete=0
 	</select>
-	
+	<!-- 根据企业名称精确查询企业信息 -->
 	<select id="findByCompanyName" parameterType="String" resultMap="map">
 		select * from t_company_info where c_name=#{comName}
 	</select>
 	
+	<!-- 新增企业 -->
+	<insert id="addCompany">
+		insert into t_company_info(c_name,c_address,c_contact,c_tel,c_email,c_l_id) 
+		values(#{comName},#{address},#{contact},#{tel},#{email},#{comLogin.id})
+	</insert>
 	<resultMap type="CompanyInfoBean" id="map">
 		<id property="id" column="c_id"/>
 		<result property="comName" column="c_name"/>
@@ -33,7 +38,10 @@
 		<result property="contact" column="c_contact"/>
 		<result property="tel" column="c_tel"/>
 		<result property="email" column="c_email"/>
+		<!-- <association property="comLogin" javaType="LoginBean" select=""></association> -->
 		<collection property="comOrder" ofType="CompanyOrderBean" select="companyOrderMapper.selectCompanyOrder" column="c_id"></collection>
 		<collection property="comBargain" ofType="CompanyBargainBean" select="companyBargainMapper.companyBargainById" column="c_id"></collection>
 	</resultMap>
+	
+	
 </mapper>

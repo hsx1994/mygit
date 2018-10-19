@@ -42,5 +42,18 @@ public class CompanyInfoDaoImpl implements ICompanyInfoDao {
 		CompanyInfoBean bean = session.selectOne("companyInfoMapper.findByCompanyName",comName);
 		return bean;
 	}
+
+
+	@Override
+	public int addCompany(CompanyInfoBean bean) {
+		SqlSession session = fa.openSession();
+		
+		int row = session.insert("companyInfoMapper.addCompany",bean);
+		session.commit();
+		session.close();
+		
+		return row;
+		
+	}
 	
 }

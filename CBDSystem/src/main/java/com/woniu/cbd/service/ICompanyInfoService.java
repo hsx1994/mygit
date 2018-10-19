@@ -26,6 +26,11 @@ public interface ICompanyInfoService {
 	 */
 	public CompanyInfoBean findByCompanyName(String comName);
 		
-		
+	/**
+	 * 用于普通管理员新增企业的业务
+	 * @param bean
+	 * @return
+	 */
+	public String addCompanyInfo(CompanyInfoBean bean);
 
 }

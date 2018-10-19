@@ -34,6 +34,14 @@
         .main-for input.text-but{ width:100px; height:40px; line-height:30px; border: 1px solid #cdcdcd; background:#e6e6e6; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; color:#969696; float:left; margin:0 10px 0 0; display:inline; cursor:pointer; font-size:14px; font-weight:bold;}
         #addinfo a{ font-size:14px; font-weight:bold; background: no-repeat 0 1px; padding:0px 0 0px 20px; line-height:45px;}
         #addinfo a:hover{ background: no-repeat 0 1px;}
+        input::-webkit-input-placeholder {
+         /* placeholder颜色  */
+         color: #aab2bd;
+         /* placeholder字体大小  */
+         font-size: 12px;
+         /* placeholder位置  */
+	       text-align: left;
+     }
     </style>
 </head>
 <body>
@@ -49,54 +57,54 @@
     </tr>
     <tr>
         <td align="left" valign="top">
-            <form method="post" action="">
+            <form method="post" action="/CBDSystem/addCompany.do">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">企业登录名：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word">
+                            <input type="text" name="name" value="" class="text-word" placeholder="6~18位包含数字、大小写字母和汉字的任意组合(必填)">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">登 录 密 码：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="password" name="" value="" class="text-word">
+                            <input type="password" name="password" value="" class="text-word" placeholder="8~15位数字（必填）">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">确 认 密 码：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="password" name="" value="" class="text-word">
+                            <input type="password" name="repwd" value="" class="text-word" placeholder="再次输入密码">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                     <td align="right" valign="middle" class="borderright borderbottom bggray">企 业 名 称：</td>
                     <td align="left" valign="middle" class="borderright borderbottom main-for">
-                        <input type="text" name="" value="" class="text-word" id="company_name">
+                        <input type="text" name="comName" value="" class="text-word" id="company_name" placeholder="必填">
                     </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">企 业 地 址：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word" id="company_address">
+                            <input type="text" name="address" value="" class="text-word" id="company_address" placeholder="必填">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">企业联系人：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word" id="contact_name">
+                            <input type="text" name="contact" value="" class="text-word" id="contact_name" placeholder="必填">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">联系人电话：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word" id="contact_tel">
+                            <input type="text" name="tel" value="" class="text-word" id="contact_tel" placeholder="必填">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">联系人邮箱：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word" id="contact_mail">
+                            <input type="text" name="email" value="" class="text-word" id="contact_mail" placeholder="必填">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
