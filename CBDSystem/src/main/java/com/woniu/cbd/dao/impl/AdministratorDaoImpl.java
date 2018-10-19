@@ -91,10 +91,9 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 	public List<AdministratorBean> administratorSelectAll() {
 	
 		// 获取session
-		SqlSession session = fa.openSession(true);
+		SqlSession session = fa.openSession(true);		
 		// 执行sql，获取结果集
 		List<AdministratorBean> list = session.selectList("AdministratorMapper.administratorSelectAll");
-		
 		// 关闭session
 		session.close();
 		return list;

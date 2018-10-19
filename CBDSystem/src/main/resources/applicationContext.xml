@@ -18,6 +18,12 @@
    	    <context:component-scan base-package="com.woniu.cbd.service"/>
 	    <context:component-scan base-package="com.woniu.cbd.dao"/>
 	    
+	    <!-- 引入shiro配置文件-->
+		<import resource="classpath:spring-shiro.xml"></import>
+		
+		<!-- 引入shiro-ehcache配置文件-->
+	<!-- <import resource="classpath:shiro-ehcache.xml"></import> -->
+	    
 		<!-- ======================；连接数据库的配置=============== -->
     	<!--配置数据源-->
 	    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
