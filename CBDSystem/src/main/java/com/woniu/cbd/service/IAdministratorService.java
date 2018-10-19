@@ -13,13 +13,6 @@ import com.woniu.cbd.bean.AdministratorBean;
 public interface IAdministratorService {
 
 	/**
-	 * 功能：添加功能
-	 * 
-	 * @return 返回添加信息是否成功结果
-	 */
-	public String administratorRegister(AdministratorBean ab);
-
-	/**
 	 * 功能：从数据库删除一个普通管理员账户的所有信息
 	 * 
 	 * @return 删除结果
@@ -40,5 +33,17 @@ public interface IAdministratorService {
 	 * @return 所有管理員的信息
 	 */
 	public List<AdministratorBean> showAdministrator();
-
+	
+	/**
+	 * 根据ID查询单个管理员详细信息
+	 * @param id
+	 * @return
+	 */
+	public AdministratorBean showOneAdministrator(Integer id);
+	/**
+	 * 添加普通管理员
+	 * @param admin
+	 * @return
+	 */
+	public String addAdmin(AdministratorBean admin);
 }

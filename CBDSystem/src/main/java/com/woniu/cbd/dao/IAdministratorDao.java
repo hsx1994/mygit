@@ -14,15 +14,6 @@ import com.woniu.cbd.bean.LoginBean;
 public interface IAdministratorDao {
 
 	/**
-	 * 作用：对后台管理员的添加
-	 * 
-	 * @param ab
-	 *            普通管理员的实体bean
-	 * @return boolean 是否添加成功
-	 */
-	public boolean administratorAdd(AdministratorBean ab);
-
-	/**
 	 * 作用：对后台管理员的删除
 	 * 
 	 * @param id
@@ -54,4 +45,17 @@ public interface IAdministratorDao {
 	 * @return 返回一个包含AdministratorBean的List集合
 	 */
 	public List<AdministratorBean> administratorSelectAll();
+	
+	/**
+	 * 根据ID查询单个管理员信息
+	 * @param id
+	 * @return
+	 */
+	public AdministratorBean findOneAdministrator(Integer id);
+	/**
+	 * 添加管理员
+	 * @param admin
+	 * @return
+	 */
+	public int addAdmin(AdministratorBean admin);
 }

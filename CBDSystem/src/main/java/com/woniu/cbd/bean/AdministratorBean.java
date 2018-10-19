@@ -36,6 +36,9 @@ public class AdministratorBean implements Serializable {
 	public void setLimit(List<PermissionBean> limit) {
 		this.limit = limit;
 	}
+	public List<PermissionBean> getLimit() {
+		return limit;
+	}
 
 	public String getRealName() {
 		return realName;
