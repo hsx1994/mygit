@@ -19,6 +19,7 @@ import com.woniu.cbd.bean.CompanyBargainBean;
 import com.woniu.cbd.bean.CompanyInfoBean;
 import com.woniu.cbd.service.ICompanyBargainService;
 import com.woniu.cbd.service.ICompanyInfoService;
+import com.woniu.cbd.service.ICompanyOrderService;
 
 @Controller
 public class CompanyBargainController {
@@ -26,9 +27,12 @@ public class CompanyBargainController {
 	private ICompanyBargainService service;
 	@Autowired
 	private ICompanyInfoService cis;
-	
+	@Autowired
+	private ICompanyOrderService orderService;
+
 	@RequestMapping("/companyBargainAdd.do")
-	public @ResponseBody String companyBargainAdd(CompanyBargainBean bean) {
+	public @ResponseBody String companyBargainAdd(CompanyBargainBean bean,String[] parkingNumber,String[] address) {
+
 		CompanyInfoBean company = cis.findByCompanyName(bean.getCompany().getComName());
 		if(company == null){
 			return "该企业用户不存在";
@@ -38,11 +42,12 @@ public class CompanyBargainController {
 		boolean re = service.companyBargainAdd(bean);
 		if (re) {
 			result = "添加成功";
+			orderService.addCompanyOrder(bean,parkingNumber);
 		}
 		return result;
 	}
 
-	@RequestMapping("/companyBargainDelete.do")
+	@RequestMapping("companyBargainDelete.do")
 	public @ResponseBody String companyBargainDelete(Integer id) {
 		String result = "删除失败";
 		boolean re = service.companyBargainDelete(id);
@@ -52,7 +57,7 @@ public class CompanyBargainController {
 		return result;
 	}
 
-	@RequestMapping("/companyBargainUpdate.do")
+	@RequestMapping("companyBargainUpdate.do")
 	public @ResponseBody String companyBargainUpdate(CompanyBargainBean bean) {
 		String result = "更改失败";
 		boolean re = service.companyBargainUpdate(bean);
@@ -62,7 +67,7 @@ public class CompanyBargainController {
 		return result;
 	}
     //企业查看合约
-	@RequestMapping("/companyBargainSelect.do")
+	@RequestMapping("companyBargainSelect.do")
 	public ModelAndView companyBargainSelect(CompanyBargainBean bean,Integer page) {
 		ModelAndView mav = new ModelAndView();
 
@@ -71,16 +76,17 @@ public class CompanyBargainController {
 		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(bargain);
 		
 		if(bargain != null){
-			mav.addObject("companBargain", pageInfo);
+			mav.addObject("pageinfo", pageInfo);
+			mav.addObject("list",bargain);
 		} else {
 			mav.addObject("companBargain","尚未签订合约");
 		}
-		mav.setViewName("");
+		mav.setViewName("views/tenant_contract_info.jsp");
 
 		return mav;
 	}
 
-	@RequestMapping("/allCompanyBargainSelect.do")
+	@RequestMapping("allCompanyBargainSelect.do")
 	public ModelAndView allCompanyBargainSelect(Integer page) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -90,15 +96,16 @@ public class CompanyBargainController {
 		
 		if(bargain != null){
 			mav.addObject("allCompanyBargain", pageInfo);
+			mav.addObject("list",bargain);
 		} else {
 			mav.addObject("allCompanyBargain","尚未签订合约");
 		}
-		mav.setViewName("");
+		mav.setViewName("views/tenant_history_contract.jsp");
 
 		return mav;
 	}
 
-	@RequestMapping("/findUseingCompanyBargain.do")
+	@RequestMapping("findUseingCompanyBargain.do")
 	public ModelAndView findUseingCompanyBargain(Integer page) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -107,16 +114,16 @@ public class CompanyBargainController {
 		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(bargain);
 		
 		if(bargain != null){
-			mav.addObject("useingCompanyBargain", pageInfo);
+			mav.addObject("pageinfo", pageInfo);
+			mav.addObject("list",bargain);
 		} else {
 			mav.addObject("useingCompanyBargain","尚未签订合约");
 		}
-		mav.setViewName("");
-
+		mav.setViewName("views/tenant_contract_info.jsp");
 		return mav;
 	}
 
-	@RequestMapping("/findUnseingCompanyBargain.do")
+	@RequestMapping("findUnseingCompanyBargain.do")
 	public ModelAndView findUnseingCompanyBargain(Integer page) {
 		ModelAndView mav = new ModelAndView();
 
@@ -125,11 +132,12 @@ public class CompanyBargainController {
 		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(bargain);
 		
 		if(bargain != null){
-			mav.addObject("unuseingCompanyBargain", pageInfo);
+			mav.addObject("pageinfo", pageInfo);
+			mav.addObject("list",bargain);
 		} else {
 			mav.addObject("unuseingCompanyBargain","没有已废弃合约");
 		}
-		mav.setViewName("");
+		mav.setViewName("views/tenant_history_contract.jsp");
 
 		return mav;
 	}

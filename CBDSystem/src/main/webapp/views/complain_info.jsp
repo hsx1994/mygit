@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script type="text/javascript" src="../js/complain.js"></script>
+<script type="text/javascript" src="../js/pageinfo.js"></script>
 <div id="aaa">
 <html>
 <head>
@@ -61,8 +61,8 @@
                     <th align="center" valign="middle" class="borderright">被投诉方</th>
                     <th align="center" valign="middle" class="borderright">投诉时间</th>
                     <th align="center" valign="middle">操作</th>
-                </tr>
-               
+                </tr> 
+                    
 				<c:forEach begin="0" step="1" items="${list}" var="obj">
 					<tr class="bggray" onMouseOut="this.style.backgroundColor='#f9f9f9'" onMouseOver="this.style.backgroundColor='#edf5ff'">
 						<td align="center" valign="middle" class="borderright borderbottom">${obj.user.realName }</td>
@@ -72,19 +72,21 @@
                 	</tr>
 				</c:forEach>
 
-            </table></td>
+            </table>
+            </td>
     </tr>
     <tr>
         <td align="left" valign="top" class="fenye">
-	        <a href="/CBDSystem/showComplain.do?page=${pageinfo.firstPage}" target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
+
+	        <a href="#" onclick="showComplain(${pageinfo.firstPage})"  target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
 	        <c:if test="${pageinfo.hasPreviousPage}">
-	        <a href="/CBDSystem/showComplain.do?page=${pageinfo.prePage}" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
+	        <a href="#"onclick="showComplain(${pageinfo.prePage})" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
 	        </c:if>
 	        ${pageinfo.pageNum}/${pageinfo.pages} 页&nbsp;&nbsp;
 	        <c:if test="${pageinfo.hasNextPage}">
-	        <a href="/CBDSystem/showComplain.do?page=${pageinfo.nextPage}" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
+	        <a href="#"onclick="showComplain(${pageinfo.nextPage})" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
 	        </c:if>
-	        <a href="/CBDSystem/showComplain.do?page=${pageinfo.lastPage}" target="mainFrame" onFocus="this.blur()">尾页</a>
+	        <a href="#" onclick="showComplain(${pageinfo.lastPage})" target="mainFrame" onFocus="this.blur()">尾页</a>
 	    </td>
     </tr>
     

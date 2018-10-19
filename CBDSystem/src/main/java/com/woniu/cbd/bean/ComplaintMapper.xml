@@ -41,7 +41,7 @@
 		select count(*) from t_complaint where com_state=0
 	</select>
 	<!-- 更新投诉信息状态 -->
-	<select id="updateComplainState" >
+	<update id="updateComplainState" >
 		update t_complaint set com_state=#{state} where com_id=#{id}
-	</select>
+	</update>
 </mapper>

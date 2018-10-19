@@ -14,8 +14,8 @@
         #search form span{height:40px; line-height:40px; padding:0 0px 0 10px; float:left;}
         #search form input.text-word{height:24px; line-height:24px; width:180px; margin:8px 0 6px 0; padding:0 0px 0 10px; float:left; border:1px solid #FFF;}
         #search form input.text-but{height:24px; line-height:24px; width:55px; background:url(../images/main/list_input.jpg) no-repeat left top; border:none; cursor:pointer; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; color:#666; float:left; margin:8px 0 0 6px; display:inline;}
-        #search a.add{ background:url(../images/main/add.jpg) no-repeat 0px 6px; padding:0 10px 0 26px; height:40px; line-height:40px; font-size:14px; font-weight:bold; color:#FFF}
-        #search a:hover.add{ text-decoration:underline; color:#d2e9ff;}
+        a.add{ background:url(../images/main/addinfoblue.jpg) no-repeat 0px 0px; padding:0 10px 0 26px; height:40px; line-height:40px; font-size:14px; font-weight:bold;}
+        a:hover.add{ text-decoration:underline; color:black;}
         #main-tab{ border:1px solid #eaeaea; background:#FFF; font-size:12px;}
         #main-tab th{ font-size:12px; background:url(../images/main/list_bg.jpg) repeat-x; height:32px; line-height:32px;}
         #main-tab td{ font-size:12px; line-height:40px;}
@@ -35,6 +35,7 @@
         #addinfo a{ font-size:14px; font-weight:bold; background: no-repeat 0 1px; padding:0px 0 0px 20px; line-height:45px;}
         #addinfo a:hover{ background: no-repeat 0 1px;}
     </style>
+    <script type="text/javascript" src="../js/jQuery-2.2.2.js"></script>
 </head>
 <body>
 <!--main_top-->
@@ -93,18 +94,22 @@
                             <input type="text" name="img" value="${bean.img }" class="text-word" id="4">
                         </td>
                     </tr>
-                    <%--  <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+                 </table>
+                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="parking">
+                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">车&nbsp; 位&nbsp; 编&nbsp; 号：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
                             <input type="text" name="parkingNumber" value="${parkingNumber }" class="text-word" id="5">
                         </td>
-                    </tr>
-                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">车&nbsp; 位&nbsp; 地&nbsp; 址：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
                             <input type="text" name="address" value="${address }" class="text-word" id="6">
                         </td>
-                    </tr> --%>
+                        <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;">
+                        	<a href="javascript:addParking()" target="mainFrame" onFocus="this.blur()" class="add">新增车位</a></td>
+                    </tr>
+                </table>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" >
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">&nbsp;</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
@@ -112,9 +117,18 @@
                             <input name="" type="button" value="返回" class="text-but" onclick="javascript:history.go(-1);"></td>
                     </tr>
                 </table>
-            </form>
+             </form>
         </td>
     </tr>
 </table>
 </body>
+
+<script type="text/javascript">
+	var line = $("#parking").html();
+	function addParking(){
+		var context = $("#parking").html();
+		context += line;
+		$("#parking").html(context);
+	}
+</script>
 </html>

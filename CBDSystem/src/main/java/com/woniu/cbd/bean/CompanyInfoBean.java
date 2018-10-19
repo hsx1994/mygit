@@ -11,8 +11,10 @@ import java.util.List;
  */
 public class CompanyInfoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	//企业用户ID
+	//企业ID
 	private int id;
+	//企业用户loginbean对象
+	private LoginBean comLogin;
 	//企业名称
 	private String comName;
 	//企业地址(楼层)

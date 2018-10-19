@@ -53,9 +53,8 @@ body{overflow-x:hidden; background:url(../images/main/leftbg.jpg) left top repea
       </div>
       <div class="collapsed">
         <span>投诉管理</span>
-        <a href="complain_info.jsp" target="mainFrame" onFocus="this.blur()">投诉事件</a>
+         <a  href="complain_info.jsp"  target="mainFrame" onFocus="this.blur()" >投诉事件</a>
       </div>
     </div>
-    
 </body>
 </html>

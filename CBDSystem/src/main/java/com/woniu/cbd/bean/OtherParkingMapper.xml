@@ -78,4 +78,13 @@
 	<select id="findParkingById" parameterType="int" resultMap="map">
 	    select * from t_other_parking where ot_id=#{id} and ot_delete=0
 	</select>
+	
+	<!-- 通过车位编号查询第三方车位信息 -->
+	<select id="findByParkingNumber" parameterType="java.util.List" resultMap="map">
+		select ot_id from t_other_parking where ot_parking_number in 
+		<foreach collection="array" item="parkingNumber" open="(" separator=","
+			close=")">
+			#{parkingNumber}
+		</foreach>
+	</select>
 </mapper>
