@@ -1,5 +1,8 @@
 package com.woniu.cbd.dao;
 
+
+import java.util.Set;
+
 import com.woniu.cbd.bean.LoginBean;
 
 public interface ILoginDao {
@@ -15,4 +18,9 @@ public interface ILoginDao {
 	 * 检测用户名是否存在
 	 */
 	public LoginBean findByLoginName(LoginBean login);
+
+	public LoginBean getLoginUserByName(String name);
+
+	public Set<String> getPermissions(String userName);
+
 }
