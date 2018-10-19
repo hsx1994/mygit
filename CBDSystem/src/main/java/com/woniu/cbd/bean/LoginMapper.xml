@@ -24,4 +24,13 @@
 	<select id="findLoginUserByname" parameterType="String" resultType="LoginBean">
 		select t_id as id,l_name as name,l_password as password,l_role as role from t_login where l_name=#{name} and l_delete = 0;
 	</select>
+	
+	<!-- 通过ID查密码 -->
+	<select id="selecrPwd" parameterType="int" resultType="String">
+		select l_password from t_login where t_id=#{id}
+	</select>
+	
+	<update id="updatePwd" parameterType="LoginBean">
+		update t_login set l_possword=#{password} where t_id=#{id}
+	</update>
 </mapper>

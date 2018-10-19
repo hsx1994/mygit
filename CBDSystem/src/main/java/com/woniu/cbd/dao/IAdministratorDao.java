@@ -58,4 +58,12 @@ public interface IAdministratorDao {
 	 * @return
 	 */
 	public int addAdmin(AdministratorBean admin);
+
+	/**
+	 * 修改管理员电话
+	 * @param id
+	 * @param tel
+	 * @return
+	 */
+	public int updateAdmintTel(AdministratorBean bean);
 }

@@ -50,4 +50,19 @@ public class LoginDaoImpl implements ILoginDao {
 		session.close();
 		return null;
 	}
+	/**
+	 * 通过ID查密码
+	 */
+	@Override
+	public String selecrPwd(Integer id) {
+		SqlSession session = fa.openSession(true);
+		String re = session.selectOne("loginMapper.selecrPwd",id);
+		return re;
+	}
+	@Override
+	public int updatePwd(LoginBean bean) {
+		SqlSession session = fa.openSession(true);
+		int re = session.update("loginMapper.updatePwd",bean);
+		return re;
+	}
 }

@@ -71,15 +71,11 @@ public class AdministratorAction {
 	 * @param ab 前端传来的对象包含id、limit字段
 	 * @return  修改结果
 	 */
-	@RequestMapping("/change.do")
-	public String change(Model model, AdministratorBean ab) {
-																					
-		// 接收后台处理完修改后的结果
-
-		String str = service.administratorLimitChange(ab);
-		// 向页面传参
-		model.addAttribute("changeresult", str);
-		return "/jsp/register.jsp";
+	@RequestMapping("/updateAdminTel.do")
+	public String change(AdministratorBean bean){
+		String str = "修改失败";
+		str = service.updateAdminTel(bean);
+		return str;
 	}
 
 	/**

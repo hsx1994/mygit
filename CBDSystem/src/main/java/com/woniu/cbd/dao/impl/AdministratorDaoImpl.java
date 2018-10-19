@@ -98,4 +98,10 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 		return re;
 	}
 
+	@Override
+	public int updateAdmintTel(AdministratorBean bean) {
+		SqlSession session = fa.openSession(true);
+		int re = session.update("AdministratorMapper.updateAdmintTel",bean);
+		return re;
+	}
 }

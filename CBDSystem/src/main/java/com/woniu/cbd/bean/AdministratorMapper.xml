@@ -57,4 +57,8 @@
 		<result property="tel" column="a_tel"/>
 	</resultMap>
 
+	<!-- 修改管理员电话 -->
+	<update id="updateAdmintTel" parameterType="AdministratorBean">
+		update t_administrator set a_tel=#{tel} where a_id=#{id}
+	</update>
 </mapper>

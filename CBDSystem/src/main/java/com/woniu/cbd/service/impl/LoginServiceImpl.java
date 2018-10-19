@@ -4,6 +4,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.woniu.cbd.bean.LoginBean;
 import com.woniu.cbd.dao.ILoginDao;
 import com.woniu.cbd.service.ILoginService;
@@ -42,6 +43,21 @@ public class LoginServiceImpl implements ILoginService{
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public String selectPwd(Integer id) {
+		String re = loginDao.selecrPwd(id);
+		return re;
+	}
+
+	@Override
+	public boolean updatePwd(LoginBean bean) {
+		int re = loginDao.updatePwd(bean);
+		if(re > 0){
+			return true;
+		}
+		return false;
 	}
 
 }

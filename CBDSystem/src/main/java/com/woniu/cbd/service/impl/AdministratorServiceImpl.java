@@ -69,4 +69,14 @@ public class AdministratorServiceImpl implements IAdministratorService {
 		return result;
 	}
 
+	@Override
+	public String updateAdminTel(AdministratorBean bean) {
+		String result = "修改失败";
+		int re = idao.updateAdmintTel(bean);
+		if(re > 0){
+			result = "修改成功";
+		}
+		return result;
+	}
+
 }

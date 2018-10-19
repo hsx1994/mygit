@@ -46,4 +46,12 @@ public interface IAdministratorService {
 	 * @return
 	 */
 	public String addAdmin(AdministratorBean admin);
+	
+	/**
+	 * 修改管理员电话
+	 * @param id
+	 * @param tel
+	 * @return
+	 */
+	public String updateAdminTel(AdministratorBean bean);
 }
