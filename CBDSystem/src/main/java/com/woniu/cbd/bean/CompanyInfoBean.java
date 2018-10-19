@@ -13,10 +13,6 @@ public class CompanyInfoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//企业用户ID
 	private int id;
-	//企业用户用户名
-	private String name;
-	//企业用户密码
-	private String pass;
 	//企业名称
 	private String comName;
 	//企业地址(楼层)
@@ -44,18 +40,6 @@ public class CompanyInfoBean implements Serializable {
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getPass() {
-		return pass;
-	}
-	public void setPass(String pass) {
-		this.pass = pass;
 	}
 	public String getComName() {
 		return comName;

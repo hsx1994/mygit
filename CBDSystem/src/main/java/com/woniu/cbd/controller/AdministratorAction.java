@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.AdministratorBean;
 import com.woniu.cbd.service.IAdministratorService;
 
@@ -23,7 +25,7 @@ public class AdministratorAction {
 	// 自动注入业务层的实现类
 	@Autowired
 	private IAdministratorService service;
-
+	
 	/**
 	 * 描述:完成添加业务
 	 * 
@@ -77,13 +79,17 @@ public class AdministratorAction {
 
 	
 	@RequestMapping("/findAll.do")
-	public String show(Model model) {
+	public String show(Model model,Integer page) {
+		
+		PageHelper.startPage(page,10,true);
 		// 存储查询结果
 		List<AdministratorBean> list = null;
 		// 接收后台的结果
 		list = service.showAdministrator();
+
 		// 向页面传送查询所有车位的结果
 		model.addAttribute("ablist", list);
+
 		return "/jsp/register.jsp";
 	}
 

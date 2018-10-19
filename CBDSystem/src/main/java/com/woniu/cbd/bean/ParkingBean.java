@@ -9,7 +9,7 @@ import java.util.List;
  * @author hsx
  *
  */
-public class ParkingBean implements Serializable {
+public class  ParkingBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//个人出租车位ID
 	private int id;

@@ -65,13 +65,6 @@
 					<!-- ***************************************** 车位展示部分 *****************************************************-->
 					<div class=parkingmain>
 						<c:forEach items="${all}" var="parking" >
-						<% 
-						int m=1;
-						m++;
-						if(m>6){
-						m=1;
-						}
-						 %>
 							<!--隐藏车位id  -->
 							<%-- <input id="${parking.id}" class="hidden" type="text" value="${parking.id}"> --%>
 						
@@ -91,16 +84,16 @@
 					</div>
 					<!-- ***************************************** 分页部分 *****************************************************-->
 					<div class="page">
-						<div id="" class="content-bottom-paging">末页</div>
-						<div id="" class="content-bottom-paging">下一页</div>
-						<div id="page" class="content-bottom-paging">1/1</div>
-						<div id="" class="content-bottom-paging">上一页</div>
-						<div id="" class="content-bottom-paging">首页</div>
+						<div id="" class="content-bottom-paging"><a href="/CBDSystem/showall.do?page=${paging.lastPage}">末页</a></div>
+						<div id="" class="content-bottom-paging"><a href="/CBDSystem/showall.do?page=${paging.nextPage}">下一页</a></div>
+						<div id="page" class="content-bottom-paging"><span id=currentPage>${paging.pageNum}</span>/<span id="tolPage">${paging.pages}</span></div>
+						<div id="" class="content-bottom-paging"><a href="/CBDSystem/showall.do?page=${paging.prePage}">上一页</a></div>
+						<div id="" class="content-bottom-paging"><a href="/CBDSystem/showall.do?page=1">首页</a></div>
 					</div>
 
 				</div>
 
-
+				<!-- *******************************底部导航************************************************************************ -->
 				<div class="clear"></div>
 				<!-- </div> -->
 			</div>

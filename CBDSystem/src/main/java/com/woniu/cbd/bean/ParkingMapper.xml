@@ -50,13 +50,6 @@
 		select * from t_parking where p_id=#{parkingId} and p_delete=0
 	</select>
 
-	<!--查看包租婆的租赁历史记录 通过车位表查询到包租婆所属车位的id -->
-	<select id="showmelog" parameterType="int" resultMap="apply">
-		select *
-		from
-		t_parking where p_u_id=#{id} and p_delete=0
-	</select>
-
 	<!-- 查询正在申请状态的个人出租车位，仅后台管理员可见 -->
 	<select id="applyParkingSelect" resultMap="apply">
 		select * from t_parking where p_state=0 and p_delete=0
