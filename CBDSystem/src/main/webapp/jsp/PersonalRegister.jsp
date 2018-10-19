@@ -33,30 +33,32 @@
 					</ul>
 				</div>
 				<div class="reg-box" id="verifyCheck" style="margin-top:20px;">
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				填写用户角色 ：<select id="role" name="role">
-								<option></option>
-								<option value="rent">包租用户</option>
-								<option value="row">抢租用户</option>
-							</select>
+				
+				
 							
 				
 					<div class="part1">
+					<span class="intelligent-label f-fl"><b class="ftx04">*</b></span>填写用户角色 ：<select id="role" name="role">
+								<option></option>
+								<option value="包租用户">包租用户</option>
+								<option value="抢租用户">抢租用户</option>
+							</select>
+							
+							<br>
 						<div class="item col-xs-12">
 							<span class="intelligent-label f-fl"><b class="ftx04">*</b>用户名：</span>
 							<div class="f-fl item-ifo">
 								<input type="text" maxlength="20" class="txt03 f-r3 required"
 									tabindex="1" data-valid="isNonEmpty||between:3-20||isUname"
-									data-error="用户名不能为空||用户名长度3-20位||只能输入中文、字母、数字、下划线，且以中文或字母开头"
-									id="name" name="name" /> <span
-									class="ie8 icon-close close hide"></span> <label
-									class="icon-sucessfill blank hide"></label> <label
-									class="focus"><span>3-20位，中文、字母、数字、下划线的组合，以中文或字母开头</span></label>
+									data-error="用户名不能为空||用户名长度3-20位||只能输入中文、字母、数字、下划线，且以中文或字母开头" 
+									id="name" name="name" />
+									<span class="ie8 icon-close close hide"></span> 
+									<label class="icon-sucessfill blank hide"></label> 
+									<label class="focus"><span>3-20位，中文、字母、数字、下划线的组合，以中文或字母开头</span></label>
 								<label class="focus valid"></label>
 							</div>
 						</div>
-
+						
 						<div class="item col-xs-12">
 							<span class="intelligent-label f-fl"><b class="ftx04">*</b>密码：</span>
 							<div class="f-fl item-ifo">
@@ -286,7 +288,7 @@ function send(){
 				type:"post",
 				data:
 				{
-				 role:$("#role option:selected").val(),
+				 role:$("#role").val(),
 				 name:$("#name").val(),
 				 password:$("#password").val(),
 			     realName:$("#realName").val(),

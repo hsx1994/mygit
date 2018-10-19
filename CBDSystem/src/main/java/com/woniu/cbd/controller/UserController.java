@@ -95,27 +95,30 @@ public class UserController {
 		}
 		//注册测试
 		@RequestMapping("/regist.do")
-		public @ResponseBody String Regist(HttpServletRequest request,String name,String password,UserBean bean,String code){
+		public @ResponseBody String Regist(HttpServletRequest request,String role,String name,String password,UserBean bean,String code){
 			HttpSession session = request.getSession();
 			//密码加密
 			String pass=MD5_Encoding.upperMD5(password);
 			
 			//获取session给中的验证码
 			String num = (String) session.getAttribute("code");
+			LoginBean beans = new LoginBean();
+			beans.setName(name);
+			beans.setPassword(pass);
+			beans.setRole(role);
 			
 			System.out.println(num);
 			System.out.println(code);
-			System.out.println(user);
+			System.out.println(beans);
+			System.out.println(role);
 			System.out.println(bean.getAddress());
 			
 			//验证验证码
 			if (code.equals(num)) {
 				System.out.println("验证码验证成功");
-//					user.addUser(beans);
+					user.addUser(beans);
 					user.addUserInfor(bean);
 					return "注册成功";
-				
-				
 			} else {
 				System.out.println("验证码验证失败");
 				return "注册失败";

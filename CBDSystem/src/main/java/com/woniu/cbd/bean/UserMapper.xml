@@ -26,7 +26,7 @@
 		) values(#{address},#{email},#{idcard},#{job},#{realName},#{tel});
 	</insert>
 	
-	<insert id="addUser" parameterType="LoginBean">
+	<insert id="addUser" parameterType="LoginBean" useGeneratedKeys="true" keyProperty="id">
 		insert into t_login(l_name,l_password,l_role)values(#{name},#{password},#{role});
 	</insert>
 </mapper>
