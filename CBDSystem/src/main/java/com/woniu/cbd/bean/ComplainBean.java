@@ -2,7 +2,9 @@ package com.woniu.cbd.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(value = {"handler"})
 public class ComplainBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	//个人用户投诉ID
@@ -63,10 +65,6 @@ public class ComplainBean implements Serializable{
 	public void setTime(Date time) {
 		this.time = time;
 	}
-	@Override
-	public String toString() {
-		return "ComplainBean [id=" + id + ", user=" + user + ", order=" + order + ", buser=" + buser + ", content="
-				+ content + ", state=" + state + ", time=" + time + "]";
-	}	
+
 	
 }
