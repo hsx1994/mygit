@@ -1,0 +1,126 @@
+//显示所有待受理的投诉信息
+function showComplain(pages){
+	$.ajax({
+		url:"/CBDSystem/showComplain.do",
+		type:"post",
+		data:{
+			"page":pages
+		},
+		dataType:"html",
+		success:function(data){
+			$("#aaa").html(data)
+		}
+	});
+}
+//显示所有管理员信息
+function showAdmin(pages){
+	$.ajax({
+		url:"/CBDSystem/findAll.do",
+		type:"post",
+		data:{
+			"page":pages
+		},
+		dataType:"html",
+		success:function(data){
+			$("#aaa").html(data)
+		}
+	});
+}
+//显示所有第三方车位信息
+function showPort(pages){
+	$.ajax({
+		url:"/CBDSystem/allOtherParkingSelect.do",
+		type:"post",
+		data:{
+			"page":pages
+		},
+		dataType:"html",
+		success:function(data){
+			$("#aaa").html(data)
+		}
+	});
+}
+//显示所有企业用户信息
+function showCompany(pages){
+	$.ajax({
+		url:"/CBDSystem/showAllCompany.do",
+		type:"post",
+		data:{
+			"page":pages
+		},
+		dataType:"html",
+		success:function(data){
+			$("#aaa").html(data)
+		}
+	});
+}
+//显示所有待审车位信息
+function showApply(pages){
+	$.ajax({
+		url:"/CBDSystem/parkingSelect.do",
+		type:"post",
+		data:{
+			"page":pages
+		},
+		dataType:"html",
+		success:function(data){
+			$("#aaa").html(data)
+		}
+	});
+}
+//显示所有外部合约信息
+function showContract(pages){
+	$.ajax({
+		url:"/CBDSystem/findUseingBargain.do",
+		type:"post",
+		data:{
+			"page":pages
+		},
+		dataType:"html",
+		success:function(data){
+			$("#aaa").html(data)
+		}
+	});
+}
+//显示所有历史外部合约信息
+function showHContract(pages){
+	$.ajax({
+		url:"/CBDSystem/findUnuseingBargain.do",
+		type:"post",
+		data:{
+			"page":pages
+		},
+		dataType:"html",
+		success:function(data){
+			$("#aaa").html(data)
+		}
+	});
+}
+//显示所有租户合约信息
+function showTContract(pages){
+	$.ajax({
+		url:"/CBDSystem/findUseingCompanyBargain.do",
+		type:"post",
+		data:{
+			"page":pages
+		},
+		dataType:"html",
+		success:function(data){
+			$("#aaa").html(data)
+		}
+	});
+}
+//显示所有历史租户合约信息
+function showHTContract(pages){
+	$.ajax({
+		url:"/CBDSystem/findUnseingCompanyBargain.do",
+		type:"post",
+		data:{
+			"page":pages
+		},
+		dataType:"html",
+		success:function(data){
+			$("#aaa").html(data)
+		}
+	});
+}

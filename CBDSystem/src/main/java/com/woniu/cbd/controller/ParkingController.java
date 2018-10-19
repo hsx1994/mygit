@@ -19,7 +19,7 @@ public class ParkingController {
 	private IParkingService park;
 
 	// 包租婆批量添加车位信息
-	@RequestMapping("/application.do")
+	@RequestMapping("application.do")
 	public @ResponseBody String ApplicationParking(List<ParkingBean> parking) {
 		boolean num = park.AddParking(parking);
 		String result = "失败";
@@ -32,34 +32,36 @@ public class ParkingController {
 
 	}
 
-		// 包租婆查看单个上架车位
-		@RequestMapping("/landladyshowOne.do")
-		public ModelAndView showOne(Integer id) {
-			ModelAndView mav = new ModelAndView();
-			ParkingBean bean = park.SelectParkOne(id);
-			mav.addObject("one", bean);
-			mav.setViewName("063/ DetailsLandladyParking.jsp");
+	// 包租婆查看单个上架车位
+	@RequestMapping("/landladyshowOne.do")
+	public ModelAndView showOne(Integer id) {
+		ModelAndView mav = new ModelAndView();
+		ParkingBean bean = park.SelectParkOne(id);
+		mav.addObject("one", bean);
+		mav.setViewName("063/ DetailsLandladyParking.jsp");
 
-			return mav;
+		return mav;
 
-		}
-	
-	
+	}
+
 	// 抢租客查看所有上架车位
-	@RequestMapping("/showall.do")
+	@RequestMapping("showall.do")
 	public ModelAndView ShowAll(Integer page) {
 		ModelAndView mav = new ModelAndView();
+
 		PageHelper.startPage(page, 8, true);
 		List<ParkingBean> bean = park.ShowAll();
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
+
 		mav.addObject("paging", pageInfo);
-		mav.addObject("all",bean);
+		mav.addObject("all", bean);
 		mav.setViewName("063/ShowParkingSpace.jsp");
+
 		return mav;
 	}
 
 	// 抢租客查看单个上架车位
-	@RequestMapping("/showOne.do")
+	@RequestMapping("showOne.do")
 	public ModelAndView ShowOne(Integer id) {
 		ModelAndView mav = new ModelAndView();
 		ParkingBean bean = park.SelectParkOne(id);
@@ -69,19 +71,17 @@ public class ParkingController {
 		return mav;
 
 	}
-	
+
 	// 抢租客车位号模糊查询上架车位
-	@RequestMapping("/findbynum.do")
+	@RequestMapping("findbynum.do")
 	public ModelAndView SelectParkByNum(String num, Integer page) {
+
 		ModelAndView mav = new ModelAndView();
 		List<ParkingBean> bean = park.SelectParkByNum(num);
 		if (bean != null) {
-			System.out.println("查询到车位");
 			mav.addObject("num", bean);
 			mav.setViewName("");
-
 		} else {
-			System.out.println("满足条件的为空");
 			mav.addObject("空");
 			mav.setViewName("");
 		}
@@ -90,8 +90,9 @@ public class ParkingController {
 	}
 
 	// 抢租客根据价格查询上架车位
-	@RequestMapping("/findbyprice.do")
+	@RequestMapping("findbyprice.do")
 	public ModelAndView SelectPark(Integer price, Integer page) {
+
 		ModelAndView mav = new ModelAndView();
 
 		PageHelper.startPage(page, 8, true);
@@ -101,17 +102,16 @@ public class ParkingController {
 		if (bean != null) {
 
 			mav.addObject("price", pageInfo);
-
-			mav.setViewName("");
+			mav.addObject("list", bean);
 		} else {
 			mav.addObject("空");
-			mav.setViewName("");
 		}
+		mav.setViewName("");
 		return mav;
 
 	}
 
-	@RequestMapping("/parkingDelete.do")
+	@RequestMapping("parkingDelete.do")
 	public @ResponseBody String parkingDelete(Integer id) {
 		String result = "删除失败";
 		boolean re = park.parkingDelete(id);
@@ -122,20 +122,22 @@ public class ParkingController {
 		return result;
 	}
 
-	@RequestMapping("/parkingSelect.do")
+	@RequestMapping("parkingSelect.do")
 	public ModelAndView parkingSelect(Integer page) {
 		ModelAndView mav = new ModelAndView();
 
 		PageHelper.startPage(page, 10, true);
 		List<ParkingBean> list = park.parkingSelect();
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(list);
+		
+		mav.addObject("pageinfo", pageInfo);
+		mav.addObject("list",list);
+		mav.setViewName("views/landlord_carpart_apply.jsp");
 
-		mav.addObject("allParking", pageInfo);
-		mav.setViewName("");
 		return mav;
 	}
 
-	@RequestMapping("/passApply.do")
+	@RequestMapping("passApply.do")
 	public @ResponseBody String passApply(Integer id) {
 		String result = "通过失败";
 		boolean re = park.passApply(id);
@@ -146,7 +148,7 @@ public class ParkingController {
 		return result;
 	}
 
-	@RequestMapping("/passApplyFail.do")
+	@RequestMapping("passApplyFail.do")
 	public @ResponseBody String passApplyFail(Integer id) {
 		String result = "失败";
 		boolean re = park.passApplyFail(id);

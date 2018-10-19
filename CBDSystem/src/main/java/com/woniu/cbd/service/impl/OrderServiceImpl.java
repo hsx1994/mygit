@@ -80,5 +80,19 @@ public class OrderServiceImpl implements IOrderService {
 		}
 		return b;
 	}
+	/**
+	 * 通过订单id查找订单信息
+	 */
+	@Override
+	public OrderBean findOrderById(int id) {
+		return orderDao.findByOrderId(id);
+	}
+	/**
+	 * 修改订单的状态信息
+	 */
+	@Override
+	public boolean changeOrderState(OrderBean order) {
+		return orderDao.changeState(order);
+	}
 	
 }

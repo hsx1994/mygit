@@ -46,14 +46,14 @@ public class ComplainDaoImpl implements IComplainDao {
 		return list;
 	}
 
+
 	@Override
-	public int findTotal() {
-		
+	public ComplainBean findComplainById(int id) {
 		SqlSession session = fa.openSession();
 		IComplainDao dao = session.getMapper(IComplainDao.class);
-		int total = dao.findTotal();
+		ComplainBean bean = dao.findComplainById(id);
 		session.close();
-		return total;
+		return bean;
 	}
 
 }

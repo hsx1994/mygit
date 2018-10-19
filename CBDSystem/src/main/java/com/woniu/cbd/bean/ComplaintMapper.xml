@@ -20,7 +20,7 @@
 	
 	<!-- 查看所有待处理的投诉信息 -->
 	<select id="findAllComplain"  resultMap="map1">
-		select * from t_complaint where com_state=0 
+		select * from t_complaint where com_state=0 and com_delete=0
 	</select>
 	<resultMap type="ComplainBean" id="map1">
 		<id column="com_id" property="id"/>
@@ -36,12 +36,12 @@
 		<select id="findComplainByPage" parameterType="int" resultMap="map1">
 			select * from t_complaint where com_state=0 limit #{num}, 10
 		</select>
-	<!-- 查询投诉信息总数 -->
-	<select id="findTotal" resultType="int">
-		select count(*) from t_complaint where com_state=0
+	<!-- 按投诉人id查询投诉信息 -->
+	<select id="findComplainById" resultType="int" resultMap="map1" >
+		select * from t_complaint where com_id=#{id} and com_delete=0
 	</select>
 	<!-- 更新投诉信息状态 -->
-	<select id="updateComplainState" >
+	<update id="updateComplainState" >
 		update t_complaint set com_state=#{state} where com_id=#{id}
-	</select>
+	</update>
 </mapper>

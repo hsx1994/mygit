@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<div id="show">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -7,6 +8,7 @@
     <link href="../css/css.css" type="text/css" rel="stylesheet" />
     <link href="../css/main.css" type="text/css" rel="stylesheet" />
     <link rel="shortcut icon" href="../images/main/favicon.ico" />
+     <script type="text/javascript" src="../js/jQuery-2.2.2.js"></script>
     <style>
         body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
         #searchmain{ font-size:12px;}
@@ -36,8 +38,9 @@
         .main-for input.text-but{ width:100px; height:40px; line-height:30px; border: 1px solid #cdcdcd; background:#e6e6e6; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; color:#969696; float:right; margin:0 10px 0 0; display:inline; cursor:pointer; font-size:14px; font-weight:bold;}
     </style>
 </head>
-<body>
+<body onload="showDetailsComplain(${param.id })">
 <!--main_top-->
+<input type="hidden" value="${param.id }" id="id">
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
     <tr>
         <td width="99%" align="left" valign="top">您的位置：投诉管理&nbsp; > &nbsp;投诉详情</td>
@@ -69,10 +72,10 @@
                     <th align="center" valign="middle" class="borderright">租赁结束时间</th>
                 </tr>
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                    <td align="center" valign="middle" class="borderright borderbottom">123</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">admin</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">2018-09-09</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">2018-09-09</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${complain.order.parking.parkingNum }</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${complain.order.parking.address }</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${complain.order.startTime }</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${complain.order.endTime }</td>
                 </tr>
             </table></td>
     </tr>
@@ -103,11 +106,11 @@
                     <th align="center" valign="middle" class="borderright">联系电话</th>
                 </tr>
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                    <td align="center" valign="middle" class="borderright borderbottom">123</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">admin</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">2018</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">2018</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">2018</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${complain.user.realName }</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${complain.user.realName }</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${complain.user.idcard }</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${complain.user.job }</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${complain.user.tel }</td>
                 </tr>
                 <!--<tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                     <td align="center" valign="middle" class="borderright borderbottom">投诉理由</td>
@@ -124,7 +127,7 @@
                     <th align="center" valign="middle" class="borderright">投诉理由</th>
                 </tr>
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                    <td align="center" valign="middle" class="borderright borderbottom">123</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${complain.content }</td>
                 </tr>
             </table>
         </td>
@@ -155,22 +158,24 @@
                     <th align="center" valign="middle" class="borderright">联系电话</th>
                 </tr>
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                    <td align="center" valign="middle" class="borderright borderbottom">123</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">admin</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">2018</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">2018</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">2018</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${complain.buser.realName }</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${complain.buser.realName }</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${complain.buser.idcard }</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${complain.buser.job }</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${complain.buser.tel }</td>
                 </tr>
             </table>
         </td>
     </tr>
     <tr style="height: 20px"></tr>
     <td align="left" valign="middle" class="borderright borderbottom main-for">
-        <input name="" type="button" value="投诉驳回" class="text-but" onclick="javascript:history.go(-1);">
-        <input name="" type="button" value="投诉通过" class="text-but">
+        <input name="" type="button" value="投诉驳回" class="text-but" onclick="acceptComplain(2,${param.id })">
+        <input name="" type="button" value="投诉通过" class="text-but" onclick="acceptComplain(1,${param.id })">
     </td>
+    
 </table>
-
+<script type="text/javascript" src="../js/complain.js"></script>
 
 </body>
 </html>
+</div>

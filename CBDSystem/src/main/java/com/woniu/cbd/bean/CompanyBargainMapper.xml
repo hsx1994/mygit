@@ -8,8 +8,8 @@
 	<insert id="companyBargainAdd" parameterType="CompanyBargainBean"
 		useGeneratedKeys="true" keyProperty="id">
 		insert into
-		t_company_bargain(cb_number,cb_c_id,cb_start_time,cb_end_time,cb_img,cb_cname,cb_contact,cb_tel)
-		values(#{number},#{company.id},#{startTime},#{endTime},#{name},#{contact},#{tel})
+		t_company_bargain(cb_numbe,cb_c_id,cb_start_time,cb_end_time,cb_img,cb_contact,cb_tel)
+		values(#{number},#{company.id},#{startTime},#{endTime},#{img},#{contact},#{tel})
 	</insert>
 	
 	<!-- 毁约，废弃该合约 -->

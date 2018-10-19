@@ -45,15 +45,18 @@
 <label>查询所有管理员的测试</label>
 <br><br>
 <form action="/CBDSystem/Administrator/findAll.do" method="post">
+<input type="hidden" value="1" name="page">
 <label>提交： </label><input type="submit"><br/><br/>
-<c:forEach items="${ablist}" var="ab" >
-		<tr>
-
+<c:forEach items="${list}" var="ab" >
+		 <tr>
 			 <td align = "center">${ab.id}</td>
 		 </tr>
 
 </c:forEach>
 </form>
+${pageinfo.pageNum}
+${pageinfo.pages}
+${pageinfo.lastPage }
 <hr>
 
 

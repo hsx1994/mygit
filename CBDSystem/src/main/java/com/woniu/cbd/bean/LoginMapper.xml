@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="loginMapper">
+	<!-- 通过登录用户名查找登录用户信息 -->
+	<select id="findLoginUserByname" parameterType="String" resultType="LoginBean">
+		select t_id as id,l_name as name,l_password as password,l_role as role from t_login where l_name=#{name} and l_delete = 0;
+	</select>
+</mapper>
