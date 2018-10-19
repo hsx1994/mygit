@@ -47,10 +47,10 @@
                         <h2>登录<span class="red"><strong>CBD</strong></span></h2>
                         <label for="username">用户名</label>
                         <input type="text" id="username" name="username" placeholder="请输入用户名...">
-                        <label for="password">密码</label>
-                        <input type="password" id="password" name="password" placeholder="请输入密码 ...">
-                        <label for="code">验证码</label>
-                        <input type="text" id="code" name="code" placeholder="验证码 ...">
+                        <label for="password">密码</label>
+                        <input type="password" id="password" name="password" placeholder="请输入密码...">
+                        <label for="code">验证码 </label>
+                        <input type="text" id="code" name="code" placeholder="验证码...">
                         <button type="submit">登录</button>
                     </form>
                 </div>

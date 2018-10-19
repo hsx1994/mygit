@@ -1,20 +1,24 @@
 package com.woniu.cbd.test;
 
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.woniu.cbd.bean.CompanyBargainBean;
-import com.woniu.cbd.bean.OtherParkingBean;
-import com.woniu.cbd.dao.ICompanyBargainDao;
+import com.woniu.cbd.bean.CompanyInfoBean;
+import com.woniu.cbd.dao.ICompanyInfoDao;
+import com.woniu.cbd.dao.IComplainDao;
 import com.woniu.cbd.dao.IOtherParkingDao;
+import com.woniu.cbd.dao.impl.CompanyInfoDaoImpl;
+import com.woniu.cbd.dao.impl.ComplainDaoImpl;
 import com.woniu.cbd.service.ICompanyBargainService;
-import com.woniu.cbd.service.ICompanyOrderService;
-import com.woniu.cbd.service.IOtherParkingService;
+import com.woniu.cbd.service.impl.CompanyBargainServiceImpl;
 
 
 
@@ -208,12 +212,27 @@ public class TestMain {
 		
 	}
 
+	@Test
+	public void test(){
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ICompanyInfoDao dao = context.getBean(CompanyInfoDaoImpl.class);
+		dao.fuzzyQuery("蜗牛");
+		dao.findAllCompany();
+	}
+	@Test
+	public void b(){
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		IComplainDao dao = context.getBean(ComplainDaoImpl.class);
+		System.out.println(dao.findComplainById(9));
+	}
+
 
 	@Test
 	public void atest() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		IOtherParkingDao dao = (IOtherParkingDao) context.getBean("otherParkingDaoImpl");
 	}
+
 }
 
 

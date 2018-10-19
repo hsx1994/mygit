@@ -28,8 +28,8 @@ public interface IComplainDao {
 	public List<ComplainBean> findComplainByPage(int page);
 	
 	/**
-	 * 查询所有待处理投诉数量
+	 * 按id查询投诉详情
 	 * @return
 	 */
-	public int findTotal();
+	public ComplainBean findComplainById(int id);
 }
