@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.woniu.cbd.bean.LoginBean;
 import com.woniu.cbd.service.ILoginService;
@@ -28,11 +29,11 @@ public class LoginController {
 		
 		return "redirect:/index.jsp";
 	}
-	
+	@ResponseBody
 	@RequestMapping("changePwd.do")
 	public String changePwd(Integer id,String password,String newpwd,String checkpwd){
 		String str = "更改失败";
-		if(!newpwd.equals(checkpwd))	{
+		if(!newpwd.equals(checkpwd)){
 			str = "两次新密码输入不一致，请重新输入";
 			return str;
 		}

@@ -67,7 +67,15 @@ public class ParkingServiceimpl implements IParkingService {
 		List<ParkingBean> bean=dao.SelectParkByNum(num);
 		return bean;
 	}
-	
+	/**
+	 * 通过ID查询单个车位信息
+	 * @param id
+	 * @return
+	 */
+	public ParkingBean findParkingById(int id){
+		ParkingBean bean = dao.findParkingById(id);
+		return bean;
+	}
 	@Override
 	public boolean parkingDelete(int id) {
 		int row = dao.parkingDelete(id);

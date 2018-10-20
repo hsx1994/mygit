@@ -19,5 +19,6 @@
 		<result property="email" column="u_email" />
 		<result property="orderCount" column="u_order_count" />
 		<result property="complaintCount" column="u_complaint_count" />
+		<association property="login" javaType="LoginBean" select="loginMapper.findById" column="u_l_id"></association>
 	</resultMap>
 </mapper>

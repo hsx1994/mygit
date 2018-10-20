@@ -54,4 +54,11 @@ public interface IAdministratorService {
 	 * @return
 	 */
 	public String updateAdminTel(AdministratorBean bean);
+	
+	/**
+	 * 查看管理员信息
+	 * @param uid
+	 * @return
+	 */
+	public AdministratorBean showAdministratorInfo(int uid);
 }

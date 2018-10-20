@@ -79,4 +79,10 @@ public class AdministratorServiceImpl implements IAdministratorService {
 		return result;
 	}
 
+	@Override
+	public AdministratorBean showAdministratorInfo(int uid) {
+		AdministratorBean bean = idao.showAdministratorInfo(uid);
+		return bean;
+	}
+
 }

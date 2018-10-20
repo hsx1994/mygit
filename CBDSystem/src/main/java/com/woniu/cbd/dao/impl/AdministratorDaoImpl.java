@@ -104,4 +104,11 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 		int re = session.update("AdministratorMapper.updateAdmintTel",bean);
 		return re;
 	}
+
+	@Override
+	public AdministratorBean showAdministratorInfo(int uid) {
+		SqlSession session = fa.openSession(true);
+		AdministratorBean bean = session.selectOne("AdministratorMapper.findByLoginId",uid);
+		return bean;
+	}
 }
