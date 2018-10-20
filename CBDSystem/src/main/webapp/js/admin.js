@@ -1,0 +1,50 @@
+//显示指定后台管理员的详细详细
+function showAdmain(id){
+	$.ajax({
+		url:"/CBDSystem/showOneAdmin.do",
+		type:"post",
+		data:{
+			"id":id
+		},
+		dataType:"html",
+		success:function(data){
+			$("#show").html(data)
+		}
+	});
+}
+//删除指定管理员
+function deleteAdmin(id){
+	$.ajax({
+		url:"/CBDSystem/deleteAdmin.do",
+		type:"post",
+		data:{
+			"id":id
+		},
+		dataType:"json",
+		success:function(data){
+			alert(data);
+			window.location.reload();
+		}
+	});
+}
+//添加指定管理员
+function addAdmin(id){
+	var json = {
+				"jobNumber":$("#jobNumber").val(),
+				"realName":$("#realName").val(),
+				"tel":$("#tel").val(),
+				"login":{"name":$("#loginName").val(),
+				"password":$("#loginPassword").val()}
+				};
+	$.ajax({
+		url:"/CBDSystem/addAdmin.do",
+		type:"post",
+		contentType:"application/json;charset=UTF-8",
+		data:JSON.stringify(json),
+		dataType:"json",
+		success:function(data){
+			alert(data);
+			window.location.href="/CBDSystem/views/add_admin.jsp";
+		}
+	});
+}

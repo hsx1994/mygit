@@ -9,6 +9,7 @@ import java.io.Serializable;
  *
  */
 public class LoginBean implements Serializable{
+	private static final long serialVersionUID = 1L;
 	// 登录表id
 	private int id;
 	// 登录名
@@ -53,9 +54,7 @@ public class LoginBean implements Serializable{
 	@Override
 	public String toString() {
 		return "LoginBean [id=" + id + ", name=" + name + ", password="
-				+ password + ", role=" + role + ", delete=" + delete + "]";
+				+ password + ", role=" + role + "]";
 	}
-	
-	
 	
 }

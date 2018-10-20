@@ -1,7 +1,5 @@
 package com.woniu.cbd.realm;
 
-import javax.annotation.Resource;
-
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -9,17 +7,12 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.codec.CodecSupport;
-import org.apache.shiro.crypto.hash.SimpleHashRequest;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.util.ByteSource;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.woniu.cbd.bean.LoginBean;
 import com.woniu.cbd.service.ILoginService;
-import com.woniu.cbd.service.impl.LoginServiceImpl;
 
 public class LoginRealm extends AuthorizingRealm {
 

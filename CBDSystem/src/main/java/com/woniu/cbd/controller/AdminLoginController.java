@@ -13,17 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.woniu.cbd.bean.LoginBean;
 import com.woniu.cbd.util.Md5pwdUtil;
 
-
-
-
-
 /**
  * 用户Controller层
  * @author Administrator
  *
  */
 @Controller
-@RequestMapping("/admin")
 public class AdminLoginController {
 
 	
@@ -33,14 +28,13 @@ public class AdminLoginController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/login")
+	@RequestMapping("adminLogin.do")
 	public String login(LoginBean user, String checkcode,HttpServletRequest request){
 		System.out.println("user=" + user + ":" + "checkcode" + checkcode);
 		// 加密密码Md5
 		String realPassword = Md5pwdUtil.md5(user.getPassword(), user.getName());
 		System.out.println("加密密码:" + realPassword);
 		
-	
 		Subject subject=SecurityUtils.getSubject();
 		UsernamePasswordToken token=new UsernamePasswordToken(user.getName(), realPassword);
 		try{
@@ -50,32 +44,14 @@ public class AdminLoginController {
 			System.out.println("sessionHost:"+session.getHost());
 			System.out.println("sessionTimeout:"+session.getTimeout());
 			session.setAttribute("info", "session的数据");
-			return "redirect:/system/adminIndex.jsp";
+			return "redirect:views/manage.jsp";
 		}catch(Exception e){
-			e.printStackTrace();
 			request.setAttribute("user", user);
 			request.setAttribute("errorMsg", "用户名或密码错误！");
-			return "/system/adminLogin.jsp";
+			return "redirect:views/login.jsp";
 		}
 	}
-	
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //package com.woniu.cbd.controller;
 //
