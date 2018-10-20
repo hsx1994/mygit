@@ -65,7 +65,7 @@ public class AdministratorAction {
 	}
 
 	/**
-	 * 作用：修改权限
+	 * 作用：修改电话号码
 	 * @param model
 	 * @param ab 前端传来的对象包含id、limit字段
 	 * @return  修改结果
@@ -77,6 +77,7 @@ public class AdministratorAction {
 		str = service.updateAdminTel(bean);
 		return str;
 	}
+
 
 	/**
 	 * 查询所有管理员信息

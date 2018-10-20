@@ -29,6 +29,7 @@ public class LoginController {
 		
 		return "redirect:/index.jsp";
 	}
+
 	@ResponseBody
 	@RequestMapping("changePwd.do")
 	public String changePwd(Integer id,String password,String newpwd,String checkpwd){
