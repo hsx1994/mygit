@@ -140,7 +140,7 @@ public class TestMain {
 	public void test7() {
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		IUserDao dao = (IUserDao) context.getBean("userDaoImpl");
+		IComplainDao dao = (IComplainDao) context.getBean("complainDaoImpl");
 		UserBean user = new UserBean();
 		UserBean user1 = new UserBean();
 		OrderBean order = new OrderBean();
