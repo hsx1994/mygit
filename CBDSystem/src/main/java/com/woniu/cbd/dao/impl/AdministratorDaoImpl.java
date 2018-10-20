@@ -19,23 +19,6 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 
 	@Autowired
 	private SqlSessionFactory fa;
-	
-	@Override
-	public boolean administratorAdd(AdministratorBean ab) {
-		// 存储返回结果
-		boolean result = false;
-		// 获取session
-		SqlSession session = fa.openSession(true);
-		// 执行sql插入操作，获取影响行数；
-		int row = session.insert("AdministratorMapper.administratorAdd", ab);
-		// 关闭session
-		session.close();
-		if (row > 0) {
-			// 返回影响行数大于0，则插入成功
-			result = true;
-		}
-		return result;
-	}
 
 	@Override
 	public boolean administratorDelete(int id) {
@@ -99,4 +82,26 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 		return list;
 	}
 
+	@Override
+	public AdministratorBean findOneAdministrator(Integer id) {
+		SqlSession session = fa.openSession(true);
+		
+		AdministratorBean bean = session.selectOne("AdministratorMapper.findById",id);
+		session.close();
+		return bean;
+	}
+
+	@Override
+	public int addAdmin(AdministratorBean admin) {
+		SqlSession session = fa.openSession(true);
+		int re = session.insert("AdministratorMapper.addAdmin",admin);
+		return re;
+	}
+
+	@Override
+	public int updateAdmintTel(AdministratorBean bean) {
+		SqlSession session = fa.openSession(true);
+		int re = session.update("AdministratorMapper.updateAdmintTel",bean);
+		return re;
+	}
 }

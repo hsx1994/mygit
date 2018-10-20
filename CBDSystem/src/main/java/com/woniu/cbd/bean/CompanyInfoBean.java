@@ -31,6 +31,12 @@ public class CompanyInfoBean implements Serializable {
 	private List<CompanyBargainBean> comBargain;
 	
 	
+	public LoginBean getComLogin() {
+		return comLogin;
+	}
+	public void setComLogin(LoginBean comLogin) {
+		this.comLogin = comLogin;
+	}
 	public List<CompanyOrderBean> getComOrder() {
 		return comOrder;
 	}

@@ -7,6 +7,7 @@
     <link href="../css/css.css" type="text/css" rel="stylesheet" />
     <link href="../css/main.css" type="text/css" rel="stylesheet" />
     <link rel="shortcut icon" href="../images/main/favicon.ico" />
+    <script type="text/javascript" src="/CBDSystem/js/jQuery-2.2.2.js"></script>
     <style>
         body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
         #searchmain{ font-size:12px;}
@@ -49,65 +50,62 @@
     <tr style="height: 20px"></tr>
     <tr>
         <td align="left" valign="top">
-            <form method="post" action="">
+            <!-- <form method="post" action="/CBDSystem/addAdmin.do"> -->
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">工&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;号：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word">
+                            <input type="text" id="jobNumber" value="" class="text-word">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">姓&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;名：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word">
+                            <input type="text" id="realName" value="" class="text-word" data-valid="isNonEmpty||between:2-10||isZh" data-error="真实姓名不能为空||真实姓名长度2-10位||只能输入中文">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">密&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;码：</td>
+                        <td align="right" valign="middle" class="borderright borderbottom bggray">用&nbsp; &nbsp;户&nbsp;&nbsp;名：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word">
-                        </td>
-                    </tr>
-                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">确认密码：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word">
+                            <input type="text" id="loginName" value="" class="text-word" data-valid="isNonEmpty||between:3-20||isUname" data-error="用户名不能为空||用户名长度3-20位||只能输入中文、字母、数字、下划线，且以中文或字母开头" >
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">电话号码：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word">
+                            <input type="text" id="tel" value="" class="text-word" data-valid="isNonEmpty||isPhone" data-error="手机号码不能为空||手机号码格式不正确" maxlength="11">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">用户权限：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="checkbox" name="level" id="level" value="1">
+                            <input type="checkbox" name="limit" id="level" value="1">
                                 <span>用户管理</span>
                             </input>
-                            <input type="checkbox" name="level" class="level" value="2" >
+                            <input type="checkbox" name="limit" class="level" value="2" >
                                 <span >合约管理</span>
                             </input>
-                            <input type="checkbox" name="level" class="level" value="2">
+                            <input type="checkbox" name="limit" class="level" value="2">
                                 <span>车位管理</span>
                             </input>
-                            <input type="checkbox" name="level" class="level" value="2">
+                            <input type="checkbox" name="limit" class="level" value="2">
                                 <span>投诉管理</span>
                             </input>
                         </td>
                     </tr>
+                    <input type="hidden" id="loginPassword" value="123456" class="text-word">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">&nbsp;</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input name="" type="submit" value="提交" class="text-but">
-                            <input name="" type="reset" value="重置" class="text-but"></td>
+                            <input type="button" onclick="addAdmin()" value="提交" class="text-but">
+                            <input type="reset" value="重置" class="text-but"></td>
                     </tr>
                 </table>
-            </form>
+           <!--  </form> -->
         </td>
     </tr>
 </table>
+<script type="text/javascript" src="../js/admin.js"></script>
+<script src="../js/register.js"></script>
 </body>
 </html>

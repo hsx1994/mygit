@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
 <mapper namespace="loginMapper">
+	<!-- 添加管理员 -->
+	<insert id="addAdmin" parameterType="LoginBean" useGeneratedKeys="true" keyProperty="id">
+		insert into t_login(l_name,l_password,l_role)
+		values(#{name},#{password},'管理员')
+	</insert>
+	<!-- 用过用户名查询 -->
+	<select id="findByName" parameterType="LoginBean" resultMap="map">
+		select * from t_login where l_name=#{name}
+	</select>
+	
+	<resultMap type="LoginBean" id="map">
+		<id property="id" column="l_id"></id>
+		<result property="name" column="l_name"/>
+		<result property="password" column="l_password"/>
+		<result property="role" column="l_role"/>
+	</resultMap>
+
 	<!-- 通过登录用户名查找登录用户信息 -->
 	<select id="findLoginUserByname" parameterType="String" resultType="LoginBean">
 		select t_id as id,l_name as name,l_password as password,l_role as role from t_login where l_name=#{name} and l_delete = 0;
 	</select>
+	
+	<!-- 通过ID查密码 -->
+	<select id="selecrPwd" parameterType="int" resultType="String">
+		select l_password from t_login where t_id=#{id}
+	</select>
+	
+	<update id="updatePwd" parameterType="LoginBean">
+		update t_login set l_possword=#{password} where t_id=#{id}
+	</update>
 </mapper>

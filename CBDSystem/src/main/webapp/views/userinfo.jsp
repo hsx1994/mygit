@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<div id="show">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -33,7 +34,8 @@
         #addinfo a:hover{ background: no-repeat 0 1px;}
     </style>
 </head>
-<body>
+<body onload="myInfo()">
+<input type="hidden" id="uid" value=<%=session.getAttribute("id") %>>>
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
     <tr>
@@ -46,7 +48,6 @@
     </tr>
     <tr>
         <td align="left" valign="top">
-            <form method="post" action="">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">用 户 名：</td>
@@ -76,25 +77,30 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'" style="display: none" class="show" >
                         <td align="right" valign="middle" class="borderright borderbottom bggray">旧 密 码：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="password" name="pwd" class="text-word" >
+                            <input type="password" id="oldpwd" name="pwd" class="text-word" placeholder="请输入旧密码...">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'" style="display: none" class="show" >
                         <td align="right" valign="middle" class="borderright borderbottom bggray">新 密 码：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="password" name="pwd" class="text-word" >
+                            <input type="password" id="newpwd" name="pwd" class="text-word" placeholder="请输入新密码...">
+                        </td>
+                    </tr>
+                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'" style="display: none" class="show" >
+                        <td align="right" valign="middle" class="borderright borderbottom bggray">确 认 密 码：</td>
+                        <td align="left" valign="middle" class="borderright borderbottom main-for">
+                            <input type="password" id="checknew" name="pwd" class="text-word" placeholder="再次输入新密码...">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">&nbsp;</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input name="" id="update" type="button" value="修改信息" class="text-but" onclick="showBox()">
-                            <input name="" id="affirm" type="submit" value="确认修改" class="text-but" style="display: none">
-                            <input name="" id="cancel" type="button" value="取消" class="text-but"  onClick="location.href='userinfo.jsp'" style="display: none">
+                            <input id="update" type="button" value="修改信息" class="text-but" onclick="showBox()">
+                            <input id="affirm" type="submit" value="确认修改" class="text-but" style="display: none" onclick="updateInfo()">
+                            <input id="cancel" type="button" value="取消" class="text-but"  onClick="location.href='userinfo.jsp'" style="display: none">
                         </td>
                     </tr>
                 </table>
-            </form>
         </td>
     </tr>
 </table>
@@ -108,6 +114,55 @@
         $("#ph").hide();
         $("#update").hide();
     }
+//展示个人信息
+function show(){
+    $.ajax({
+		url:"/CBDSystem/showOneAdmin.do",
+		type:"post",
+		data:{
+			id:$("#uid").val()
+		},
+		dataType:"html",
+		success:function(data){
+			$("#show").html(data)
+		}
+	});
+}
+//修改电话信息
+function updateInfo(){
+    $.ajax({
+    	url:"/CBDSystem/updateAdminTel.do",
+    	type:"post",
+    	data:{
+    		id:$("#uid").val(),
+    		tel:$("#tel").val(),
+    	},
+    	dataType:"json",
+    	success:function(data){
+    		alert(data);
+    		window.location.reload();
+    	}
+    });
+}
+//修改密码
+function updateInfo(){
+    $.ajax({
+    	url:"/CBDSystem/changePwd.do",
+    	type:"post",
+    	data:{
+    		id:$("#uid").val(),
+    		possword:$("#oldpwd"),
+    		pwd:$("#newpwd"),
+    		checkpwd:$("#checknew")
+    	},
+    	dataType:"json",
+    	success:function(data){
+    		alert(data);
+    		window.location.reload();
+    	}
+    });
+}
 </script>
 </body>
 </html>
+</div>
