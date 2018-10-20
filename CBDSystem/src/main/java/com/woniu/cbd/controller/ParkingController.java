@@ -32,21 +32,32 @@ public class ParkingController {
 
 	}
 
+	// 包租婆查看单个上架车位
+	@RequestMapping("/landladyshowOne.do")
+	public ModelAndView showOne(Integer id) {
+		ModelAndView mav = new ModelAndView();
+		ParkingBean bean = park.SelectParkOne(id);
+		mav.addObject("one", bean);
+		mav.setViewName("063/ DetailsLandladyParking.jsp");
+
+		return mav;
+
+	}
+
 	// 抢租客查看所有上架车位
 	@RequestMapping("showall.do")
 	public ModelAndView ShowAll(Integer page) {
 		ModelAndView mav = new ModelAndView();
-		
-		PageHelper.startPage(page,10,true);
+
+		PageHelper.startPage(page, 8, true);
 		List<ParkingBean> bean = park.ShowAll();
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
-		
-		mav.addObject("pageinfo",pageInfo);
-		mav.addObject("list",bean);
-		mav.setViewName("");
-		
-		return mav;
 
+		mav.addObject("paging", pageInfo);
+		mav.addObject("all", bean);
+		mav.setViewName("063/ShowParkingSpace.jsp");
+
+		return mav;
 	}
 
 	// 抢租客查看单个上架车位
@@ -54,9 +65,8 @@ public class ParkingController {
 	public ModelAndView ShowOne(Integer id) {
 		ModelAndView mav = new ModelAndView();
 		ParkingBean bean = park.SelectParkOne(id);
-		
-		mav.addObject("one",bean);
-		mav.setViewName("");
+		mav.addObject("one", bean);
+		mav.setViewName("063/Details.jsp");
 
 		return mav;
 
@@ -64,11 +74,12 @@ public class ParkingController {
 
 	// 抢租客车位号模糊查询上架车位
 	@RequestMapping("findbynum.do")
-	public ModelAndView SelectParkByNum(String num,Integer page) {
+	public ModelAndView SelectParkByNum(String num, Integer page) {
+
 		ModelAndView mav = new ModelAndView();
 		List<ParkingBean> bean = park.SelectParkByNum(num);
 		if (bean != null) {
-			mav.addObject("num",bean);
+			mav.addObject("num", bean);
 			mav.setViewName("");
 		} else {
 			mav.addObject("空");
@@ -80,16 +91,18 @@ public class ParkingController {
 
 	// 抢租客根据价格查询上架车位
 	@RequestMapping("findbyprice.do")
-	public ModelAndView SelectPark(Integer price,Integer page) {
+	public ModelAndView SelectPark(Integer price, Integer page) {
+
 		ModelAndView mav = new ModelAndView();
-		
-		PageHelper.startPage(page,10,true);
+
+		PageHelper.startPage(page, 8, true);
 		List<ParkingBean> bean = park.SelectPark(price);
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
-		
+
 		if (bean != null) {
-			mav.addObject("price",pageInfo);
-			mav.addObject("list",bean);
+
+			mav.addObject("price", pageInfo);
+			mav.addObject("list", bean);
 		} else {
 			mav.addObject("空");
 		}
@@ -112,8 +125,8 @@ public class ParkingController {
 	@RequestMapping("parkingSelect.do")
 	public ModelAndView parkingSelect(Integer page) {
 		ModelAndView mav = new ModelAndView();
-		
-		PageHelper.startPage(page,10,true);
+
+		PageHelper.startPage(page, 10, true);
 		List<ParkingBean> list = park.parkingSelect();
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(list);
 		

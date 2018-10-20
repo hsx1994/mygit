@@ -105,7 +105,7 @@ public class ParkingDaoImpl implements IParkingDao {
 		session.close();
 		return row;
 	}
-
+	
 	@Override
 	public int passApplyFail(int id) {
 		SqlSession session = fa.openSession(true);

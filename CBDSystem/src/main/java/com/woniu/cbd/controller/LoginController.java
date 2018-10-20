@@ -29,6 +29,7 @@ public class LoginController {
 		return "redirect:/index.jsp";
 	}
 	
+	//管理员修改密码
 	@RequestMapping("changePwd.do")
 	public String changePwd(Integer id,String password,String newpwd,String checkpwd){
 		String str = "更改失败";

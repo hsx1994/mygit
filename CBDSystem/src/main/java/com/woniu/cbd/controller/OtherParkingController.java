@@ -71,7 +71,7 @@ public class OtherParkingController {
 	public ModelAndView showComPanyParkingAll(Integer id,Integer page) {
 		ModelAndView mav = new ModelAndView();
 		
-		PageHelper.startPage(page,10,true);
+		PageHelper.startPage(page,8,true);
 		List<OtherParkingBean> parking = service.showCompanyParkingAll(id);
 		PageInfo<OtherParkingBean> pageInfo = new PageInfo<OtherParkingBean>(parking);
 		
