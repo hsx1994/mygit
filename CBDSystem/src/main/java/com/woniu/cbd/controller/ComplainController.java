@@ -15,6 +15,7 @@ import com.woniu.cbd.service.IComplainService;
 
 /**
  * 处理投诉信息
+ * 
  * @author Administrator
  *
  */
@@ -22,57 +23,68 @@ import com.woniu.cbd.service.IComplainService;
 public class ComplainController {
 	@Autowired
 	private IComplainService service;
+
 	/**
 	 * 显示所有待处理的投诉信息
+	 * 
 	 * @param page
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping("showComplain.do")
-	public ModelAndView showComplain(Integer page){
+	public ModelAndView showComplain(Integer page) {
 		ModelAndView model = new ModelAndView();
-		
 
-		//设置分页处理 (第page页，每页显示10个，必须写在sql语句之前，不然分页不能生效，true可以省略)
-		PageHelper.startPage(page,10,true);
+		// 设置分页处理 (第page页，每页显示10个，必须写在sql语句之前，不然分页不能生效，true可以省略)
+		PageHelper.startPage(page, 10, true);
 		List<ComplainBean> list = service.showComplain();
-		//取分页信息,需要填入你查询出的集合
+		// 取分页信息,需要填入你查询出的集合
 		PageInfo<ComplainBean> pageInfo = new PageInfo<ComplainBean>(list);
-		model.addObject("pageinfo",pageInfo);
-		model.addObject("list",list);
+		model.addObject("pageinfo", pageInfo);
+		model.addObject("list", list);
 		model.setViewName("views/complain_info.jsp");
 		return model;
-		
 	}
+
 	/**
 	 * 显示正在处理投诉详细信息
+	 * 
 	 * @param id
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping("showDetailsComplain.do")
-	public ModelAndView showComplainById(int id){
-		
+	public ModelAndView showComplainById(int id) {
+
 		ModelAndView model = new ModelAndView();
 		ComplainBean bean = service.showComplainById(id);
-		
-		model.addObject("complain" ,bean);
+
+		model.addObject("complain", bean);
 		model.setViewName("views/complain_details.jsp");
 		return model;
-		
+
 	}
 	/**
 	 * 处理投诉信息
+	 * 
 	 * @param state
 	 * @param id
 	 * @return
 	 */
 	@RequestMapping("acceptComplain.do")
-	public @ResponseBody String acceptComplain(Integer state,Integer id){
-		
+	public @ResponseBody String acceptComplain(Integer state, Integer id) {
+
 		String result = service.acceptComplain(state, id);
-		
+
 		return result;
-			
+
 	}
+    //针对订单添加投诉信息
+	@RequestMapping("addcomplaint.do")
+	public @ResponseBody String addCompiaint(ComplainBean complaint) {
+		String result = service.AddComplaint(complaint);
+		return result;
+
+	}
+
 }

@@ -39,13 +39,5 @@ public class UserServiceImpl implements IUserService {
 		return bean;
 	}
 
-	// 抢租客针对记录添加投诉信息
-	@Override
-	public boolean AddComplaint(ComplainBean bean) {
-		int num=dao.AddComplaint(bean);
-		if(num>0){
-			return true;
-			}
-		return false;
-	}
+	
 }

@@ -17,7 +17,6 @@ public interface IUserService {
 	// 用于抢租客查看自己的租赁记录
 	public List<OrderBean> ShowLog(int id);
 
-	// 用于抢租客针对订单的投诉信息
-	public boolean AddComplaint(ComplainBean bean);
+	
 
 }

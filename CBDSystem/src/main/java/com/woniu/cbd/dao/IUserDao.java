@@ -13,7 +13,5 @@ public interface IUserDao {
 	List<ParkingBean> SelectLog(int id);
     //抢租客查看租赁记录
 	List<OrderBean> ShowLog(int id);
-    //抢租客添加投诉信息
-	int AddComplaint(ComplainBean bean);
-
+   
 }

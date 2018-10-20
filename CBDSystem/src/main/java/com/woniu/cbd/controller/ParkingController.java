@@ -1,11 +1,24 @@
- package com.woniu.cbd.controller;
+package com.woniu.cbd.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
@@ -19,16 +32,61 @@ public class ParkingController {
 	private IParkingService park;
 
 	// 包租婆批量添加车位信息
-	@RequestMapping("application.do")
-	public @ResponseBody String ApplicationParking(List<ParkingBean> parking) {
+	@RequestMapping("/application.do")
+	public @ResponseBody String ApplicationParking(MultipartFile imgFile, ParkingBean bean, MultipartFile ImgFile,HttpServletRequest req) {
+		
+		// 获取上传文件的文件名
+		String img =UUID.randomUUID()+"_"+imgFile.getOriginalFilename();
+		String certImg = UUID.randomUUID()+"_"+ImgFile.getOriginalFilename();
+		// 将文件名放入对象中
+		bean.setImg(img);
+		bean.setCertImg(certImg);
+
+		ServletContext context = req.getServletContext();
+		ServletContext text = req.getServletContext();
+        //车位图片路径
+		String path = context.getRealPath("/image");
+		//产权证图片路径
+		String sum = text.getRealPath("/certImg");
+		
+		File g = new File(sum);
+		File f = new File(path);
+		if (!f.exists() &&!g.exists())
+			f.mkdirs();
+		    g.mkdirs();
+		// 创建服务器路径下的文件
+		File file = new File(path, UUID.randomUUID()+"_"+imgFile.getOriginalFilename());
+		// 创建服务器路径下的文件
+		File file1 = new File(sum, UUID.randomUUID()+"_"+ImgFile.getOriginalFilename());
+		try {
+			// 将文件保存到服务器image文件夹
+			imgFile.transferTo(file);
+			// 将文件保存到服务器certImg文件夹		
+			ImgFile.transferTo(file1);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		List<ParkingBean> parking = new ArrayList<ParkingBean>();
+		parking.add(bean);
 		boolean num = park.AddParking(parking);
 		String result = "失败";
 		if (num) {
-			System.out.println("包租婆添加车位成功");
 			result = "成功";
-
 		}
 		return result;
+
+	}
+
+	// 时间格式转换
+	@InitBinder
+	public void InitBinder(WebDataBinder binder) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		format.setLenient(false);// 是否严格按照格式
+
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
 
 	}
 
@@ -40,9 +98,9 @@ public class ParkingController {
 		PageHelper.startPage(page, 10, true);
 		List<ParkingBean> bean = park.ShowAll();
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
-		
-		mav.addObject("pageinfo",pageInfo);
-		mav.addObject("list",bean);
+
+		mav.addObject("pageinfo", pageInfo);
+		mav.addObject("list", bean);
 		mav.setViewName("");
 
 		return mav;
@@ -65,13 +123,13 @@ public class ParkingController {
 	// 抢租客车位号模糊查询上架车位
 
 	@RequestMapping("findbynum.do")
-	public ModelAndView SelectParkByNum(String num,Integer page) {
+	public ModelAndView SelectParkByNum(String num, Integer page) {
 
 		ModelAndView mav = new ModelAndView();
 		List<ParkingBean> bean = park.SelectParkByNum(num);
 		if (bean != null) {
 
-			mav.addObject("num",bean);
+			mav.addObject("num", bean);
 			mav.setViewName("");
 		} else {
 			mav.addObject("空");
@@ -84,7 +142,7 @@ public class ParkingController {
 	// 抢租客根据价格查询上架车位
 
 	@RequestMapping("findbyprice.do")
-	public ModelAndView SelectPark(Integer price,Integer page) {
+	public ModelAndView SelectPark(Integer price, Integer page) {
 
 		ModelAndView mav = new ModelAndView();
 
@@ -94,8 +152,8 @@ public class ParkingController {
 
 		if (bean != null) {
 
-			mav.addObject("price",pageInfo);
-			mav.addObject("list",bean);
+			mav.addObject("price", pageInfo);
+			mav.addObject("list", bean);
 
 		} else {
 			mav.addObject("空");
@@ -124,11 +182,9 @@ public class ParkingController {
 		List<ParkingBean> list = park.parkingSelect();
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(list);
 
-		
 		mav.addObject("pageinfo", pageInfo);
-		mav.addObject("list",list);
+		mav.addObject("list", list);
 		mav.setViewName("views/landlord_carpart_apply.jsp");
-
 
 		return mav;
 	}
