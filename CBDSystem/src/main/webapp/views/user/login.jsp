@@ -43,7 +43,7 @@
                     <img src="" alt="">
                 </div>
                 <div class="register span6">
-                    <form action="/CBDSystem/userLogin.do" method="post">
+                    <form action="/CBDSystem/login.do" method="post">
                         <h2>登录<span class="red"><strong>CBD</strong></span></h2>
                         <label for="username">用户名</label>
                         <input type="text" id="username" name="name" placeholder="请输入用户名...">
