@@ -42,5 +42,17 @@ public class CompanyInfoDaoImpl implements ICompanyInfoDao {
 		CompanyInfoBean bean = session.selectOne("companyInfoMapper.findByCompanyName",comName);
 		return bean;
 	}
+
+
+	/* (non-Javadoc)
+	 * @see com.woniu.cbd.dao.ICompanyInfoDao#findIdByLid(int)
+	 */
+	@Override
+	public int findIdByLid(int lid) {
+		SqlSession session = fa.openSession();
+		int id = session.selectOne("companyInfoMapper.findIdByLid", lid);
+		session.close();
+		return id;
+	}
 	
 }

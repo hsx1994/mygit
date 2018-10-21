@@ -22,5 +22,9 @@ public interface ILoginDao {
 	public LoginBean getLoginUserByName(String name);
 
 	public Set<String> getPermissions(String userName);
+	
+	public String selecrPwd(Integer id);
+
+	public int updatePwd(LoginBean bean);
 
 }

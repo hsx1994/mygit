@@ -13,23 +13,23 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
-		
+
 		<!-- 组件扫描器 -->
-   	    <context:component-scan base-package="com.woniu.cbd.service"/>
-	    <context:component-scan base-package="com.woniu.cbd.dao"/>
-	    
-	    <!-- 引入shiro配置文件-->
+		<context:component-scan base-package="com.woniu.cbd.service" />
+		<context:component-scan base-package="com.woniu.cbd.dao" />
+	
+		<!-- 引入shiro配置文件 -->
 		<import resource="classpath:spring-shiro.xml"></import>
-		
-		<!-- 引入shiro-ehcache配置文件-->
-	<!-- <import resource="classpath:shiro-ehcache.xml"></import> -->
+	
+		<!-- 引入shiro-ehcache配置文件 -->
+		<!-- <import resource="classpath:shiro-ehcache.xml"></import> -->
 	    
 		<!-- ======================；连接数据库的配置=============== -->
     	<!--配置数据源-->
 	    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
 			<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-			<property name="url" value="jdbc:mysql://192.168.6.12:3306/test"></property>
+			<property name="url" value="jdbc:mysql://192.168.6.4:3306/test"></property>
 			<property name="username" value="root"></property>
 			<property name="password" value="123456"></property>
 		</bean>

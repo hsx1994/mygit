@@ -18,6 +18,7 @@ public interface IUserDao {
 	List<OrderBean> ShowLog(int id);
     //抢租客添加投诉信息
 	int AddComplaint(ComplainBean bean);
+
 	
 	/**
 	 * 添加用户名密码
@@ -30,6 +31,8 @@ public interface IUserDao {
 	 * @param user
 	 * @return
 	 */
+	// 通过登录表的id查包租婆或抢租客表的id
+	int findIdByLid(int lid);
 
 	public int addUserInfor(UserBean bean);
 	/**

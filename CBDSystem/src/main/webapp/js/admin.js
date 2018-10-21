@@ -32,7 +32,7 @@ function addAdmin(id){
 	var json = {
 				"jobNumber":$("#jobNumber").val(),
 				"realName":$("#realName").val(),
-				"tel":$("#tel").val(),
+				"tel":$("#phone").val(),
 				"login":{"name":$("#loginName").val(),
 				"password":$("#loginPassword").val()}
 				};

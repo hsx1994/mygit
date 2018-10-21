@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page deferredSyntaxAllowedAsLiteral="true"%>
 <div id="show">
 <html>
 <head>
@@ -34,8 +35,8 @@
         #addinfo a:hover{ background: no-repeat 0 1px;}
     </style>
 </head>
-<body onload="myInfo()">
-<input type="hidden" id="uid" value=<%=session.getAttribute("id") %>>>
+<body onload="show()">
+<input type="hidden" id="uid" value="${sessionScope.user.id }" >
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
     <tr>
@@ -51,27 +52,27 @@
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">用 户 名：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">admin</td>
+                        <td align="left" valign="middle" class="borderright borderbottom main-for">${sessionScope.user.name }</td>
                            <!-- <input type="text" name="" value="" class="text-word">-->
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 号：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            wn666
+                            ${admin.jobNumber }
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 名：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                           小李子
+                           ${admin.realName }
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">电话号码：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                        <input type="text" name="tel" class="text-word"  id="tel" style="display: none" value="13989888998" >
-                            <span id="ph">13989888998</span>
+                        <input type="text" name="tel" class="text-word"  id="tel" style="display: none" value="${admin.tel }" >
+                            <span id="ph">${admin.tel }</span>
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'" style="display: none" class="show" >
@@ -95,8 +96,10 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">&nbsp;</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input id="update" type="button" value="修改信息" class="text-but" onclick="showBox()">
-                            <input id="affirm" type="submit" value="确认修改" class="text-but" style="display: none" onclick="updateInfo()">
+                            <input id="updateTel" type="button" value="修改电话" class="text-but" onclick="showTelBox()">
+                            <input id="updatePwd" type="button" value="修改密码" class="text-but" onclick="showPwdBox()">
+                            <input id="affirm1" type="submit" value="确认修改" class="text-but" style="display: none" onclick="updateTel()">
+                            <input id="affirm2" type="submit" value="确认修改" class="text-but" style="display: none" onclick="updatePwd()">
                             <input id="cancel" type="button" value="取消" class="text-but"  onClick="location.href='userinfo.jsp'" style="display: none">
                         </td>
                     </tr>
@@ -106,18 +109,27 @@
 </table>
 <script>
     //显示、隐藏修改窗体
-    function showBox(){
-        $(".show").show();
+    function showTelBox(){
         $("#tel").show();
-        $("#affirm").show();
+        $("#affirm1").show();
+        $("#affirm2").hide();
         $("#cancel").show();
         $("#ph").hide();
-        $("#update").hide();
+        $("#updateTel").hide();
+        $("#updatePwd").hide();
+    }
+    function showPwdBox(){
+    	$(".show").show();
+    	$("#affirm1").hide();
+    	$("#affirm2").show();
+        $("#cancel").show();
+        $("#updateTel").hide();
+        $("#updatePwd").hide();
     }
 //展示个人信息
 function show(){
     $.ajax({
-		url:"/CBDSystem/showOneAdmin.do",
+		url:"/CBDSystem/showAdminInfo.do",
 		type:"post",
 		data:{
 			id:$("#uid").val()
@@ -128,23 +140,39 @@ function show(){
 		}
 	});
 }
-//修改信息
-function updateInfo(){
+//修改电话信息
+function updateTel(){
     $.ajax({
-    	url:"/CBDSystem/showOneAdmin.do",
+    	url:"/CBDSystem/updateAdminTel.do",
     	type:"post",
     	data:{
     		id:$("#uid").val(),
     		tel:$("#tel").val(),
-    		possword:$("#oldpwd"),
-    		
-    		
     	},
     	dataType:"json",
     	success:function(data){
-    	
+    		alert(data);
+    		window.location.reload();
     	}
-    )};
+    });
+}
+//修改密码
+function updatePwd(){
+    $.ajax({
+    	url:"/CBDSystem/changePwd.do",
+    	type:"post",
+    	data:{
+    		id:$("#uid").val(),
+    		password:$("#oldpwd").val(),
+    		newpwd:$("#newpwd").val(),
+    		checkpwd:$("#checknew").val()
+    	},
+    	dataType:"json",
+    	success:function(data){
+    		alert(data);
+    		window.location.reload();
+    	}
+    });
 }
 </script>
 </body>
