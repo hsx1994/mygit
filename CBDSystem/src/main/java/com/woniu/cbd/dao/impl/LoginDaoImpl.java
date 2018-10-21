@@ -29,6 +29,7 @@ public class LoginDaoImpl implements ILoginDao {
 		SqlSession session = fa.openSession(true);
 		LoginBean bean = session.selectOne("loginMapper.findByName",login);
 		
+		session.close();
 		return bean;
 	}
 	/* *

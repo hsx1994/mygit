@@ -33,34 +33,28 @@
 					</ul>
 				</div>
 				<div class="reg-box" id="verifyCheck" style="margin-top:20px;">
-				
-				
-							
-				
 					<div class="part1">
-					<span class="intelligent-label f-fl"><b class="ftx04">*</b></span>填写用户角色 ：
-							<select id="role" name="role" data-valid="isNonEmpty"	data-error="角色不能为空">
+						<div class="item col-xs-12"><span class="intelligent-label f-fl"><b class="ftx04">*</b>用户角色： </span>
+							<select class="required" id="role" name="role" data-valid="isNonEmpty" data-error="角色不能为空">
 								<option></option>
-								<option value="包租用户">包租用户</option>
+								<option value="包租用户" style="height:">包租用户</option>
 								<option value="抢租用户">抢租用户</option>
 							</select>
-							
-							<br>
-						<div class="item col-xs-12">
-							<span class="intelligent-label f-fl"><b class="ftx04">*</b>用户名：</span>
+					</div>
+					
+						<div class="item col-xs-12"><span class="intelligent-label f-fl"><b class="ftx04">*</b>用户名：</span>
 							<div class="f-fl item-ifo">
 								<input type="text" maxlength="20" class="txt03 f-r3 required"
 									tabindex="1" data-valid="isNonEmpty||between:3-20||isUname"
 									data-error="用户名不能为空||用户名长度3-20位||只能输入中文、字母、数字、下划线，且以中文或字母开头" 
-									id="name" name="name" />
+									id="name" name="name" /><button onclick="checkUserName()">检测(必须)</button>
 									<span class="ie8 icon-close close hide"></span> 
 									<label class="icon-sucessfill blank hide"></label> 
-									<label class="focus"><span>3-20位，中文、字母、数字、下划线的组合，以中文或字母开头</span></label>
+									<label class="focus" id="err"><span>3-20位，中文、字母、数字、下划线的组合，以中文或字母开头</span></label>
 								<label class="focus valid"></label>
 							
 							</div>
 						</div>
-						
 						<div class="item col-xs-12">
 							<span class="intelligent-label f-fl"><b class="ftx04">*</b>密码：</span>
 							<div class="f-fl item-ifo">
@@ -99,7 +93,7 @@
 						<div class="item col-xs-12">
 							<span class="intelligent-label f-fl">&nbsp;</span>
 							<div class="f-fl item-ifo">
-								<a href="javascript:;" class="btn btn-blue f-r3" id="btn_part1">下一步</a>
+								<a href="javascript:;" style="display: none" class="btn btn-blue f-r3" id="btn_part1">下一步</a>
 							</div>
 						</div>
 					</div>
@@ -310,6 +304,23 @@ function send(){
 			});
 			
 	};
+//验证用户名是否存在
+function checkUserName(){
+	$.ajax({
+		url:"/CBDSystem/checkUserName.do",
+		type:"post",
+		data:{
+			name:$("#name").val()
+		},
+		dataType:"json",
+		success:function(masage){
+			$("#err").html(masage);
+			if(masage=="用户名可用"){
+				$("#btn_part1").show();
+			}
+		}
+	});
+}
 
 
 

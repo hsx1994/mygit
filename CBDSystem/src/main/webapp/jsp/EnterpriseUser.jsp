@@ -36,10 +36,10 @@ body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";background:#E8E8E8
 
 <div class="menu">
 	<ul class="clearfix">
-		<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp联系人姓名：<input type="text" name="name"value=${user.name}></li>
-		<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp密码：<input type="text" name="password"value=${user.password}></li>
-		<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp电话：<input type="text" name="tel"value=${user.tel}></li>
-		<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp邮箱：<input type="text" name="email"value=${user.email}></li>
+		<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系人姓名：<input type="text" name="name" value=${user.name } /></li>
+		<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密码：<input type="text" name="password" value=${user.password } /></li>
+		<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话：<input type="text" name="tel" value=${user.tel } /></li>
+		<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮箱：<input type="text" name="email" value=${user.email } /></li>
 		<li><a href="http://sc.chinaz.com/"></a></li>
 		<li><a href="http://sc.chinaz.com/"></a></li>
 		<li><a href="http://sc.chinaz.com/"></a></li>
