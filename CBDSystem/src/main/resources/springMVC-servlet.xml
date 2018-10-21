@@ -16,7 +16,7 @@
 
 	<!-- 配置注解映射处理器 -->
 	<bean
-		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
 
 	<!-- 配置注解处理器适配器 -->
 	<bean

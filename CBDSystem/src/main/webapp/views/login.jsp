@@ -33,8 +33,13 @@
             </li>
             <li class="topE"></li>
             <li class="middle_A"></li>
+<<<<<<< HEAD
+            <li class="middle_B"><span><font color="red">${errorMsg}</font></span></li>
+            <li class="middle_C"><span class="btn"><input name="" type="image" src="/CBDSystem/images/login/btnlogin.gif" /></span></li>
+=======
             <li class="middle_B"></li>            
             <li class="middle_C"><span class="btn"><input name="" type="image" src="/CBDSystem/images/login/btnlogin.gif" /><label><font color="red">${errorMsg }</font></label></span></li>        	
+>>>>>>> branch 'master' of https://github.com/hsx1994/mygit.git
             <li class="middle_D"></li>
             <li class="bottom_A"></li>
             <li class="bottom_B">网站后台管理系统&nbsp;&nbsp;www.php.com</li>

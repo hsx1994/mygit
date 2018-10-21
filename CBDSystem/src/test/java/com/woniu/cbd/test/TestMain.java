@@ -10,6 +10,7 @@ import com.woniu.cbd.service.impl.BargainServiceImpl;
 public class TestMain {
 	@Test
 	public void test(){
+
 	ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 	IBargainService service = context.getBean("bargainServiceImpl",BargainServiceImpl.class);
 	boolean re = service.bargainDelete(1);

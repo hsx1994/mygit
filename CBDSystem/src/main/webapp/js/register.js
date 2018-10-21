@@ -52,6 +52,7 @@
 				b = b || " ";
 				if (!a.length) return b
 			},
+			
 			minLength: function(a, b, c) {
 				c = c || " ";
 				if (a.length < b) return c
