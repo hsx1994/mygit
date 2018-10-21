@@ -1,6 +1,5 @@
 package com.woniu.cbd.util;
 
-import org.apache.shiro.codec.Base64;
 import org.apache.shiro.crypto.hash.Md5Hash;
 
 public class Md5pwdUtil {

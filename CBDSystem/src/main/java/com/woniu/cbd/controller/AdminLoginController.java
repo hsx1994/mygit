@@ -30,7 +30,7 @@ public class AdminLoginController {
 	 */
 	@RequestMapping("adminLogin.do")
 	public String login(LoginBean user, String checkcode,HttpServletRequest request){
-		System.out.println("user=" + user + ":" + "checkcode" + checkcode);
+		System.out.println("user=" + user + ":" + "checkcode=" + checkcode);
 		// 加密密码Md5
 		String realPassword = Md5pwdUtil.md5(user.getPassword(), user.getName());
 		System.out.println("加密密码:" + realPassword);

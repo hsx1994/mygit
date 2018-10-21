@@ -52,7 +52,6 @@ public class ParkingController {
 		PageHelper.startPage(page, 8, true);
 		List<ParkingBean> bean = park.ShowAll();
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
-
 		mav.addObject("paging", pageInfo);
 		mav.addObject("all", bean);
 		mav.setViewName("063/ShowParkingSpace.jsp");

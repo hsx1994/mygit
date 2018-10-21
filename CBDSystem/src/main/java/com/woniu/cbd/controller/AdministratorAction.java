@@ -39,8 +39,21 @@ public class AdministratorAction {
 	 */
 	@RequestMapping("/addAdmin.do")
 	public @ResponseBody String register(@RequestBody AdministratorBean admin) {
-		String re = ils.addAdmin(admin.getLogin());
 		String result = null;
+		if(admin.getJobNumber().length()<1){
+			result="工号不能为空";
+			return result;
+		}
+		if(admin.getTel().length()<1){
+			result="电话不能为空";
+			return result;
+		}
+		if(admin.getRealName().length()<1){
+			result="姓名不能为空";
+			return result;
+		}
+		String re = ils.addAdmin(admin.getLogin());
+		
 		if(re.equals("成功")){
 			result = service.addAdmin(admin);
 		} else {

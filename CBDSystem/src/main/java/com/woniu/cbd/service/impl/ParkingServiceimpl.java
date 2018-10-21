@@ -32,7 +32,6 @@ public class ParkingServiceimpl implements IParkingService {
     //抢租客查看所有上架车位功能
 	@Override
 	public List<ParkingBean> ShowAll() {
-		// TODO Auto-generated method stub
 		List<ParkingBean> bean = dao.ShowAll();
 		return bean;
 	}
