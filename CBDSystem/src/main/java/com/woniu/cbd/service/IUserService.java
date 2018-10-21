@@ -20,4 +20,7 @@ public interface IUserService {
 	// 用于抢租客针对订单的投诉信息
 	public boolean AddComplaint(ComplainBean bean);
 
+	//用于查包租婆或抢租客表的id
+	public int findIdByLid(int lid);
+
 }

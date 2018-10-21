@@ -46,13 +46,18 @@ public interface IAdministratorService {
 	 * @return
 	 */
 	public String addAdmin(AdministratorBean admin);
-	
+	/**通过登录表lid查管理员id
+	 * @param lid
+	 * @return
+	 */
+	public int findIdByLid(int lid);	
 	/**
 	 * 修改管理员电话
 	 * @param id
 	 * @param tel
 	 * @return
 	 */
+
 	public String updateAdminTel(AdministratorBean bean);
 	
 	/**

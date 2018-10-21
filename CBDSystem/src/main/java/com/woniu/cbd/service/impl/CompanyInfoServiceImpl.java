@@ -37,6 +37,17 @@ public class CompanyInfoServiceImpl implements ICompanyInfoService {
 		
 		return list;
 	}
+
+	/**
+	 * 根据登录表lid查企业id
+	 * @param lid
+	 * @return
+	 */
+	@Override
+	public int findIdByLid(int lid) {
+		
+		return dao.findIdByLid(lid);
+	}
 	
 
 }

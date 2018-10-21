@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -24,6 +25,15 @@ div.main-order{ line-height:30px; padding:10px 0 0 0;}
 </style>
 </head>
 <body>
+
+<shiro:hasRole name="admin">
+	欢迎有superadmin角色的用户！<shiro:principal/>
+</shiro:hasRole>
+<shiro:hasPermission name="student:create">
+	欢迎有student:create权限的用户！<shiro:principal/>
+</shiro:hasPermission>
+
+
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="main">
   <tr>
