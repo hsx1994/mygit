@@ -30,7 +30,7 @@
         #addinfo a:hover{ background:url(../images/main/replayblue.jpg) no-repeat 0 0px;}
     </style>
 </head>
-<body onload="showHContract">
+<body onload="showHContract(1)">
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
     <tr>

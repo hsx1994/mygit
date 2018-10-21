@@ -11,8 +11,7 @@
 		insert into t_other_parking
 		(ot_address,ot_parking_number,ot_img,ot_price,ot_start_time,ot_end_time,ot_bargain_id)
 		values
-		<foreach collection="list" item="bean" index="index"
-			separator=",">
+		<foreach collection="list" item="bean" index="index" separator=",">
 			(#{bean.address},#{bean.parkingNum},#{bean.img},#{bean.price},#{bean.startTime},#{bean.endTime})
 		</foreach>
 	</insert>

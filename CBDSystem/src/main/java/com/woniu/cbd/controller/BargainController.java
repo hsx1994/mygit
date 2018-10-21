@@ -114,7 +114,7 @@ public class BargainController {
 		PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(bargain);
 		
 		if(bargain != null){
-			mav.addObject("unuseingBargain", pageInfo);
+			mav.addObject("pageinfo", pageInfo);
 			mav.addObject("list",bargain);
 		} else {
 			mav.addObject("unuseingBargain","没有废弃的合约");
