@@ -8,7 +8,7 @@
     <link href="/CBDSystem/css/alogin.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <form id="form1" runat="server" action="/CBDSystem/login.do" method="post">
+    <form id="form1" runat="server" action="/CBDSystem/adminLogin.do" method="post">
     <div class="Main">
         <ul>
             <li class="top"></li>

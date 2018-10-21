@@ -50,10 +50,8 @@
 				/js/**=anon
 				/jsp/**=anon
 				/views/main** = authc
-				/logout=/logout				
-				/views/
+				<!-- /logout=/logout -->				
 				/views/**=anon
-				
 			</value>
 		</property>
 	</bean>

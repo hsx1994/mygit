@@ -31,7 +31,7 @@ public class LoginController {
 
 		// 加密密码Md5
 		String realPassword = Md5pwdUtil.md5(user.getPassword(), user.getName());
-		
+		System.out.println(user.getName());
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(user.getName(),
 				realPassword);
@@ -41,7 +41,7 @@ public class LoginController {
 				token.setRememberMe(true);
 			}
 			subject.login(token);
-			return "redirect:/views/main.jsp";
+			return "redirect:/views/manage.jsp";
 		} catch (Exception e) {
 			request.setAttribute("user", user);
 			request.setAttribute("errorMsg", "用户名或密码错误！");
