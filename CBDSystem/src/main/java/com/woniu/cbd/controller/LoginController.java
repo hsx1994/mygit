@@ -39,8 +39,7 @@ public class LoginController {
 			str = "两次新密码输入不一致，请重新输入";
 			return str;
 		}
-		LoginBean user = (LoginBean) req.getSession().getAttribute("user");
-		System.out.println(user);
+		LoginBean user = (LoginBean) req.getSession().getAttribute("login");
 		String realPwd = service.selectPwd(id);
 		if(!Md5pwdUtil.md5(password, user.getName()).equals(realPwd)){
 			str = "旧密码不正确";
@@ -48,7 +47,7 @@ public class LoginController {
 		}
 		LoginBean bean = new LoginBean();
 		bean.setId(id);
-		bean.setPassword(newpwd);
+		bean.setPassword(Md5pwdUtil.md5(newpwd, user.getName()));
 		boolean re = service.updatePwd(bean);
 		if(re){
 			str="更改成功";
