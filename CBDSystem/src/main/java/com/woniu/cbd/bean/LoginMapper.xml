@@ -37,14 +37,9 @@
 	
 	<!-- 通过登录用户名查找登录用户信息 --><!-- sql语句待调整 -->
 	<select id="findPermissionsByname" parameterType="String"
-		resultMap="permissionsMap">
-		select * from t_login where l_name=#{name}
-	</select>
-	<resultMap type="PermissionBean" id="permissionsMap">
-		<id property="id" column="per_id"></id>
-		<result property="name" column="per_name" />
-	</resultMap>
-	
+		resultType="PermissionBean">
+		select per_id as id,per_name as name from login_role_permission_info where name=#{name}
+	</select>		
 	<!-- 通过ID查密码 -->
 	<select id="selecrPwd" parameterType="int" resultType="String">
 		select l_password from t_login where t_id=#{id}

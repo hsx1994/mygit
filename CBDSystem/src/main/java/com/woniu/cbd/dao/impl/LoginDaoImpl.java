@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.woniu.cbd.bean.LoginBean;
+import com.woniu.cbd.bean.PermissionBean;
 import com.woniu.cbd.dao.ILoginDao;
 @Repository
 public class LoginDaoImpl implements ILoginDao {
@@ -49,9 +50,9 @@ public class LoginDaoImpl implements ILoginDao {
 	public Set<String> getPermissions(String name) {
 		Set<String> permissions=new HashSet<String>();
 		SqlSession session = fa.openSession(true);
-		List<String> list = session.selectList("loginMapper.findPermissionsByname",name);
-		for (String PermissionName : list) {
-			permissions.add(PermissionName);
+		List<PermissionBean> list = session.selectList("loginMapper.findPermissionsByname",name);
+		for (PermissionBean P : list) {
+			permissions.add(P.getName());
 		}
 		session.close();
 		return permissions;
