@@ -83,22 +83,20 @@ public class LoginController {
 
 	@ResponseBody
 	@RequestMapping("changePwd.do")
-	public String changePwd(Integer id,String password,String newpwd,String checkpwd,HttpServletRequest req){
+	public String changePwd(String password,String newpwd,String checkpwd,HttpServletRequest req){
 		String str = "更改失败";
 		if(!newpwd.equals(checkpwd)){
 			str = "两次新密码输入不一致，请重新输入";
 			return str;
 		}
 		LoginBean user = (LoginBean) req.getSession().getAttribute("login");
-		String realPwd = service.selectPwd(id);
+		String realPwd = service.selectPwd(user.getId());
 		if(!Md5pwdUtil.md5(password, user.getName()).equals(realPwd)){
 			str = "旧密码不正确";
 			return str;
 		}
-		LoginBean bean = new LoginBean();
-		bean.setId(id);
-		bean.setPassword(Md5pwdUtil.md5(newpwd, user.getName()));
-		boolean re = service.updatePwd(bean);
+		user.setPassword(Md5pwdUtil.md5(newpwd, user.getName()));
+		boolean re = service.updatePwd(user);
 		if(re){
 			str="更改成功";
 		}

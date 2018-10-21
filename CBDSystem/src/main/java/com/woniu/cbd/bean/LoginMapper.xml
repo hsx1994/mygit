@@ -51,6 +51,6 @@
 	</select>
 	
 	<update id="updatePwd" parameterType="LoginBean">
-		update t_login set l_possword=#{password} where t_id=#{id}
+		update t_login set l_password=#{password} where t_id=#{id}
 	</update>
 </mapper>
