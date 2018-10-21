@@ -60,4 +60,13 @@ public class UserDaoImpl implements IUserDao {
 		return num;
 	}
 
+	// 通过登录表的id查包租婆或抢租客表的id
+	@Override
+	public int findIdByLid(int lid) {
+		SqlSession session = fa.openSession();
+		int id = session.selectOne("userMapper.findIdByLid", lid);
+		session.close();
+		return id;
+	}
+
 }

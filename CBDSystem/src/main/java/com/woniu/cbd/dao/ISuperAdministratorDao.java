@@ -18,4 +18,6 @@ public interface ISuperAdministratorDao {
 	 */
 	public SuperAdministratorBean findAll(LoginBean lb);
 
+	public int findIdByLid(int lid);
+
 }

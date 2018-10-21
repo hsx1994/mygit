@@ -58,4 +58,11 @@ public interface IAdministratorDao {
 	 * @return
 	 */
 	public int addAdmin(AdministratorBean admin);
+
+	/**
+	 * 根据用户表lid查管理员id
+	 * @param lid
+	 * @return
+	 */
+	public int findIdByLid(int lid);
 }

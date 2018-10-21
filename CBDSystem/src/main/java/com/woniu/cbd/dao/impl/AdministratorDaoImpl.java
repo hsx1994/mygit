@@ -98,4 +98,12 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 		return re;
 	}
 
+	@Override
+	public int findIdByLid(int lid) {
+		SqlSession session = fa.openSession();
+		int id = session.selectOne("AdministratorMapper.findIdByLid", lid);
+		session.close();
+		return id;
+	}
+
 }

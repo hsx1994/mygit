@@ -12,9 +12,8 @@
 欢迎访问官网首页展示页面
 
 
-<a href="/CBDSystem/user/login.jsp">点我去个人用户页面</a>
-<a href="/CBDSystem/company/companyLogin.jsp">点我去企业用户页面</a>
-<a href="/CBDSystem/system/adminLogin.jsp">点我去其他用户页面</a>
+<a href="/CBDSystem/views/user/login.jsp">点我去用户页面</a>
+<a href="/CBDSystem/views/login.jsp">点我去管理员用户页面</a>
 
 </body>
 <!--不可以删除-->

@@ -1,6 +1,8 @@
 package com.woniu.cbd.dao.impl;
 
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.ibatis.session.SqlSession;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.woniu.cbd.bean.LoginBean;
+import com.woniu.cbd.bean.PermissionBean;
 import com.woniu.cbd.dao.ILoginDao;
 @Repository
 public class LoginDaoImpl implements ILoginDao {
@@ -45,9 +48,13 @@ public class LoginDaoImpl implements ILoginDao {
 	 */
 	@Override
 	public Set<String> getPermissions(String name) {
+		Set<String> permissions=new HashSet<String>();
 		SqlSession session = fa.openSession(true);
-		LoginBean bean = session.selectOne("loginMapper.findPermissionsByname",name);
+		List<String> list = session.selectList("loginMapper.findPermissionsByname",name);
+		for (String PermissionName : list) {
+			permissions.add(PermissionName);
+		}
 		session.close();
-		return null;
+		return permissions;
 	}
 }

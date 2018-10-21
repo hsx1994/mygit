@@ -4,6 +4,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.woniu.cbd.bean.LoginBean;
 import com.woniu.cbd.dao.ILoginDao;
 import com.woniu.cbd.service.ILoginService;
@@ -13,6 +14,8 @@ public class LoginServiceImpl implements ILoginService{
 
 	@Autowired
 	private ILoginDao loginDao;
+	
+
 	
 	/**
 	 * 根据登录用户名获取登录用户信息
@@ -43,5 +46,7 @@ public class LoginServiceImpl implements ILoginService{
 		}
 		return result;
 	}
+
+
 
 }

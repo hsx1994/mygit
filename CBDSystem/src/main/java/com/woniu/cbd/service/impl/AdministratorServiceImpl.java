@@ -69,4 +69,13 @@ public class AdministratorServiceImpl implements IAdministratorService {
 		return result;
 	}
 
+	/* 
+	 * 通过登录表lid查管理员id
+	 */
+	@Override
+	public int findIdByLid(int lid) {
+		
+		return idao.findIdByLid(lid);
+	}
+
 }
