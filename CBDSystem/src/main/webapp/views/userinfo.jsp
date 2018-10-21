@@ -128,23 +128,39 @@ function show(){
 		}
 	});
 }
-//修改信息
+//修改电话信息
 function updateInfo(){
     $.ajax({
-    	url:"/CBDSystem/showOneAdmin.do",
+    	url:"/CBDSystem/updateAdminTel.do",
     	type:"post",
     	data:{
     		id:$("#uid").val(),
     		tel:$("#tel").val(),
-    		possword:$("#oldpwd"),
-    		
-    		
     	},
     	dataType:"json",
     	success:function(data){
-    	
+    		alert(data);
+    		window.location.reload();
     	}
-    )};
+    });
+}
+//修改密码
+function updateInfo(){
+    $.ajax({
+    	url:"/CBDSystem/changePwd.do",
+    	type:"post",
+    	data:{
+    		id:$("#uid").val(),
+    		possword:$("#oldpwd"),
+    		pwd:$("#newpwd"),
+    		checkpwd:$("#checknew")
+    	},
+    	dataType:"json",
+    	success:function(data){
+    		alert(data);
+    		window.location.reload();
+    	}
+    });
 }
 </script>
 </body>

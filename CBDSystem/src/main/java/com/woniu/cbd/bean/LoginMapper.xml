@@ -30,6 +30,7 @@
 		l_name=#{name} and l_delete = 0;
 	</select>
 	
+<<<<<<< HEAD
 	
 	<!-- 通过登录用户名查找登录用户信息 --><!-- sql语句待调整 -->
 	<select id="findPermissionsByname" parameterType="String"
@@ -40,4 +41,14 @@
 		<id property="id" column="per_id"></id>
 		<result property="name" column="per_name" />
 	</resultMap>
+=======
+	<!-- 通过ID查密码 -->
+	<select id="selecrPwd" parameterType="int" resultType="String">
+		select l_password from t_login where t_id=#{id}
+	</select>
+	
+	<update id="updatePwd" parameterType="LoginBean">
+		update t_login set l_possword=#{password} where t_id=#{id}
+	</update>
+>>>>>>> branch 'master' of https://github.com/hsx1994/mygit.git
 </mapper>

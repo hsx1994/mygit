@@ -46,7 +46,18 @@ public class LoginServiceImpl implements ILoginService{
 		}
 		return result;
 	}
+	@Override
+	public String selectPwd(Integer id) {
+		String re = loginDao.selecrPwd(id);
+		return re;
+	}
 
-
-
+	@Override
+	public boolean updatePwd(LoginBean bean) {
+		int re = loginDao.updatePwd(bean);
+		if(re > 0){
+			return true;
+		}
+		return false;
+	}
 }

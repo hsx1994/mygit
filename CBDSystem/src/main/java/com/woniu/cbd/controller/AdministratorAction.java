@@ -66,21 +66,18 @@ public class AdministratorAction {
 	}
 
 	/**
-	 * 作用：修改权限
+	 * 作用：修改电话号码
 	 * @param model
 	 * @param ab 前端传来的对象包含id、limit字段
 	 * @return  修改结果
 	 */
-	@RequestMapping("/change.do")
-	public String change(Model model, AdministratorBean ab) {
-																					
-		// 接收后台处理完修改后的结果
-
-		String str = service.administratorLimitChange(ab);
-		// 向页面传参
-		model.addAttribute("changeresult", str);
-		return "/jsp/register.jsp";
+	@RequestMapping("/updateAdminTel.do")
+	public String change(AdministratorBean bean){
+		String str = "修改失败";
+		str = service.updateAdminTel(bean);
+		return str;
 	}
+
 
 	/**
 	 * 查询所有管理员信息

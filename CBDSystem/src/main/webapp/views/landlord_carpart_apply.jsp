@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="../js/pageinfo.js"></script>
 <div id="aaa">
 <html>
@@ -54,7 +55,7 @@
                 </tr>
                 <c:forEach begin="0" step="1" items="${list}" var="obj">
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                    <td align="center" valign="middle" class="borderright borderbottom">${obj.applyTime }</td>
+                    <td align="center" valign="middle" class="borderright borderbottom"><fmt:formatDate value="${obj.applyTime }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.user.realName }</td>
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.address }</td>
                     <td align="center" valign="middle" class="borderbottom"><a href="landlord_carpart_check.jsp" target="mainFrame" onFocus="this.blur()" class="add">受理</a></td>

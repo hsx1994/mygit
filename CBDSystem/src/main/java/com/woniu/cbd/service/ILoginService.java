@@ -28,6 +28,18 @@ public interface ILoginService {
 	 * @param userName
 	 * @return
 	 */
-	public Set<String> getPermissions(String name);
-
+	public Set<String> getPermissions(String name);	
+	/**
+	 * 通过ID查真实密码
+	 * @param id
+	 * @return
+	 */
+	public String selectPwd(Integer id);
+	
+	/**
+	 * 修改管理员密码
+	 * @param bean
+	 * @return
+	 */
+	public boolean updatePwd(LoginBean bean);
 }
