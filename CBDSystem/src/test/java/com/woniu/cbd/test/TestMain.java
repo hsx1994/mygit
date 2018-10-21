@@ -38,7 +38,7 @@ public class TestMain {
 	public void test(){
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		IUserDao order = (IUserDao)context.getBean(IUserDao.class);
-		order.findName("lisi");
+		//((Object) order).findName("lisi");
 		System.out.println(order);
 	}
 
