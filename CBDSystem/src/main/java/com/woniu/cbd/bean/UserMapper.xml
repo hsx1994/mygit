@@ -11,6 +11,7 @@
 	</select>
 	<!--UserBean -->
 	<resultMap type="UserBean" id="user">
+	    <result property="id" column="u_id"/>
 		<result property="realName" column="u_realname" />
 		<result property="address" column="u_address" />
 		<result property="tel" column="u_tel" />

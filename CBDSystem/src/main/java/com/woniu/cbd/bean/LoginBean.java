@@ -1,12 +1,15 @@
 package com.woniu.cbd.bean;
 
+import java.io.Serializable;
+
 /**
  * 描述：用于各种用户登录
  * 
  * @author wt
  *
  */
-public class LoginBean {
+public class LoginBean implements Serializable{
+	private static final long serialVersionUID = 1L;
 	// 登录表id
 	private int id;
 	// 登录名
@@ -47,4 +50,5 @@ public class LoginBean {
 	public void setDelete(short delete) {
 		this.delete = delete;
 	}
+	
 }

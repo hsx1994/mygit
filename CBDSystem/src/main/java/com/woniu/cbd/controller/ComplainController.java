@@ -11,7 +11,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.ComplainBean;
+import com.woniu.cbd.bean.OrderBean;
+import com.woniu.cbd.bean.ParkingBean;
+import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.service.IComplainService;
+import com.woniu.cbd.service.IParkingService;
 
 /**
  * 处理投诉信息
@@ -23,7 +27,10 @@ import com.woniu.cbd.service.IComplainService;
 public class ComplainController {
 	@Autowired
 	private IComplainService service;
-
+    
+	
+	@Autowired
+	private IParkingService parking;
 	/**
 	 * 显示所有待处理的投诉信息
 	 * 
@@ -80,8 +87,32 @@ public class ComplainController {
 
 	}
     //针对订单添加投诉信息
-	@RequestMapping("addcomplaint.do")
-	public @ResponseBody String addCompiaint(ComplainBean complaint) {
+	@RequestMapping("/addComplaint.do")
+	public @ResponseBody String addCompiaint(OrderBean order,String text) {
+		//在session中获取到当前登录用户的id
+		int i=1;//测试
+		
+		//由订单的id在车位表中获取到车位所有人的id
+		ParkingBean bean=parking.selectParkingByOrderID(order.getId());
+		int uid=bean.getUser().getId();
+		
+		
+		UserBean user=new UserBean();
+		user.setId(i);
+		
+		UserBean buser=new UserBean();
+		buser.setId(uid);
+
+		
+		ComplainBean complaint=new ComplainBean(); 
+		//投诉内容
+		complaint.setContent(text);
+		//当前登录用户的id
+		complaint.setUser(user);
+		//被投诉人的id
+		complaint.setBuser(buser);
+		//投诉订单id
+		complaint.setOrder(order);
 		String result = service.AddComplaint(complaint);
 		return result;
 

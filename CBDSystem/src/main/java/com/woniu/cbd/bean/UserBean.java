@@ -13,6 +13,8 @@ public class UserBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//普通用户ID
 	private int id;
+	//登录信息(用户名密码信息)
+	private LoginBean login;
 	//普通用户账号真实姓名
 	private String realName;
 	//普通用户地址
@@ -33,6 +35,12 @@ public class UserBean implements Serializable {
 	private List<ParkingBean> parking;
 	
 	
+	public LoginBean getLogin() {
+		return login;
+	}
+	public void setLogin(LoginBean login) {
+		this.login = login;
+	}
 	public List<ParkingBean> getParking() {
 		return parking;
 	}

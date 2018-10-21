@@ -118,4 +118,9 @@
 		update t_parking set
 		p_delete=1 where p_id=#{id}
 	</update>
+	
+	<!--订单id查询车位信息  -->
+	<select id="selectParkingByOrderID" parameterType="int" resultMap="apply">
+	   select * from t_parking where p_id=#{id} 
+	</select>
 </mapper>

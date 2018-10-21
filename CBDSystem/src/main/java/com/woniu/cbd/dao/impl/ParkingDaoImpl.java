@@ -18,7 +18,7 @@ public class ParkingDaoImpl implements IParkingDao {
 	
     //包租婆批量添加个人车位
 	@Override
-	public int AddParking(List<ParkingBean> park) {
+	public int addParking(List<ParkingBean> park) {
 		SqlSession session = fa.openSession(true);
 		int num=session.insert("parkingMapper.addParking", park);
 		session.close();
@@ -26,7 +26,7 @@ public class ParkingDaoImpl implements IParkingDao {
 	}
     //抢租客查看所有的车位，无论是否被租赁
 	@Override
-	public List<ParkingBean> ShowAll() {
+	public List<ParkingBean> showAll() {
 		SqlSession session = fa.openSession(true);
 		List<ParkingBean> bean=session.selectList("parkingMapper.showall");
 		session.close();
@@ -34,7 +34,7 @@ public class ParkingDaoImpl implements IParkingDao {
 	}
     //抢租客根据上架时间查询
 	@Override
-	public List<ParkingBean> SelectPark(Date date) {
+	public List<ParkingBean> selectParking(Date date) {
 		SqlSession session = fa.openSession(true);
 		List<ParkingBean> bean=session.selectList("parkingMapper.showdate",date);
 		session.close();
@@ -42,7 +42,7 @@ public class ParkingDaoImpl implements IParkingDao {
 	}
     //抢租客根据价格查询
 	@Override
-	public List<ParkingBean> SelectPark(int price) {
+	public List<ParkingBean> selectParking(int price) {
 		SqlSession session = fa.openSession(true);
 		List<ParkingBean> bean=session.selectList("parkingMapper.showprice",price);
 		session.close();
@@ -50,7 +50,7 @@ public class ParkingDaoImpl implements IParkingDao {
 	}
     //抢租客查询指定车位的信息
 	@Override
-	public ParkingBean SelectParkOne(int id) {
+	public ParkingBean selectParkingOne(int id) {
 		SqlSession session = fa.openSession(true);
 		ParkingBean bean=session.selectOne("parkingMapper.showone",id);
 		session.close();
@@ -58,7 +58,7 @@ public class ParkingDaoImpl implements IParkingDao {
 	}
     //抢租客根据车位号来模糊查询
 	@Override
-	public List<ParkingBean> SelectParkByNum(String num) {
+	public List<ParkingBean> selectParkingByNum(String num) {
 		SqlSession session = fa.openSession(true);
 		List<ParkingBean> bean=session.selectList("parkingMapper.findbynum",num);
 		
@@ -113,5 +113,12 @@ public class ParkingDaoImpl implements IParkingDao {
 		
 		session.close();
 		return row;
+	}
+	@Override
+	public ParkingBean selectParkingByOrderID(int id) {
+		SqlSession session = fa.openSession(true);
+		ParkingBean bean=session.selectOne("parkingMapper.selectParkingByOrderID",id);
+		session.close();
+		return bean;
 	}
 }

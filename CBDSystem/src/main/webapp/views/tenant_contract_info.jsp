@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="../js/pageinfo.js"></script>
 <div id="aaa">
 <html>
@@ -78,8 +79,8 @@
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.company.comName }</td>
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.contact }</td>
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.tel }</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">${obj.startTime }</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">${obj.endTime }</td>
+                    <td align="center" valign="middle" class="borderright borderbottom"><fmt:formatDate value="${obj.startTime }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                    <td align="center" valign="middle" class="borderright borderbottom"><fmt:formatDate value="${obj.endTime }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                     <td align="center" valign="middle" class="borderbottom"><a href="tenant_contract_extension.jsp" target="mainFrame" onFocus="this.blur()" class="add">续约</a><span class="gray">&nbsp;|&nbsp;</span><a href="tenant_contract_detail.jsp" target="mainFrame" onFocus="this.blur()" class="add">详情</a></td>
                 </tr>
                 </c:forEach>

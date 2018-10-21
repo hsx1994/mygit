@@ -14,25 +14,19 @@ import com.woniu.cbd.bean.CompanyBargainBean;
 import com.woniu.cbd.bean.CompanyInfoBean;
 import com.woniu.cbd.dao.ICompanyInfoDao;
 import com.woniu.cbd.dao.IComplainDao;
+import com.woniu.cbd.dao.IOrderDao;
 import com.woniu.cbd.dao.IOtherParkingDao;
 import com.woniu.cbd.dao.impl.CompanyInfoDaoImpl;
 import com.woniu.cbd.dao.impl.ComplainDaoImpl;
 import com.woniu.cbd.service.ICompanyBargainService;
-import com.woniu.cbd.service.impl.CompanyBargainServiceImpl;
-
-
-
-import com.woniu.cbd.bean.CompanyInfoBean;
 import com.woniu.cbd.bean.ComplainBean;
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.OtherParkingBean;
 import com.woniu.cbd.bean.ParkingBean;
 import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.dao.ICompanyBargainDao;
-import com.woniu.cbd.dao.IOtherParkingDao;
 import com.woniu.cbd.dao.IParkingDao;
 import com.woniu.cbd.dao.IUserDao;
-import com.woniu.cbd.service.ICompanyBargainService;
 import com.woniu.cbd.service.impl.CompanyBargainServiceImpl;
 public class TestMain {
 	// 查看所有的车位
@@ -41,7 +35,7 @@ public class TestMain {
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		IParkingDao dao = (IParkingDao) context.getBean("parkingDaoImpl");
-		List<ParkingBean> bean = dao.ShowAll();
+		List<ParkingBean> bean = dao.showAll();
 		System.out.println(bean);
 
 	}
@@ -52,7 +46,7 @@ public class TestMain {
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		IParkingDao dao = (IParkingDao) context.getBean("parkingDaoImpl");
-		List<ParkingBean> bean = dao.SelectPark(15);
+		List<ParkingBean> bean = dao.selectParking(15);
 		System.out.println(bean);
 
 	}
@@ -63,7 +57,7 @@ public class TestMain {
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		IParkingDao dao = (IParkingDao) context.getBean("parkingDaoImpl");
-		List<ParkingBean> bean = dao.SelectParkByNum("28");
+		List<ParkingBean> bean = dao.selectParkingByNum("28");
 		System.out.println(bean);
 
 	}
@@ -74,7 +68,7 @@ public class TestMain {
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		IParkingDao dao = (IParkingDao) context.getBean("parkingDaoImpl");
-		ParkingBean bean = dao.SelectParkOne(1);
+		ParkingBean bean = dao.selectParkingOne(6);
 		System.out.println(bean);
 
 	}
@@ -108,7 +102,7 @@ public class TestMain {
 		List<ParkingBean> bean = new ArrayList<ParkingBean>();
 		bean.add(p);
 		bean.add(pa);
-		int bea = dao.AddParking(bean);
+		int bea = dao.addParking(bean);
 		System.out.println(bea);
 
 	}
@@ -129,8 +123,8 @@ public class TestMain {
 	public void test6() {
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		IUserDao dao = (IUserDao) context.getBean("userDaoImpl");
-		List<OrderBean> bean = dao.ShowLog(1);
+		IOrderDao dao = (IOrderDao) context.getBean("orderDaoImpl");
+		List<OrderBean> bean = dao.showLog(1);
 		System.out.println(bean);
 
 	}
@@ -226,7 +220,6 @@ public class TestMain {
 		System.out.println(dao.findComplainById(9));
 	}
 
-
 	@Test
 	public void atest() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -234,5 +227,3 @@ public class TestMain {
 	}
 
 }
-
-

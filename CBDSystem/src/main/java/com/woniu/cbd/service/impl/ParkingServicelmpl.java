@@ -10,16 +10,16 @@ import com.woniu.cbd.bean.ParkingBean;
 import com.woniu.cbd.dao.IParkingDao;
 import com.woniu.cbd.service.IParkingService;
 @Service
-public class ParkingServiceimpl implements IParkingService {
+public class ParkingServicelmpl implements IParkingService {
 	@Autowired
     private IParkingDao dao;
     
 	
 	//包租婆批量添加功能
 	@Override
-	public boolean AddParking(List<ParkingBean> park) {
+	public boolean addParking(List<ParkingBean> park) {
 		// TODO Auto-generated method stub
-		int num=dao.AddParking(park);
+		int num=dao.addParking(park);
 		if(num>0){
 			return true;
 			
@@ -31,40 +31,40 @@ public class ParkingServiceimpl implements IParkingService {
 	
     //抢租客查看所有上架车位功能
 	@Override
-	public List<ParkingBean> ShowAll() {
+	public List<ParkingBean> showAll() {
 		// TODO Auto-generated method stub
-		List<ParkingBean> bean = dao.ShowAll();
+		List<ParkingBean> bean = dao.showAll();
 		return bean;
 	}
     //根据日期上架
 	@Override
-	public List<ParkingBean> SelectPark(Date date) {
+	public List<ParkingBean> selectParking(Date date) {
 		// TODO Auto-generated method stub
-		List<ParkingBean> bean=dao.SelectPark(date);
+		List<ParkingBean> bean=dao.selectParking(date);
 		return bean;
 	}
 
     //根据价格查询
 	@Override
-	public List<ParkingBean> SelectPark(int price) {
+	public List<ParkingBean> selectParking(int price) {
 		// TODO Auto-generated method stub
-		List<ParkingBean> bean=dao.SelectPark(price);
+		List<ParkingBean> bean=dao.selectParking(price);
 		return bean;
 	}
     //查询单个车位
 	@Override
-	public ParkingBean SelectParkOne(int id) {
+	public ParkingBean selectParkingOne(int id) {
 		// TODO Auto-generated method stub
-		ParkingBean bean=dao.SelectParkOne(id);
+		ParkingBean bean=dao.selectParkingOne(id);
 		return bean;
 	}
 	
   
     //车位号模糊查询	
 	@Override
-	public List<ParkingBean> SelectParkByNum(String num) {
+	public List<ParkingBean> selectParkingByNum(String num) {
 		// TODO Auto-generated method stub
-		List<ParkingBean> bean=dao.SelectParkByNum(num);
+		List<ParkingBean> bean=dao.selectParkingByNum(num);
 		return bean;
 	}
 	
@@ -99,5 +99,12 @@ public class ParkingServiceimpl implements IParkingService {
 			return true;
 		}
 		return false;
+	}
+    //根据订单id查询车位信息
+	@Override
+	public ParkingBean selectParkingByOrderID(int id) {
+		// TODO Auto-generated method stub
+		ParkingBean bean=dao.selectParkingByOrderID(id);
+		return bean;
 	}
 }

@@ -14,8 +14,7 @@ public interface IUserService {
 	// 用于包租婆查看自己被租赁的记录
 	public List<ParkingBean> SelectLog(int id);
 
-	// 用于抢租客查看自己的租赁记录
-	public List<OrderBean> ShowLog(int id);
+	
 
 	
 

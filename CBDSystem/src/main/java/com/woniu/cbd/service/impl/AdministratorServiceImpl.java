@@ -23,17 +23,6 @@ public class AdministratorServiceImpl implements IAdministratorService {
 	private IAdministratorDao idao;
 
 	@Override
-	public String administratorRegister(AdministratorBean ab) {
-		String result = "添加失败";
-		// 调用方法获取dao层添加是否成功的结果
-		boolean boo = idao.administratorAdd(ab);
-		if(boo==true){
-			result = "添加成功";
-		}
-		return result;
-	}
-
-	@Override
 	public String administratorDelet(int id) {
 		String result = "删除失败";
 		// 调用方法获取dao层删除是否成功的结果
@@ -62,6 +51,32 @@ public class AdministratorServiceImpl implements IAdministratorService {
 		// 调用方法获取dao层查询到的数据
 		list = idao.administratorSelectAll();
 		return list;
+	}
+
+	@Override
+	public AdministratorBean showOneAdministrator(Integer id) {
+		AdministratorBean bean = idao.findOneAdministrator(id);
+		return bean;
+	}
+
+	@Override
+	public String addAdmin(AdministratorBean admin) {
+		String result = "添加失败";
+		int re = idao.addAdmin(admin);
+		if(re > 0){
+			result = "添加成功";
+		}
+		return result;
+	}
+
+	@Override
+	public String updateAdminTel(AdministratorBean bean) {
+		String result = "修改失败";
+		int re = idao.updateAdmintTel(bean);
+		if(re > 0){
+			result = "修改成功";
+		}
+		return result;
 	}
 
 }

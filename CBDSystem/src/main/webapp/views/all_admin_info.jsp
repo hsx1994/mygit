@@ -63,7 +63,10 @@
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.jobNumber }</td>
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.realName }</td>
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.limit }</td>
-                    <td align="center" valign="middle" class="borderbottom"><a href="update_admin.jsp" target="mainFrame" onFocus="this.blur()" class="add">修改</a><span class="gray">&nbsp;|&nbsp;</span><a href="add.jsp" target="mainFrame" onFocus="this.blur()" class="add">删除</a></td>
+                    <td align="center" valign="middle" class="borderbottom">
+                    	<a href="/CBDSystem/views/update_admin.jsp?id=${obj.id }" target="mainFrame" onFocus="this.blur()" class="add">修改</a>
+                        <span class="gray">&nbsp;|&nbsp;</span><a href="#" onclick="deleteAdmin(${obj.id })" target="mainFrame" onFocus="this.blur()" class="add">删除</a>
+                    </td>
                 </tr>
 				</c:forEach>
             </table>
@@ -83,6 +86,7 @@
         </td>
     </tr>
 </table>
+<script type="text/javascript" src="../js/admin.js"></script>
 </body>
 </html>
 </div>

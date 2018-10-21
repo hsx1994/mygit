@@ -11,7 +11,6 @@ public interface IUserDao {
 	List<ParkingBean> ShowMe(int id);
     //包租婆查看被租赁记录
 	List<ParkingBean> SelectLog(int id);
-    //抢租客查看租赁记录
-	List<OrderBean> ShowLog(int id);
+    
    
 }

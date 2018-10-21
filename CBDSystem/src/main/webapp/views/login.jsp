@@ -8,7 +8,7 @@
     <link href="../css/alogin.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <form id="form1" runat="server" action="" method="post">
+    <form id="form1" runat="server" action="/CBDSystem/adminLogin.do" method="post">
     <div class="Main">
         <ul>
             <li class="top"></li>
@@ -19,11 +19,11 @@
             <li class="topD">
                 <ul class="login">
                     <li><span class="left login-text">用户名：</span>
-                        <input id="Text1" type="text" class="txt" name="username"/>  
+                        <input id="Text1" type="text" class="txt" name="name"/>  
                      
                     </span></li>
                     <li><span class="left login-text">密&nbsp;&nbsp; 码：</span>
-                       <input id="Text2" type="password" class="txt" name="pwd" />  
+                       <input id="Text2" type="password" class="txt" name="password" />  
                     </span></li>
                     <li><span class="left login-text">验证码：</span>
                        <input id="Text3" type="text" class="txt" name="checkcode" style="width: 90px"/>

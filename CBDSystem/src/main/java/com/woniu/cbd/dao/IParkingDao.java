@@ -7,17 +7,17 @@ import com.woniu.cbd.bean.ParkingBean;
 
 public interface IParkingDao {
     //批量添加
-	int AddParking(List<ParkingBean> park);
+	public int addParking(List<ParkingBean> park);
     //查看自己的申请记录
-	List<ParkingBean> ShowAll();
+	public List<ParkingBean> showAll();
     //日期查询
-	List<ParkingBean> SelectPark(Date date);
+	public List<ParkingBean> selectParking(Date date);
     //价格查询
-	List<ParkingBean> SelectPark(int price);
+	public List<ParkingBean> selectParking(int price);
     //查询单个车位
-	ParkingBean SelectParkOne(int id);
+	public ParkingBean selectParkingOne(int id);
     //车位号模糊查询
-	List<ParkingBean> SelectParkByNum(String num);
+	public List<ParkingBean> selectParkingByNum(String num);
 	
 	/**
 	 * 通过车位id查找车位的全部信息
@@ -53,5 +53,7 @@ public interface IParkingDao {
 	 * @return
 	 */
 	public int passApplyFail(int id);
+	//订单id查询车位信息
+	public ParkingBean selectParkingByOrderID(int id);
 
 }

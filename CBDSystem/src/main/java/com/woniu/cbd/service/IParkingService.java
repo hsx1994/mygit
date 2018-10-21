@@ -7,23 +7,26 @@ import com.woniu.cbd.bean.ParkingBean;
 
 public interface IParkingService {
 	//用于包租婆申请发布新的车位
-    public boolean AddParking(List<ParkingBean> park);
+    public boolean addParking(List<ParkingBean> park);
    
     
     //用于抢租客查看所有的个人车位信息，无论是否被租赁
-    public List<ParkingBean> ShowAll();
+    public List<ParkingBean> showAll();
     
     
     //用于抢租客通过时间查询自己需要的车位信息
-    public List<ParkingBean> SelectPark(Date date);
+    public List<ParkingBean> selectParking(Date date);
     
     
     //用于抢租客通过车位号模糊查询自己需要的车位信息
-    public List<ParkingBean> SelectParkByNum(String num);
+    public List<ParkingBean> selectParkingByNum(String num);
     //用于抢租客通过价格查询自己需要的车位信息
-    public List<ParkingBean> SelectPark(int price);
+    public List<ParkingBean> selectParking(int price);
     //用于抢租客查看指定的车位信息
-    public ParkingBean SelectParkOne(int id);
+    public ParkingBean selectParkingOne(int id);
+    
+    //通过订单的id查询车位信息
+    public ParkingBean selectParkingByOrderID(int id);
     
    
     /**

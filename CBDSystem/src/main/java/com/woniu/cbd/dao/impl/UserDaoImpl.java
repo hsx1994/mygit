@@ -39,15 +39,7 @@ public class UserDaoImpl implements IUserDao {
 		return bean;
 	}
 
-	// 抢租客查看租赁记录
-	@Override
-	public List<OrderBean> ShowLog(int id) {
-		SqlSession session = fa.openSession(true);
-		List<OrderBean> bean = session.selectList("orderMapper.showlog", id);
-		
-		session.close();
-		return bean;
-	}
+	
 
 
 

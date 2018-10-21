@@ -54,7 +54,7 @@ public class UserController {
 
 	// 包租婆查看自己的被租赁记录
 
-	@RequestMapping("selectlog.do")
+	@RequestMapping("/selectlog.do")
 	public ModelAndView SelectLog(Integer id, Integer page) {
 
 		ModelAndView mav = new ModelAndView();
@@ -73,28 +73,7 @@ public class UserController {
 		return mav;
 	}
 
-	// 抢租客查看租赁记录
-	@RequestMapping("showlog.do")
-	public ModelAndView ShowLog(Integer id, Integer page) {
-
-		ModelAndView mav = new ModelAndView();
-		PageHelper.startPage(page, 5, true);
-		List<OrderBean> bean = service.ShowLog(id);
-		PageInfo<OrderBean> pageInfo = new PageInfo<OrderBean>(bean);
-
-		if (bean != null) {
-			mav.addObject("pageinfo", pageInfo);
-			mav.addObject("list", bean);
-
-		} else {
-			mav.addObject("Lease", "尚未租过车位");
-		}
-		mav.setViewName("");
-		return mav;
-
-	}
-
-	// 手机发送验证码测试
+	// 手机发送验证码
 	@RequestMapping("/phone.do")
 	public void Num(HttpServletRequest request, String number) throws ClientException {
 		HttpSession session = request.getSession();
@@ -105,7 +84,7 @@ public class UserController {
 
 	}
 
-	// 注册测试
+	// 注册
 	@RequestMapping("/regist.do")
 	public @ResponseBody String Regist(Model model,HttpServletRequest request, String name, String password, UserBean user,
 			String code, String role) {

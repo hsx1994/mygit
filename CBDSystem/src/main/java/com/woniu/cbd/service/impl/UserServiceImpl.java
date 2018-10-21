@@ -32,12 +32,7 @@ public class UserServiceImpl implements IUserService {
 		return bean;
 	}
 
-	// 查看抢租客的租赁记录
-	@Override
-	public List<OrderBean> ShowLog(int id) {
-		List<OrderBean> bean=dao.ShowLog(id);
-		return bean;
-	}
+	
 
 	
 }

@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.ParkingBean;
+import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.service.IParkingService;
 
 @Controller
@@ -33,7 +34,7 @@ public class ParkingController {
 
 	// 包租婆批量添加车位信息
 	@RequestMapping("/application.do")
-	public @ResponseBody String ApplicationParking(MultipartFile imgFile, ParkingBean bean, MultipartFile ImgFile,HttpServletRequest req) {
+	public @ResponseBody String ApplicationParking(HttpServletRequest request,MultipartFile imgFile, ParkingBean bean, MultipartFile ImgFile,HttpServletRequest req) {
 		
 		// 获取上传文件的文件名
 		String img =UUID.randomUUID()+"_"+imgFile.getOriginalFilename();
@@ -41,11 +42,15 @@ public class ParkingController {
 		// 将文件名放入对象中
 		bean.setImg(img);
 		bean.setCertImg(certImg);
+		
+		//session中取得当前包租婆的id给parking实体类
+		/*UserBean user=request.getSession().getAttribute("");*/
+		
 
 		ServletContext context = req.getServletContext();
 		ServletContext text = req.getServletContext();
         //车位图片路径
-		String path = context.getRealPath("/image");
+		String path = context.getRealPath("/img");
 		//产权证图片路径
 		String sum = text.getRealPath("/certImg");
 		
@@ -54,12 +59,12 @@ public class ParkingController {
 		if (!f.exists() &&!g.exists())
 			f.mkdirs();
 		    g.mkdirs();
-		// 创建服务器路径下的文件
+		// 创建服务器路径下的文件用uuid命名
 		File file = new File(path, UUID.randomUUID()+"_"+imgFile.getOriginalFilename());
-		// 创建服务器路径下的文件
+		// 创建服务器路径下的文件用uuid命名
 		File file1 = new File(sum, UUID.randomUUID()+"_"+ImgFile.getOriginalFilename());
 		try {
-			// 将文件保存到服务器image文件夹
+			// 将文件保存到服务器img文件夹
 			imgFile.transferTo(file);
 			// 将文件保存到服务器certImg文件夹		
 			ImgFile.transferTo(file1);
@@ -71,7 +76,7 @@ public class ParkingController {
 
 		List<ParkingBean> parking = new ArrayList<ParkingBean>();
 		parking.add(bean);
-		boolean num = park.AddParking(parking);
+		boolean num = park.addParking(parking);
 		String result = "失败";
 		if (num) {
 			result = "成功";
@@ -96,7 +101,7 @@ public class ParkingController {
 		ModelAndView mav = new ModelAndView();
 
 		PageHelper.startPage(page, 10, true);
-		List<ParkingBean> bean = park.ShowAll();
+		List<ParkingBean> bean = park.showAll();
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
 
 		mav.addObject("pageinfo", pageInfo);
@@ -111,7 +116,7 @@ public class ParkingController {
 	@RequestMapping("showOne.do")
 	public ModelAndView ShowOne(Integer id) {
 		ModelAndView mav = new ModelAndView();
-		ParkingBean bean = park.SelectParkOne(id);
+		ParkingBean bean = park.selectParkingOne(id);
 
 		mav.addObject("one", bean);
 		mav.setViewName("");
@@ -123,10 +128,10 @@ public class ParkingController {
 	// 抢租客车位号模糊查询上架车位
 
 	@RequestMapping("findbynum.do")
-	public ModelAndView SelectParkByNum(String num, Integer page) {
+	public ModelAndView SelectParkingByNum(String num, Integer page) {
 
 		ModelAndView mav = new ModelAndView();
-		List<ParkingBean> bean = park.SelectParkByNum(num);
+		List<ParkingBean> bean = park.selectParkingByNum(num);
 		if (bean != null) {
 
 			mav.addObject("num", bean);
@@ -140,14 +145,13 @@ public class ParkingController {
 	}
 
 	// 抢租客根据价格查询上架车位
-
 	@RequestMapping("findbyprice.do")
-	public ModelAndView SelectPark(Integer price, Integer page) {
+	public ModelAndView SelectParking(Integer price, Integer page) {
 
 		ModelAndView mav = new ModelAndView();
 
 		PageHelper.startPage(page, 10, true);
-		List<ParkingBean> bean = park.SelectPark(price);
+		List<ParkingBean> bean = park.selectParking(price);
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
 
 		if (bean != null) {
