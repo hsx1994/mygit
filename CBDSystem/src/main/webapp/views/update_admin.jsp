@@ -36,6 +36,7 @@
     </style>
 </head>
 <body onload="showAdmain(${param.id })">
+<input type="hidden" value=${param.id } id="aid">
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
     <tr>
@@ -44,7 +45,6 @@
     <tr style="height: 20px"></tr>
     <tr>
         <td align="left" valign="top">
-            <form method="post" action="">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">工&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;号：</td>
@@ -84,11 +84,10 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">&nbsp;</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="submit" value="确认" class="text-but">
+                            <input type="button" onclick="updatePer()" value="确认" class="text-but">
                             <input type="reset" value="取消" class="text-but" onclick="javascript:history.go(-1)"></td>
                     </tr>
                 </table>
-            </form>
         </td>
     </tr>
 </table>

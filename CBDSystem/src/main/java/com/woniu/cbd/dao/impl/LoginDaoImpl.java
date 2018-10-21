@@ -17,6 +17,7 @@ import com.woniu.cbd.dao.ILoginDao;
 public class LoginDaoImpl implements ILoginDao {
 	@Autowired
 	private SqlSessionFactory fa;
+	//添加普通管理员登录信息
 	@Override
 	public int addAdmin(LoginBean login) {
 		SqlSession session = fa.openSession(true);
@@ -30,6 +31,7 @@ public class LoginDaoImpl implements ILoginDao {
 		SqlSession session = fa.openSession(true);
 		LoginBean bean = session.selectOne("loginMapper.findByName",login);
 		
+		session.close();
 		return bean;
 	}
 	/* *

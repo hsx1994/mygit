@@ -1,9 +1,5 @@
 package com.woniu.cbd.controller;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,14 +14,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.mysql.jdbc.Statement;
 import com.woniu.cbd.bean.CompanyInfoBean;
 import com.woniu.cbd.bean.LoginBean;
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
 import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.service.IUserService;
-import com.woniu.cbd.util.MD5_Encoding;
 import com.woniu.cbd.util.Md5pwdUtil;
 
 @Controller
@@ -54,27 +48,6 @@ public class UserController {
 		mav.setViewName("063/ShowLandladyParking.jsp");
 		return mav;
 	}
-
-	// // 包租婆查看自己的车位信息
-	// @RequestMapping("/showme.do")
-	// public ModelAndView ShowMe(HttpSession session,Integer page) {
-	// //获取用户id（uid）
-	// Integer uid = (Integer)session.getAttribute("uid");
-	// ModelAndView mav = new ModelAndView();
-	//
-	// PageHelper.startPage(page,8,true);
-	// List<ParkingBean> bean = user.ShowMe(uid);
-	// PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
-	// if(bean != null){
-	// mav.addObject("all", bean);
-	// mav.addObject("paging",pageInfo);
-	//
-	// }else{
-	// mav.addObject("noresult","尚未添加车位");
-	// }
-	// mav.setViewName("063/ShowLandladyParking.jsp");
-	// return mav;
-	// }
 
 	// 包租婆查看自己的被租赁记录
 	@RequestMapping("selectlog.do")
@@ -143,20 +116,12 @@ public class UserController {
 		beans.setPassword(pass);
 		beans.setRole(role);
 
-		System.out.println(num);
-		System.out.println(code);
-		System.out.println(beans);
-		System.out.println(role);
-		System.out.println(bean.getAddress());
-		
-			// 验证验证码
+		// 验证验证码
 		 if (code.equals(num)) {
-			System.out.println("验证码验证成功");
 			user.addUser(beans);
 			user.addUserInfor(bean);
 			return "注册成功";
 		} else {
-			System.out.println("验证码验证失败");
 			return "注册失败";
 		}
 	}
@@ -166,16 +131,14 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-
-	public boolean updateUser(@Validated UserBean bean){
+	@RequestMapping("up.do")
+	public @ResponseBody String updateUser(@Validated UserBean bean){
 		boolean row = user.updateUser(bean);
-		String result = "失败";
+		String result = "修改失败";
 		if (row) {
-			System.out.println("成功");
-			result = "成功";
-
+			result = "修改成功";
 		}
-		return row;
+		return result;
 	}
 	
 	
@@ -184,6 +147,7 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
+	@RequestMapping("companyUpdate.do")
 	public String updateCompany(@Validated CompanyInfoBean company){
 		int row = user.updateCompany(company);
 		if(row>0){

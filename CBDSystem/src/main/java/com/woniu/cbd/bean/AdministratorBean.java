@@ -10,6 +10,7 @@ import java.util.List;
  *
  */
 public class AdministratorBean implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	// 后台管理员ID
 	private int id;

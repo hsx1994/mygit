@@ -36,7 +36,7 @@
     </style>
 </head>
 <body onload="show()">
-<input type="hidden" id="uid" value="${sessionScope.user.id }" >
+<input type="hidden" id="uid" value="${sessionScope.login.id }" >
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
     <tr>
@@ -52,7 +52,7 @@
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">用 户 名：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">${sessionScope.user.name }</td>
+                        <td align="left" valign="middle" class="borderright borderbottom main-for">${sessionScope.login.name }</td>
                            <!-- <input type="text" name="" value="" class="text-word">-->
                         </td>
                     </tr>
@@ -162,7 +162,6 @@ function updatePwd(){
     	url:"/CBDSystem/changePwd.do",
     	type:"post",
     	data:{
-    		id:$("#uid").val(),
     		password:$("#oldpwd").val(),
     		newpwd:$("#newpwd").val(),
     		checkpwd:$("#checknew").val()
