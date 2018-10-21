@@ -27,7 +27,7 @@ public class AdministratorServiceImpl implements IAdministratorService {
 		String result = "删除失败";
 		// 调用方法获取dao层删除是否成功的结果
 		boolean boo = idao.administratorDelete(id);
-		if(boo==true){
+		if (boo == true) {
 			result = "删除成功";
 		}
 		return result;
@@ -38,7 +38,7 @@ public class AdministratorServiceImpl implements IAdministratorService {
 		String result = "修改失败";
 		// 调用方法获取dao层修改是否成功的结果
 		boolean boo = idao.administratorUpdate(ab);
-		if(boo==true){
+		if (boo == true) {
 			result = "修改 成功";
 		}
 		return result;
@@ -63,20 +63,34 @@ public class AdministratorServiceImpl implements IAdministratorService {
 	public String addAdmin(AdministratorBean admin) {
 		String result = "添加失败";
 		int re = idao.addAdmin(admin);
-		if(re > 0){
+		if (re > 0) {
 			result = "添加成功";
 		}
 		return result;
+	}
+
+	/*
+	 * 通过登录表lid查管理员id
+	 */
+	@Override
+	public int findIdByLid(int lid) {
+		return idao.findIdByLid(lid);
 	}
 
 	@Override
 	public String updateAdminTel(AdministratorBean bean) {
 		String result = "修改失败";
 		int re = idao.updateAdmintTel(bean);
-		if(re > 0){
+		if (re > 0) {
 			result = "修改成功";
 		}
 		return result;
+	}
+
+	@Override
+	public AdministratorBean showAdministratorInfo(int uid) {
+		AdministratorBean bean = idao.showAdministratorInfo(uid);
+		return bean;
 	}
 
 }

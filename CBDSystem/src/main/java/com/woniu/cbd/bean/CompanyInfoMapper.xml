@@ -3,37 +3,64 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
+
 <mapper namespace="companyInfoMapper">
 
-<!-- 查询所有企业信息 -->
-	<select id="findAllCompany"  resultMap="map">
-		select * from t_company_info where c_delete=0
+
+	<select id="findIdByLid" parameterType="int" resultType="int">
+		select c_id as id  from t_company_info where c_id=#{lid}
 	</select>
-	
+
+
+	<!-- 查询所有企业信息 -->
+	<select id="findAllCompany" resultMap="map">
+		select * from
+		t_company_info where c_delete=0
+	</select>
+
 	<select id="findById" parameterType="int" resultMap="map">
 		select * from t_company_info where c_id=#{id}
 	</select>
-	<!--模糊查询企业  -->
+	<!--模糊查询企业 -->
 	<select id="fuzzyQuery" parameterType="String" resultMap="map">
-		select * from t_company_info 
+		select
+		* from t_company_info
 		where 1=1
-		 AND CONCAT(c_name,c_tel,c_address,c_contact) like "%" #{condition} "%"
-		 AND c_delete=0
+		AND CONCAT(c_name,c_tel,c_address,c_contact) like "%" #{condition} "%"
+		AND c_delete=0
 	</select>
+	
+	<insert id="addcompanyInfo" parameterType="CompanyInfoBean">
+		insert into t_user_info(u_address,u_email,u_idcard,u_profession,u_realname,u_tel
+		) values(#{address},#{email},#{idcard},#{job},#{realName},#{tel});
+	</insert>
+	
+	<insert id="addUser" parameterType="CompanyInfoBean">
+		insert into t_login(l_name,l_password)values(#{name},#{password});
+	</insert>
 	
 	<select id="findByCompanyName" parameterType="String" resultMap="map">
 		select * from t_company_info where c_name=#{comName}
 	</select>
-	
+
 	<resultMap type="CompanyInfoBean" id="map">
-		<id property="id" column="c_id"/>
-		<result property="comName" column="c_name"/>
-		<result property="address" column="c_address"/>
-		<result property="contact" column="c_contact"/>
-		<result property="tel" column="c_tel"/>
-		<result property="email" column="c_email"/>
-		<collection property="comOrder" ofType="CompanyOrderBean" select="companyOrderMapper.selectCompanyOrder" column="c_id"></collection>
-		<collection property="comBargain" ofType="CompanyBargainBean" select="companyBargainMapper.companyBargainById" column="c_id"></collection>
+		<id property="id" column="c_id" />
+		<result property="comName" column="c_name" />
+		<result property="address" column="c_address" />
+		<result property="contact" column="c_contact" />
+		<result property="tel" column="c_tel" />
+		<result property="email" column="c_email" />
+		<collection property="comOrder" ofType="CompanyOrderBean"
+			select="companyOrderMapper.selectCompanyOrder" column="c_id"></collection>
+		<collection property="comBargain" ofType="CompanyBargainBean"
+			select="companyBargainMapper.companyBargainById" column="c_id"></collection>
 	</resultMap>
+	<!-- 修改个人用户信息 -->
+    <update id="updateUser" parameterType="UserBean">
+		update t_user_info set u_address=address, u_email=email, u_tel=tel, u_profession=job where u_realname=realName;
+	</update>
+	<!-- 修改企业用户信息 -->
+	 <update id="updateCompany" parameterType="CompanyInfoBean">
+		update t_company_info set c_contact=contact ,c_email=email, c_tel=tel where c_name=comName;
+	</update>
 </mapper>

@@ -48,7 +48,7 @@ public class AdminLoginController {
 		}catch(Exception e){
 			request.setAttribute("user", user);
 			request.setAttribute("errorMsg", "用户名或密码错误！");
-			return "redirect:views/login.jsp";
+			return "/views/login.jsp";
 		}
 	}
 }

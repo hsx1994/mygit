@@ -57,7 +57,6 @@ public class ParkingController {
 		PageHelper.startPage(page, 8, true);
 		List<ParkingBean> bean = park.ShowAll();
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
-
 		mav.addObject("paging", pageInfo);
 		mav.addObject("all", bean);
 		mav.setViewName("063/ShowParkingSpace.jsp");
@@ -115,7 +114,25 @@ public class ParkingController {
 		return mav;
 
 	}
-
+	/**
+	 * 通过ID查询单个车位信息
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("showDetailsParking.do")
+	public ModelAndView findParkingById(Integer id){
+		ModelAndView mav = new ModelAndView();
+		ParkingBean bean = park.findParkingById(id);
+		
+		mav.addObject("park",bean);
+		mav.setViewName("views/landlord_carpart_check.jsp");
+		return mav;
+	}
+	/**
+	 * 通过ID删除车位
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping("parkingDelete.do")
 	public @ResponseBody String parkingDelete(Integer id) {
 		String result = "删除失败";
@@ -141,7 +158,7 @@ public class ParkingController {
 
 		return mav;
 	}
-
+	
 	@RequestMapping("passApply.do")
 	public @ResponseBody String passApply(Integer id) {
 		String result = "通过失败";
@@ -149,7 +166,6 @@ public class ParkingController {
 		if (re) {
 			result = "通过成功";
 		}
-
 		return result;
 	}
 
@@ -160,7 +176,6 @@ public class ParkingController {
 		if (re) {
 			result = "成功";
 		}
-
 		return result;
 	}
 	

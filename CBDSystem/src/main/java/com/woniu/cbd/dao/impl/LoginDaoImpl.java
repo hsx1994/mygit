@@ -1,6 +1,8 @@
 package com.woniu.cbd.dao.impl;
 
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.ibatis.session.SqlSession;
@@ -45,10 +47,15 @@ public class LoginDaoImpl implements ILoginDao {
 	 */
 	@Override
 	public Set<String> getPermissions(String name) {
+		Set<String> permissions=new HashSet<String>();
 		SqlSession session = fa.openSession(true);
-		LoginBean bean = session.selectOne("loginMapper.findPermissionsByname",name);
+		List<String> list = session.selectList("loginMapper.findPermissionsByname",name);
+		for (String PermissionName : list) {
+			permissions.add(PermissionName);
+		}
 		session.close();
-		return null;
+		return permissions;
+
 	}
 	/**
 	 * 通过ID查密码

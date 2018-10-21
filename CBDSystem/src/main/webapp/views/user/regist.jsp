@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 <script src="../../js/register.js"></script>
 </head>
 <body class="bgf4">
+
 <div class="login-box f-mt10 f-pb50">
 	<div class="main bgf">    
     	<div class="reg-box-pan display-inline">  

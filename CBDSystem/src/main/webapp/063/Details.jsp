@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>车位详情展示页面</title>
 <!-- 引入css样式 -->
-<link href="063/css/DetailsParking.css" rel="stylesheet" type="text/css"
+<link href="/CBDSystem/063/css/DetailsParking.css" rel="stylesheet" type="text/css"
 	media="all" />
 <!-- 引入js文件 -->
-<script type="text/javascript" src="063/js/jquery.min.js"></script>
+<script type="text/javascript" src="/CBDSystem/js/public/jquery.1.9.1.js"></script>
 </head>
 <body>
 	<div class="wrap">
@@ -100,11 +101,33 @@
 						<button class="back" onclick="hideBox()">取消</button>
 						</div>
 					</div>
+					<style type="text/css">
+						.outer{
+							clear:both;
+							border:1px solid black;
+							padding-top: 10px;
+							padding-left: 100px;
+						}
+						.inner{
+							color:red;
+							border:1px solid black;
+							margin-top: 10px;
+							margin-left: 100px;
+						}
+					</style>
+					<div id="parkingOrder" class="outer">订单<br>
+						<c:forEach items="${one.orders }"  var="order">
+							<div class="inner">
+								<%-- <fmt:formatDate value=" ${order.startTime } " pattern="yyyy-MM-dd HH:mm:ss"/> --%>
+							<c:out value="${order.id} 开始时间: ${order.startTime }  结束时间:${order.endTime } "></c:out>
+							</div>
+						</c:forEach>
+					</div>
 				</div>
 					<div class="clear"></div>
 				</div>
 				<!-- ***********************************0.0华丽的分割线0.0*******************底部导航栏部分************************************************************** -->
-
+				
 				<div class="footer">
 					<div class="footer-top">
 						<div class="col_1_of_4 span_1_of_4">

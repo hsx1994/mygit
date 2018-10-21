@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<div id="show">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -7,6 +8,7 @@
     <link href="../css/css.css" type="text/css" rel="stylesheet" />
     <link href="../css/main.css" type="text/css" rel="stylesheet" />
     <link rel="shortcut icon" href="../images/main/favicon.ico" />
+    <script type="text/javascript" src="../js/jQuery-2.2.2.js"></script>
     <style>
         body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
         #searchmain{ font-size:12px;}
@@ -33,7 +35,8 @@
         }
     </style>
 </head>
-<body>
+<body onload="showDetailsParking(${param.id })">
+<input type="hidden" value="${param.id }" id="id">
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
     <tr>
@@ -55,19 +58,19 @@
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">包租婆用户名：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">2333</td>
+                        <td align="left" valign="middle" class="borderright borderbottom main-for">${park.user.login.name }</td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">真实姓名：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">2333</td>
+                        <td align="left" valign="middle" class="borderright borderbottom main-for">${park.user.realName }</td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">身份证号码：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">测试</td>
+                        <td align="left" valign="middle" class="borderright borderbottom main-for">${park.user.idcard }</td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">家庭地址：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">admin@sina.com</td>
+                        <td align="left" valign="middle" class="borderright borderbottom main-for">${park.user.address }</td>
                     </tr>
                 </table>
             </form>
@@ -87,15 +90,15 @@
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-tab">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">车位编号：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">2333</td>
+                        <td align="left" valign="middle" class="borderright borderbottom main-for">${park.parkingNum }</td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">产权证编号：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">2333</td>
+                        <td align="left" valign="middle" class="borderright borderbottom main-for">${park.certificate }</td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">车位详细地址：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">测试</td>
+                        <td align="left" valign="middle" class="borderright borderbottom main-for">${park.address }</td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">产权证复印件：</td>
@@ -103,14 +106,13 @@
                     </tr>
                 </table>
             <div style="width:89%;height: 500px;border: solid 1px #b0b0b0;margin-left: 130px">
-
+				<img src="">
             </div>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                    <!--<td align="right" valign="middle" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>-->
                     <td align="left" valign="middle" class="borderright borderbottom main-for">
-                        <input name="" type="button" value="驳回" class="text-but">
-                        <input name="" type="button" value="通过" class="text-but">
+                        <input onclick="applyPassFail()" type="button" value="驳回" class="text-but">
+                        <input onclick="applyPass()" type="button" value="通过" class="text-but">
                     </td>
                 </tr>
             </table>
@@ -118,5 +120,7 @@
         </td>
     </tr>
 </table>
+<script type="text/javascript" src="../js/parking.js"></script>
 </body>
 </html>
+</div>

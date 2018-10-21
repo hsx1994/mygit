@@ -8,6 +8,9 @@
     <link href="../css/main.css" type="text/css" rel="stylesheet" />
     <link rel="shortcut icon" href="../images/main/favicon.ico" />
     <script type="text/javascript" src="/CBDSystem/js/jQuery-2.2.2.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+	<script src="../js/register.js"></script>
     <style>
         body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
         #searchmain{ font-size:12px;}
@@ -55,25 +58,25 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">工&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;号：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" id="jobNumber" value="" class="text-word">
+                            <input type="text" id="jobNumber" value="" required="required" class="text-word">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">姓&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;名：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" id="realName" value="" class="text-word" data-valid="isNonEmpty||between:2-10||isZh" data-error="真实姓名不能为空||真实姓名长度2-10位||只能输入中文">
+                            <input type="text" id="realName" value="" required="required" class="text-word" data-valid="isNonEmpty||between:2-10||isZh" data-error="真实姓名不能为空||真实姓名长度2-10位||只能输入中文">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">用&nbsp; &nbsp;户&nbsp;&nbsp;名：</td>
+                        <td align="right" valign="middle" class="borderright borderbottom bggray required">用&nbsp; &nbsp;户&nbsp;&nbsp;名：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" id="loginName" value="" class="text-word" data-valid="isNonEmpty||between:3-20||isUname" data-error="用户名不能为空||用户名长度3-20位||只能输入中文、字母、数字、下划线，且以中文或字母开头" >
+                            <input type="text" id="loginName" value="" required="required" class="text-word" data-valid="isNonEmpty||between:3-20||isUname" data-error="用户名不能为空||用户名长度3-20位||只能输入中文、字母、数字、下划线，且以中文或字母开头" >
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">电话号码：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" id="tel" value="" class="text-word" data-valid="isNonEmpty||isPhone" data-error="手机号码不能为空||手机号码格式不正确" maxlength="11">
+                            <input type="text" id="phone" value="" maxlength="11" required="required" class="text-word" data-valid="isNonEmpty||isPhone" data-error="手机号码不能为空||手机号码格式不正确" maxlength="11">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
@@ -106,6 +109,5 @@
     </tr>
 </table>
 <script type="text/javascript" src="../js/admin.js"></script>
-<script src="../js/register.js"></script>
 </body>
 </html>

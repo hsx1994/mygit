@@ -9,7 +9,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.woniu.cbd.dao.IOtherParkingDao;
 
 
-
 public class TestMain {
 
 	@Test

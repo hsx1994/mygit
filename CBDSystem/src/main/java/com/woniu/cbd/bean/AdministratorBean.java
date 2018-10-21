@@ -70,4 +70,11 @@ public class AdministratorBean implements Serializable {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
+
+	@Override
+	public String toString() {
+		return "AdministratorBean [id=" + id + ", login=" + login
+				+ ", jobNumber=" + jobNumber + ", realName=" + realName
+				+ ", tel=" + tel + "]";
+	}
 }

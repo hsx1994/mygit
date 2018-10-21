@@ -7,10 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>车位展示页面</title>
 <!-- 引入css样式 -->
-<link href="063/css/style.css" rel="stylesheet" type="text/css"
-	media="all" />
+<link href="/CBDSystem/063/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- 引入js文件 -->
-<script type="text/javascript" src="063/js/jquery.min.js"></script>
+<script type="text/javascript" src="/CBDSystem/063/js/jquery.min.js"></script>
 </head>
 <body>
 	<div class="wrap">
@@ -18,7 +17,7 @@
 			<div class="header">
 				<div class="header-bot">
 					<div class="logo">
-						<a href="index.html"><img src="063/images/logo.png" alt="" /></a>
+						<a href="index.html"><img src="/CBDSystem/063/images/logo.png" alt="" /></a>
 					</div>
 					<div class="f-right">
 						<p class="welcome-msg">Welcome to our online CBDSystem!</p>
@@ -86,7 +85,7 @@
 					<div class="page">
 						<div id="" class="content-bottom-paging"><a href="/CBDSystem/showall.do?page=${paging.lastPage}">末页</a></div>
 						<div id="" class="content-bottom-paging"><a href="/CBDSystem/showall.do?page=${paging.nextPage}">下一页</a></div>
-						<div id="page" class="content-bottom-paging"><span id=currentPage>${paging.pageNum}</span>/<span id="tolPage">${paging.pages}</span></div>
+						<div id="page" class="content-bottom-paging"><span id="currentPage">${paging.pageNum}</span>/<span id="tolPage">${paging.pages}</span></div>
 						<div id="" class="content-bottom-paging"><a href="/CBDSystem/showall.do?page=${paging.prePage}">上一页</a></div>
 						<div id="" class="content-bottom-paging"><a href="/CBDSystem/showall.do?page=1">首页</a></div>
 					</div>
@@ -150,9 +149,5 @@
 	</div>
 </body>
 <!-- 引入外部js文件 -->
-<script type="text/javascript" src="063/js/ShowParkingSpace.js"></script>
-</html>
-
-
-
-
+<script type="text/javascript" src="/CBDSystem/063/js/ShowParkingSpace.js"></script>
+</html>=
