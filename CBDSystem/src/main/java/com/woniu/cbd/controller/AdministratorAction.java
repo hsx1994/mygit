@@ -2,6 +2,9 @@ package com.woniu.cbd.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +19,7 @@ import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.AdministratorBean;
 import com.woniu.cbd.service.IAdministratorService;
 import com.woniu.cbd.service.ILoginService;
+import com.woniu.cbd.service.IRolePermissionService;
 
 /**
  * 描述 ：处理普通管理员所有前后端交互功能
@@ -31,25 +35,38 @@ public class AdministratorAction {
 	private IAdministratorService service;
 	@Autowired
 	private ILoginService ils;
+	@Autowired
+	private IRolePermissionService irs;
 	/**
 	 * 添加普通管理员
-	 * @param model
-	 * @param name
-	 * @param password
-	 * @return
 	 */
 	@RequestMapping("/addAdmin.do")
-	public @ResponseBody String register(@RequestBody AdministratorBean admin) {
+	public @ResponseBody String register( String[] limit2,AdministratorBean admin) {
+		
+//		System.out.println(admin);
+		//将
+		//将权限封装位list
+		
+		for (String string : limit2) {
+			System.out.println(string);
+		}
+		
+		//向登录表中添加普通管理员的相关信息
 		String re = ils.addAdmin(admin.getLogin());
+		//返回插入结果提示
 		String result = null;
+		
 		if(re.equals("成功")){
 			result = service.addAdmin(admin);
+			
 		} else {
 			result = re;
+			
 		}
 		return result;
 	}
 
+	
 	/**
 	 * 描述：实现账号删除功能
 	 * 

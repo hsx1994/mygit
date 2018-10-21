@@ -50,6 +50,7 @@
     <tr style="height: 20px"></tr>
     <tr>
         <td align="left" valign="top">
+        
             <!-- <form method="post" action="/CBDSystem/addAdmin.do"> -->
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
@@ -82,13 +83,13 @@
                             <input type="checkbox" name="limit" id="level" value="1">
                                 <span>用户管理</span>
                             </input>
-                            <input type="checkbox" name="limit" class="level" value="2" >
+                            <input type="checkbox" name="limit" class="level" value="3" >
                                 <span >合约管理</span>
                             </input>
                             <input type="checkbox" name="limit" class="level" value="2">
                                 <span>车位管理</span>
                             </input>
-                            <input type="checkbox" name="limit" class="level" value="2">
+                            <input type="checkbox" name="limit" class="level" value="4">
                                 <span>投诉管理</span>
                             </input>
                         </td>

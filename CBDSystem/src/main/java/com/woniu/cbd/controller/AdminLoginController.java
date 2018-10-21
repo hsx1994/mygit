@@ -28,7 +28,7 @@ public class AdminLoginController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("adminLogin.do")
+	@RequestMapping("/adminLogin.do")
 	public String login(LoginBean user, String checkcode,HttpServletRequest request){
 		System.out.println("user=" + user + ":" + "checkcode" + checkcode);
 		// 加密密码Md5
