@@ -12,7 +12,6 @@ import com.woniu.cbd.bean.ComplainBean;
 import com.woniu.cbd.bean.LoginBean;
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
-import com.woniu.cbd.bean.RegisterBean;
 import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.dao.IUserDao;
 
@@ -84,14 +83,22 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public int updateUser(UserBean bean) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = fa.openSession(true);
+		int row = session.insert("userMapper.updateUser", bean);
+		
+		session.close();
+		return row;
 	}
 
 	@Override
 	public int updateCompany(CompanyInfoBean company) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = fa.openSession(true);
+		int row = session.insert("userMapper.updateCompany", company);
+		
+		session.close();
+		return row;
 	}
+
+
 
 }

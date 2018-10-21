@@ -6,7 +6,7 @@ import com.woniu.cbd.bean.CompanyOrderBean;
 
 public interface ICompanyOrderDao {
 	
-	public boolean addCompanyOrder(List<CompanyOrderBean> companyOrders);
+	public int addCompanyOrder(List<CompanyOrderBean> companyOrders);
 	
 	public boolean changeState(CompanyOrderBean order);
 

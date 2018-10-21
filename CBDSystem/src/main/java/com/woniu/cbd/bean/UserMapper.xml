@@ -20,6 +20,7 @@
 		<result property="orderCount" column="u_order_count" />
 		<result property="complaintCount" column="u_complaint_count" />
 	</resultMap>
+
 	
 	<insert id="addUserInfor" parameterType="UserBean">
 		insert into t_user_info(u_address,u_email,u_idcard,u_profession,u_realname,u_tel

@@ -5,17 +5,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionException;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.woniu.cbd.bean.CompanyInfoBean;
 import com.woniu.cbd.bean.ComplainBean;
 import com.woniu.cbd.bean.LoginBean;
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
-import com.woniu.cbd.bean.RegisterBean;
 import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.dao.IUserDao;
 import com.woniu.cbd.service.IUserService;
@@ -91,13 +86,13 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public int updateCompany(CompanyInfoBean company) {
-		int row=0;
-		int result = dao.updateCompany(company);
-		System.out.println(result);
-		
-		if(result>0){
-			row=1;
+		int row = dao.updateCompany(company);
+		if(row>0){
+			return 1;
 		}
-		return row;
+		return 0;	
+		
 	}
+
+
 }

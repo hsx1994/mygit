@@ -32,4 +32,12 @@ public class ComplainServiceImpl implements IComplainService {
 		return result;
 	}
 
+	@Override
+	public ComplainBean showComplainById(int id) {
+		
+		ComplainBean bean = dao.findComplainById(id);
+		
+		return bean;
+	}
+
 }

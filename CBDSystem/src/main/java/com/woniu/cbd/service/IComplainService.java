@@ -22,4 +22,11 @@ public interface IComplainService {
 	 * @return
 	 */
 	public String acceptComplain(int state,int id);
+	
+	/**
+	 * 用户显示指定用户投诉的信息详情业务
+	 * @param id
+	 * @return
+	 */
+	public ComplainBean showComplainById(int id);
 }

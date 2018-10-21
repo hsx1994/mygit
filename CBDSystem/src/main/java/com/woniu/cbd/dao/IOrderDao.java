@@ -12,5 +12,5 @@ public interface IOrderDao {
 	
 	public boolean changeState(OrderBean order);
 
-	public OrderBean findByOrderId(int parkingId);
+	public OrderBean findByOrderId(int orderId);
 }

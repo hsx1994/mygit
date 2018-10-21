@@ -7,7 +7,6 @@ import com.woniu.cbd.bean.ComplainBean;
 import com.woniu.cbd.bean.LoginBean;
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
-import com.woniu.cbd.bean.RegisterBean;
 import com.woniu.cbd.bean.UserBean;
 
 public interface IUserDao {
@@ -20,13 +19,11 @@ public interface IUserDao {
     //抢租客添加投诉信息
 	int AddComplaint(ComplainBean bean);
 	
-	
 	/**
 	 * 添加用户名密码
 	 * @param user
 	 * @return
 	 */
-
 	public int addUser(LoginBean bean);
 	/**
 	 * 添加用户信息

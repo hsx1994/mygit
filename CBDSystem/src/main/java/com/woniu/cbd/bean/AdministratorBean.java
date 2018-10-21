@@ -1,6 +1,7 @@
 package com.woniu.cbd.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 后台管理员的信息
@@ -12,8 +13,8 @@ public class AdministratorBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	// 后台管理员ID
 	private int id;
-	// 登录表id
-	private int lid;
+	//登录信息(用户名密码信息)
+	private LoginBean login;
 	// 后台管理员工号
 	private String jobNumber;
 	// 后台管理员真实姓名
@@ -21,7 +22,23 @@ public class AdministratorBean implements Serializable {
 	// 后台管理员电话
 	private String tel;
 	// 后台管理员权限
-	private int limit;
+	private List<PermissionBean> limit;
+	
+	
+	public LoginBean getLogin() {
+		return login;
+	}
+
+	public void setLogin(LoginBean login) {
+		this.login = login;
+	}
+
+	public void setLimit(List<PermissionBean> limit) {
+		this.limit = limit;
+	}
+	public List<PermissionBean> getLimit() {
+		return limit;
+	}
 
 	public String getRealName() {
 		return realName;
@@ -38,15 +55,6 @@ public class AdministratorBean implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public int getLid() {
-		return lid;
-	}
-
-	public void setLid(int lid) {
-		this.lid = lid;
-	}
-
 	public String getJobNumber() {
 		return jobNumber;
 	}
@@ -62,13 +70,4 @@ public class AdministratorBean implements Serializable {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-
-	public int getLimit() {
-		return limit;
-	}
-
-	public void setLimit(int limit) {
-		this.limit = limit;
-	}
-
 }

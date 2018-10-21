@@ -6,12 +6,12 @@ import java.util.List;
 
 
 
+
 import com.woniu.cbd.bean.CompanyInfoBean;
 import com.woniu.cbd.bean.ComplainBean;
 import com.woniu.cbd.bean.LoginBean;
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
-import com.woniu.cbd.bean.RegisterBean;
 import com.woniu.cbd.bean.UserBean;
 
 public interface IUserService {
@@ -27,6 +27,7 @@ public interface IUserService {
 	// 用于抢租客针对订单的投诉信息
 		
 	public boolean AddComplaint(ComplainBean bean);
+	
 	
 	/**向数据库中添加一条用户信息	
 	 ** @param user	 

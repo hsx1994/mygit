@@ -1,7 +1,6 @@
-
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script type="text/javascript" src="../js/complain.js"></script>
+<script type="text/javascript" src="../js/pageinfo.js"></script>
 <div id="aaa">
 <html>
 <head>
@@ -69,7 +68,7 @@
 						<td align="center" valign="middle" class="borderright borderbottom">${obj.user.realName }</td>
 	                    <td align="center" valign="middle" class="borderright borderbottom">${obj.buser.realName }</td>
 	                    <td align="center" valign="middle" class="borderright borderbottom">${obj.time }</td>
-	                    <td align="center" valign="middle" class="borderbottom"><a href="/CBDSystem/views/complain_details.jsp?list=${list }" target="mainFrame" onFocus="this.blur()" class="add">处理</a></td>
+	                    <td align="center" valign="middle" class="borderbottom"><a href="/CBDSystem/views/complain_details.jsp?id=${obj.id }" target="mainFrame" onFocus="this.blur()" class="add">处理</a></td>
                 	</tr>
 				</c:forEach>
 

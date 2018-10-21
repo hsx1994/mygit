@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<div id="show">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -7,6 +8,7 @@
     <link href="../css/css.css" type="text/css" rel="stylesheet" />
     <link href="../css/main.css" type="text/css" rel="stylesheet" />
     <link rel="shortcut icon" href="../images/main/favicon.ico" />
+    <script type="text/javascript" src="/CBDSystem/js/jQuery-2.2.2.js"></script>
     <style>
         body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
         #searchmain{ font-size:12px;}
@@ -33,7 +35,7 @@
         #addinfo a:hover{ background:url(../images/main/addinfoblue.jpg) no-repeat 0 1px;}
     </style>
 </head>
-<body>
+<body onload="showAdmain(${param.id })">
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
     <tr>
@@ -47,19 +49,19 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">工&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;号：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            12345
+                            ${admin.jobNumber }
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">姓&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;名：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            2333
+                            ${admin.realName }
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">电话号码：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                           12333344333
+                           ${admin.tel }
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
@@ -82,13 +84,15 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">&nbsp;</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input name="" type="submit" value="确认" class="text-but">
-                            <input name="" type="reset" value="取消" class="text-but" onclick="javascript:history.go(-1)"></td>
+                            <input type="submit" value="确认" class="text-but">
+                            <input type="reset" value="取消" class="text-but" onclick="javascript:history.go(-1)"></td>
                     </tr>
                 </table>
             </form>
         </td>
     </tr>
 </table>
+<script type="text/javascript" src="../js/admin.js"></script>
 </body>
 </html>
+</div>

@@ -38,7 +38,8 @@
 							
 				
 					<div class="part1">
-					<span class="intelligent-label f-fl"><b class="ftx04">*</b></span>填写用户角色 ：<select id="role" name="role">
+					<span class="intelligent-label f-fl"><b class="ftx04">*</b></span>填写用户角色 ：
+							<select id="role" name="role" data-valid="isNonEmpty"	data-error="角色不能为空">
 								<option></option>
 								<option value="包租用户">包租用户</option>
 								<option value="抢租用户">抢租用户</option>
@@ -56,6 +57,7 @@
 									<label class="icon-sucessfill blank hide"></label> 
 									<label class="focus"><span>3-20位，中文、字母、数字、下划线的组合，以中文或字母开头</span></label>
 								<label class="focus valid"></label>
+							
 							</div>
 						</div>
 						
@@ -233,12 +235,13 @@
 	<script>
 $(function(){	
 	//第一页的确定按钮
-	$("#btn_part1").click(function(){						
+	$("#btn_part1").click(function(){	
 		if(!verifyCheck._click()) return;
 		$(".part1").hide();
 		$(".part2").show();
-		$(".step li").eq(1).addClass("on");
+		$(".step li").eq(1).addClass("on");	
 	});
+	
 	//第二页的确定按钮
 	$("#btn_part2").click(function(){			
 		if(!verifyCheck._click()) return;
@@ -251,6 +254,7 @@ $(function(){
 		$(".part3").hide();
 		$(".part4").show();
 		$(".step li").eq(2).addClass("on");
+		
 		countdown({
 			maxTime:10,
 			ing:function(c){
@@ -264,7 +268,6 @@ $(function(){
 });
 function showcode(){$("#verifyYz").show();
 }
-
 
 function phone() {
 		var xmlhttp = new XMLHttpRequest();
@@ -281,6 +284,7 @@ function phone() {
 			}
 		}
 	};
+
 
 function send(){
 		$.ajax({
@@ -304,6 +308,7 @@ function send(){
 					alert(data);
 				}
 			});
+			
 	};
 
 
