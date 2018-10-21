@@ -54,11 +54,12 @@
                     <th align="center" valign="middle">操作</th>
                 </tr>
                 <c:forEach begin="0" step="1" items="${list}" var="obj">
+                
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                     <td align="center" valign="middle" class="borderright borderbottom"><fmt:formatDate value="${obj.applyTime }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.user.realName }</td>
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.address }</td>
-                    <td align="center" valign="middle" class="borderbottom"><a href="landlord_carpart_check.jsp" target="mainFrame" onFocus="this.blur()" class="add">受理</a></td>
+                    <td align="center" valign="middle" class="borderbottom"><a href="landlord_carpart_check.jsp?id=${obj.id }" target="mainFrame" onFocus="this.blur()" class="add">受理</a></td>
                 </tr>
                 </c:forEach>
             </table>

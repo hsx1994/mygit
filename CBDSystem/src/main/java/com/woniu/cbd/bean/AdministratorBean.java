@@ -10,12 +10,6 @@ import java.util.List;
  *
  */
 public class AdministratorBean implements Serializable {
-	@Override
-	public String toString() {
-		return "AdministratorBean [id=" + id + ", login=" + login
-				+ ", jobNumber=" + jobNumber + ", realName=" + realName
-				+ ", tel=" + tel +  "]";
-	}
 
 	private static final long serialVersionUID = 1L;
 	// 后台管理员ID
@@ -76,5 +70,12 @@ public class AdministratorBean implements Serializable {
 
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+
+	@Override
+	public String toString() {
+		return "AdministratorBean [id=" + id + ", login=" + login
+				+ ", jobNumber=" + jobNumber + ", realName=" + realName
+				+ ", tel=" + tel + "]";
 	}
 }

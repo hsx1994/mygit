@@ -99,9 +99,24 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 	}
 
 	@Override
+
+	public int findIdByLid(int lid) {
+		SqlSession session = fa.openSession();
+		int id = session.selectOne("AdministratorMapper.findIdByLid", lid);
+		session.close();
+		return id;
+	}
+
 	public int updateAdmintTel(AdministratorBean bean) {
 		SqlSession session = fa.openSession(true);
 		int re = session.update("AdministratorMapper.updateAdmintTel",bean);
 		return re;
+	}
+
+	@Override
+	public AdministratorBean showAdministratorInfo(int uid) {
+		SqlSession session = fa.openSession(true);
+		AdministratorBean bean = session.selectOne("AdministratorMapper.findByLoginId",uid);
+		return bean;
 	}
 }

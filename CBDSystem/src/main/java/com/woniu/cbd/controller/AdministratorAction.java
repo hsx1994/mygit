@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,6 +40,7 @@ public class AdministratorAction {
 	 * 添加普通管理员
 	 */
 	@RequestMapping("/addAdmin.do")
+
 	public @ResponseBody String register( String[] limit2,AdministratorBean admin) {
 		
 //		System.out.println(admin);
@@ -55,6 +55,19 @@ public class AdministratorAction {
 		String re = ils.addAdmin(admin.getLogin());
 		//返回插入结果提示
 		String result = null;
+		
+		if(admin.getJobNumber().length()<1){
+			result="工号不能为空";
+			return result;
+		}
+		if(admin.getTel().length()<1){
+			result="电话不能为空";
+			return result;
+		}
+		if(admin.getRealName().length()<1){
+			result="姓名不能为空";
+			return result;
+		}
 		
 		if(re.equals("成功")){
 			result = service.addAdmin(admin);
@@ -88,6 +101,7 @@ public class AdministratorAction {
 	 * @param ab 前端传来的对象包含id、limit字段
 	 * @return  修改结果
 	 */
+	@ResponseBody
 	@RequestMapping("/updateAdminTel.do")
 	public String change(AdministratorBean bean){
 		String str = "修改失败";
@@ -129,6 +143,21 @@ public class AdministratorAction {
 		
 		mav.addObject("admin",admin);
 		mav.setViewName("views/update_admin.jsp");
+		return mav;
+	}
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("showAdminInfo.do")
+	public ModelAndView showAdminInfo(String id){
+		int uid = Integer.parseInt(id);
+		ModelAndView mav = new ModelAndView();
+		AdministratorBean admin = service.showAdministratorInfo(uid);
+		
+		mav.addObject("admin",admin);
+		mav.setViewName("views/userinfo.jsp");
 		return mav;
 	}
 }

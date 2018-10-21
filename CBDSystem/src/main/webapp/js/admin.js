@@ -37,17 +37,6 @@ function addAdmin(id){
 
 	});
 	alert(arr);
-//	var json = {
-//				"jobNumber":$("#jobNumber").val(),
-//				"realName":$("#realName").val(),
-//				"tel":$("#tel").val(),
-//				"login":{"name":$("#loginName").val(),
-//				"password":$("#loginPassword").val()}}
-//	alert($("#jobNumber").val());
-//	alert($("#realName").val());
-//	alert($("#tel").val());
-//	alert($("#loginName").val());
-//	alert($("#loginPassword").val())
 	$.ajax({
 		url:"/CBDSystem/addAdmin.do",
 		type:"post",

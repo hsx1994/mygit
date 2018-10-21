@@ -2,7 +2,13 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="SuperAdministratorBeanMapper">
+<mapper namespace="SuperAdministratorMapper">
+
+		<!-- 根据登录表的id查用户表的Id -->
+	<select id="findIdByLid" parameterType="int" resultType="int">
+		select
+		s_id as id from t_super_administrator where s_l_id=#{lid}
+	</select>
 
 	<select id="findAll" parameterType="LoginBean" resultType="SuperAdministratorBean">
 		select s_id
