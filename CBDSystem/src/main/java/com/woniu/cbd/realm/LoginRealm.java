@@ -1,8 +1,5 @@
 package com.woniu.cbd.realm;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -48,7 +45,6 @@ public class LoginRealm extends AuthorizingRealm {
 			AuthenticationToken token) throws AuthenticationException {
 		String name = (String) token.getPrincipal();
 		LoginBean loginUser = loginService.getLoginUserByName(name);
-		System.out.println("在LoginRealm中，数据库查询完毕：loginUser=" + loginUser);
 		if (loginUser != null) {
 			AuthenticationInfo info = new SimpleAuthenticationInfo(loginUser,
 					loginUser.getPassword(), getName());
@@ -77,10 +73,8 @@ public class LoginRealm extends AuthorizingRealm {
 			Session session = SecurityUtils.getSubject().getSession();
 			session.setAttribute("login", loginUser);
 			session.setAttribute("id", currentId);
-			System.out.println("即将退出登录验证");
 			return info;
 		} else {
-			System.out.println("loginUser为null");
 			return null;
 		}
 	}
@@ -91,7 +85,6 @@ public class LoginRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(
 			PrincipalCollection principals) {
-		System.out.println("即将进入角色授权");
 
 		String name = (String) principals.getPrimaryPrincipal();
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();

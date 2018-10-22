@@ -25,13 +25,13 @@ div.main-order{ line-height:30px; padding:10px 0 0 0;}
 </style>
 </head>
 <body>
-
+<%-- 
 <shiro:hasRole name="admin">
 	欢迎有superadmin角色的用户！<shiro:principal/>
 </shiro:hasRole>
 <shiro:hasPermission name="student:create">
 	欢迎有student:create权限的用户！<shiro:principal/>
-</shiro:hasPermission>
+</shiro:hasPermission> --%>
 
 
 <!--main_top-->

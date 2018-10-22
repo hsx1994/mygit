@@ -1,19 +1,11 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=branch 'master' of https\://github.com/hsx1994/mygit
 eclipse.preferences.version=1
 encoding//src/main/java=utf-8
-<<<<<<< HEAD
-<<<<<<< HEAD
-encoding//src/main/java/com/woniu/cbd/util/PictureCheckCodeServlet.java=UTF-8
-encoding//src/main/webapp/views/hu/addparking.jsp=UTF-8
-=======
 encoding//src/main/webapp/063/js/ShowLandladyParking.js=UTF-8
->>>>>>> branch 'master' of https://github.com/hsx1994/mygit
-=======
 encoding//src/main/webapp/jsp/login.jsp=UTF-8
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/hsx1994/mygit
-=======
->>>>>>> branch 'master' of https://github.com/hsx1994/mygit.git
->>>>>>> branch 'master' of https://github.com/hsx1994/mygit
+encoding//src/main/webapp/views/hu/addparking.jsp=UTF-8
 encoding//src/test/java=utf-8
 encoding/<project>=UTF-8
 separateDerivedEncodings=true

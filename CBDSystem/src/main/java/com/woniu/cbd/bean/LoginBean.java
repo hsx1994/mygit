@@ -18,8 +18,7 @@ public class LoginBean implements Serializable{
 	private String password;
 	// 登录角色
 	private String role;
-	// 软删除
-	private short delete;
+	
 	public int getId() {
 		return id;
 	}
@@ -44,11 +43,4 @@ public class LoginBean implements Serializable{
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public short getDelete() {
-		return delete;
-	}
-	public void setDelete(short delete) {
-		this.delete = delete;
-	}
-	
 }

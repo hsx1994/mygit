@@ -116,7 +116,6 @@ public class ParkingController {
 		List<ParkingBean> bean = park.showAll();
 
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
-
 		mav.addObject("paging", pageInfo);
 		mav.addObject("all", bean);
 		mav.setViewName("063/ShowParkingSpace.jsp");
@@ -181,13 +180,13 @@ public class ParkingController {
 	}
 
 	// 包租婆查看自己的车位信息
-
-	@RequestMapping("showme.do")
-	public ModelAndView showMe(Integer id, Integer page) {
-
+	@RequestMapping("/showme.do")
+	public ModelAndView showMe(HttpServletRequest request, Integer page) {
+        //在session中取得当前登录的包租婆id
+		/*int id=request.getSession().getAttribute("");*/
+		int id=1;//测试使用
+		
 		ModelAndView mav = new ModelAndView();
-		System.out.println("id:" + id);
-		// System.out.println("page:"+page);
 		PageHelper.startPage(page, 8, true);
 		List<ParkingBean> bean = park.showMe(id);
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
@@ -202,7 +201,25 @@ public class ParkingController {
 		mav.setViewName("063/ShowLandladyParking.jsp");
 		return mav;
 	}
-
+	/**
+	 * 通过ID查询单个车位信息
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("showDetailsParking.do")
+	public ModelAndView findParkingById(Integer id){
+		ModelAndView mav = new ModelAndView();
+		ParkingBean bean = park.findParkingById(id);
+		
+		mav.addObject("park",bean);
+		mav.setViewName("views/landlord_carpart_check.jsp");
+		return mav;
+	}
+	/**
+	 * 通过ID删除车位
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping("parkingDelete.do")
 	public @ResponseBody String parkingDelete(Integer id) {
 		String result = "删除失败";
@@ -228,7 +245,7 @@ public class ParkingController {
 
 		return mav;
 	}
-
+	
 	@RequestMapping("passApply.do")
 	public @ResponseBody String passApply(Integer id) {
 		String result = "通过失败";
@@ -236,7 +253,6 @@ public class ParkingController {
 		if (re) {
 			result = "通过成功";
 		}
-
 		return result;
 	}
 
@@ -247,7 +263,6 @@ public class ParkingController {
 		if (re) {
 			result = "成功";
 		}
-
 		return result;
 	}
 }

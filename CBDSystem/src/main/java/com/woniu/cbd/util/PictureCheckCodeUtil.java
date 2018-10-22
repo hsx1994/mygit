@@ -5,38 +5,24 @@ import java.awt.*;
 import java.awt.geom.*;
 
 import java.awt.image.BufferedImage;
-
 import java.io.IOException;
-
 import java.util.Random;
-
-
-
-
 import javax.imageio.ImageIO;
-
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-
 import javax.servlet.http.HttpServletRequest;
-
 import javax.servlet.http.HttpServletResponse;
-
 import javax.servlet.http.HttpSession;
-
 
 /**
  * 图片验证码生成
  * @author xumin
  *
  */
-@WebServlet("/getcode")
-public class PictureCheckCodeServlet extends HttpServlet {
 
-
-
+@WebServlet("/picturecode")
+public class PictureCheckCodeUtil extends HttpServlet {
 
 	// 获取随机颜色
 
@@ -44,26 +30,25 @@ public class PictureCheckCodeServlet extends HttpServlet {
 
 		Random random = new Random();
 
-		if (s > 255) s = 255;
+		if (s > 255)
+			s = 255;
 
-		if (e > 255) e = 255;
+		if (e > 255)
+			e = 255;
 
-		int r = s + random.nextInt(e - s); //随机生成RGB颜色中的r值
+		int r = s + random.nextInt(e - s); // 随机生成RGB颜色中的r值
 
-		int g = s + random.nextInt(e - s); //随机生成RGB颜色中的g值
+		int g = s + random.nextInt(e - s); // 随机生成RGB颜色中的g值
 
-		int b = s + random.nextInt(e - s); //随机生成RGB颜色中的b值
+		int b = s + random.nextInt(e - s); // 随机生成RGB颜色中的b值
 
 		return new Color(r, g, b);
 
 	}
 
-
-
-
 	public void service(HttpServletRequest request, HttpServletResponse response)
 
-	throws ServletException, IOException {
+			throws ServletException, IOException {
 
 		response.setHeader("Pragma", "No-cache");
 
@@ -133,7 +118,7 @@ public class PictureCheckCodeServlet extends HttpServlet {
 
 		for (int i = 0; i < 4; i++) {
 
-			//random = new Random(new java.util.Date().getTime() + i);
+			// random = new Random(new java.util.Date().getTime() + i);
 
 			switch (random.nextInt(3)) {
 
@@ -179,9 +164,10 @@ public class PictureCheckCodeServlet extends HttpServlet {
 
 			// 缩放文字
 
-			float scaleSize = random.nextFloat() +0.8f;
+			float scaleSize = random.nextFloat() + 0.8f;
 
-			if (scaleSize > 1f) scaleSize = 1f;
+			if (scaleSize > 1f)
+				scaleSize = 1f;
 
 			trans.scale(scaleSize, scaleSize);
 
@@ -193,17 +179,10 @@ public class PictureCheckCodeServlet extends HttpServlet {
 		// 将生成的验证码保存到Session中
 
 		HttpSession session = request.getSession(true);
-
 		session.setAttribute("randCheckCode", sRand);
-
 		g.dispose();
-		//System.out.println("randCheckCode:"+session.getAttribute("randCheckCode"));
-		
+		// System.out.println("randCheckCode:"+session.getAttribute("randCheckCode"));
 		ImageIO.write(image, "JPEG", response.getOutputStream());
-
 	}
-
-
-
 
 }

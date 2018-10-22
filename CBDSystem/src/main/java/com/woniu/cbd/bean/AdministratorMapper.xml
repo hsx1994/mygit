@@ -12,7 +12,7 @@
 
 
 	<!-- 普通添加管理员 -->
-	<insert id="addAdmin" parameterType="AdministratorBean">
+	<insert id="addAdmin" parameterType="AdministratorBean" useGeneratedKeys="true" keyProperty="id">
 		insert into
 		t_administrator
 		(a_l_id,a_job_number,a_name,a_tel) values
@@ -45,18 +45,21 @@
 		a_delete=0 and l_name=#{name} and
 		l_password=#{password};
 	</select>
-
+	
+	<!-- 通过登录ID查询单个管理员信息 -->
+	<select id="findByLoginId" parameterType="int" resultMap="map">
+		select * from t_administrator where a_l_id=#{id} and a_delete=0
+	</select>
+	
 	<!-- 通过ID查询单个管理员信息 -->
 	<select id="findById" parameterType="int" resultMap="map">
 		select *
 		from t_administrator where a_id=#{id} and a_delete=0
 	</select>
-
+	
 	<!-- 查询所有管理员信息 -->
 	<select id="administratorSelectAll" resultMap="map">
-		select * from
-		t_administrator where a_delete=0
-
+		select * from t_administrator where a_delete=0
 	</select>
 
 	<resultMap type="AdministratorBean" id="map">
@@ -68,6 +71,6 @@
 
 	<!-- 修改管理员电话 -->
 	<update id="updateAdmintTel" parameterType="AdministratorBean">
-		update t_administrator set a_tel=#{tel} where a_id=#{id}
+		update t_administrator set a_tel=#{tel} where a_l_id=#{id}
 	</update>
 </mapper>

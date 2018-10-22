@@ -1,53 +1,90 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<base href="<%=basePath%>">
 
-<title>My JSP 'login.jsp' starting page</title>
+<meta charset="utf-8">
+<title>登录</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
 
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
-<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
-<script type="text/javascript" src="js/public/jquery.1.9.1.js"></script>
+<!-- CSS -->
+<link rel='stylesheet'
+	href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+<link rel='stylesheet'
+	href='http://fonts.googleapis.com/css?family=Oleo+Script:400,700'>
+<link rel="stylesheet" href="/CBDSystem/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/CBDSystem/css/style.css">
 
 </head>
 
 <body>
-	<form>
-		<input type="text" name="loginname" id="loginname"><br /> <input
-			type="password" name="passworde" id="password"><br /> <input
-			type="button" value="登录" onclick="login()">
-	</form>
-</body>
-<script type="text/javascript">
-	function login() {
-		$.ajax({
-			url : "login.do",
-			type : "post",
-			async : true,
-			data : {
-				"name" : $("#loginname").val(),
-				"password" : $("#password").val()
-			},
-			dataType : "json",
-			success : function(data) {
-				if (data.result == true) {
-					alert("登录成功");
-				}
-			}
-		})
 
-	}
-</script>
+	<div class="header">
+		<div class="container">
+			<div class="row">
+				<div class="logo span4">
+					<h1>
+						<a href="index.jsp">CBD登录 <span class="red">.</span></a>
+					</h1>
+				</div>
+				<div class="links span8">
+					<a class="home" href="" rel="tooltip" data-placement="bottom"
+						data-original-title="Home"></a> <a class="blog" href=""
+						rel="tooltip" data-placement="bottom" data-original-title="Blog"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="copyrights">
+		Collect from <a href="http://www.woxiuxy.com" title="蜗牛学院">蜗牛学院</a>
+	</div>
+
+	<div class="register-container container">
+		<div class="row">
+			<div class="iphone span5">
+				<img src="" alt="">
+			</div>
+			<div class="register span6">
+				<form action="/CBDSystem/login.do" method="post">
+					<h2>
+						登录<span class="red"><strong>CBD</strong></span>
+					</h2>
+					<label for="username">用户名</label> <input type="text" id="username"
+						name="name" placeholder="请输入用户名..."> <label for="password">密码</label>
+					<input type="password" id="password" name="password"
+						placeholder="请输入密码 ..."> <label for="code">验证码</label>  <input type="text" id="code"
+						name="checkcode" placeholder="验证码 ...">
+						<a href="javaScript:getPictureCode()"><img src=""
+						id="picturecode" style="width:100px" /></a>
+					<lable>
+					<font color="red">${errorMsg}</font></lable>
+					<br />
+					<button type="submit">登录</button>
+					<input type="hidden" name="path" value="/jsp/login.jsp" />
+				</form>
+			</div>
+		</div>
+	</div>
+	<script>
+		function getPictureCode() {
+			var pictureimg = document.getElementById("picturecode");
+			pictureimg.src = "/CBDSystem/picturecode?a=" + Math.random();
+		}
+		getPictureCode()
+	</script>
+
+	<!-- Javascript -->
+	<script src="/CBDSystem/js/public/jquery.1.9.1.js"></script>
+	<script src="/CBDSystem/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/CBDSystem/js/public/jquery.backstretch.min.js"></script>
+	<script src="/CBDSystem/js/scripts.js"></script>
+
+</body>
+
 </html>
 

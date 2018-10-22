@@ -26,6 +26,16 @@
 		<result property="email" column="u_email" />
 		<result property="orderCount" column="u_order_count" />
 		<result property="complaintCount" column="u_complaint_count" />
+		<association property="login" javaType="LoginBean" select="loginMapper.findById" column="u_l_id"></association>
 	</resultMap>
 
+	
+	<insert id="addUserInfor" parameterType="UserBean">
+		insert into t_user_info(u_address,u_email,u_idcard,u_profession,u_realname,u_tel
+		) values(#{address},#{email},#{idcard},#{job},#{realName},#{tel});
+	</insert>
+	
+	<insert id="addUser" parameterType="LoginBean" useGeneratedKeys="true" keyProperty="id">
+		insert into t_login(l_name,l_password,l_role)values(#{name},#{password},#{role});
+	</insert>
 </mapper>

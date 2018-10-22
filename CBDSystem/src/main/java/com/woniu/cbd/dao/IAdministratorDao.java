@@ -72,5 +72,11 @@ public interface IAdministratorDao {
 	 * @return
 	 */
 	public int updateAdmintTel(AdministratorBean bean);
-
+	
+	/**
+	 * 查看正在登录的管理员的信息
+	 * @param uid
+	 * @return
+	 */
+	public AdministratorBean showAdministratorInfo(int uid);
 }

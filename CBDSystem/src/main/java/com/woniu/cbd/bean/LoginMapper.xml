@@ -26,28 +26,26 @@
 	<select id="findLoginUserByname" parameterType="String"
 		resultType="LoginBean">
 		select t_id as id,l_name as name,l_password as
-		password,l_role as role,l_delete as delete from t_login where
+		password,l_role as role from t_login where
 		l_name=#{name} and l_delete = 0;
 	</select>
 	
-
+	<!-- 通过ID查询登录信息 -->
+	<select id="findById" parameterType="int" resultMap="map">
+		select * from t_login where t_id=#{id}
+	</select>
 	
 	<!-- 通过登录用户名查找登录用户信息 --><!-- sql语句待调整 -->
 	<select id="findPermissionsByname" parameterType="String"
-		resultMap="permissionsMap">
-		select * from t_login where l_name=#{name}
-	</select>
-	<resultMap type="PermissionBean" id="permissionsMap">
-		<id property="id" column="per_id"></id>
-		<result property="name" column="per_name" />
-	</resultMap>
-
+		resultType="PermissionBean">
+		select per_id as id,per_name as name from login_role_permission_info where name=#{name}
+	</select>		
 	<!-- 通过ID查密码 -->
 	<select id="selecrPwd" parameterType="int" resultType="String">
 		select l_password from t_login where t_id=#{id}
 	</select>
 	
 	<update id="updatePwd" parameterType="LoginBean">
-		update t_login set l_possword=#{password} where t_id=#{id}
+		update t_login set l_password=#{password} where t_id=#{id}
 	</update>
 </mapper>

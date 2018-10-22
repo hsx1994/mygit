@@ -114,4 +114,14 @@ public class ParkingServicelmpl implements IParkingService {
 		ParkingBean bean=dao.selectParkingByOrderID(id);
 		return bean;
 	}
+
+	/**
+	 * 通过ID查询单个车位信息
+	 * @param id
+	 * @return
+	 */
+	public ParkingBean findParkingById(int id){
+		ParkingBean bean = dao.findParkingById(id);
+		return bean;
+	}
 }
