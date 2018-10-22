@@ -31,8 +31,7 @@ public class UserController {
 	@RequestMapping("showme.do")
 	public ModelAndView ShowMe(Integer id, Integer page) {
 		ModelAndView mav = new ModelAndView();
-		 System.out.println("id:"+id);
-		// System.out.println("page:"+page);
+		
 		PageHelper.startPage(page, 8, true);
 		List<ParkingBean> bean = user.ShowMe(id);
 
@@ -156,6 +155,4 @@ public class UserController {
 			return "/ModificationPersonal.jsp";	
 		}
 	}
-	
-
 }

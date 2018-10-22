@@ -16,9 +16,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 自定义Realm -->
-	<bean id="loginRealm" class="com.woniu.cbd.realm.LoginRealm">
-	</bean>
-
+	<bean id="loginRealm" class="com.woniu.cbd.realm.LoginRealm"></bean>
 
 	<!-- 安全管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
