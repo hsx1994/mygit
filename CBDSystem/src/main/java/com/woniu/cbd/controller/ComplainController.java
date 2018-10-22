@@ -1,9 +1,13 @@
 package com.woniu.cbd.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -138,5 +142,11 @@ public class ComplainController {
 		String result = service.addComplaint(complaint);
 		return result;
 	}
-
+	
+	@org.springframework.web.bind.annotation.InitBinder
+	public void InitBinder(WebDataBinder dataBinder) {
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    dateFormat.setLenient(false);
+	    dataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	}
 }

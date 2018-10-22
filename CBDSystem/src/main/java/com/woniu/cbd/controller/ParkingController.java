@@ -24,7 +24,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.ParkingBean;
-import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.service.IParkingService;
 
 @Controller
@@ -264,5 +263,14 @@ public class ParkingController {
 			result = "成功";
 		}
 		return result;
+	}
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		format.setLenient(false);  //是否需要严格转化
+		
+		//使用springmvc封装好的类进行格式转换
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));		
 	}
 }

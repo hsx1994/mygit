@@ -3,6 +3,7 @@ package com.woniu.cbd.service;
 import java.util.List;
 
 import com.woniu.cbd.bean.CompanyInfoBean;
+import com.woniu.cbd.bean.LoginBean;
 
 
 public interface ICompanyInfoService {
@@ -25,7 +26,13 @@ public interface ICompanyInfoService {
 	 * @return
 	 */
 	public CompanyInfoBean findByCompanyName(String comName);
-
+		
+	/**
+	 * 用于普通管理员新增企业的业务
+	 * @param bean
+	 * @return
+	 */
+	public String addCompanyInfo(CompanyInfoBean bean,LoginBean login);
 	
 	/**
 	 * 根据登录表lid查企业id

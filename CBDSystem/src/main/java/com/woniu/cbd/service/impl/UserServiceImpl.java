@@ -26,12 +26,10 @@ public class UserServiceImpl implements IUserService {
 	 * 注册个人信息
 	 */
 	@Override
-	public boolean addUser(LoginBean bean) {
+	public int addUser(LoginBean bean) {
 		int row = dao.addUser(bean);
-		if(row>0){
-			return true;
-		}
-		return false;	
+		
+		return row;	
 	}
 	@Override
 	public boolean addUserInfor(UserBean bean) {

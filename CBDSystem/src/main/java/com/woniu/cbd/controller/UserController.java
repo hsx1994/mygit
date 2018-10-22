@@ -31,9 +31,7 @@ import com.woniu.cbd.util.PhoneCodeUtil;
 @Controller
 public class UserController {
 	@Autowired
-
 	private IUserService user;
-
 
 
 	// 手机发送验证码
@@ -47,28 +45,28 @@ public class UserController {
 
 	}
 	// 注册测试
-	@RequestMapping("/regist.do")
-	public @ResponseBody String Regist(HttpServletRequest request, String role,
-			String name, String password, UserBean bean, String code) {
+	@RequestMapping("regist.do")
+	public @ResponseBody String Regist(HttpServletRequest request,UserBean bean, String code) {
 		HttpSession session = request.getSession();
-		// 密码加密
-		String pass = Md5pwdUtil.md5(password, name);
-
 		// 获取session给中的验证码
 		String num = (String) session.getAttribute("code");
-		LoginBean beans = new LoginBean();
-		beans.setName(name);
-		beans.setPassword(pass);
-		beans.setRole(role);
-
 		// 验证验证码
-		 if (code.equals(num)) {
-			user.addUser(beans);
-			user.addUserInfor(bean);
-			return "注册成功";
-		} else {
-			return "注册失败";
+		if (!code.equals(num)) {
+			return "验证码错误";
+		}		
+		// 密码加密
+		String pass = Md5pwdUtil.md5(bean.getLogin().getPassword(), bean.getLogin().getName());
+		LoginBean login = bean.getLogin();
+		login.setPassword(pass);
+		int id = user.addUser(login);
+		if(id == 0){
+			return "用户名或密码注册失败";
 		}
+		boolean re = user.addUserInfor(bean);
+		if(re){
+			return "注册成功";
+		}
+		return "注册失败";
 	}
 
 	/***
@@ -101,6 +99,4 @@ public class UserController {
 			return "/ModificationPersonal.jsp";	
 		}
 	}
-	
-
 }
