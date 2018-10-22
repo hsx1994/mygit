@@ -201,8 +201,7 @@
 					</div>
 					<div class="part4 text-center" style="display:none">
 						<h3>恭喜,您已注册成功</h3>
-						<!--                     <p class="c-666 f-mt30 f-mb50">页面将在 <strong id="times" class="f-size18">10</strong> 秒钟后，跳转到 <a href="login.html" class="c-blue">登录</a></p>
- -->
+						<p class="c-666 f-mt30 f-mb50">页面将在 <strong id="times" class="f-size18">10</strong> 秒钟后，跳转到 <a href="/CBDSystem/jsp/login.jsp" class="c-blue">登录</a></p>
 					</div>
 				</div>
 			</div>
@@ -286,20 +285,23 @@ function send(){
 				type:"post",
 				data:
 				{
-				 role:$("#role").val(),
-				 name:$("#name").val(),
-				 password:$("#password").val(),
-			     realName:$("#realName").val(),
-			     idcard:$("#idcard").val(),
-	             address:$("#address").val(),
-	             job:$("#job").val(),
-	             email:$("#email").val(),
-	             tel:$("#tel").val(),
-	             code:$("#code").val() 
+				 "login.role":$("#role").val(),
+				 "login.name":$("#name").val(),
+				 "login.password":$("#password").val(),
+			     "realName":$("#realName").val(),
+			     "idcard":$("#idcard").val(),
+	             "address":$("#address").val(),
+	             "job":$("#job").val(),
+	             "email":$("#email").val(),
+	             "tel":$("#tel").val(),
+	             "code":$("#code").val() 
 			},
 				datatype: "json",
 				success:function(data){
-					alert(data);
+					if(data != "注册成功"){
+						window.alert(data);
+						window.location.reload();
+					}
 				}
 			});
 			
@@ -315,74 +317,13 @@ function checkUserName(){
 		dataType:"json",
 		success:function(masage){
 			$("#err").html(masage);
-			if(masage=="用户名可用"){
+			if(masage == "用户名可用"){
 				$("#btn_part1").show();
 			}
 		}
 	});
 }
-
-
-
 </script>
-
-<!-- 
-	<script type="text/javascript">
-function send(){
-	var role=$("#role").val();
-	var name=$("#name").val();
-	var password=$("#password").val();
-	var realName=$("#realName").val();
-	var idcard=$("#idcard").val();
-	var address=$("#address").val();
-	var job = $("#job").val();
-	var email=$("#email").val();
-	var tel=$("#tel").val();
-	var user={
-				/* "code":code, */
-				name:$("#name").val(),
-	 			 password:$("#password").val(),
-	 			 realName:$("#realName").val(),
-	 			 idcard:$("#idcard").val(),
-				 address:$("#address").val(),
-				job:$("#job").val(),
-				email:$("#email").val(),
-	 			tel:$("#tel").val()
-	 			}
-	alert(user);
-		$.ajax({
-				url:"../personl.do",
-				type:"post",
-				contentType:"application/json;charset=utf-8",
-				data:
-				JSON.stringify(user),
-				/* code:$("#code").val(),
-				name:$("#name").val(),
-	 			 password:$("#password").val(),
-	 			 realName:$("#realName").val(),
-	 			 idcard:$("#idcard").val(),
-				 address:$("#address").val(),
-				job:$("#job").val(),
-				email:$("#email").val(),
-	 			tel:$("#tel").val() */
-				datatype: "json",
-				success:function(data){
-					alert(data);
-				}
-			});
-			/* var jsonobj = {"name":$("#name").val(),"pass":$("#password").val()};
-			$.ajax({
-				url:"../personl.do",
-				type:"post",
-				async:true,
-				contentType:"application/json;charset=utf-8",
-				data:JSON.stringify(jsonobj),
-				success:function(message){
-					console.info(message);
-				}
-			}); */
-	}
-</script> -->
 	<div style="text-align:center;"></div>
 
 </body>

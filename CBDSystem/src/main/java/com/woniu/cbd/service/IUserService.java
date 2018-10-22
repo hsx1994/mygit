@@ -33,7 +33,7 @@ public interface IUserService {
 	 ** @param user	 
 	 ** @return int	 
 	 **/
-	public boolean addUser(LoginBean bean);
+	public int addUser(LoginBean bean);
 	
 	/**向数据库中添加一条用户信息	
 	 ** @param user	 
