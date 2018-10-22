@@ -88,7 +88,7 @@
 	                <div class="item col-xs-12">
                         <span class="intelligent-label f-fl"><b class="ftx04">*</b>真实姓名：</span>    
                         <div class="f-fl item-ifo">
-                            <input type="text" maxlength="10" class="txt03 f-r3 required" tabindex="1" data-valid="isNonEmpty||between:2-10||isZh" data-error="真实姓名不能为空||真实姓名长度2-10位||只能输入中文" id="adminNo" />   
+                            <input type="text" maxlength="10" class="txt03 f-r3 required" tabindex="1" data-valid="isNonEmpty||between:2-10||isZh" data-error="真实姓名不能为空||真实姓名长度2-10位||只能输入中文" id="adminNum" />   
                             <span class="ie8 icon-close close hide"></span>                         
                             <label class="icon-sucessfill blank hide"></label>
                             <label class="focus">2-10位，中文真实姓名</label>

@@ -13,6 +13,7 @@ import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.CompanyInfoBean;
 import com.woniu.cbd.bean.LoginBean;
 import com.woniu.cbd.service.ICompanyInfoService;
+import com.woniu.cbd.service.ILoginService;
 
 /**
  * 企业信息（用户后台管理员查询、新增企业）
@@ -24,6 +25,7 @@ public class CompanyInfoController {
 	
 	@Autowired
 	private ICompanyInfoService comService;
+	private ILoginService logService;
 	/**
 	 * 查询所有企业信息
 	 * @return
@@ -74,17 +76,16 @@ public class CompanyInfoController {
 	 * @param loginBean
 	 * @return
 	 */
-	
+	@ResponseBody
 	@RequestMapping("addCompany.do")
-	public String addCompany(CompanyInfoBean company,LoginBean loginBean){
-		System.out.println(company);
-		System.out.println(loginBean);
-		ModelAndView mv = new ModelAndView();
-		loginBean.setId(1);
-		company.setComLogin(loginBean);
-		String result = comService.addCompanyInfo(company);
+	public String addCompany(CompanyInfoBean company,LoginBean loginBean,String repwd){
 		
-		return "views/company_info.jsp";
+		ModelAndView mv = new ModelAndView();
+	
+		String result = comService.addCompanyInfo(company,loginBean);
+		mv.addObject("result", result);
+		
+		return result;
 		
 		
 	}

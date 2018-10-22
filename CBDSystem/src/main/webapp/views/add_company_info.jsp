@@ -7,6 +7,7 @@
     <link href="../css/css.css" type="text/css" rel="stylesheet" />
     <link href="../css/main.css" type="text/css" rel="stylesheet" />
     <link rel="shortcut icon" href="../images/main/favicon.ico" />
+     <script type="text/javascript" src="/CBDSystem/js/jQuery-2.2.2.js"></script>
     <style>
         body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
         #searchmain{ font-size:12px;}
@@ -57,66 +58,67 @@
     </tr>
     <tr>
         <td align="left" valign="top">
-            <form method="post" action="/CBDSystem/addCompany.do">
+           <!--  <form method="post" action="/CBDSystem/addCompany.do"> -->
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">企业登录名：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="name" value="" class="text-word" placeholder="6~18位包含数字、大小写字母和汉字的任意组合(必填)">
+                            <input type="text" name="name" id="name" value="" class="text-word" placeholder="6~18位包含数字、大小写字母和汉字的任意组合(必填)">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">登 录 密 码：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="password" name="password" value="" class="text-word" placeholder="8~15位数字（必填）">
+                            <input type="password" name="password" id="pwd"  class="text-word" placeholder="8~15位数字（必填）">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">确 认 密 码：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="password" name="repwd" value="" class="text-word" placeholder="再次输入密码">
+                            <input type="password" name="repwd" id="repwd"  class="text-word" placeholder="再次输入密码">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                     <td align="right" valign="middle" class="borderright borderbottom bggray">企 业 名 称：</td>
                     <td align="left" valign="middle" class="borderright borderbottom main-for">
-                        <input type="text" name="comName" value="" class="text-word" id="company_name" placeholder="必填">
+                        <input type="text" name="comName"  class="text-word" id="comName" placeholder="必填">
                     </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">企 业 地 址：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="address" value="" class="text-word" id="company_address" placeholder="必填">
+                            <input type="text" name="address" id="address" class="text-word" placeholder="必填">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">企业联系人：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="contact" value="" class="text-word" id="contact_name" placeholder="必填">
+                            <input type="text" name="contact" id="contact" class="text-word" placeholder="必填">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">联系人电话：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="tel" value="" class="text-word" id="contact_tel" placeholder="必填">
+                            <input type="text" name="tel" id="tel" class="text-word" placeholder="必填">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">联系人邮箱：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="email" value="" class="text-word" id="contact_mail" placeholder="必填">
+                            <input type="text" name="email" id="email" class="text-word" placeholder="必填">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">&nbsp;</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input name="" type="submit" value="提交" class="text-but">
+                            <input name="" type="button" value="提交" class="text-but" onclick="addCompany()">
                             <input name="" type="button" value="返回" class="text-but" onclick="javascript:history.go(-1);"></td>
                     </tr>
                 </table>
-            </form>
+           <!--  </form> -->
         </td>
     </tr>
 </table>
+<script type="text/javascript" src="/CBDSystem/js/userManage.js"></script>
 </body>
 </html>

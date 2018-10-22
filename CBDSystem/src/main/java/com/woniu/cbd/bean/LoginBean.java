@@ -1,12 +1,15 @@
 package com.woniu.cbd.bean;
 
+import java.io.Serializable;
+
 /**
  * 描述：用于各种用户登录
  * 
  * @author wt
  *
  */
-public class LoginBean {
+public class LoginBean implements Serializable{
+	private static final long serialVersionUID = 1L;
 	// 登录表id
 	private int id;
 	// 登录名
@@ -14,7 +17,7 @@ public class LoginBean {
 	// 登录密码
 	private String password;
 	// 登录角色
-	private int role;
+	private String role;
 	// 软删除
 	private short delete;
 	public int getId() {
@@ -35,10 +38,11 @@ public class LoginBean {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getRole() {
+
+	public String getRole() {
 		return role;
 	}
-	public void setRole(int role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 	public short getDelete() {
@@ -47,4 +51,10 @@ public class LoginBean {
 	public void setDelete(short delete) {
 		this.delete = delete;
 	}
+	@Override
+	public String toString() {
+		return "LoginBean [id=" + id + ", name=" + name + ", password="
+				+ password + ", role=" + role + "]";
+	}
+	
 }

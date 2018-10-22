@@ -46,7 +46,7 @@ public class CompanyInfoDaoImpl implements ICompanyInfoDao {
 
 	@Override
 	public int addCompany(CompanyInfoBean bean) {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		
 		int row = session.insert("companyInfoMapper.addCompany",bean);
 		session.commit();

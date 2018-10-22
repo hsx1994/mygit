@@ -3,6 +3,7 @@ package com.woniu.cbd.service;
 import java.util.List;
 
 import com.woniu.cbd.bean.CompanyInfoBean;
+import com.woniu.cbd.bean.LoginBean;
 
 
 public interface ICompanyInfoService {
@@ -31,6 +32,6 @@ public interface ICompanyInfoService {
 	 * @param bean
 	 * @return
 	 */
-	public String addCompanyInfo(CompanyInfoBean bean);
+	public String addCompanyInfo(CompanyInfoBean bean,LoginBean login);
 
 }
