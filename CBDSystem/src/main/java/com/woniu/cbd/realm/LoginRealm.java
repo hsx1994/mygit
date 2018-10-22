@@ -51,8 +51,6 @@ public class LoginRealm extends AuthorizingRealm {
 
 			int Lid = loginUser.getId();
 			int currentId = 0;
-			System.out.println(loginUser);
-			System.out.println(info);
 			// 存各种用户表的Id
 			switch (loginUser.getRole()) {
 			case "抢租客":

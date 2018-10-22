@@ -118,13 +118,5 @@ public class CompanyBargainBean implements Serializable {
 	public void setState(int state) {
 		this.state = state;
 	}
-
-	@Override
-	public String toString() {
-		return "CompanyBargainBean [id=" + id + ", company=" + company
-				+ ", number=" + number + ", img=" + img + ", contact="
-				+ contact + ", tel=" + tel + ", startTime=" + startTime
-				+ ", endTime=" + endTime + ", state=" + state + "]";
-	}
-	 
+	
 }

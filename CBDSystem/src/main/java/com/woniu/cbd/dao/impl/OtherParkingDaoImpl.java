@@ -56,7 +56,7 @@ public class OtherParkingDaoImpl implements IOtherParkingDao {
 		@Override
 		public List<OtherParkingBean> showCompanyParkingAll(int id) {
 			SqlSession session = fa.openSession(true);
-			List<OtherParkingBean> bean = session.selectList("companyBargainMapper.companyBargainById", id);
+			List<OtherParkingBean> bean = session.selectList("companyBargainMapper.findCompanyBargainById", id);
 			session.close();
 			return bean;
 		}

@@ -20,47 +20,16 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
 	private IUserDao dao;
 
-	// 查看包租婆的发布记录
-	@Override
-	public List<ParkingBean> ShowMe(int id) {
-		List<ParkingBean> bean = dao.ShowMe(id);
-		return bean;
-	}
 
-	// 查看包租婆的被租赁记录
-	@Override
-	public List<ParkingBean> SelectLog(int id) {
-		List<ParkingBean> bean = dao.SelectLog(id);
-		return bean;
-	}
-
-	// 查看抢租客的租赁记录
-	@Override
-	public List<OrderBean> ShowLog(int id) {
-		List<OrderBean> bean = dao.ShowLog(id);
-		return bean;
-	}
-
-	// 抢租客针对记录添加投诉信息
-	@Override
-	public boolean AddComplaint(ComplainBean bean) {
-		int num = dao.AddComplaint(bean);
-		if (num > 0) {
-			return true;
-		}
-		return false;
-	}
 	
 	/**
 	 * 注册个人信息
 	 */
 	@Override
-	public boolean addUser(LoginBean bean) {
+	public int addUser(LoginBean bean) {
 		int row = dao.addUser(bean);
-		if(row>0){
-			return true;
-		}
-		return false;	
+		
+		return row;	
 	}
 	@Override
 	public boolean addUserInfor(UserBean bean) {
@@ -93,11 +62,10 @@ public class UserServiceImpl implements IUserService {
 		
 	}
 
-
-
 	// 通过登录表的id查包租婆或抢租客表的id
 	@Override
 	public int findIdByLid(int lid) {
 		return dao.findIdByLid(lid);
 	}
+
 }

@@ -1,6 +1,8 @@
 package com.woniu.cbd.bean;
 
-public class PermissionBean {
+import java.io.Serializable;
+
+public class PermissionBean implements Serializable{
 
 	private int id;
 	private String name;

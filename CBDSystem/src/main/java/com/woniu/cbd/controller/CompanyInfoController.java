@@ -5,15 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.CompanyInfoBean;
+import com.woniu.cbd.bean.LoginBean;
 import com.woniu.cbd.service.ICompanyInfoService;
+import com.woniu.cbd.service.ILoginService;
 
 /**
- * 企业信息（用户后台管理员查询企业相关信息）
+ * 企业信息（用户后台管理员查询、新增企业）
  * @author Administrator
  *
  */
@@ -21,7 +24,8 @@ import com.woniu.cbd.service.ICompanyInfoService;
 public class CompanyInfoController {
 	
 	@Autowired
-	private ICompanyInfoService service;
+	private ICompanyInfoService comService;
+	private ILoginService logService;
 	/**
 	 * 查询所有企业信息
 	 * @return
@@ -32,7 +36,7 @@ public class CompanyInfoController {
 		
 		//设置分页处理 (第page页，每页显示10个，必须写在sql语句之前，不然分页不能生效，true可以省略)
 		PageHelper.startPage(page,10,true);
-		List<CompanyInfoBean> list = service.showAllCompany();
+		List<CompanyInfoBean> list = comService.showAllCompany();
 		//取分页信息,需要填入你查询出的集合
 		PageInfo<CompanyInfoBean> pageInfo = new PageInfo<CompanyInfoBean>(list);
 		
@@ -53,16 +57,36 @@ public class CompanyInfoController {
 	@RequestMapping("queryCompany.do")
 	public ModelAndView queryCompanyByCondition(Integer page,String condition){
 		ModelAndView mv = new ModelAndView();
+		if(condition!=null){
+			//设置分页处理 (第page页，每页显示10个，必须写在sql语句之前，不然分页不能生效，true可以省略)
+			PageHelper.startPage(page,10,true);
+			List<CompanyInfoBean> list = comService.queryCompany(condition);
+			//取分页信息,需要填入你查询出的集合
+			PageInfo<CompanyInfoBean> pageInfo = new PageInfo<CompanyInfoBean>(list);
+			mv.addObject("pageinfo",pageInfo);
+			mv.addObject("list",list);
+			mv.setViewName("views/company_info.jsp");
+		}
 		
-		//设置分页处理 (第page页，每页显示10个，必须写在sql语句之前，不然分页不能生效，true可以省略)
-		PageHelper.startPage(page,10,true);
-		List<CompanyInfoBean> list = service.showAllCompany();
-		//取分页信息,需要填入你查询出的集合
-		PageInfo<CompanyInfoBean> pageInfo = new PageInfo<CompanyInfoBean>(list);
-		
-		mv.addObject("pageinfo",pageInfo);
-		mv.addObject("list",list);
-		mv.setViewName("views/complain_info.jsp");
 		return mv;
+	}
+	/**
+	 * 新增企业
+	 * @param company
+	 * @param loginBean
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("addCompany.do")
+	public String addCompany(CompanyInfoBean company,LoginBean loginBean,String repwd){
+		
+		ModelAndView mv = new ModelAndView();
+	
+		String result = comService.addCompanyInfo(company,loginBean);
+		mv.addObject("result", result);
+		
+		return result;
+		
+		
 	}
 }

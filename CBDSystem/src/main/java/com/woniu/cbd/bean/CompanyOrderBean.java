@@ -82,4 +82,5 @@ public class CompanyOrderBean implements Serializable {
 	public void setOtherParking(OtherParkingBean otherParking) {
 		this.otherParking = otherParking;
 	}
+	
 }

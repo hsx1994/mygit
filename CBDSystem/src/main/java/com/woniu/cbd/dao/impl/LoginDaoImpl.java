@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.woniu.cbd.bean.LoginBean;
+import com.woniu.cbd.bean.PermissionBean;
 import com.woniu.cbd.dao.ILoginDao;
 @Repository
 public class LoginDaoImpl implements ILoginDao {
@@ -30,6 +31,7 @@ public class LoginDaoImpl implements ILoginDao {
 		SqlSession session = fa.openSession(true);
 		LoginBean bean = session.selectOne("loginMapper.findByName",login);
 		
+		session.close();
 		return bean;
 	}
 	/* *
@@ -50,13 +52,24 @@ public class LoginDaoImpl implements ILoginDao {
 	public Set<String> getPermissions(String name) {
 		Set<String> permissions=new HashSet<String>();
 		SqlSession session = fa.openSession(true);
-		List<String> list = session.selectList("loginMapper.findPermissionsByname",name);
-		for (String PermissionName : list) {
-			permissions.add(PermissionName);
+		List<PermissionBean> list = session.selectList("loginMapper.findPermissionsByname",name);
+		for (PermissionBean P : list) {
+			permissions.add(P.getName());
 		}
-		session.close();
 		return permissions;
-
+		
+	}
+	/**
+	 * 添加企业用户
+	 */
+	@Override
+	public int addCompanyUser(LoginBean login) {
+		
+		SqlSession session = fa.openSession(true);
+		int id = session.insert("loginMapper.addCompanyUser",login);
+		session.close();
+		return id;
+		
 	}
 	/**
 	 * 通过ID查密码

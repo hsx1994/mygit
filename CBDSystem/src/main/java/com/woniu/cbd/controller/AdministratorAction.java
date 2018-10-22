@@ -1,13 +1,13 @@
 package com.woniu.cbd.controller;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,8 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.AdministratorBean;
+import com.woniu.cbd.bean.RolePermissionBean;
 import com.woniu.cbd.service.IAdministratorService;
 import com.woniu.cbd.service.ILoginService;
+import com.woniu.cbd.service.IRolePermissionService;
 
 /**
  * 描述 ：处理普通管理员所有前后端交互功能
@@ -33,51 +35,86 @@ public class AdministratorAction {
 	private IAdministratorService service;
 	@Autowired
 	private ILoginService ils;
-
+	@Autowired
+	private IRolePermissionService irs;
+	
 	/**
 	 * 添加普通管理员
 	 */
 	@RequestMapping("/addAdmin.do")
-
-	public @ResponseBody String register( String[] limit2,AdministratorBean admin) {
-		
-//		System.out.println(admin);
-		//将
-		//将权限封装位list
-		
-		for (String string : limit2) {
-			System.out.println(string);
+	@Transactional(isolation=Isolation.DEFAULT,propagation=Propagation.REQUIRED)
+	public @ResponseBody String registerAdmin(String[] limits,AdministratorBean admin) {
+		String result = null;
+		if(admin.getJobNumber().length()<1){
+			result="工号不能为空";return result;
 		}
+		if(admin.getTel().length()<1){
+			result="电话不能为空";return result;
+		}
+		if(admin.getRealName().length()<1){
+			result="姓名不能为空";return result;
+		}
+		
+		List<RolePermissionBean> list = new ArrayList<RolePermissionBean>();
 		
 		//向登录表中添加普通管理员的相关信息
 		String re = ils.addAdmin(admin.getLogin());
-		//返回插入结果提示
-		String result = null;
 		
-		if(admin.getJobNumber().length()<1){
-			result="工号不能为空";
-			return result;
-		}
-		if(admin.getTel().length()<1){
-			result="电话不能为空";
-			return result;
-		}
-		if(admin.getRealName().length()<1){
-			result="姓名不能为空";
-			return result;
-		}
-		
-		if(re.equals("成功")){
-			result = service.addAdmin(admin);
-			
-		} else {
+		if(!re.equals("成功")){
 			result = re;
-			
+			return result;
+		}
+		
+		result = service.addAdmin(admin);
+		if(result.equals("添加失败")){
+			return result;
+		}
+		
+		for (String s : limits) {
+			int i = Integer.parseInt(s);
+			RolePermissionBean bean = new RolePermissionBean();
+			bean.setPerId(i);
+			bean.setLoginId(admin.getId());
+			list.add(bean);
+		}
+		//将权限封装为array,添加权限
+		boolean res = irs.addLimites(list);
+		
+		if(!res){
+			result = "权限添加失败";
+			return result;
 		}
 		return result;
 	}
-
-	
+	/**
+	 * 修改管理员权限
+	 * @param limits
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("updatePer.do")
+	public @ResponseBody String updatePer(String[] limits,Integer id){
+		String result = "修改失败";
+		boolean re = irs.deletePerByAdminId(id);
+		if(!re){
+			return result;
+		}
+		List<RolePermissionBean> list = new ArrayList<RolePermissionBean>();
+		for (String s : limits) {
+			int i = Integer.parseInt(s);
+			RolePermissionBean bean = new RolePermissionBean();
+			bean.setPerId(i);
+			bean.setLoginId(id);
+			list.add(bean);
+		}
+		boolean res = irs.addLimites(list);
+		if(!res){
+			result = "权限修改失败";
+		} else {
+			result = "修改成功";
+		}
+		return result;
+	}
 	/**
 	 * 描述：实现账号删除功能
 	 * 

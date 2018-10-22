@@ -33,34 +33,28 @@
 					</ul>
 				</div>
 				<div class="reg-box" id="verifyCheck" style="margin-top:20px;">
-				
-				
-							
-				
 					<div class="part1">
-					<span class="intelligent-label f-fl"><b class="ftx04">*</b></span>填写用户角色 ：
-							<select id="role" name="role" data-valid="isNonEmpty"	data-error="角色不能为空">
+						<div class="item col-xs-12"><span class="intelligent-label f-fl"><b class="ftx04">*</b>用户角色： </span>
+							<select class="required" id="role" name="role" data-valid="isNonEmpty" data-error="角色不能为空">
 								<option></option>
-								<option value="包租用户">包租用户</option>
+								<option value="包租用户" style="height:">包租用户</option>
 								<option value="抢租用户">抢租用户</option>
 							</select>
-							
-							<br>
-						<div class="item col-xs-12">
-							<span class="intelligent-label f-fl"><b class="ftx04">*</b>用户名：</span>
+					</div>
+					
+						<div class="item col-xs-12"><span class="intelligent-label f-fl"><b class="ftx04">*</b>用户名：</span>
 							<div class="f-fl item-ifo">
 								<input type="text" maxlength="20" class="txt03 f-r3 required"
 									tabindex="1" data-valid="isNonEmpty||between:3-20||isUname"
 									data-error="用户名不能为空||用户名长度3-20位||只能输入中文、字母、数字、下划线，且以中文或字母开头" 
-									id="name" name="name" />
+									id="name" name="name" /><button onclick="checkUserName()">检测(必须)</button>
 									<span class="ie8 icon-close close hide"></span> 
 									<label class="icon-sucessfill blank hide"></label> 
-									<label class="focus"><span>3-20位，中文、字母、数字、下划线的组合，以中文或字母开头</span></label>
+									<label class="focus" id="err"><span>3-20位，中文、字母、数字、下划线的组合，以中文或字母开头</span></label>
 								<label class="focus valid"></label>
 							
 							</div>
 						</div>
-						
 						<div class="item col-xs-12">
 							<span class="intelligent-label f-fl"><b class="ftx04">*</b>密码：</span>
 							<div class="f-fl item-ifo">
@@ -99,7 +93,7 @@
 						<div class="item col-xs-12">
 							<span class="intelligent-label f-fl">&nbsp;</span>
 							<div class="f-fl item-ifo">
-								<a href="javascript:;" class="btn btn-blue f-r3" id="btn_part1">下一步</a>
+								<a href="javascript:;" style="display: none" class="btn btn-blue f-r3" id="btn_part1">下一步</a>
 							</div>
 						</div>
 					</div>
@@ -207,8 +201,7 @@
 					</div>
 					<div class="part4 text-center" style="display:none">
 						<h3>恭喜,您已注册成功</h3>
-						<!--                     <p class="c-666 f-mt30 f-mb50">页面将在 <strong id="times" class="f-size18">10</strong> 秒钟后，跳转到 <a href="login.html" class="c-blue">登录</a></p>
- -->
+						<p class="c-666 f-mt30 f-mb50">页面将在 <strong id="times" class="f-size18">10</strong> 秒钟后，跳转到 <a href="/CBDSystem/jsp/login.jsp" class="c-blue">登录</a></p>
 					</div>
 				</div>
 			</div>
@@ -292,86 +285,45 @@ function send(){
 				type:"post",
 				data:
 				{
-				 role:$("#role").val(),
-				 name:$("#name").val(),
-				 password:$("#password").val(),
-			     realName:$("#realName").val(),
-			     idcard:$("#idcard").val(),
-	             address:$("#address").val(),
-	             job:$("#job").val(),
-	             email:$("#email").val(),
-	             tel:$("#tel").val(),
-	             code:$("#code").val() 
+				 "login.role":$("#role").val(),
+				 "login.name":$("#name").val(),
+				 "login.password":$("#password").val(),
+			     "realName":$("#realName").val(),
+			     "idcard":$("#idcard").val(),
+	             "address":$("#address").val(),
+	             "job":$("#job").val(),
+	             "email":$("#email").val(),
+	             "tel":$("#tel").val(),
+	             "code":$("#code").val() 
 			},
 				datatype: "json",
 				success:function(data){
-					alert(data);
+					if(data != "注册成功"){
+						window.alert(data);
+						window.location.reload();
+					}
 				}
 			});
 			
 	};
-
-
-
+//验证用户名是否存在
+function checkUserName(){
+	$.ajax({
+		url:"/CBDSystem/checkUserName.do",
+		type:"post",
+		data:{
+			name:$("#name").val()
+		},
+		dataType:"json",
+		success:function(masage){
+			$("#err").html(masage);
+			if(masage == "用户名可用"){
+				$("#btn_part1").show();
+			}
+		}
+	});
+}
 </script>
-
-<!-- 
-	<script type="text/javascript">
-function send(){
-	var role=$("#role").val();
-	var name=$("#name").val();
-	var password=$("#password").val();
-	var realName=$("#realName").val();
-	var idcard=$("#idcard").val();
-	var address=$("#address").val();
-	var job = $("#job").val();
-	var email=$("#email").val();
-	var tel=$("#tel").val();
-	var user={
-				/* "code":code, */
-				name:$("#name").val(),
-	 			 password:$("#password").val(),
-	 			 realName:$("#realName").val(),
-	 			 idcard:$("#idcard").val(),
-				 address:$("#address").val(),
-				job:$("#job").val(),
-				email:$("#email").val(),
-	 			tel:$("#tel").val()
-	 			}
-	alert(user);
-		$.ajax({
-				url:"../personl.do",
-				type:"post",
-				contentType:"application/json;charset=utf-8",
-				data:
-				JSON.stringify(user),
-				/* code:$("#code").val(),
-				name:$("#name").val(),
-	 			 password:$("#password").val(),
-	 			 realName:$("#realName").val(),
-	 			 idcard:$("#idcard").val(),
-				 address:$("#address").val(),
-				job:$("#job").val(),
-				email:$("#email").val(),
-	 			tel:$("#tel").val() */
-				datatype: "json",
-				success:function(data){
-					alert(data);
-				}
-			});
-			/* var jsonobj = {"name":$("#name").val(),"pass":$("#password").val()};
-			$.ajax({
-				url:"../personl.do",
-				type:"post",
-				async:true,
-				contentType:"application/json;charset=utf-8",
-				data:JSON.stringify(jsonobj),
-				success:function(message){
-					console.info(message);
-				}
-			}); */
-	}
-</script> -->
 	<div style="text-align:center;"></div>
 
 </body>

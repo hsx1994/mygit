@@ -1,9 +1,14 @@
 package com.woniu.cbd.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,7 +22,11 @@ import com.woniu.cbd.service.IBargainService;
 public class BargainController {
 	@Autowired
 	private IBargainService service;
-
+	/**
+	 * 添加第三方合约
+	 * @param bean
+	 * @return
+	 */
 	@RequestMapping("bargainAdd.do")
 	public @ResponseBody String bargainAdd(BargainBean bean) {
 		String result = "添加失败";
@@ -37,7 +46,7 @@ public class BargainController {
 		}
 		return result;
 	}
-
+	
 	@RequestMapping("bargainUpdate.do")
 	public @ResponseBody String bargainUpdate(BargainBean bean) {
 		String result = "更改失败";
@@ -47,7 +56,12 @@ public class BargainController {
 		}
 		return result;
 	}
-
+	/**
+	 * 查看第三方合约
+	 * @param bean
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping("bargainSelect.do")
 	public ModelAndView bargainSelect(BargainBean bean,Integer page) {
 		ModelAndView mav = new ModelAndView();
@@ -66,7 +80,11 @@ public class BargainController {
 
 		return mav;
 	}
-
+	/**
+	 * 查看所有第三方合约
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping("allBargainSelect.do")
 	public ModelAndView allBargainSelect(Integer page) {
 		ModelAndView mav = new ModelAndView();
@@ -85,7 +103,11 @@ public class BargainController {
 
 		return mav;
 	}
-
+	/**
+	 * 查询在用的合约
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping("findUseingBargain.do")
 	public ModelAndView findUseingBargain(Integer page) {
 		ModelAndView mav = new ModelAndView();
@@ -104,7 +126,11 @@ public class BargainController {
 
 		return mav;
 	}
-
+	/**
+	 * 查看已废弃的合约
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping("findUnuseingBargain.do")
 	public ModelAndView findUnseingBargain(Integer page) {
 		ModelAndView mav = new ModelAndView();
@@ -114,7 +140,7 @@ public class BargainController {
 		PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(bargain);
 		
 		if(bargain != null){
-			mav.addObject("unuseingBargain", pageInfo);
+			mav.addObject("pageinfo", pageInfo);
 			mav.addObject("list",bargain);
 		} else {
 			mav.addObject("unuseingBargain","没有废弃的合约");
@@ -122,5 +148,15 @@ public class BargainController {
 		mav.setViewName("views/out_history_contract.jsp");
 
 		return mav;
+	}
+	
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		format.setLenient(false);  //是否需要严格转化
+		
+		//使用springmvc封装好的类进行格式转换
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
 	}
 }
