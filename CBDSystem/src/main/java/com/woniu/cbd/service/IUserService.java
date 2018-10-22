@@ -1,17 +1,9 @@
 package com.woniu.cbd.service;
 
 
-import java.util.List;
-
-
-
-
-
 import com.woniu.cbd.bean.CompanyInfoBean;
-import com.woniu.cbd.bean.ComplainBean;
 import com.woniu.cbd.bean.LoginBean;
-import com.woniu.cbd.bean.OrderBean;
-import com.woniu.cbd.bean.ParkingBean;
+
 import com.woniu.cbd.bean.UserBean;
 
 public interface IUserService {

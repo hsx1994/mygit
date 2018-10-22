@@ -187,7 +187,7 @@
 									style="width:97px;" onclick="phone()">发送验证码</span> <span
 									class="ie8 icon-close close hide" style="right:130px"></span> <label
 									class="icon-sucessfill blank hide"></label> <label
-									class="focus" style="display:none"><span>请查收手机短信，并填写短信中的验证码（此验证码3分钟内有效）</span></label>
+									class="focus" style="display:none"><span>请查收手机短信，并填写短信中的验证码（此验证码5分钟内有效）</span></label>
 								<label class="focus valid"></label>
 							</div>
 						</div>
