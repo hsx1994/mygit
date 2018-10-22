@@ -2,19 +2,23 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="RolePermissionMapper">
-
-	<!-- 添加管理员时的添加权限操作 -->
-	<select id="addAdministratorLimit" parameterType="java.util.List">
-		insert into t_role_permission (t_per_id,t_a_l_id) value
-		<foreach collection="list" item="bean" index="index"
-			separator=",">
-			(#{perId},#{loginId});
+<mapper namespace="rolePermissionMapper">
+	<!-- 管理员添加权限 -->
+	<insert id="addPermission" parameterType="java.util.List">
+		insert into t_role_permission
+		(t_a_id,t_per_id)
+		values
+		<foreach collection="list" item="bean" index="index" separator=",">
+		(#{bean.loginId},#{bean.perId})
 		</foreach>
-		
+	</insert>
+	<!-- 通过ID查权限 -->
+	<select id="findById" parameterType="int" resultType="PermissionBean">
+		select per_id as id,per_name=name from t_permission where per_id=#{id}
 	</select>
-	<!-- 管理员修改权限 -->
-	<!-- <update id="updateAdministratorLimit" parameterType="RolePermissionBean" 
-		> update t_role_permission set t_per_id=#{perId} where t_a_l_id=#{loginId}; 
-		</update> -->
+	
+	<update id="deletePerByAdminId" parameterType="int">
+		update t_role_permission set t_lp_delete=1 where t_a_id=#{id} 
+	</update>
 </mapper>
+

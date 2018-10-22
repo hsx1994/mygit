@@ -44,6 +44,16 @@ public class CompanyInfoDaoImpl implements ICompanyInfoDao {
 	}
 
 
+	@Override
+	public int addCompany(CompanyInfoBean bean) {
+		SqlSession session = fa.openSession(true);
+		
+		int row = session.insert("companyInfoMapper.addCompany",bean);
+		session.commit();
+		session.close();
+		return row;
+	}
+		
 	/* (non-Javadoc)
 	 * @see com.woniu.cbd.dao.ICompanyInfoDao#findIdByLid(int)
 	 */

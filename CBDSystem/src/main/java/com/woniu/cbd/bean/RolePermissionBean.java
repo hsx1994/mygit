@@ -5,7 +5,6 @@ import java.io.Serializable;
 public class RolePermissionBean implements Serializable{
 	private int loginId;
 	private int perId;
-	private int lpDelete;
 
 	public int getLoginId() {
 		return loginId;
@@ -21,14 +20,6 @@ public class RolePermissionBean implements Serializable{
 
 	public void setPerId(int perId) {
 		this.perId = perId;
-	}
-
-	public int getLpDelete() {
-		return lpDelete;
-	}
-
-	public void setLpDelete(int lpDelete) {
-		this.lpDelete = lpDelete;
 	}
 
 }

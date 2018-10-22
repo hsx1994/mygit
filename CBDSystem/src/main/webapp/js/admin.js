@@ -41,18 +41,42 @@ function addAdmin(id){
 		url:"/CBDSystem/addAdmin.do",
 		type:"post",
 		data:{
-			"limit2":arr,
+			"limits":arr,
 			"jobNumber":$("#jobNumber").val(),
 			"realName":$("#realName").val(),
-			"tel":$("#tel").val(),
+			"tel":$("#phone").val(),
 			"login.name":$("#loginName").val(),
 			"login.password":$("#loginPassword").val()
 		},
 		traditional:true,
 		dataType:"json",
 		success:function(data){
-			alert(data);
 			window.location.href="/CBDSystem/views/add_admin.jsp";
+		}
+	});
+}
+
+
+function updatePer(){
+	var arr = new Array();
+
+	var temp= $("input[type='checkbox']:checked").each(function(index, item) {
+		arr.push($(this).val());
+	});
+	
+	alert(arr);
+	$.ajax({
+		url:"/CBDSystem/updatePer.do",
+		type:"post",
+		data:{
+			"limits":arr,
+			"id":$("#aid").val()
+		},
+		traditional:true,
+		dataType:"json",
+		success:function(data){
+			alert(data);
+			window.location.href="/CBDSystem/views/all_admin_info.jsp";
 		}
 	});
 }

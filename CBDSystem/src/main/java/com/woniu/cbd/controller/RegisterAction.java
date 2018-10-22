@@ -1,19 +1,5 @@
 package com.woniu.cbd.controller;
 
-
-import java.util.List;
-
-
-
-
-
-
-
-
-
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -38,17 +24,7 @@ public class RegisterAction {
 	 */
 	
 	public @ResponseBody void addUser(RegisterBean user) {
-//		System.out.println(name);
-//		System.out.println(password);
-//		System.out.println(code);
 		System.out.println(user);
-		
-//		boolean row = service.addUser(user);
-//		String result = "失败";
-//		if (row) {
-//			System.out.println("成功");
-//			result = "成功";
-
 		}
 	
 		

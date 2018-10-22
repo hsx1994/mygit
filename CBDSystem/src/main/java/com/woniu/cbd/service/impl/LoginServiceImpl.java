@@ -63,6 +63,15 @@ public class LoginServiceImpl implements ILoginService{
 	}
 
 	@Override
+	public String addCompanyUser(LoginBean login) {
+		String result = "添加失败";
+		int row = loginDao.addCompanyUser(login);
+		if(row>0){
+			result = "添加成功";
+		}
+		return result;
+	}
+
 	public boolean updatePwd(LoginBean bean) {
 		int re = loginDao.updatePwd(bean);
 		if(re > 0){
