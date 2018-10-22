@@ -28,29 +28,29 @@ public class AdminLoginController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/adminLogin.do")
-	public String login(LoginBean user, String checkcode,HttpServletRequest request){
-		System.out.println("user=" + user + ":" + "checkcode" + checkcode);
-		// 加密密码Md5
-		String realPassword = Md5pwdUtil.md5(user.getPassword(), user.getName());
-		System.out.println("加密密码:" + realPassword);
-		
-		Subject subject=SecurityUtils.getSubject();
-		UsernamePasswordToken token=new UsernamePasswordToken(user.getName(), realPassword);
-		try{
-			subject.login(token);
-			Session session=subject.getSession();
-			System.out.println("sessionId:"+session.getId());
-			System.out.println("sessionHost:"+session.getHost());
-			System.out.println("sessionTimeout:"+session.getTimeout());
-			session.setAttribute("info", "session的数据");
-			return "redirect:views/manage.jsp";
-		}catch(Exception e){
-			request.setAttribute("user", user);
-			request.setAttribute("errorMsg", "用户名或密码错误！");
-			return "/views/login.jsp";
-		}
-	}
+//	@RequestMapping("/adminLogin.do")
+//	public String login(LoginBean user, String checkcode,HttpServletRequest request){
+//		System.out.println("user=" + user + ":" + "checkcode" + checkcode);
+//		// 加密密码Md5
+//		String realPassword = Md5pwdUtil.md5(user.getPassword(), user.getName());
+//		System.out.println("加密密码:" + realPassword);
+//		
+//		Subject subject=SecurityUtils.getSubject();
+//		UsernamePasswordToken token=new UsernamePasswordToken(user.getName(), realPassword);
+//		try{
+//			subject.login(token);
+//			Session session=subject.getSession();
+//			System.out.println("sessionId:"+session.getId());
+//			System.out.println("sessionHost:"+session.getHost());
+//			System.out.println("sessionTimeout:"+session.getTimeout());
+//			session.setAttribute("info", "session的数据");
+//			return "redirect:views/manage.jsp";
+//		}catch(Exception e){
+//			request.setAttribute("user", user);
+//			request.setAttribute("errorMsg", "用户名或密码错误！");
+//			return "/views/login.jsp";
+//		}
+//	}
 }
 
 //package com.woniu.cbd.controller;

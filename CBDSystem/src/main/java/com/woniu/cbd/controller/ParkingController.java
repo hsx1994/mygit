@@ -1,9 +1,12 @@
 package com.woniu.cbd.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,8 +46,25 @@ public class ParkingController {
 		return mav;
 
 	}
-
+	
+//	// 抢租客查看所有上架车位 
+//		@ResponseBody
+//		@RequestMapping("showall.do")
+//		public void ShowAll(Model model, Integer page) {
+//			PageHelper.startPage(page, 8, true);
+//			List<ParkingBean> bean = park.ShowAll();
+//			PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
+//			model.addAttribute("paging", pageInfo);
+//			model.addAttribute("all", bean);
+//			
+//			System.out.println(page);
+////			Map<String, Object> map = new HashMap<String, Object>();
+////			map.put("paging", pageInfo);
+////			map.put("all", bean);
+////			return map;
+//		}
 	// 抢租客查看所有上架车位
+	@ResponseBody
 	@RequestMapping("showall.do")
 	public ModelAndView ShowAll(Integer page) {
 		ModelAndView mav = new ModelAndView();
@@ -54,8 +74,8 @@ public class ParkingController {
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
 		mav.addObject("paging", pageInfo);
 		mav.addObject("all", bean);
-		mav.setViewName("063/ShowParkingSpace.jsp");
-
+		mav.setViewName("/jsp/ShowParkingSpace.jsp");
+		System.out.println(page);
 		return mav;
 	}
 
@@ -65,8 +85,7 @@ public class ParkingController {
 		ModelAndView mav = new ModelAndView();
 		ParkingBean bean = park.SelectParkOne(id);
 		mav.addObject("one", bean);
-		mav.setViewName("063/Details.jsp");
-
+		mav.setViewName("/jsp/DetailsParkingSpace.jsp");
 		return mav;
 
 	}

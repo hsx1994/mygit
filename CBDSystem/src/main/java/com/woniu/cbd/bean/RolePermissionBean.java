@@ -1,6 +1,8 @@
 package com.woniu.cbd.bean;
 
-public class RolePermissionBean {
+import java.io.Serializable;
+
+public class RolePermissionBean implements Serializable{
 	private int loginId;
 	private int perId;
 	private int lpDelete;

@@ -57,15 +57,3 @@ function addAdmin(id){
 	});
 }
 
-
-//function a(){
-//var arr = new Array();
-//
-//var temp= $("input[type='checkbox']:checked").each(function(index, item) {
-//
-//	arr.push($(this).val());
-//
-//});
-//alert(temp)
-//return temp;
-//}
