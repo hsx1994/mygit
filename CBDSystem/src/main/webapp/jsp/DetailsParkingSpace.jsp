@@ -164,25 +164,26 @@
 								pattern="yyyy-MM-dd HH:mm:ss" />
 						</div>
 					</div>
+					<input type="hidden" id="pid" value="${one.id }"/>
 					<div class="sellmails">
 						<div class="form1">
 							<form action="/CBDSystem/show.do">
 								<input type="hidden" value="${one.id}" />
 								<div class="hint">请选择租用车位的时间：</div>
 								<div class="time1">
-									<label>开始时间：</label><input class="Wdate" type="text"
+									<label>开始时间：</label><input class="Wdate" id="startTime" type="text"
 										onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" /> <br />
 									<br />
 								</div>
 								<div class="time2">
-									<label>结束时间：</label><input class="Wdate" type="text"
+									<label>结束时间：</label><input class="Wdate" id="endTime" type="text"
 										onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
 								</div>
 								<div class="time2">
 									<!-- <input class="time2-button" type="submit"/> -->
 								</div>
 								<a href="quanjing/index.html">选用此模型</a> <a class="sellmai"
-									href="buyinfo.html">立即购买</a>
+									onclick="pay()">立即购买</a>
 							</form>
 						</div>
 					</div>
@@ -273,6 +274,27 @@
 			href="http://www.mycodes.net/" target="_blank">源码之家</a></span>
 	</div>
 	<!--footer/-->
+	<script>
+		function pay(){
+			$.ajax({
+				url:"/CBDSystem/pay.do",
+				type:"post",
+				data:{
+					"startTime":$("#startTime").val(),
+					"endTime":$("#endTime").val(),
+					"parking.id":$("#pid").val()
+				},
+				dataType:"json",
+				success:function(data){
+					if(data==0){
+						alert("添加订单失败");
+					} else {
+						window.location.href="/CBDSystem/apply.do?orderId="+data;
+					}
+				}
+			});
+		}
+	</script>
 </body>
 	</html>
 </div>
