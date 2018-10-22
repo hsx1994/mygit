@@ -32,7 +32,6 @@ public class ParkingServiceimpl implements IParkingService {
     //抢租客查看所有上架车位功能
 	@Override
 	public List<ParkingBean> ShowAll() {
-		// TODO Auto-generated method stub
 		List<ParkingBean> bean = dao.ShowAll();
 		return bean;
 	}
@@ -67,7 +66,15 @@ public class ParkingServiceimpl implements IParkingService {
 		List<ParkingBean> bean=dao.SelectParkByNum(num);
 		return bean;
 	}
-	
+	/**
+	 * 通过ID查询单个车位信息
+	 * @param id
+	 * @return
+	 */
+	public ParkingBean findParkingById(int id){
+		ParkingBean bean = dao.findParkingById(id);
+		return bean;
+	}
 	@Override
 	public boolean parkingDelete(int id) {
 		int row = dao.parkingDelete(id);

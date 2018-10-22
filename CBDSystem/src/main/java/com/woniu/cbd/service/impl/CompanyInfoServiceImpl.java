@@ -59,8 +59,8 @@ public class CompanyInfoServiceImpl implements ICompanyInfoService {
 		if(bean.getAddress().equals("")||bean.getComName().equals("")
 				||bean.getContact().equals("")||bean.getEmail().equals("")
 				||bean.getTel().equals("")){
-			result="数据不能为空";
 			
+			result="数据不能为空";
 			return result;
 		}
 		//添加企业登录信息
@@ -75,6 +75,19 @@ public class CompanyInfoServiceImpl implements ICompanyInfoService {
 		}
 		
 		return result;
+	}
+		
+		
+	/**
+	 * 根据登录表lid查企业id
+	 * @param lid
+	 * @return
+	 */
+	@Override
+	public int findIdByLid(int lid) {
+		
+		return dao.findIdByLid(lid);
+
 	}
 	
 

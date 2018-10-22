@@ -1,6 +1,8 @@
 package com.woniu.cbd.dao.impl;
 
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.ibatis.session.SqlSession;
@@ -9,11 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.woniu.cbd.bean.LoginBean;
+import com.woniu.cbd.bean.PermissionBean;
 import com.woniu.cbd.dao.ILoginDao;
 @Repository
 public class LoginDaoImpl implements ILoginDao {
 	@Autowired
 	private SqlSessionFactory fa;
+	//添加普通管理员登录信息
 	@Override
 	public int addAdmin(LoginBean login) {
 		SqlSession session = fa.openSession(true);
@@ -27,6 +31,7 @@ public class LoginDaoImpl implements ILoginDao {
 		SqlSession session = fa.openSession(true);
 		LoginBean bean = session.selectOne("loginMapper.findByName",login);
 		
+		session.close();
 		return bean;
 	}
 	/* *
@@ -45,10 +50,14 @@ public class LoginDaoImpl implements ILoginDao {
 	 */
 	@Override
 	public Set<String> getPermissions(String name) {
+		Set<String> permissions=new HashSet<String>();
 		SqlSession session = fa.openSession(true);
-		LoginBean bean = session.selectOne("loginMapper.findPermissionsByname",name);
-		session.close();
-		return null;
+		List<PermissionBean> list = session.selectList("loginMapper.findPermissionsByname",name);
+		for (PermissionBean P : list) {
+			permissions.add(P.getName());
+		}
+		return permissions;
+		
 	}
 	/**
 	 * 添加企业用户
@@ -58,7 +67,23 @@ public class LoginDaoImpl implements ILoginDao {
 		
 		SqlSession session = fa.openSession(true);
 		int id = session.insert("loginMapper.addCompanyUser",login);
-		
+		session.close();
 		return id;
+		
+	}
+	/**
+	 * 通过ID查密码
+	 */
+	@Override
+	public String selecrPwd(Integer id) {
+		SqlSession session = fa.openSession(true);
+		String re = session.selectOne("loginMapper.selecrPwd",id);
+		return re;
+	}
+	@Override
+	public int updatePwd(LoginBean bean) {
+		SqlSession session = fa.openSession(true);
+		int re = session.update("loginMapper.updatePwd",bean);
+		return re;
 	}
 }

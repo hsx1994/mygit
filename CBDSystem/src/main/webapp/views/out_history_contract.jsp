@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="../js/pageinfo.js"></script>
 <div id="aaa">
 <html>
@@ -29,7 +30,7 @@
         #addinfo a:hover{ background:url(../images/main/replayblue.jpg) no-repeat 0 0px;}
     </style>
 </head>
-<body onload="showHContract">
+<body onload="showHContract(1)">
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
     <tr>
@@ -74,8 +75,8 @@
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.company }</td>
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.contact }</td>
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.tel }</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">${obj.startTime } </td>
-                    <td align="center" valign="middle" class="borderright borderbottom">${obj.endTime } </td>
+                    <td align="center" valign="middle" class="borderright borderbottom"><fmt:formatDate value="${obj.startTime }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                    <td align="center" valign="middle" class="borderright borderbottom"><fmt:formatDate value="${obj.endTime }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                     <td align="center" valign="middle" class="borderbottom"><a href="out_contract_extension.jsp" target="mainFrame" onFocus="this.blur()" class="add">续约</a><span class="gray">&nbsp;|&nbsp;</span><a href="out_contract_detail.jsp" target="mainFrame" onFocus="this.blur()" class="add">详情</a></td>
                 </tr>
                 </c:forEach>

@@ -33,5 +33,13 @@ public interface ICompanyInfoService {
 	 * @return
 	 */
 	public String addCompanyInfo(CompanyInfoBean bean,LoginBean login);
+	
+	/**
+	 * 根据登录表lid查企业id
+	 * @param lid
+	 * @return
+	 */
+	public int findIdByLid(int lid); 
+		
 
 }

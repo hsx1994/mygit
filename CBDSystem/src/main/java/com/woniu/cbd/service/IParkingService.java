@@ -24,7 +24,12 @@ public interface IParkingService {
     public List<ParkingBean> SelectPark(int price);
     //用于抢租客查看指定的车位信息
     public ParkingBean SelectParkOne(int id);
-    
+    /**
+	 * 通过ID查询单个车位信息
+	 * @param id
+	 * @return
+	 */
+	public ParkingBean findParkingById(int id);
    
     /**
 	 * 删除某车位信息(不再在系统中管理该车位)

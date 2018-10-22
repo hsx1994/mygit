@@ -15,8 +15,6 @@
 		<id property="id" column="or_id" />
 		<result property="startTime" column="or_start_time" />
 		<result property="endTime" column="or_end_time" />
-		<!-- <result property="parkingId" column="or_p_id"/> <result property="userId" 
-			column="or_u_id"/> -->
 		<result property="state" column="or_state" />
 		<result property="pay" column="or_pay" />
 
