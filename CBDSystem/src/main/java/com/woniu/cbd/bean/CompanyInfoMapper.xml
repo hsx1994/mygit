@@ -6,16 +6,10 @@
 
 <mapper namespace="companyInfoMapper">
 
-
 	<select id="findIdByLid" parameterType="int" resultType="int">
 		select c_id as id  from t_company_info where c_id=#{lid}
 	</select>
 
-<!-- 查询所有企业信息 -->
-	<select id="findAllCompany"  resultMap="map">
-		select * from t_company_info where c_delete=0
-	</select>
-	
 	<!-- 查询所有企业信息 -->
 	<select id="findAllCompany" resultMap="map">
 		select * from
