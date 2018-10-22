@@ -29,18 +29,26 @@ function deleteAdmin(id){
 }
 //添加指定管理员
 function addAdmin(id){
-	var json = {
-				"jobNumber":$("#jobNumber").val(),
-				"realName":$("#realName").val(),
-				"tel":$("#phone").val(),
-				"login":{"name":$("#loginName").val(),
-				"password":$("#loginPassword").val()}
-				};
+	var arr = new Array();
+
+	var temp= $("input[type='checkbox']:checked").each(function(index, item) {
+
+		arr.push($(this).val());
+
+	});
+	alert(arr);
 	$.ajax({
 		url:"/CBDSystem/addAdmin.do",
 		type:"post",
-		contentType:"application/json;charset=UTF-8",
-		data:JSON.stringify(json),
+		data:{
+			"limit2":arr,
+			"jobNumber":$("#jobNumber").val(),
+			"realName":$("#realName").val(),
+			"tel":$("#tel").val(),
+			"login.name":$("#loginName").val(),
+			"login.password":$("#loginPassword").val()
+		},
+		traditional:true,
 		dataType:"json",
 		success:function(data){
 			alert(data);
@@ -48,3 +56,16 @@ function addAdmin(id){
 		}
 	});
 }
+
+
+//function a(){
+//var arr = new Array();
+//
+//var temp= $("input[type='checkbox']:checked").each(function(index, item) {
+//
+//	arr.push($(this).val());
+//
+//});
+//alert(temp)
+//return temp;
+//}
