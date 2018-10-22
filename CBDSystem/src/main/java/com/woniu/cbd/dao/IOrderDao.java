@@ -3,6 +3,7 @@ package com.woniu.cbd.dao;
 import java.util.List;
 
 import com.woniu.cbd.bean.OrderBean;
+import com.woniu.cbd.bean.ParkingBean;
 
 public interface IOrderDao {
 
@@ -16,4 +17,7 @@ public interface IOrderDao {
 
 	// 抢租客查看租赁记录
 	List<OrderBean> showLog(int id);
+
+	// 包租婆查看被租赁记录
+	List<ParkingBean> selectLog(int id);
 }

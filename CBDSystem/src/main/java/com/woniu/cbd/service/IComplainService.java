@@ -34,5 +34,5 @@ public interface IComplainService {
 	public ComplainBean showComplainById(int id);
 
 	// 用于针对订单的投诉信息
-	public String AddComplaint(ComplainBean bean);
+	public String addComplaint(ComplainBean bean);
 }

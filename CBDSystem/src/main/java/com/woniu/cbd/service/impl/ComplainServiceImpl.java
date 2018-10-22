@@ -42,8 +42,8 @@ public class ComplainServiceImpl implements IComplainService {
 
 	// 抢租客针对记录添加投诉信息
 	@Override
-	public String AddComplaint(ComplainBean bean) {
-		int num = dao.AddComplaint(bean);
+	public String addComplaint(ComplainBean bean) {
+		int num = dao.addComplaint(bean);
 		if (num > 0) {
 			return "投诉成功";
 		}

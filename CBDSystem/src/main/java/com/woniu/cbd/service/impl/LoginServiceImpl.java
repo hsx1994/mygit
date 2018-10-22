@@ -15,6 +15,8 @@ public class LoginServiceImpl implements ILoginService{
 	@Autowired
 	private ILoginDao loginDao;
 	
+
+	
 	/**
 	 * 根据登录用户名获取登录用户信息
 	 */
@@ -44,7 +46,6 @@ public class LoginServiceImpl implements ILoginService{
 		}
 		return result;
 	}
-
 	@Override
 	public String selectPwd(Integer id) {
 		String re = loginDao.selecrPwd(id);
@@ -59,5 +60,4 @@ public class LoginServiceImpl implements ILoginService{
 		}
 		return false;
 	}
-
 }

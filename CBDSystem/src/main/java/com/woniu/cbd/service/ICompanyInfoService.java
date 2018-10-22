@@ -25,7 +25,14 @@ public interface ICompanyInfoService {
 	 * @return
 	 */
 	public CompanyInfoBean findByCompanyName(String comName);
-		
+
+	
+	/**
+	 * 根据登录表lid查企业id
+	 * @param lid
+	 * @return
+	 */
+	public int findIdByLid(int lid); 
 		
 
 }

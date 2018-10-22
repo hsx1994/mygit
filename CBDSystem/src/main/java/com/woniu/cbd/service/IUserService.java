@@ -8,14 +8,12 @@ import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
 
 public interface IUserService {
-	// 用于包租婆查看自己申请发布的车位
-	public List<ParkingBean> ShowMe(int id);
-
-	// 用于包租婆查看自己被租赁的记录
-	public List<ParkingBean> SelectLog(int id);
-
 	
 
 	
+
+	//用于查包租婆或抢租客表的id
+	public int findIdByLid(int lid);
+
 
 }

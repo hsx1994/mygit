@@ -60,10 +60,17 @@ public interface IAdministratorDao {
 	public int addAdmin(AdministratorBean admin);
 
 	/**
-	 * 修改管理员电话
+<<<<<<< HEAD
+	 * 根据用户表lid查管理员id
+	 * @param lid
+	 * @return
+	 */
+	public int findIdByLid(int lid);
+	 /* 修改管理员电话
 	 * @param id
 	 * @param tel
 	 * @return
 	 */
 	public int updateAdmintTel(AdministratorBean bean);
+
 }

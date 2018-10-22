@@ -2,6 +2,7 @@ package com.woniu.cbd.controller;
 
 import java.util.List;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -28,65 +29,23 @@ import com.woniu.cbd.util.PhoneCodeUtil;
 @Controller
 public class UserController {
 	@Autowired
-	private IUserService service;
 
-	// 包租婆查看自己的车位信息
+	private IUserService user;
 
-	@RequestMapping("showme.do")
-	public ModelAndView ShowMe(Integer id, Integer page) {
-
-		ModelAndView mav = new ModelAndView();
-
-		PageHelper.startPage(page, 5, true);
-		List<ParkingBean> bean = service.ShowMe(id);
-		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
-
-		if (bean != null) {
-			mav.addObject("pageinfo", pageInfo);
-			mav.addObject("list", bean);
-		} else {
-			mav.addObject("application", "尚未添加车位");
-
-		}
-		mav.setViewName("");
-		return mav;
-	}
-
-	// 包租婆查看自己的被租赁记录
-
-	@RequestMapping("/selectlog.do")
-	public ModelAndView SelectLog(Integer id, Integer page) {
-
-		ModelAndView mav = new ModelAndView();
-
-		PageHelper.startPage(page, 5, true);
-		List<ParkingBean> bean = service.SelectLog(id);
-		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
-
-		if (bean != null) {
-			mav.addObject("pageinfo", pageInfo);
-			mav.addObject("list", bean);
-
-		} else {
-			mav.addObject("lease", "尚未有车位被租赁");
-		}
-		return mav;
-	}
 
 	// 手机发送验证码
 	@RequestMapping("/phone.do")
-	public void Num(HttpServletRequest request, String number) throws ClientException {
+	public void phoneCode(HttpServletRequest request, String number) throws ClientException {
 		HttpSession session = request.getSession();
 		// 发送验证码
 		 String code = PhoneCodeUtil.Number(number); 
 		// 将session放到session中
 		session.setAttribute("code", code);
-
 	}
 
 	// 注册
 	@RequestMapping("/regist.do")
-	public @ResponseBody String Regist(Model model,HttpServletRequest request, String name, String password, UserBean user,
+	public @ResponseBody String regist(Model model,HttpServletRequest request, String name, String password, UserBean user,
 			String code, String role) {
 		//数据回显
 		model.addAttribute("user",user);

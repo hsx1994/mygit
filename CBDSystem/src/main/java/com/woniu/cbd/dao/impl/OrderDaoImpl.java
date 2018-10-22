@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.woniu.cbd.bean.OrderBean;
+import com.woniu.cbd.bean.ParkingBean;
 import com.woniu.cbd.dao.IOrderDao;
 
 @Repository
@@ -77,6 +78,16 @@ public class OrderDaoImpl implements IOrderDao {
 	public List<OrderBean> showLog(int id) {
 		SqlSession session = fa.openSession(true);
 		List<OrderBean> bean = session.selectList("orderMapper.showlog", id);
+
+		session.close();
+		return bean;
+	}
+
+	// 包租婆查看被租赁记录
+	@Override
+	public List<ParkingBean> selectLog(int id) {
+		SqlSession session = fa.openSession(true);
+		List<ParkingBean> bean = session.selectList("parkingMapper.showmelog", id);
 
 		session.close();
 		return bean;

@@ -110,4 +110,11 @@ public class OrderServiceImpl implements IOrderService {
 		return bean;
 	}
 
+	// 查看包租婆的被租赁记录
+	@Override
+	public List<ParkingBean> selectLog(int id) {
+		List<ParkingBean> bean = orderDao.selectLog(id);
+		return bean;
+	}
+
 }

@@ -29,6 +29,13 @@ public class ParkingServicelmpl implements IParkingService {
 		
 	}
 	
+	// 查看包租婆的发布记录
+		@Override
+		public List<ParkingBean> showMe(int id) {
+			List<ParkingBean> bean = dao.showMe(id);
+			return bean;
+		}
+	
     //抢租客查看所有上架车位功能
 	@Override
 	public List<ParkingBean> showAll() {

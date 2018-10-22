@@ -19,28 +19,12 @@ public class UserDaoImpl implements IUserDao {
 	@Autowired
 	private SqlSessionFactory fa;
 
-	// 包租婆查看上架记录
+	// 通过登录表的id查包租婆或抢租客表的id
 	@Override
-	public List<ParkingBean> ShowMe(int id) {
-		SqlSession session = fa.openSession(true);
-		List<ParkingBean> bean = session.selectList("parkingMapper.showme", id);
-		
+	public int findIdByLid(int lid) {
+		SqlSession session = fa.openSession();
+		int id = session.selectOne("userMapper.findIdByLid", lid);
 		session.close();
-		return bean;
+		return id;
 	}
-
-	// 包租婆查看被租赁记录
-	@Override
-	public List<ParkingBean> SelectLog(int id) {
-		SqlSession session = fa.openSession(true);
-		List<ParkingBean> bean = session.selectList("parkingMapper.showmelog", id);
-		
-		session.close();
-		return bean;
-	}
-
-	
-
-
-
 }

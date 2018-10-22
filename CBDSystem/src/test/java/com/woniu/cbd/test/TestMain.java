@@ -78,8 +78,8 @@ public class TestMain {
 	public void test3() {
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		IUserDao dao = (IUserDao) context.getBean("userDaoImpl");
-		List<ParkingBean> bean = dao.ShowMe(2);
+		IParkingDao dao = (IParkingDao) context.getBean("parkingDaoImpl");
+		List<ParkingBean> bean = dao.showMe(2);
 		System.out.println(bean);
 
 	}
@@ -112,8 +112,8 @@ public class TestMain {
 	public void test5() {
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		IUserDao dao = (IUserDao) context.getBean("userDaoImpl");
-		List<ParkingBean> bean = dao.SelectLog(2);
+		IOrderDao dao = (IOrderDao) context.getBean("orderDaoImpl");
+		List<ParkingBean> bean = dao.selectLog(2);
 		System.out.println(bean);
 
 	}
@@ -146,7 +146,7 @@ public class TestMain {
 		bean.setBuser(user);
 		bean.setUser(user1);
 		bean.setOrder(order);
-		int num = dao.AddComplaint(bean);
+		int num = dao.addComplaint(bean);
 		System.out.println(num);
 
 	}
@@ -168,7 +168,7 @@ public class TestMain {
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		IOtherParkingDao dao = (IOtherParkingDao) context.getBean("otherParkingDaoImpl");
-		List<OtherParkingBean> bean = dao.showCompanyParkingAll(1);
+		List<OtherParkingBean> bean = dao.showCompanyParkingAll(2);
 		System.out.println(bean);
 
 	}

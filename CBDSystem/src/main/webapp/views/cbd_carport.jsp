@@ -61,10 +61,14 @@
                     <th align="center" valign="middle" class="borderright">车位所在详细地址</th>
                 </tr>
                 <c:forEach begin="0" step="1" items="${list}" var="obj">
+                <c:forEach begin="0" step="1" items="${obj.comOrder}" var="order">
 				<tr class="bggray" onMouseOut="this.style.backgroundColor='#f9f9f9'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                    <td align="center" valign="middle" class="borderright borderbottom">${obj.parkingNum}</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">${obj.address }</td>
+				    
+                    <td align="center" valign="middle" class="borderright borderbottom">${order.otherParking.parkingNum}</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${order.otherParking.address}</td>
+                    
                 </tr>
+                </c:forEach>
 				</c:forEach>
             </table></td>
     </tr>

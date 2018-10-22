@@ -27,10 +27,10 @@ import com.woniu.cbd.service.IParkingService;
 public class ComplainController {
 	@Autowired
 	private IComplainService service;
-    
-	
+
 	@Autowired
 	private IParkingService parking;
+
 	/**
 	 * 显示所有待处理的投诉信息
 	 * 
@@ -71,6 +71,7 @@ public class ComplainController {
 		return model;
 
 	}
+
 	/**
 	 * 处理投诉信息
 	 * 
@@ -86,36 +87,56 @@ public class ComplainController {
 		return result;
 
 	}
-    //针对订单添加投诉信息
+
+	// 抢租客针对订单添加投诉信息
 	@RequestMapping("/addComplaint.do")
-	public @ResponseBody String addCompiaint(OrderBean order,String text) {
-		//在session中获取到当前登录用户的id
-		int i=1;//测试
-		
-		//由订单的id在车位表中获取到车位所有人的id
-		ParkingBean bean=parking.selectParkingByOrderID(order.getId());
-		int uid=bean.getUser().getId();
-		
-		
-		UserBean user=new UserBean();
+	public @ResponseBody String addCompiaint(OrderBean order, String text) {
+		// 在session中获取到当前登录用户的id
+		int i = 1;// 测试
+
+		// 由订单的id在车位表中获取到车位所有人的id
+		ParkingBean bean = parking.selectParkingByOrderID(order.getId());
+		int uid = bean.getUser().getId();
+
+		UserBean user = new UserBean();
 		user.setId(i);
-		
-		UserBean buser=new UserBean();
+
+		UserBean buser = new UserBean();
 		buser.setId(uid);
 
-		
-		ComplainBean complaint=new ComplainBean(); 
-		//投诉内容
+		ComplainBean complaint = new ComplainBean();
+		// 投诉内容
 		complaint.setContent(text);
-		//当前登录用户的id
+		// 当前登录用户的id
 		complaint.setUser(user);
-		//被投诉人的id
+		// 被投诉人的id
 		complaint.setBuser(buser);
-		//投诉订单id
+		// 投诉订单id
 		complaint.setOrder(order);
-		String result = service.AddComplaint(complaint);
+		String result = service.addComplaint(complaint);
 		return result;
 
+	}
+
+	// 包租婆针对订单添加投诉
+	@RequestMapping("/accComplaint.do")
+	public @ResponseBody String aComplain(OrderBean order, String text) {
+		ComplainBean complaint = new ComplainBean();
+
+		// 在session中获取到当前登录包租婆用户的id
+		int i = 1;// 测试
+		
+		UserBean user = new UserBean();
+		user.setId(i);
+		
+		// 当前登录用户的id
+		complaint.setUser(user);
+		// 投诉内容
+		complaint.setContent(text);
+		// 投诉订单id
+		complaint.setOrder(order);
+		String result = service.addComplaint(complaint);
+		return result;
 	}
 
 }

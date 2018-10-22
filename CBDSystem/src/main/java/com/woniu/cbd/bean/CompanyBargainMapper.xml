@@ -55,6 +55,10 @@
 	<select id="companyBargainById" parameterType="int" resultMap="selectMap">
 	    select * from t_company_bargain where cb_c_id=#{id}
 	</select>
+	<!--通过合约查询正在用的合约中的车位  -->
+	<select id="findCompanyBargainById" parameterType="int" resultMap="selectMap">
+	    select * from t_company_bargain where cb_c_id=#{id} and cb_state=0
+	</select>
 	
 	
 </mapper>

@@ -34,39 +34,39 @@ public class ParkingController {
 
 	// 包租婆批量添加车位信息
 	@RequestMapping("/application.do")
-	public @ResponseBody String ApplicationParking(HttpServletRequest request,MultipartFile imgFile, ParkingBean bean, MultipartFile ImgFile,HttpServletRequest req) {
-		
+	public @ResponseBody String applicationParking(HttpServletRequest request, MultipartFile imgFile, ParkingBean bean,
+			MultipartFile ImgFile, HttpServletRequest req) {
+
 		// 获取上传文件的文件名
-		String img =UUID.randomUUID()+"_"+imgFile.getOriginalFilename();
-		String certImg = UUID.randomUUID()+"_"+ImgFile.getOriginalFilename();
+		String img = UUID.randomUUID() + "_" + imgFile.getOriginalFilename();
+		String certImg = UUID.randomUUID() + "_" + ImgFile.getOriginalFilename();
 		// 将文件名放入对象中
 		bean.setImg(img);
 		bean.setCertImg(certImg);
-		
-		//session中取得当前包租婆的id给parking实体类
-		/*UserBean user=request.getSession().getAttribute("");*/
-		
+
+		// session中取得当前包租婆的id给parking实体类
+		/* UserBean user=request.getSession().getAttribute(""); */
 
 		ServletContext context = req.getServletContext();
 		ServletContext text = req.getServletContext();
-        //车位图片路径
+		// 车位图片路径
 		String path = context.getRealPath("/img");
-		//产权证图片路径
+		// 产权证图片路径
 		String sum = text.getRealPath("/certImg");
-		
+
 		File g = new File(sum);
 		File f = new File(path);
-		if (!f.exists() &&!g.exists())
+		if (!f.exists() && !g.exists())
 			f.mkdirs();
-		    g.mkdirs();
+		g.mkdirs();
 		// 创建服务器路径下的文件用uuid命名
-		File file = new File(path, UUID.randomUUID()+"_"+imgFile.getOriginalFilename());
+		File file = new File(path, UUID.randomUUID() + "_" + imgFile.getOriginalFilename());
 		// 创建服务器路径下的文件用uuid命名
-		File file1 = new File(sum, UUID.randomUUID()+"_"+ImgFile.getOriginalFilename());
+		File file1 = new File(sum, UUID.randomUUID() + "_" + ImgFile.getOriginalFilename());
 		try {
 			// 将文件保存到服务器img文件夹
 			imgFile.transferTo(file);
-			// 将文件保存到服务器certImg文件夹		
+			// 将文件保存到服务器certImg文件夹
 			ImgFile.transferTo(file1);
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
@@ -95,31 +95,43 @@ public class ParkingController {
 
 	}
 
-	// 抢租客查看所有上架车位
-	@RequestMapping("showall.do")
-	public ModelAndView ShowAll(Integer page) {
+	// 包租婆查看单个上架车位
+	@RequestMapping("/landladyshowOne.do")
+	public ModelAndView showOne(Integer id) {
 		ModelAndView mav = new ModelAndView();
-
-		PageHelper.startPage(page, 10, true);
-		List<ParkingBean> bean = park.showAll();
-		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
-
-		mav.addObject("pageinfo", pageInfo);
-		mav.addObject("list", bean);
-		mav.setViewName("");
+		ParkingBean bean = park.selectParkingOne(id);
+		mav.addObject("one", bean);
+		mav.setViewName("063/ DetailsLandladyParking.jsp");
 
 		return mav;
 
 	}
 
+	// 抢租客查看所有上架车位
+	@RequestMapping("showAll.do")
+	public ModelAndView showAll(Integer page) {
+		ModelAndView mav = new ModelAndView();
+
+		PageHelper.startPage(page, 8, true);
+		List<ParkingBean> bean = park.showAll();
+
+		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
+
+		mav.addObject("paging", pageInfo);
+		mav.addObject("all", bean);
+		mav.setViewName("063/ShowParkingSpace.jsp");
+
+		return mav;
+	}
+
 	// 抢租客查看单个上架车位
 	@RequestMapping("showOne.do")
-	public ModelAndView ShowOne(Integer id) {
+	public ModelAndView showOneById(Integer id) {
 		ModelAndView mav = new ModelAndView();
-		ParkingBean bean = park.selectParkingOne(id);
 
+		ParkingBean bean = park.selectParkingOne(id);
 		mav.addObject("one", bean);
-		mav.setViewName("");
+		mav.setViewName("063/Details.jsp");
 
 		return mav;
 
@@ -127,13 +139,13 @@ public class ParkingController {
 
 	// 抢租客车位号模糊查询上架车位
 
-	@RequestMapping("findbynum.do")
-	public ModelAndView SelectParkingByNum(String num, Integer page) {
+	@RequestMapping("findByNum.do")
+
+	public ModelAndView selectParkingByNum(String num, Integer page) {
 
 		ModelAndView mav = new ModelAndView();
 		List<ParkingBean> bean = park.selectParkingByNum(num);
 		if (bean != null) {
-
 			mav.addObject("num", bean);
 			mav.setViewName("");
 		} else {
@@ -145,26 +157,50 @@ public class ParkingController {
 	}
 
 	// 抢租客根据价格查询上架车位
-	@RequestMapping("findbyprice.do")
-	public ModelAndView SelectParking(Integer price, Integer page) {
+	@RequestMapping("findByPrice.do")
+
+	public ModelAndView selectParking(Integer price, Integer page) {
 
 		ModelAndView mav = new ModelAndView();
 
-		PageHelper.startPage(page, 10, true);
+		PageHelper.startPage(page, 8, true);
 		List<ParkingBean> bean = park.selectParking(price);
+
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
 
 		if (bean != null) {
 
 			mav.addObject("price", pageInfo);
 			mav.addObject("list", bean);
-
 		} else {
 			mav.addObject("空");
 		}
 		mav.setViewName("");
 		return mav;
 
+	}
+
+	// 包租婆查看自己的车位信息
+
+	@RequestMapping("showme.do")
+	public ModelAndView showMe(Integer id, Integer page) {
+
+		ModelAndView mav = new ModelAndView();
+		System.out.println("id:" + id);
+		// System.out.println("page:"+page);
+		PageHelper.startPage(page, 8, true);
+		List<ParkingBean> bean = park.showMe(id);
+		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
+
+		if (bean != null) {
+			mav.addObject("all", bean);
+			mav.addObject("paging", pageInfo);
+
+		} else {
+			mav.addObject("noresult", "尚未添加车位");
+		}
+		mav.setViewName("063/ShowLandladyParking.jsp");
+		return mav;
 	}
 
 	@RequestMapping("parkingDelete.do")
