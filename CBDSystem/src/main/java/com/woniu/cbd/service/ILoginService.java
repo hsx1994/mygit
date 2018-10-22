@@ -28,7 +28,14 @@ public interface ILoginService {
 	 * @param userName
 	 * @return
 	 */
-	public Set<String> getPermissions(String name);	
+	public Set<String> getPermissions(String name);
+	/**
+	 * 添加企业用户业务
+	 * @param login
+	 * @return
+	 */
+	public String addCompanyUser(LoginBean login);
+
 	/**
 	 * 通过ID查真实密码
 	 * @param id

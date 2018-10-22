@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div id="show">
 <html>
 <head>
@@ -74,8 +75,8 @@
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                     <td align="center" valign="middle" class="borderright borderbottom">${complain.order.parking.parkingNum }</td>
                     <td align="center" valign="middle" class="borderright borderbottom">${complain.order.parking.address }</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">${complain.order.startTime }</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">${complain.order.endTime }</td>
+                    <td align="center" valign="middle" class="borderright borderbottom"><fmt:formatDate value="${complain.order.startTime }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                    <td align="center" valign="middle" class="borderright borderbottom"><fmt:formatDate value="${complain.order.endTime }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                 </tr>
             </table></td>
     </tr>

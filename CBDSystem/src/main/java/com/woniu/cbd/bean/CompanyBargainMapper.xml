@@ -55,6 +55,10 @@
 	<select id="companyBargainById" parameterType="int" resultMap="selectMap">
 	    select * from t_company_bargain where cb_c_id=#{id}
 	</select>
-	
+	<!-- 模糊查询合同期间企业合约信息 -->
+	<select id="fuzzyQueryBargainBeUseing" resultMap="selectMap">
+		select * from t_company_bargain where 
+		CONCAT(cb_numbe,cb_contact,) like "%" #{condition} "%" where cb_state
+	</select>
 	
 </mapper>

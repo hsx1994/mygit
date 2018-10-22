@@ -5,4 +5,5 @@ eclipse.preferences.version=1
 encoding//src/main/java=utf-8
 encoding//src/main/webapp/063/js/ShowLandladyParking.js=UTF-8
 encoding//src/main/webapp/jsp/login.jsp=UTF-8
+encoding//src/test/java=utf-8
 separateDerivedEncodings=true

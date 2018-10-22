@@ -56,9 +56,20 @@ public class LoginDaoImpl implements ILoginDao {
 		for (PermissionBean P : list) {
 			permissions.add(P.getName());
 		}
-		session.close();
 		return permissions;
-
+		
+	}
+	/**
+	 * 添加企业用户
+	 */
+	@Override
+	public int addCompanyUser(LoginBean login) {
+		
+		SqlSession session = fa.openSession(true);
+		int id = session.insert("loginMapper.addCompanyUser",login);
+		session.close();
+		return id;
+		
 	}
 	/**
 	 * 通过ID查密码

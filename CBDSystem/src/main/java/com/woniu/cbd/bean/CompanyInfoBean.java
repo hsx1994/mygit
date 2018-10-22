@@ -31,12 +31,6 @@ public class CompanyInfoBean implements Serializable {
 	private List<CompanyBargainBean> comBargain;
 	
 	
-	public LoginBean getComLogin() {
-		return comLogin;
-	}
-	public void setComLogin(LoginBean comLogin) {
-		this.comLogin = comLogin;
-	}
 	public List<CompanyOrderBean> getComOrder() {
 		return comOrder;
 	}
@@ -85,5 +79,12 @@ public class CompanyInfoBean implements Serializable {
 	public void setComBargain(List<CompanyBargainBean> comBargain) {
 		this.comBargain = comBargain;
 	}
+	public LoginBean getComLogin() {
+		return comLogin;
+	}
+	public void setComLogin(LoginBean comLogin) {
+		this.comLogin = comLogin;
+	}
+	
 	
 }
