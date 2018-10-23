@@ -35,6 +35,7 @@ public class LoginController {
 		// 获取真实验证码
 		Session session = SecurityUtils.getSubject().getSession();
 		Object realCode = session.getAttribute("randCheckCode");
+		
 		if (!checkcode.equalsIgnoreCase((String) realCode)) {
 			request.setAttribute("errorMsg", "验证码错误");
 			return "redirect:"+path;
@@ -53,7 +54,16 @@ public class LoginController {
 			}
 			subject.login(token);
 			session.setAttribute("loginPath", path);
-			return "redirect:/views/manage.jsp";
+			LoginBean lo = (LoginBean) session.getAttribute("login");
+			if(lo.getRole().endsWith("管理员")){
+				return "redirect:/views/manage.jsp";
+			}else{
+				session.removeAttribute("login");
+				request.setAttribute("user", user);
+				request.setAttribute("errorMsg", "账户不存在");
+				return path;
+			}
+			
 		} catch (Exception e) {
 			request.setAttribute("user", user);
 			request.setAttribute("errorMsg", "用户名或密码错误！");
@@ -79,8 +89,7 @@ public class LoginController {
 		}
 
 		// 加密密码Md5
-		String realPassword = Md5pwdUtil
-				.md5(user.getPassword(), user.getName());
+		String realPassword = Md5pwdUtil.md5(user.getPassword(), user.getName());
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(user.getName(),
 				realPassword);
@@ -91,7 +100,17 @@ public class LoginController {
 			}
 			subject.login(token);
 			session.setAttribute("loginPath", path);
-			return "redirect:/jsp/ShowParkingSpace.jsp";
+			LoginBean lo = (LoginBean) session.getAttribute("login");
+			String role = lo.getRole();
+			if(role.equals("抢租客") || role.equals("包租婆") ||role.equals("企业用户")){
+				return "redirect:/index.jsp";
+			}else{
+				session.removeAttribute("login");
+				request.setAttribute("user", user);
+				request.setAttribute("errorMsg", "用户名不存在！");
+				return path;
+			}
+			
 		} catch (Exception e) {
 			request.setAttribute("user", user);
 			request.setAttribute("errorMsg", "用户名或密码错误！");

@@ -19,7 +19,11 @@
 	<!-- <body > -->
 	<div class="hrader" id="header">
 		<div class="top">
-			<a href="login.html" style="color:#C94E13;">登录</a> <a href="reg.html">注册</a>
+			<script>
+				
+			
+			</script>
+			<a href="/CBDSystem/jsp/login.jsp" style="color:#C94E13;">登录</a> <a href="/CBDSystem/jsp/PersonalRegister.jsp">注册</a>
 			<ul class="topNav">
 				<!-- <li><a href="order.html">我的订单 </a></li> -->
 
