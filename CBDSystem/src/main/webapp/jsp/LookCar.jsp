@@ -1,34 +1,27 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<div id="show">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>包租客查看租赁记录</title>
+<title>包租婆查看租赁记录</title>
 <link type="text/css" href="../css/csss.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
 <script type="text/javascript" src="../js/js.js"></script>
-
+<style>
+	td{
+		text-align:center;
+	}
+</style>
 </head>
 
-<body>
+<body onload="select(1)">
  <div class="hrader" id="header">
   <div class="top">
    <a href="login.html" style="color:#C94E13;">请登录</a> 
    <a href="reg.html">注册</a>
-   <ul class="topNav">
-    <li><a href="order.html">我的订单 </a></li>
-    <li class="gouwuche"><a href="car.html">购物车</a> <strong style="color:#C94E13;">3</strong></li>
-    <li class="shoucangjia"><a href="shoucang.html">收藏夹</a></li>
-    <li class="kefus"><a href="#">联系客服</a></li>
-<li><a href="#" class="lan">中文</a></li>
-    <li><a href="#" class="lan">English</a></li>
-    <div class="clears"></div>
-   </ul><!--topNav/-->
   </div><!--top/-->
  </div><!--hrader/-->
  <div class="mid">
@@ -57,13 +50,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  <div class="navBox navBg3">
   <ul class="nav">
    <li><a href="one.jsp">首页</a></li>
-   <li><a href=""></a></li>
-   <li><a href=""></a></li>
-   <li><a href="one.jsp">用户中心</a></li>
-   <li><a href=""></a></li>
-   <li><a href=""></a></li>
-   <li><a href=""></a></li>
-   <div class="clears"></div>
   </ul><!--nav/-->
  </div><!--navBox/-->
  <div class="vipBox">
@@ -74,38 +60,56 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <dt class="vip_1 vipCur">账户中心</dt>
      <dd><a href="LookMyCar.jsp">我的车位</a></dd>
      <dd><a href="LookOneUser.jsp">申请上架车位</a></dd>
+     <dd><a href="LookCar.jsp">已上架车位</a></dd>
      <dd><a href="vipShoucang.html"></a></dd>
     <dt class="vip_2">个人</dt>
      <dd class="ddCur"><a href="one.jsp">个人信息</a></dd>
      <dd><a href="RentUser.jsp">修改个人信息</a></dd>
-     <!-- <dd><a href=""></a></dd> -->
      <dd><a href="LookCar.jsp">查看租赁记录</a></dd>
-    <dt class="vip_3"></dt>
-     <dd><a href="vipQuxiao.html"></a></dd>
-     
-     <dd><a href="vipTousu.html"></a></dd>
-   </dl><!--vipNav/-->
   </div><!--vipLeft/-->
   <div class="vipRight">
-   <h2 class="vipTitle">个人中心</h2>
+   <h2 class="vipTitle">租赁记录</h2>
    
-   <form action="../selectlog.do" method="post" enctype="multipart/form-data">
 				<table class="grzx" width="705" border="0" cellspacing="0"
 					cellpadding="0">
-					<td width="90"><button type="submit">查看</button></td>
-					<%-- <c:forEach items="${all}" var="obj">
 						<tr>
-							<td width="100"><span>*</span>车位地址:&nbsp;"${obj.address}"<br/></td>
-							<td width="100"><span>*</span>单价：&nbsp;"${obj.price}"<br/></td>
-							<td width="100"><span>*</span>开始时间：&nbsp;"${obj.startTime}"<br/></td>
-							<td width="100"><span>*</span>结束时间：&nbsp;"${obj.endTime}"<br /></td>
-							<td width="100"><span>*</span>车位号：&nbsp;"${obj.parkingNum}"<br /></td>
-							<td><a href="jsp/one.jsp">返回</a></td>
+							<th width="100"><span>*</span>车位地址</th>
+							<th width="100"><span>*</span>单价</th>
+							<th width="100"><span>*</span>开始时间</th>
+							<th width="100"><span>*</span>结束时间</th>
+							<th width="100"><span>*</span>车位号</th>
 						</tr>
-					</c:forEach> --%>
+					<c:forEach items="${list}" var="obj">
+						<tr>
+							<td>${obj.address}<br/></td>
+							<td>${obj.price}<br/></td>
+							<td><fmt:formatDate value="${obj.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/><br/></td>
+							<td><fmt:formatDate value="${obj.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/><br /></td>
+							<td>${obj.parkingNum}<br/></td>
+						</tr>
+					</c:forEach>
+					<tr>
+				        <td width="100"> 
+				       		<a href="#" onclick="select(${pageinfo.firstPage})"  target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
+				       	</td>
+				       	<td width="100">
+					        <c:if test="${pageinfo.hasPreviousPage}">
+					        <a href="#"onclick="select(${pageinfo.prePage})" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
+					        </c:if>
+					    </td>
+					    <td width="100">
+					        ${pageinfo.pageNum}/${pageinfo.pages} 页&nbsp;&nbsp;
+					    </td>
+					    <td width="100">
+					        <c:if test="${pageinfo.hasNextPage}">
+					        <a href="#"onclick="select(${pageinfo.nextPage})" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
+					        </c:if>
+					    </td>
+					    <td width="100">
+					        <a href="#" onclick="select(${pageinfo.lastPage})" target="mainFrame" onFocus="this.blur()">尾页</a>
+				      </td>
+				    </tr>
 				</table>
-	</form>
-    
     
   </div><!--vipRight/-->
   <div class="clears"></div>
@@ -173,5 +177,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <br />
   <span>&copy; 2014 Unqezi 使用前必读 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></span>
  </div><!--footer/-->
+ <input type="hidden" value="${sessionScope.id }" id="uid" />
+ <script>
+ 	function select(page){
+ 		$.ajax({
+ 			url:"/CBDSystem/selectlog.do",
+ 			type:"post",
+ 			data:{
+ 				"id":$("#uid").val(),
+ 				"page":page
+ 			},
+ 			dataType:"html",
+ 			success:function(data){
+ 				$("#show").html(data);
+ 			}
+ 		});
+ 	}
+ </script>
 </body>
 </html>
+</div>

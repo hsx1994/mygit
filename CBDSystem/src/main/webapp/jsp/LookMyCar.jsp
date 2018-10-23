@@ -23,17 +23,6 @@
 		<div class="top">
 			<a href="login.html" style="color:#C94E13;">请登录</a> <a
 				href="reg.html">注册</a>
-			<ul class="topNav">
-				<li><a href="order.html">我的订单 </a></li>
-				<li class="gouwuche"><a href="car.html">购物车</a> <strong
-					style="color:#C94E13;">3</strong></li>
-				<li class="shoucangjia"><a href="shoucang.html">收藏夹</a></li>
-				<li class="kefus"><a href="#">联系客服</a></li>
-				<li><a href="#" class="lan">中文</a></li>
-				<li><a href="#" class="lan">English</a></li>
-				<div class="clears"></div>
-			</ul>
-			<!--topNav/-->
 		</div>
 		<!--top/-->
 	</div>
@@ -72,13 +61,7 @@
 	<div class="navBox navBg3">
 		<ul class="nav">
 			<li><a href="one.jsp">首页</a></li>
-			<li><a href=""></a></li>
-			<li><a href=""></a></li>
 			<li><a href="one.jsp">用户中心</a></li>
-			<li><a href=""></a></li>
-			<li><a href=""></a></li>
-			<li><a href=""></a></li>
-			<div class="clears"></div>
 		</ul>
 		<!--nav/-->
 	</div>
@@ -98,7 +81,7 @@
 					<a href="LookOneUser.jsp">申请上架车位</a>
 				</dd>
 				<dd>
-					<a href="vipShoucang.html">已上架车位</a>
+					<a href="LookCar.jsp">已上架车位</a>
 				</dd>
 				<dt class="vip_2">个人</dt>
 				<dd class="ddCur">
@@ -108,20 +91,8 @@
 					<a href="RentUser.jsp">修改个人信息</a>
 				</dd>
 				<dd>
-					<a href=""></a>
-				</dd>
-				<dd>
 					<a href="LookCar.jsp">查看租赁记录</a>
 				</dd>
-				<dt class="vip_3"></dt>
-				<dd>
-					<a href="vipQuxiao.html"></a>
-				</dd>
-
-				<dd>
-					<a href="vipTousu.html"></a>
-				</dd>
-			</dl>
 			<!--vipNav/-->
 		</div>
 		<!--vipLeft/-->

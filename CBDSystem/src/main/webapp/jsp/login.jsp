@@ -66,7 +66,6 @@
 					<br />
 					<button type="submit">登录</button>
 					<button type="button" onclick="goRegist()">注册</button>
-					<input type="hidden" name="path" value="/jsp/login.jsp" />
 				</form>
 			</div>
 		</div>
@@ -79,7 +78,7 @@
 		getPictureCode();
 		
 		function goRegist(){
-			window.location.href="/jsp/register.jsp"
+			window.location.href="regist.jsp"
 		}
 	</script>
 
