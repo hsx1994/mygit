@@ -18,7 +18,15 @@
 	<!-- <body > -->
 	<div class="hrader" id="header">
 		<div class="top">
-			<a href="login.html" style="color:#C94E13;">登录</a> <a href="reg.html">注册</a>
+			<c:choose>
+				<c:when test="${sessionScope.login.name != null}">
+					<span>欢迎您:&nbsp;&nbsp;</span>
+					<span>${sessionScope.login.name}</span>
+				</c:when>
+				<c:otherwise>
+					<a href="/CBDSystem/jsp/login.jsp" style="color:#C94E13;">登录</a> <a href="/CBDSystem/jsp/regist.jsp">注册</a>
+				</c:otherwise>
+			</c:choose>						
 			<ul class="topNav">
 				<li class="shoucangjia"><a href="shoucang.html">个人中心</a></li>
 				<div class="clears"></div>
