@@ -28,65 +28,6 @@ public class UserController {
 	@Autowired
 	private IUserService user;
 
-	// 包租婆查看自己的车位信息
-	@RequestMapping("showme.do")
-	public ModelAndView ShowMe(Integer id, Integer page) {
-		ModelAndView mav = new ModelAndView();
-		 System.out.println("id:"+id);
-		// System.out.println("page:"+page);
-		PageHelper.startPage(page, 8, true);
-		List<ParkingBean> bean = user.ShowMe(id);
-
-		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
-
-		if (bean != null) {
-			mav.addObject("all", bean);
-			mav.addObject("paging", pageInfo);
-
-		} else {
-			mav.addObject("noresult", "尚未添加车位");
-		}
-		mav.setViewName("063/ShowLandladyParking.jsp");
-		return mav;
-	}
-
-	// 包租婆查看自己的被租赁记录
-	@RequestMapping("selectlog.do")
-	public ModelAndView SelectLog(Integer id, Integer page) {
-		ModelAndView mav = new ModelAndView();
-		PageHelper.startPage(page, 8, true);
-		List<ParkingBean> bean = user.SelectLog(id);
-		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
-		if (bean != null) {
-			mav.addObject("pageinfo", pageInfo);
-			mav.addObject("list", bean);
-		} else {
-			mav.addObject("lease", "尚未有车位被租赁");
-		}
-
-		mav.setViewName("");
-		return mav;
-	}
-
-	// 抢租客查看租赁记录
-	@RequestMapping("showlog.do")
-	public ModelAndView ShowLog(Integer id, Integer page) {
-		ModelAndView mav = new ModelAndView();
-
-		PageHelper.startPage(page, 5, true);
-		List<OrderBean> bean = user.ShowLog(id);
-		PageInfo<OrderBean> pageInfo = new PageInfo<OrderBean>(bean);
-
-		if (bean != null) {
-			mav.addObject("pageinfo", pageInfo);
-			mav.addObject("list", bean);
-		} else {
-			mav.addObject("Lease", "尚未租过车位");
-		}
-		mav.setViewName("");
-		return mav;
-	}
-
 	// 手机发送验证码测试
 	@RequestMapping("/phone.do")
 	public ModelAndView Num(HttpServletRequest request, String number) {
@@ -158,8 +99,7 @@ public class UserController {
 	 * 修改企业信息是否成功
 	 * @param user
 	 * @return
-	 */
-			
+	 */		
 	public String updateCompany(@Validated CompanyInfoBean company) {
 		boolean row = user.updateCompany(company);
 		if (row) {

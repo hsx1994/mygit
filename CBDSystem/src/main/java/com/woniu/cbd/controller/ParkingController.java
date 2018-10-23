@@ -94,16 +94,7 @@ public class ParkingController {
 
 	}
 
-	// 时间格式转换
-	@org.springframework.web.bind.annotation.InitBinder
-	public void InitBinder(WebDataBinder binder) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		format.setLenient(false);// 是否严格按照格式
-
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(format,
-				true));
-
-	}
+	
 
 	// 包租婆查看单个上架车位
 	@RequestMapping("/landladyshowOne.do")
@@ -270,18 +261,15 @@ public class ParkingController {
 		}
 		return result;
 	}
+	// 时间格式转换
+		@org.springframework.web.bind.annotation.InitBinder
+		public void InitBinder(WebDataBinder binder) {
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			format.setLenient(false);// 是否严格按照格式
 
+			binder.registerCustomEditor(Date.class, new CustomDateEditor(format,
+					true));
 
-
-
-	@org.springframework.web.bind.annotation.InitBinder
-	public void initBinder(WebDataBinder binder) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		format.setLenient(false); // 是否需要严格转化
-
-		// 使用springmvc封装好的类进行格式转换
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(format,
-				true));
-	}
+		}
 }
 

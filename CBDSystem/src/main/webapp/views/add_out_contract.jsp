@@ -108,8 +108,8 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">&nbsp;</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input name="" type="submit" value="提交" class="text-but">
-                            <input name="" type="button" value="返回" class="text-but" onclick="javascript:history.go(-1);"></td>
+                         <input name="" type="submit" value="提交" class="text-but">
+                         <input name="" type="button" value="返回" class="text-but" onclick="javascript:history.go(-1);"></td>
                     </tr>
                 </table>
             </form>
