@@ -2,6 +2,7 @@ package com.woniu.cbd.service;
 
 import java.util.List;
 
+import com.woniu.cbd.bean.BargainBean;
 import com.woniu.cbd.bean.OtherParkingBean;
 
 /**
@@ -10,6 +11,13 @@ import com.woniu.cbd.bean.OtherParkingBean;
  *
  */
 public interface IOtherParkingService {
+	/**
+	 * 第三方车位批量添加
+	 * @param list
+	 * @return
+	 */
+	public boolean addOtherParking(BargainBean bean,String[] address,
+			String[] parkingNumber,String[] imgPath,double price[],String startNumber,String endNumber); 
 	/**
 	 * 第三方车位批量添加
 	 * @param list

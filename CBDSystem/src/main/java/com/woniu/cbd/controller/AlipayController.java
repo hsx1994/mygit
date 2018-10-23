@@ -10,7 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.service.IOrderService;
-//import com.woniu.cbd.util.AlipayUtil;
+import com.woniu.cbd.util.AlipayUtil;
+
 
 @Controller
 public class AlipayController {
@@ -23,7 +24,7 @@ public class AlipayController {
 		ModelAndView result = new ModelAndView();
 		if (order2 != null) {
 			result.setViewName("/alipay/apply.jsp");
-			//result.addObject("QRcode", AlipayUtil.getQRcode(request,order2));
+			result.addObject("QRcode", AlipayUtil.getQRcode(request,order2));
 			result.addObject("order", order2);
 		}
 		return result;
@@ -31,14 +32,14 @@ public class AlipayController {
 	@RequestMapping("/queryState.do")
 	public @ResponseBody boolean QueryState(HttpServletRequest request,int orderId){
 		boolean b = false;
-		/*String result = AlipayUtil.QueryState(request, orderId);
+		String result = AlipayUtil.QueryState(request, orderId);
 		if (result!=null&&result.equals("TRADE_SUCCESS")) {
 			b = true;
 			OrderBean order = new OrderBean();
 			order.setId(orderId);
 			order.setState(1);
 			orderService.changeOrderState(order);
-		}*/
+		}
 		return b;
 	}
 }

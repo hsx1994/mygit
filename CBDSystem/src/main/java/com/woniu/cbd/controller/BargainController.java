@@ -11,28 +11,35 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.BargainBean;
 import com.woniu.cbd.service.IBargainService;
+import com.woniu.cbd.service.IOtherParkingService;
 
 @Controller
 public class BargainController {
 	@Autowired
 	private IBargainService service;
+	@Autowired
+	private IOtherParkingService otherParkingService;
 	/**
 	 * 添加第三方合约
 	 * @param bean
 	 * @return
 	 */
 	@RequestMapping("bargainAdd.do")
-	public @ResponseBody String bargainAdd(BargainBean bean) {
+	public @ResponseBody String bargainAdd(BargainBean bean,String[] address,
+			String[] parkingNumber,String startNumber,String endNumber,double[] price,MultipartFile[] img) {
 		String result = "添加失败";
 		boolean re = service.bargainAdd(bean);
 		if (re) {
 			result = "添加成功";
+			String[] imgPath = null;
+			otherParkingService.addOtherParking(bean, address, parkingNumber, imgPath, price, startNumber, endNumber);
 		}
 		return result;
 	}
@@ -153,8 +160,8 @@ public class BargainController {
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		format.setLenient(false);  //是否需要严格转化
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		format.setLenient(true);  //是否需要严格转化
 		
 		//使用springmvc封装好的类进行格式转换
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
