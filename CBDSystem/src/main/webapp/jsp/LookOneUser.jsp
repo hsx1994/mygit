@@ -35,20 +35,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    </div><!--hotci/-->
    </div><!--subBox2/-->
   </form><!--subBox/-->
-  <div class="ding-gou">
-   <div class="ding">
-    <a href="order.html"><img src="../images/dingdan.jpg" width="106" height="32" /></a>
-   </div><!--ding/-->
-   <div class="gou">
-    <a href="car.html"><img src="../images/gouwuche.jpg" width="126" height="32" /></a>
-   </div><!--gou/-->
-   <div class="clears"></div>
-  </div><!--ding-gou/-->
- </div><!--mid-->
  <div class="navBox navBg3">
   <ul class="nav">
-   <li><a href="one.jsp">首页</a></li>
-   <li><a href="one.jsp">用户中心</a></li>
+   <li><a href="/CBDSystem/index.jsp">首页</a></li>
   </ul><!--nav/-->
  </div><!--navBox/-->
  <div class="vipBox">
@@ -63,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <dt class="vip_2">个人</dt>
      <dd class="ddCur"><a href="one.jsp">个人信息</a></dd>
      <dd><a href="RentUser.jsp">修改个人信息</a></dd>
-     <dd><a href="LookOneOrder.jsp">查看租赁记录</a></dd>
+     <dd><a href="LookOrder.jsp">查看租赁记录</a></dd>
    <h2 class="vipTitle">申请上架</h2>
    
    

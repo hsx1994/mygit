@@ -7,7 +7,9 @@
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page isELIgnored="false"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<div id="show">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -15,10 +17,17 @@
 <link type="text/css" href="../css/csss.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
 <script type="text/javascript" src="../js/js.js"></script>
-
+<style>
+	td{
+		text-align:center;
+	}
+	th{
+		text-align:center;
+	}
+</style>
 </head>
 
-<body>
+<body onload="showAll(1)">
 	<div class="hrader" id="header">
 		<div class="top">
 			<a href="login.html" style="color:#C94E13;">请登录</a> <a
@@ -41,27 +50,11 @@
 			</div>
 			<!--subBox2/-->
 		</form>
-		<!--subBox/-->
-		<div class="ding-gou">
-			<div class="ding">
-				<a href="order.html"><img src="../images/dingdan.jpg"
-					width="106" height="32" /></a>
-			</div>
-			<!--ding/-->
-			<div class="gou">
-				<a href="car.html"><img src="../images/gouwuche.jpg" width="126"
-					height="32" /></a>
-			</div>
-			<!--gou/-->
-			<div class="clears"></div>
-		</div>
-		<!--ding-gou/-->
 	</div>
 	<!--mid-->
 	<div class="navBox navBg3">
 		<ul class="nav">
-			<li><a href="one.jsp">首页</a></li>
-			<li><a href="one.jsp">用户中心</a></li>
+			<li><a href="/CBDSystem/index.jsp">首页</a></li>
 		</ul>
 		<!--nav/-->
 	</div>
@@ -91,30 +84,58 @@
 					<a href="RentUser.jsp">修改个人信息</a>
 				</dd>
 				<dd>
-					<a href="LookCar.jsp">查看租赁记录</a>
+					<a href="LookOrder.jsp">查看租赁记录</a>
 				</dd>
+			</dl>
 			<!--vipNav/-->
 		</div>
 		<!--vipLeft/-->
 		<div class="vipRight">
 			<h2 class="vipTitle">我的车位</h2>
-
-			 <form action="../showme.do" method="post" enctype="multipart/form-data">
 				<table class="grzx" width="705" border="0" cellspacing="0"
 					cellpadding="0">
-					<td width="90"><button type="submit">查看</button></td>
+					<thead>
+						<tr>
+							<th width="100"><span>*</span>车位地址</th>
+							<th width="100"><span>*</span>单价</th>
+							<th width="100"><span>*</span>开始时间</th>
+							<th width="100"><span>*</span>结束时间</th>
+							<th width="100"><span>*</span>车位号</th>
+							<th width="300"><span>*</span>状态(0:待审,1:审核通过,2：审核未通过)</th>
+						</tr>
+					</thead>
 					<c:forEach items="${all}" var="obj">
 						<tr>
-							<td width="100"><span>*</span>车位地址:&nbsp;"${obj.address}"<br/></td>
-							<td width="100"><span>*</span>单价：&nbsp;"${obj.price}"<br/></td>
-							<td width="100"><span>*</span>开始时间："${obj.startTime}"<br/></td>
-							<td width="100"><span>*</span>结束时间："${obj.endTime}"<br /></td>
-							<td width="100"><span>*</span>车位号："${obj.parkingNum}"<br /></td>
-							<td><a href="jsp/one.jsp">返回</a></td>
+							<td>${obj.address}<br/></td>
+							<td>${obj.price}<br/></td>
+							<td><fmt:formatDate value="${obj.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/><br/></td>
+							<td><fmt:formatDate value="${obj.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/><br /></td>
+							<td>${obj.parkingNum}<br /></td>
+							<td>${obj.state}</td>
 						</tr>
 					</c:forEach>
+					<tr>
+				        <td width="10"> 
+				       		<a href="#" onclick="showAll(${paging.firstPage})"  target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
+				       	</td>
+				       	<td width="10">
+					        <c:if test="${paging.hasPreviousPage}">
+					        <a href="#"onclick="showAll(${paging.prePage})" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
+					        </c:if>
+					    </td>
+					    <td width="10">
+					        ${paging.pageNum}/${paging.pages} 页&nbsp;&nbsp;
+					    </td>
+					    <td width="10">
+					        <c:if test="${paging.hasNextPage}">
+					        <a href="#"onclick="showAll(${paging.nextPage})" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
+					        </c:if>
+					    </td>
+					    <td width="10">
+					        <a href="#" onclick="showAll(${pageing.lastPage})" target="mainFrame" onFocus="this.blur()">尾页</a>
+				      	</td>
+				    </tr>
 				</table>
-	</form>
 		</div>
 		<!--vipRight/-->
 		<div class="clears"></div>
@@ -186,5 +207,22 @@
 			href="http://www.mycodes.net/" target="_blank">源码之家</a></span>
 	</div>
 	<!--footer/-->
+	<script>
+		function showAll(page){
+			$.ajax({
+				url:"/CBDSystem/showme.do",
+				type:"post",
+				data:{
+					"page":page
+				},
+				dataType:"html",
+				success:function(data){
+					$("#show").html(data);
+				}
+			});
+		
+		}
+	</script>
 </body>
 </html>
+</div>

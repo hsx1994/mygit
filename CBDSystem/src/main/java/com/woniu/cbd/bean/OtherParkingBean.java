@@ -2,9 +2,8 @@ package com.woniu.cbd.bean;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
 /**
  * 第三方提供的车位的信息
  * @author hsx 
@@ -21,16 +20,14 @@ public class OtherParkingBean implements Serializable {
 	//第三方提供的车位图片
 	private String img;
 	//第三方提供的车位价格
-	private int price;
+	private double price;
 	//第三方提供的车位开始时间
 	private Date startTime;
 	//第三方提供的车位结束时间
 	private Date endTime;
 	//关联的第三方合约信息
-	@JsonIgnore
 	private BargainBean bargain;
 	//第三方车位出租产生的企业订单
-	@JsonIgnore
 	private List<CompanyOrderBean> order;
 	
 	public List<CompanyOrderBean> getOrder() {
@@ -69,10 +66,10 @@ public class OtherParkingBean implements Serializable {
 	public void setImg(String img) {
 		this.img = img;
 	}
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	public Date getStartTime() {

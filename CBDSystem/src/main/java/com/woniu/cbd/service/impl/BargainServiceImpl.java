@@ -62,24 +62,4 @@ public class BargainServiceImpl implements IBargainService {
 		return list;
 	}
 
-	@Override
-	public List<BargainBean> queryUseingBargainByCondition(String condition) {
-		List<BargainBean> list = dao.queryUseingBargain(condition);
-		return list;
-	}
-
-	@Override
-	public List<BargainBean> queryHistoryBargainByCondition(String condition) {
-		List<BargainBean> list = dao.queryHistoryBargain(condition);
-		return list;
-	}
-
-	@Override
-	public BargainBean showDetailsBargain(int id) {
-		
-		BargainBean bean = dao.findBargainById(id);
-		
-		return bean;
-	}
-
 }

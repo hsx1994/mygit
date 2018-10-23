@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  */
 
+@SuppressWarnings("serial")
 @WebServlet("/picturecode")
 public class PictureCheckCodeUtil extends HttpServlet {
 
@@ -181,7 +182,6 @@ public class PictureCheckCodeUtil extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		session.setAttribute("randCheckCode", sRand);
 		g.dispose();
-		// System.out.println("randCheckCode:"+session.getAttribute("randCheckCode"));
 		ImageIO.write(image, "JPEG", response.getOutputStream());
 	}
 

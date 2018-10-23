@@ -32,10 +32,4 @@ public class Md5pwdUtil {
 		return new Md5Hash(str,salt).toString();
 	}
 	
-	public static void main(String[] args) {
-//		String password="123456";
-//		System.out.println("Base64加密："+Md5pwdUtil.encBase64(password));
-//		System.out.println("Base64解密："+Md5pwdUtil.decBase64(Md5pwdUtil.encBase64(password)));
-//		System.out.println("Md5加密："+Md5pwdUtil.md5(password, "superAdmin"));
-	}
 }

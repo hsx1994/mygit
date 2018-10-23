@@ -27,7 +27,7 @@
 	</select>
 	
 	<!-- 通过ID查合约信息 -->
-	<select id="findById" parameterType="int" resultMap="selectMap">
+	<select id="findById" parameterType="int" resultType="BargainBean">
 		select * from t_bargain where b_id=#{id}
 	</select>
 	
@@ -39,16 +39,6 @@
 	<!-- 查询所有第三方合约 -->
 	<select id="bargainSelect" resultMap="selectMap">
 		select * from t_bargain
-	</select>
-	<!-- 按条件查询执行中合约 -->
-	<select id="queryUseingBargain"  resultMap="selectMap">
-		select * from t_bargain where 
-		CONCAT(b_company,b_number,b_contact) like "%"#{condition}"%" and b_state=0
-	</select>
-	<!-- 按条件查询历史合约 -->
-	<select id="queryHistoryBargain" parameterType="String"  resultMap="selectMap" >
-		select * from t_bargain where 
-		CONCAT(b_company,b_number,b_contact) like "%"#{condition}"%" and b_state=1
 	</select>
 	<resultMap type="BargainBean" id="selectMap">
 		<id column="b_id" property="id"></id>

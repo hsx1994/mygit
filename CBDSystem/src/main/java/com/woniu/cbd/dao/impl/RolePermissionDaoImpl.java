@@ -42,3 +42,4 @@ public class RolePermissionDaoImpl implements IRolePermissionDao {
 		return row;
 	}
 }
+

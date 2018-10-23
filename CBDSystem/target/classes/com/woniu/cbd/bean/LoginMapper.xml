@@ -50,7 +50,7 @@
 	<select id="selecrPwd" parameterType="int" resultType="String">
 		select l_password from t_login where t_id=#{id}
 	</select>
-	
+	<!-- 修改密码 -->
 	<update id="updatePwd" parameterType="LoginBean">
 		update t_login set l_password=#{password} where t_id=#{id}
 	</update>

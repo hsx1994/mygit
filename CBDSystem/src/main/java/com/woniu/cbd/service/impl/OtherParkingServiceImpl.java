@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.woniu.cbd.bean.BargainBean;
 import com.woniu.cbd.bean.OtherParkingBean;
-import com.woniu.cbd.bean.ParkingBean;
 import com.woniu.cbd.dao.IOtherParkingDao;
 import com.woniu.cbd.service.IOtherParkingService;
 
@@ -40,7 +39,7 @@ public class OtherParkingServiceImpl implements IOtherParkingService {
 				parkingBean.setStartTime(bean.getStartTime());
 				parkingBean.setEndTime(bean.getEndTime());
 				parkingBean.setImg(imgPath[i]);
-			/*	parkingBean.setPrice(Double.parseDouble(price[i]));*/
+				parkingBean.setPrice(Double.parseDouble(price[i]));
 				list.add(parkingBean);
 			}
 		}else {
@@ -54,7 +53,7 @@ public class OtherParkingServiceImpl implements IOtherParkingService {
 				parkingBean.setStartTime(bean.getStartTime());
 				parkingBean.setEndTime(bean.getEndTime());
 				parkingBean.setImg(imgPath[0]);
-				/*parkingBean.setPrice(Double.parseDouble(price[0]));*/
+				parkingBean.setPrice(Double.parseDouble(price[0]));
 				list.add(parkingBean);
 			}
 		}
@@ -118,7 +117,6 @@ public class OtherParkingServiceImpl implements IOtherParkingService {
 	 */
 	@Override
 	public List<String> findParkingNumberByAddress(String address) {
-		// TODO Auto-generated method stub
 		return dao.findParkingNumberByAddress(address);
 	}
 

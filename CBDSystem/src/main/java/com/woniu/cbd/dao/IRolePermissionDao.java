@@ -12,4 +12,5 @@ public interface IRolePermissionDao {
 	public PermissionBean findById(int i);
 
 	public int deletePerByAdminId(Integer id);
+
 }

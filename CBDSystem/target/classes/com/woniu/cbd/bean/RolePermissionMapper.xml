@@ -21,3 +21,4 @@
 		update t_role_permission set t_lp_delete=1 where t_a_id=#{id} 
 	</update>
 </mapper>
+

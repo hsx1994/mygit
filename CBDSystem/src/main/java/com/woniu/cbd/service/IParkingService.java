@@ -34,29 +34,7 @@ public interface IParkingService {
 	/**
 	 * 删除某车位信息(不再在系统中管理该车位) 一般为合约失效或者包租婆放弃续租
 	 * 
-<<<<<<< HEAD
-=======
-	//用于包租婆申请发布新的车位
-    public boolean AddParking(List<ParkingBean> park);
-   
-    
-    //用于抢租客查看所有的个人车位信息，无论是否被租赁
-    public List<ParkingBean> ShowAll();
-    
-    
-    //用于抢租客通过时间查询自己需要的车位信息
-    public List<ParkingBean> SelectPark(Date date);
-    
-    
-    //用于抢租客通过车位号模糊查询自己需要的车位信息
-    public List<ParkingBean> SelectParkByNum(String num);
-    //用于抢租客通过价格查询自己需要的车位信息
-    public List<ParkingBean> SelectPark(int price);
-    //用于抢租客查看指定的车位信息
-    public ParkingBean SelectParkOne(int id);
-=======
 
->>>>>>> branch 'master' of https://github.com/hsx1994/mygit.git
     /**
 	 * 通过ID查询单个车位信息
 	 * @param id
@@ -67,10 +45,6 @@ public interface IParkingService {
     /**
 	 * 删除某车位信息(不再在系统中管理该车位)
 	 * 一般为合约失效或者包租婆放弃续租
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/hsx1994/mygit
-=======
->>>>>>> branch 'master' of https://github.com/hsx1994/mygit.git
 	 * @param bean
 	 * @return
 	 */

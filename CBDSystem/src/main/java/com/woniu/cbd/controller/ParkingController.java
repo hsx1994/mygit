@@ -6,21 +6,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,7 +31,7 @@ public class ParkingController {
 	@Autowired
 	private IParkingService park;
 
-	// 包租婆批量添加车位信息
+	// 包租婆添加车位信息
 	@RequestMapping("/application.do")
 	public @ResponseBody String applicationParking(HttpServletRequest request,
 			MultipartFile imgFile, ParkingBean bean, MultipartFile ImgFile,
@@ -94,8 +88,6 @@ public class ParkingController {
 
 	}
 
-	
-
 	// 包租婆查看单个上架车位
 	@RequestMapping("/landladyshowOne.do")
 	public ModelAndView showOne(Integer id) {
@@ -112,7 +104,9 @@ public class ParkingController {
 	@ResponseBody
 	@RequestMapping("showall.do")
 	public ModelAndView ShowAll(Integer page) {
+
 		ModelAndView mav = new ModelAndView();
+
 		PageHelper.startPage(page, 8, true);
 		List<ParkingBean> bean = park.showAll();
 
@@ -180,11 +174,9 @@ public class ParkingController {
 	@RequestMapping("/showme.do")
 	public ModelAndView showMe(HttpServletRequest request, Integer page) {
         //在session中取得当前登录的包租婆id
-		/*int id=request.getSession().getAttribute("");*/
-		int id=1;//测试使用
-		
+		int id=(int) request.getSession().getAttribute("id");
 		ModelAndView mav = new ModelAndView();
-		PageHelper.startPage(page, 8, true);
+		PageHelper.startPage(page, 5, true);
 		List<ParkingBean> bean = park.showMe(id);
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
 
@@ -195,7 +187,7 @@ public class ParkingController {
 		} else {
 			mav.addObject("noresult", "尚未添加车位");
 		}
-		mav.setViewName("063/ShowLandladyParking.jsp");
+		mav.setViewName("/jsp/LookMyCar.jsp");
 		return mav;
 	}
 	/**
@@ -261,15 +253,19 @@ public class ParkingController {
 		}
 		return result;
 	}
-	// 时间格式转换
-		@org.springframework.web.bind.annotation.InitBinder
-		public void InitBinder(WebDataBinder binder) {
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			format.setLenient(false);// 是否严格按照格式
-
-			binder.registerCustomEditor(Date.class, new CustomDateEditor(format,
-					true));
-
-		}
+	
+	/**
+	 * springmvc提供的数据类型转换器
+	 * @param binder
+	 */
+	@org.springframework.web.bind.annotation.InitBinder
+	public void initBinder(WebDataBinder binder) {
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		format.setLenient(false);  //是否需要严格转化
+		
+		//使用springmvc封装好的类进行格式转换
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
+	}
 }
 

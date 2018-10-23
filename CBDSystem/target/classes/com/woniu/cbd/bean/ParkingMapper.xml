@@ -21,6 +21,13 @@
 		select * from
 		t_parking where p_u_id=#{id} and p_delete=0
 	</select>
+	
+	<!--查看包租婆的租赁历史记录 通过车位表查询到包租婆所属车位的id -->
+	<select id="showmelog" parameterType="int" resultMap="apply">
+		select *
+		from
+		t_parking where p_u_id=#{id} and p_delete=0 and p_state=1
+	</select>
 
 	<!-- 车位信息bean -->
 	<resultMap type="ParkingBean" id="apply">
@@ -88,13 +95,12 @@
 		t_parking where p_state=1 and p_id=#{id} and p_delete=0
 	</select>
 
-	<!--抢租客根据车位号模糊查询查询上架车位信息 -->
+	<!--抢租客模糊查询查询上架车位信息 -->
 	<select id="findbynum" parameterType="String" resultMap="apply">
 		select
 		*
-		from t_parking where p_state=1 and p_parking_number LIKE
-		"%"#{number}"%" and
-		p_delete=0
+		from t_parking where p_state=1 and CONCAT(p_address,p_parking_number,p_price) like "%" #{number} "%" and
+		p_delete=0	
 	</select>
 
 	<!--根据车位id查询车位号和车位所有人的名称 -->
@@ -119,4 +125,9 @@
 		update t_parking set
 		p_delete=1 where p_id=#{id}
 	</update>
+	
+	<!--订单id查询车位信息  -->
+	<select id="selectParkingByOrderID" parameterType="int" resultMap="apply">
+	   select * from t_parking where p_id=#{id} 
+	</select>
 </mapper>

@@ -35,7 +35,7 @@ public class LoginAdminUrlFilter implements Filter{
 		
 		if (url.endsWith("login.jsp")) {
 			chain.doFilter(request, response);
-		}else{
+		} else {
 			if(login==null){
 			response.sendRedirect("/CBDSystem/views/login.jsp");
 			} else {

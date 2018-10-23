@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="../js/pageinfo.js"></script>
-<script type="text/javascript" src="../js/bargain.js"></script>
 <div id="aaa">
 <html>
 <head>
@@ -16,9 +15,9 @@
         body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
         #searchmain{ font-size:12px;}
         #search{ font-size:12px; background:#548fc9; margin:10px 10px 0 0; display:inline; width:100%; color:#FFF; float:left}
-        #search span{height:40px; line-height:40px; padding:0 0px 0 10px; float:left;}
-        #search input.text-word{height:24px; line-height:24px; width:180px; margin:8px 0 6px 0; padding:0 0px 0 10px; float:left; border:1px solid #FFF;}
-        #search input.text-but{height:24px; line-height:24px; width:55px; background:url(../images/main/list_input.jpg) no-repeat left top; border:none; cursor:pointer; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; color:#666; float:left; margin:8px 0 0 6px; display:inline;}
+        #search form span{height:40px; line-height:40px; padding:0 0px 0 10px; float:left;}
+        #search form input.text-word{height:24px; line-height:24px; width:180px; margin:8px 0 6px 0; padding:0 0px 0 10px; float:left; border:1px solid #FFF;}
+        #search form input.text-but{height:24px; line-height:24px; width:55px; background:url(../images/main/list_input.jpg) no-repeat left top; border:none; cursor:pointer; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; color:#666; float:left; margin:8px 0 0 6px; display:inline;}
         #main-tab{ border:1px solid #eaeaea; background:#FFF; font-size:12px;}
         #main-tab th{ font-size:12px; background:url(../images/main/list_bg.jpg) repeat-x; height:32px; line-height:32px;}
         #main-tab td{ font-size:12px; line-height:40px;}
@@ -47,9 +46,11 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" id="search">
                 <tr>
                     <td width="90%" align="left" valign="middle">
+                        <form method="post" action="">
                             <span>搜索：</span>
-                            <input type="text" id="condition"  class="text-word">
-                            <input name="" type="button" value="查询" class="text-but" onclick="queryOutHistoryBargain(1)">
+                            <input type="text" name="" value="" class="text-word">
+                            <input name="" type="button" value="查询" class="text-but">
+                        </form>
                     </td>
                 </tr>
             </table>

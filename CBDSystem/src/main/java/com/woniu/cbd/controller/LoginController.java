@@ -1,7 +1,6 @@
 package com.woniu.cbd.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -162,4 +161,5 @@ public class LoginController {
 		}
 		return str;
 	}
+	
 }

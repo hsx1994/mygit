@@ -15,9 +15,9 @@
         body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
         #searchmain{ font-size:12px;}
         #search{ font-size:12px; background:#548fc9; margin:10px 10px 0 0; display:inline; width:100%; color:#FFF; float:left}
-        #search span{height:40px; line-height:40px; padding:0 0px 0 10px; float:left;}
-        #search input.text-word{height:24px; line-height:24px; width:180px; margin:8px 0 6px 0; padding:0 0px 0 10px; float:left; border:1px solid #FFF;}
-        #search input.text-but{height:24px; line-height:24px; width:55px; background:url(../images/main/list_input.jpg) no-repeat left top; border:none; cursor:pointer; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; color:#666; float:left; margin:8px 0 0 6px; display:inline;}
+        #search form span{height:40px; line-height:40px; padding:0 0px 0 10px; float:left;}
+        #search form input.text-word{height:24px; line-height:24px; width:180px; margin:8px 0 6px 0; padding:0 0px 0 10px; float:left; border:1px solid #FFF;}
+        #search form input.text-but{height:24px; line-height:24px; width:55px; background:url(../images/main/list_input.jpg) no-repeat left top; border:none; cursor:pointer; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; color:#666; float:left; margin:8px 0 0 6px; display:inline;}
         #main-tab{ border:1px solid #eaeaea; background:#FFF; font-size:12px;}
         #main-tab th{ font-size:12px; background:url(../images/main/list_bg.jpg) repeat-x; height:32px; line-height:32px;}
         #main-tab td{ font-size:12px; line-height:40px;}
@@ -47,9 +47,11 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" id="search">
                 <tr>
                     <td width="90%" align="left" valign="middle">
-                          <span>搜索：</span>
-                          <input type="text" id="condition"  class="text-word">
-                          <input type="button" value="查询" class="text-but" onclick="queryHistoryCompanyBargain(1)" >
+                        <form method="post" action="">
+                            <span>搜索：</span>
+                            <input type="text" name="" value="" class="text-word">
+                            <input name="" type="button" value="查询" class="text-but" >
+                        </form>
                     </td>
                 </tr>
             </table>
@@ -71,12 +73,12 @@
                 <c:forEach begin="0" step="1" items="${list}" var="obj">
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.number }</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">${obj.company.comName }</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${obj.company.name }</td>
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.contact }</td>
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.tel }</td>
                     <td align="center" valign="middle" class="borderright borderbottom"><fmt:formatDate value="${obj.startTime }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                     <td align="center" valign="middle" class="borderright borderbottom"><fmt:formatDate value="${obj.endTime }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                    <td align="center" valign="middle" class="borderbottom"><a href="tenant_contract_detail.jsp" target="mainFrame" onFocus="this.blur()" class="add">详情</a></td>
+                    <td align="center" valign="middle" class="borderbottom"><a href="tenant_contract_extension.jsp" target="mainFrame" onFocus="this.blur()" class="add">续约</a><span class="gray">&nbsp;|&nbsp;</span><a href="tenant_contract_detail.jsp" target="mainFrame" onFocus="this.blur()" class="add">详情</a></td>
                 </tr>
                 </c:forEach>
             </table>
@@ -96,7 +98,6 @@
          </td>
     </tr>
 </table>
-<script type="text/javascript" src="../js/bargain.js"></script>
 </body>
 </html>
 </div>

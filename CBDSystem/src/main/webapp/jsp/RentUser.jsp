@@ -72,24 +72,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        <table class="grzx" width="705" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td width="90"><span>*</span>密码：</td>
-          <td width="430"><input type="text" name="login.password"></td>
+          <td width="430"><input type="text" id="password" name="login.password" /></td>
         </tr>
        
         <tr>
          <td width="90"><span>*</span>邮箱:</td>
-          <td><input type="text" name="email" /></td>
+          <td><input type="text" id="email" name="email" /></td>
         </tr>
         <tr>
           <td width="90"><span>*</span>住址:</td>
-          <td><input type="text" name="address" ></td>
+          <td><input type="text" id="address" name="address" /></td>
         </tr>
         <tr>
           <td width="90"><span>*</span>电话：</td>
-          <td><input type="text" name="tel" ></td>
+          <td><input type="text" id="tel" name="tel" /></td>
         </tr>
         <tr>
           <td width="90"><span>*</span>职业：</td>
-          <td><input type="text" name="job" ></td>
+          <td><input type="text" id="job" name="job" /></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -164,27 +164,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <span>&copy; 2014 Unqezi 使用前必读 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></span>
  </div><!--footer/-->
  <input type="hidden" value="${sessionScope.id }" id="uid" />
+ <input type="hidden" value="${sessionScope.login.id }" id="lid"/>
+ <input type="hidden" value="${sessionScope.login.name }" id="ln"/>
+ 
 <script type="text/javascript">
     function sends(){
 		$.ajax({
-			   	url:"../up.do",
+			   	url:"/CBDSystem/up.do",
 				type:"post",
-				data:
-				{
+				data:{
+				 "login.id":$("#lid").val(),
+				 "login.name":$("#ln").val(),
 				 "login.password":$("#password").val(),
 				 "id":$("#uid").val(),
 	             "address":$("#address").val(),
 	             "job":$("#job").val(),
 	             "email":$("#email").val(),
-	             "tel":$("#tel").val(),
-			},
+	             "tel":$("#tel").val()
+				},
 				datatype: "json",
 				success:function(data){
 					alert(data);
 					window.location.href="one.jsp";
 				}
 			});
-			
 	};
 </script>
 </body>

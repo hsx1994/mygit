@@ -12,13 +12,10 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/context
-
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 自定义Realm -->
-	<bean id="loginRealm" class="com.woniu.cbd.realm.LoginRealm">
-	</bean>
-
+	<bean id="loginRealm" class="com.woniu.cbd.realm.LoginRealm"></bean>
 
 	<!-- 安全管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
@@ -43,7 +40,7 @@
 			<value>	
 				<!-- 默认访问官网页面，待改showall.do?page=1 -->
 				/picturecode =anon		
-				/index=anon
+				/index*=anon
 				/alipay/**=anon
 				/bootstrap/**=anon
 				/company/**=anon
@@ -82,6 +79,3 @@
 	</bean>
 
 </beans>
-
-
- 

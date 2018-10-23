@@ -2,7 +2,6 @@ package com.woniu.cbd.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.CompanyBargainBean;
 import com.woniu.cbd.bean.CompanyInfoBean;
-import com.woniu.cbd.bean.CompanyOrderBean;
 import com.woniu.cbd.service.ICompanyBargainService;
 import com.woniu.cbd.service.ICompanyInfoService;
 import com.woniu.cbd.service.ICompanyOrderService;
@@ -72,14 +70,11 @@ public class CompanyBargainController {
 	@RequestMapping("companyBargainSelect.do")
 	public ModelAndView companyBargainSelect(CompanyBargainBean bean) {
 		bean.setId(1);
-		System.out.println(bean);
 		ModelAndView mav = new ModelAndView();
 		int page = 1 ;
 		PageHelper.startPage(page,10,true);
 		List<CompanyBargainBean> bargain = service.companyBargainSelect(bean);
-		System.out.println(bargain);
 		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(bargain);
-		System.out.println(pageInfo);
 		if(bargain != null){
 			mav.addObject("pageinfo", pageInfo);
 			mav.addObject("list",bargain);
@@ -146,79 +141,9 @@ public class CompanyBargainController {
 
 		return mav;
 	}
-	/**
-	 * 根据条件查询执行中合约
-	 * @param page
-	 * @param condition
-	 * @return
-	 */
-	@RequestMapping("queryUseingBargain.do")
-	public ModelAndView queryUseingBargainByCondition(Integer page,String condition){
-		ModelAndView mv = new ModelAndView();
-		if(condition!=null){
-			PageHelper.startPage(page,10,true);
-			List<CompanyBargainBean>  list = service.queryUseingBarginByCondition(condition);
-			PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(list);
-			mv.addObject("pageinfo",pageInfo);
-			mv.addObject("list",list);
-			mv.setViewName("views/tenant_contract_info.jsp");
-		}
-		
-		return mv;
-		
-	}
-	
-	/**
-	 * 根据条件查询历史合约
-	 * @param page
-	 * @param condition
-	 * @return
-	 */
-	@RequestMapping("queryHistoryBargain.do")
-	public ModelAndView queryHistoryBargainByCondition(Integer page,String condition){
-		ModelAndView mv = new ModelAndView();
-		if(condition!=null){
-			PageHelper.startPage(page,10,true);
-			List<CompanyBargainBean>  list = service.queryHistoryBargainByCondition(condition);
-			System.out.println(list);
-			PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(list);
-			mv.addObject("pageinfo",pageInfo);
-			mv.addObject("list",list);
-			mv.setViewName("views/tenant_history_contract.jsp");
-		}
-		
-		return mv;
-		
-	}
-	/**
-	 * 显示企业合约详情
-	 * @param id
-	 * @return
-	 */
-	@RequestMapping("showCompanyBargainDetails.do")
-	public ModelAndView showCompanyBargainDetails(int id){
-		
-		ModelAndView mv = new ModelAndView();
-		CompanyBargainBean bean = service.showCompanyBargainDetails(id);
-		List<CompanyOrderBean>  list = bean.getComOrder();
-		String num = "";
-		for (int i = 0; i < list.size(); i++) {
-			if(i==0){
-				num=list.get(i).getOtherParking().getParkingNum();
-				continue;
-			}
-			num+="、"+list.get(i).getOtherParking().getParkingNum();
-		}
-		mv.addObject("carNum", num);
-		mv.addObject("comBargain",bean);
-		mv.setViewName("views/tenant_contract_detail.jsp");
-		return mv;
-		
-	}
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		format.setLenient(true);  //是否需要严格转化
 		
@@ -226,7 +151,5 @@ public class CompanyBargainController {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
 		
 	}
-	
-	
 	
 }

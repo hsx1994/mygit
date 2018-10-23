@@ -61,7 +61,8 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">企业用户名称：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="company.comName" value="${bean.company.comName }" class="text-word">
+                            <%-- <input type="text" name="company.comName" value="${bean.company.comName }" class="text-word"> --%>
+                            <div class="companyName"><select></select></div>
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
@@ -97,13 +98,15 @@
                  </table>
                  <table width="100%" border="0" cellspacing="0" cellpadding="0" id="parking">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+                        <td align="right" valign="middle" class="borderright borderbottom bggray">车&nbsp; 位&nbsp; 地&nbsp; 址：车&nbsp; 位&nbsp; 编&nbsp; 号：</td>
+                        <td align="left" valign="middle" class="borderright borderbottom main-for">
+                            <%-- <input type="text" name="parkingNumber" value="${parkingNumber }" class="text-word" id="5"> --%>
+                            <div class="address"><select></select></div>
+                        </td>
                         <td align="right" valign="middle" class="borderright borderbottom bggray">车&nbsp; 位&nbsp; 编&nbsp; 号：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="parkingNumber" value="${parkingNumber }" class="text-word" id="5">
-                        </td>
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">车&nbsp; 位&nbsp; 地&nbsp; 址：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="address" value="${address }" class="text-word" id="6">
+                            <%-- <input type="text" name="address" value="${address }" class="text-word" id="6"> --%>
+                            <div class="parkingNumber"><select></select></div>
                         </td>
                         <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;">
                         	<a href="javascript:addParking()" target="mainFrame" onFocus="this.blur()" class="add">新增车位</a></td>
@@ -124,11 +127,66 @@
 </body>
 
 <script type="text/javascript">
-	var line = $("#parking").html();
+	var line = "";
 	function addParking(){
-		var context = $("#parking").html();
-		context += line;
-		$("#parking").html(context);
+		$("#parking").append(line);
+	}
+	function findCompany(){
+		$.ajax({
+			url:"/CBDSystem/showCompany.do",
+			type:"post",
+			data:{},
+			dataType:"json",
+			success:function(data){
+				context="<select name='company.comName'>"
+				context +="<option value='"+"'>"+"</option>";
+				for(var i = 0;i<data.length;i++){
+					context +="<option value='"+data[i].comName+"'>"+data[i].comName+"</option>";
+				}
+    			context +="</select>";
+    			$(".companyName").html(context);
+			}
+		})
+	}
+	findCompany();
+	function findAddress(){
+		$.ajax({
+			url:"/CBDSystem/showAddress.do",
+			type:"post",
+			data:{},
+			dataType:"json",
+			success:function(data){
+				context="<select name='address' onchange='findParkingNumber(this)'>"
+				context +="<option value='"+"'>"+"</option>";
+				for(var i = 0;i<data.length;i++){
+					context +="<option value='"+data[i]+"'>"+data[i]+"</option>";
+				}
+    			context +="</select>";
+    			$(".address").html(context);
+    			line = $("#parking").html();
+			}
+		})
+	}
+	findAddress();
+	function findParkingNumber(e){
+		var context = "";
+		$.ajax({
+			url:"/CBDSystem/showParkingNumber.do",
+			type:"post",
+			data:{
+				"address":e.value
+			},
+			dataType:"json",
+			success:function(data){
+				context="<select name='parkingNumber'>"
+				for(var i = 0;i<data.length;i++){
+					context +="<option value='"+data[i]+"'>"+data[i]+"</option>";
+				}
+    			context +="</select>";
+    			/* $(".parkingNumber").html(context); */
+    			$(e).parentsUntil("table").find(".parkingNumber").html(context);
+			}
+		})
 	}
 </script>
 </html>

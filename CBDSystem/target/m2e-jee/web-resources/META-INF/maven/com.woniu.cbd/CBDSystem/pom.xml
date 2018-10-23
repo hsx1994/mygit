@@ -5,9 +5,7 @@
 	<artifactId>CBDSystem</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-
 	<name>CBDSystem</name>
-
 
 	<properties>
 		<!-- 先定义jar包版本 -->
@@ -299,8 +297,10 @@
 			<groupId>alipay.core</groupId>
 			<artifactId>alipay.core</artifactId>
 			<version>1.0</version>
+
+
 		</dependency>
-		
+		<!-- 需要手动加载到maven本地仓库的两个包 -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
