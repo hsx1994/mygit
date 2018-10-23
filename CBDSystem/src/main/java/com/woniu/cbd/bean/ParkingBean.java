@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
  * 个人出租车位信息
  * @author hsx
@@ -34,8 +36,10 @@ public class  ParkingBean implements Serializable {
 	//个人出租车位申请时间
 	private Date applyTime;
 	//个人车位订单集合
+	@JsonIgnore
 	private List<OrderBean> orders;
 	//个人车位对应的包租婆信息
+	@JsonIgnore
 	private UserBean user;
 	
 	

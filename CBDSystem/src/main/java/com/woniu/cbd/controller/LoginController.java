@@ -1,6 +1,7 @@
 package com.woniu.cbd.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -91,7 +92,7 @@ public class LoginController {
 			}
 			subject.login(token);
 			session.setAttribute("loginPath", path);
-			return "redirect:/jsp/ShowParkingSpace.jsp";
+			return "redirect:showall.do?page=1";
 		} catch (Exception e) {
 			request.setAttribute("user", user);
 			request.setAttribute("errorMsg", "用户名或密码错误！");

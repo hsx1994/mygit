@@ -54,6 +54,23 @@ public interface ICompanyBargainDao {
 	
     //根据企业的id查看企业的合约
 	public List<CompanyBargainBean> companyBargainById(int id);
-	
+	/**
+	 * 根据条件模糊查询执行中合约信息
+	 * @param condition
+	 * @return
+	 */
+	public List<CompanyBargainBean> queryUseingBargainByCondition(String condition);
+	/**
+	 * 根据条件查询历史合约
+	 * @param condition
+	 * @return
+	 */
+	public List<CompanyBargainBean> queryHistoryBargainByCondition(String condition);
+	/**
+	 * 通过id查询企业合约
+	 * @param id
+	 * @return
+	 */
+	public CompanyBargainBean findBargainById(int id);
 	
 }

@@ -6,35 +6,6 @@ import java.util.List;
 import com.woniu.cbd.bean.ParkingBean;
 
 public interface IParkingService {
-
-	// 用于包租婆申请发布新的车位
-	public boolean addParking(List<ParkingBean> park);
-	
-	// 用于包租婆查看自己申请发布的车位
-	public List<ParkingBean> showMe(int id);
-
-	// 用于抢租客查看所有的个人车位信息，无论是否被租赁
-	public List<ParkingBean> showAll();
-
-	// 用于抢租客通过时间查询自己需要的车位信息
-	public List<ParkingBean> selectParking(Date date);
-
-	// 用于抢租客通过车位号模糊查询自己需要的车位信息
-	public List<ParkingBean> selectParkingByNum(String num);
-
-	// 用于抢租客通过价格查询自己需要的车位信息
-	public List<ParkingBean> selectParking(int price);
-
-	// 用于抢租客查看指定的车位信息
-	public ParkingBean selectParkingOne(int id);
-
-	// 通过订单的id查询车位信息
-	public ParkingBean selectParkingByOrderID(int id);
-
-	/**
-	 * 删除某车位信息(不再在系统中管理该车位) 一般为合约失效或者包租婆放弃续租
-	 * 
-=======
 	//用于包租婆申请发布新的车位
     public boolean AddParking(List<ParkingBean> park);
    
@@ -63,34 +34,31 @@ public interface IParkingService {
     /**
 	 * 删除某车位信息(不再在系统中管理该车位)
 	 * 一般为合约失效或者包租婆放弃续租
->>>>>>> branch 'master' of https://github.com/hsx1994/mygit
 	 * @param bean
 	 * @return
 	 */
 	public boolean parkingDelete(int id);
-
+	
 	/**
 	 * 查询申请状态的车位
-	 * 
 	 * @param bean
 	 * @return
 	 */
 	public List<ParkingBean> parkingSelect();
-
+	
 	/**
 	 * 车位通过申请
-	 * 
 	 * @param id
 	 * @return
 	 */
 	public boolean passApply(int id);
-
+	
 	/**
 	 * 车位没有通过申请
-	 * 
 	 * @param id
 	 * @return
 	 */
 	public boolean passApplyFail(int id);
+
 
 }

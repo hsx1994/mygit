@@ -49,6 +49,7 @@
 			<version>1.1.3</version>
 		</dependency>
 
+
 		<!-- shiro -->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
@@ -280,23 +281,16 @@
 			<version>1.3</version>
 		</dependency>
 
-		<!-- 支付宝支付需要用到的依赖包 -->
+	<!-- 支付宝支付需要用到的依赖包 -->
 		<dependency>
 			<groupId>com.alipay.sdk</groupId>
 			<artifactId>alipay-sdk-java</artifactId>
 			<version>3.3.87.ALL</version>
 		</dependency>
 		<!-- 需要手动加载到maven本地仓库的两个包 -->
-		<dependency> 
-			<groupId>alipay.demo</groupId> 
-			<artifactId>alipay.demo</artifactId> 
-			<version>1.0</version> 
-		</dependency>
-		<dependency>
-		 	 <groupId>alipay.core</groupId> 
-			<artifactId>alipay.core</artifactId> 
-			<version>1.0</version> 
-		</dependency>
+		<!-- <dependency> <groupId>alipay.demo</groupId> <artifactId>alipay.demo</artifactId> 
+			<version>1.0</version> </dependency> <dependency> <groupId>alipay.core</groupId> 
+			<artifactId>alipay.core</artifactId> <version>1.0</version> </dependency> -->
 		<!-- 需要手动加载到maven本地仓库的两个包 -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -336,21 +330,7 @@
 		</dependency>
 		<!-- 支付宝支付需要用到的依赖包 -->
 
-
-		<!--阿里云短信依赖包 -->
-		<dependency>
-			<groupId>com.aliyun</groupId>
-			<artifactId>aliyun-java-sdk-core</artifactId>
-			<version>4.0.6</version>
-		</dependency>
-		<dependency>
-			<groupId>com.aliyun</groupId>
-			<artifactId>aliyun-java-sdk-dysmsapi</artifactId>
-			<version>1.1.0</version>
-		</dependency>
-
-
-		<!--分页插件 -->
+	<!--分页插件 -->
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper</artifactId>
@@ -372,4 +352,6 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+
 </project>

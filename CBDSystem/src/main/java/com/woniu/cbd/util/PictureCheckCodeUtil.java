@@ -21,7 +21,6 @@ import javax.servlet.http.HttpSession;
  *
  */
 
-@SuppressWarnings("serial")
 @WebServlet("/picturecode")
 public class PictureCheckCodeUtil extends HttpServlet {
 

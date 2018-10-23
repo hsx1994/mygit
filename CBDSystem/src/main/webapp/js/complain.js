@@ -1,4 +1,4 @@
-//显示指定待处理投诉的详细详细
+//显示指定待处理投诉的详细信息
 function showDetailsComplain(id){
 	$.ajax({
 		url:"/CBDSystem/showDetailsComplain.do",
@@ -12,7 +12,7 @@ function showDetailsComplain(id){
 		}
 	});
 }
-
+//受理投诉
 function acceptComplain(state,id){
 	$.ajax({
 		url:"/CBDSystem/acceptComplain.do",

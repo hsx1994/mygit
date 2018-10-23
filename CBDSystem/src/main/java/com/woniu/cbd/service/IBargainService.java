@@ -51,4 +51,22 @@ public interface IBargainService {
 	 * @return
 	 */
 	public List<BargainBean> allBargainSelect();
+	/**
+	 * 管理员搜索执行中第三方合约业务
+	 * @param condition
+	 * @return
+	 */
+	public  List<BargainBean> queryUseingBargainByCondition(String condition);
+	/**
+	 * 管理员搜索第三方历史合约业务
+	 * @param condition
+	 * @return
+	 */
+	public  List<BargainBean> queryHistoryBargainByCondition(String condition);
+	/**
+	 * 显示第三方合约详情的业务
+	 * @param id
+	 * @return
+	 */
+	public BargainBean showDetailsBargain(int id);
 }

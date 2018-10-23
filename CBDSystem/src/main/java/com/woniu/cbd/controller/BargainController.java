@@ -1,55 +1,32 @@
 package com.woniu.cbd.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang.exception.Nestable;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.BargainBean;
+import com.woniu.cbd.bean.OtherParkingBean;
 import com.woniu.cbd.service.IBargainService;
-import com.woniu.cbd.service.IOtherParkingService;
-import com.woniu.cbd.util.FileUpUtil;
 
 @Controller
 public class BargainController {
 	@Autowired
 	private IBargainService service;
-	@Autowired
-	private IOtherParkingService otherParkingService;
-	/**
-	 * 添加第三方合约
-	 * @param bean
-	 * @return
-	 */
+
 	@RequestMapping("bargainAdd.do")
-	public @ResponseBody String bargainAdd(HttpServletRequest request,BargainBean bean,String[] parkingAddress,
-			String[] parkingNumber,String startNumber,String endNumber,String[] price,
-			@RequestParam(value="parkingImg", required=true) MultipartFile[] parkingImg,
-			@RequestParam(value="barginCopy", required=true) MultipartFile[] barginCopy) {
+	public @ResponseBody String bargainAdd(BargainBean bean) {
 		String result = "添加失败";
-		bean.setImg(FileUpUtil.fileUpUtil(barginCopy, request, "/images/bargain").get(0));
 		boolean re = service.bargainAdd(bean);
 		if (re) {
 			result = "添加成功";
-			List<String> list = FileUpUtil.fileUpUtil(parkingImg, request, "/images/otherparking");
-			String[] imgPath = new String[list.size()];
-			list.toArray(imgPath);
-			otherParkingService.addOtherParking(bean, parkingAddress, parkingNumber, imgPath, price, startNumber, endNumber);
 		}
 		return result;
 	}
@@ -63,7 +40,7 @@ public class BargainController {
 		}
 		return result;
 	}
-	
+
 	@RequestMapping("bargainUpdate.do")
 	public @ResponseBody String bargainUpdate(BargainBean bean) {
 		String result = "更改失败";
@@ -73,12 +50,7 @@ public class BargainController {
 		}
 		return result;
 	}
-	/**
-	 * 查看第三方合约
-	 * @param bean
-	 * @param page
-	 * @return
-	 */
+
 	@RequestMapping("bargainSelect.do")
 	public ModelAndView bargainSelect(BargainBean bean,Integer page) {
 		ModelAndView mav = new ModelAndView();
@@ -97,11 +69,7 @@ public class BargainController {
 
 		return mav;
 	}
-	/**
-	 * 查看所有第三方合约
-	 * @param page
-	 * @return
-	 */
+
 	@RequestMapping("allBargainSelect.do")
 	public ModelAndView allBargainSelect(Integer page) {
 		ModelAndView mav = new ModelAndView();
@@ -120,11 +88,7 @@ public class BargainController {
 
 		return mav;
 	}
-	/**
-	 * 查询在用的合约
-	 * @param page
-	 * @return
-	 */
+
 	@RequestMapping("findUseingBargain.do")
 	public ModelAndView findUseingBargain(Integer page) {
 		ModelAndView mav = new ModelAndView();
@@ -143,11 +107,7 @@ public class BargainController {
 
 		return mav;
 	}
-	/**
-	 * 查看已废弃的合约
-	 * @param page
-	 * @return
-	 */
+
 	@RequestMapping("findUnuseingBargain.do")
 	public ModelAndView findUnseingBargain(Integer page) {
 		ModelAndView mav = new ModelAndView();
@@ -166,14 +126,68 @@ public class BargainController {
 
 		return mav;
 	}
-	
-
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		format.setLenient(true);  //是否需要严格转化
+	/**
+	 * 管理员根据条件查询执行中第三方合同
+	 * @param page
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("queryOutUseingBargain.do")
+	public ModelAndView queryUseingBargainByCondition(Integer page,String condition){
+		ModelAndView mv = new ModelAndView();
+		if(condition!=null){
+			PageHelper.startPage(page,10,true);
+			List<BargainBean> list = service.queryUseingBargainByCondition(condition);
+			PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(list);
+			mv.addObject("pageinfo", pageInfo);
+			mv.addObject("list",list);
+			mv.setViewName("views/out_contract_info.jsp");
+		}
+		return mv;
 		
-		//使用springmvc封装好的类进行格式转换
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
+	}
+	
+	/**
+	 * 管理员根据条件查询第三方历史合同
+	 * @param page
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("queryOutHistoryBargain.do")
+	public ModelAndView queryHistoryBargainByCondition(Integer page,String condition){
+		ModelAndView mv = new ModelAndView();
+		if(condition!=null){
+			PageHelper.startPage(page,10,true);
+			List<BargainBean> list = service.queryHistoryBargainByCondition(condition);
+			PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(list);
+			mv.addObject("pageinfo", pageInfo);
+			mv.addObject("list",list);
+			mv.setViewName("views/out_history_contract.jsp");
+		}
+		return mv;
+		
+	}
+	/**
+	 * 显示合约详情
+	 * @param id
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("showOutDetailsBargain.do")
+	public Map<String, Object> showDetailsBargain(int id){
+		Map<String, Object> map = new HashMap<String, Object>();
+		BargainBean bean = service.showDetailsBargain(id);		
+		List<OtherParkingBean> list = bean.getParking();
+		String num = "";
+		for (int i = 0; i < list.size(); i++) {
+			if(i==0){
+				num=list.get(i).getParkingNum();
+			}
+			num+="、"+list.get(i).getParkingNum();
+		}
+		map.put("bargin", bean);
+		map.put("carNum", num);
+		return map;
+		
 	}
 }

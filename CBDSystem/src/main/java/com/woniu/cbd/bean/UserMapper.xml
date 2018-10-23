@@ -17,7 +17,6 @@
 	</select>
 	<!--UserBean -->
 	<resultMap type="UserBean" id="user">
-	    <result property="id" column="u_id"/>
 		<result property="realName" column="u_realname" />
 		<result property="address" column="u_address" />
 		<result property="tel" column="u_tel" />
@@ -31,8 +30,8 @@
 
 	
 	<insert id="addUserInfor" parameterType="UserBean">
-		insert into t_user_info(u_l_id,u_address,u_email,u_idcard,u_profession,u_realname,u_tel
-		) values(#{login.id},#{address},#{email},#{idcard},#{job},#{realName},#{tel});
+		insert into t_user_info(u_address,u_email,u_idcard,u_profession,u_realname,u_tel
+		) values(#{address},#{email},#{idcard},#{job},#{realName},#{tel});
 	</insert>
 	
 	<insert id="addUser" parameterType="LoginBean" useGeneratedKeys="true" keyProperty="id">
