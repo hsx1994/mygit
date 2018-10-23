@@ -70,13 +70,16 @@ public class CompanyBargainController {
 	}
     //企业查看合约
 	@RequestMapping("companyBargainSelect.do")
-	public ModelAndView companyBargainSelect(CompanyBargainBean bean,Integer page) {
+	public ModelAndView companyBargainSelect(CompanyBargainBean bean) {
+		bean.setId(1);
+		System.out.println(bean);
 		ModelAndView mav = new ModelAndView();
-
+		int page = 1 ;
 		PageHelper.startPage(page,10,true);
 		List<CompanyBargainBean> bargain = service.companyBargainSelect(bean);
+		System.out.println(bargain);
 		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(bargain);
-		
+		System.out.println(pageInfo);
 		if(bargain != null){
 			mav.addObject("pageinfo", pageInfo);
 			mav.addObject("list",bargain);
@@ -89,9 +92,9 @@ public class CompanyBargainController {
 	}
 
 	@RequestMapping("allCompanyBargainSelect.do")
-	public ModelAndView allCompanyBargainSelect(Integer page) {
+	public ModelAndView allCompanyBargainSelect() {
 		ModelAndView mav = new ModelAndView();
-		
+		int page = 1;
 		PageHelper.startPage(page,10,true);
 		List<CompanyBargainBean> bargain = service.allCompanyBargainSelect();
 		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(bargain);

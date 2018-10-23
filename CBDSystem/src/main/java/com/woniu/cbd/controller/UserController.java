@@ -3,6 +3,7 @@ package com.woniu.cbd.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -140,20 +141,32 @@ public class UserController {
 		}
 		return result;
 	}
-	
-	
+
+	//查看个人信息
+	@RequestMapping("look.do")
+	public ModelAndView findUserInfo() {
+		ModelAndView mav = new ModelAndView();
+		int id = 1;
+		UserBean bean = user.findUserInfo(id);
+		mav.addObject("one", bean);
+		mav.setViewName("jsp/LookOneMyself.jsp");
+
+		return mav;
+	}
+
 	/***
 	 * 修改企业信息是否成功
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping("companyUpdate.do")
-	public String updateCompany(@Validated CompanyInfoBean company){
-		int row = user.updateCompany(company);
-		if(row>0){
-			return "/某页面";	
-		}else{
-			return "/ModificationPersonal.jsp";	
+			
+	public String updateCompany(@Validated CompanyInfoBean company) {
+		boolean row = user.updateCompany(company);
+		if (row) {
+			return "/three.jsp";
+		} else {
+			return "/ModificationPersonal.jsp";
+
 		}
 	}
 	

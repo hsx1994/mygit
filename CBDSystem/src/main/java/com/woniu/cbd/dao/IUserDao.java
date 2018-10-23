@@ -49,4 +49,10 @@ public interface IUserDao {
 	 */
 
 	public int updateCompany(CompanyInfoBean company);
+	
+	//查看个人信息
+	
+	public UserBean findUserInfo(int id);
+	//查看公司信息
+	public CompanyInfoBean findCompanyInfo(int id);
 }

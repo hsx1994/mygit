@@ -49,6 +49,8 @@ public interface IUserService {
 	//用于查包租婆或抢租客表的id
 	public int findIdByLid(int lid);
 
+
+	//修改个人信息
 	public boolean updateUser(UserBean bean);
 	/***
 	 * 修改数据库中企业信息
@@ -56,5 +58,10 @@ public interface IUserService {
 	 * @return
 	 */
 
-	public int updateCompany(CompanyInfoBean company);
+	public boolean updateCompany(CompanyInfoBean company);
+	
+	//查看个人信息
+	public UserBean findUserInfo(int id);
+	//查看企业信息
+	public CompanyInfoBean findCompanyInfo(int id);
 }

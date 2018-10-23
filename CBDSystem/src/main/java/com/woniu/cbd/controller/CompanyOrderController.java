@@ -20,7 +20,9 @@ public class CompanyOrderController {
 
 	// 前台企业查看自己订单
 	@RequestMapping("selectcompanyorder.do")
-	public ModelAndView SelectCompanyOrder(Integer id,Integer page) {
+	public ModelAndView SelectCompanyOrder() {
+		int id = 1;
+		int page = 2;
 		ModelAndView mav = new ModelAndView();
 
 		PageHelper.startPage(page,10,true);
