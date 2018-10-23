@@ -98,7 +98,7 @@
                  </table>
                  <table width="100%" border="0" cellspacing="0" cellpadding="0" id="parking">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">车&nbsp; 位&nbsp; 地&nbsp; 址：车&nbsp; 位&nbsp; 编&nbsp; 号：</td>
+                        <td align="right" valign="middle" class="borderright borderbottom bggray">车&nbsp; 位&nbsp; 地&nbsp; 址：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
                             <%-- <input type="text" name="parkingNumber" value="${parkingNumber }" class="text-word" id="5"> --%>
                             <div class="address"><select></select></div>

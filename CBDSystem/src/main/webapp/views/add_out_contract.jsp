@@ -107,15 +107,15 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">车位地址：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="parkingAddress" value="${parkingNumber }" class="text-word" id="5">
+                            <input type="text" name="parkingAddress" value="${parkingNumber }" class="text-word" style="width: 230px">
                         </td>
                         <td align="right" valign="middle" class="borderright borderbottom bggray">车位编号：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="parkingNumber" value="${address }" class="text-word" id="6">
+                            <input type="text" name="parkingNumber" value="${address }" class="text-word" style="width: 230px">
                         </td>
                         <td align="right" valign="middle" class="borderright borderbottom bggray">小时单价：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="price" value="${price }" class="text-word" >
+                            <input type="text" name="price" value="${price }" class="text-word" style="width: 230px">
                         </td>
                         <td align="right" valign="middle" class="borderright borderbottom bggray">车位图片：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
@@ -130,23 +130,23 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">车位地址：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="parkingAddress" value="${parkingNumber }" class="text-word" >
+                            <input type="text" name="parkingAddress" value="${parkingNumber }" class="text-word" style="width: 230px">
                         </td>
                         <td align="right" valign="middle" class="borderright borderbottom bggray">开始编号：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="startNumber" value="" class="text-word" >
+                            <input type="text" name="startNumber" value="" class="text-word" style="width: 230px">
                         </td>
                         <td align="right" valign="middle" class="borderright borderbottom bggray">结束编号：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="endNumber" value="" class="text-word" >
+                            <input type="text" name="endNumber" value="" class="text-word" style="width: 230px">
                         </td>
                         <td align="right" valign="middle" class="borderright borderbottom bggray">小时单价：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="price" value="${price }"class="text-word" >
+                            <input type="text" name="price" value="${price }"class="text-word"  style="width: 230px">
                         </td>
                         <td align="right" valign="middle" class="borderright borderbottom bggray">车位图片：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="file" name="parkingImg">
+                            <input type="file" name="parkingImg" style="width: 230px">
                         </td>
                     </tr>
                 </table>
