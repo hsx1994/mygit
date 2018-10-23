@@ -37,8 +37,8 @@
 						<div class="item col-xs-12"><span class="intelligent-label f-fl"><b class="ftx04">*</b>用户角色： </span>
 							<select class="required" id="role" name="role" data-valid="isNonEmpty" data-error="角色不能为空">
 								<option></option>
-								<option value="包租用户" style="height:">包租婆</option>
-								<option value="抢租用户">抢租客</option>
+								<option value="包租婆" style="height:">包租婆</option>
+								<option value="抢租客">抢租客</option>
 							</select>
 					</div>
 					
@@ -47,7 +47,7 @@
 								<input type="text" maxlength="20" class="txt03 f-r3 required"
 									tabindex="1" data-valid="isNonEmpty||between:3-20||isUname"
 									data-error="用户名不能为空||用户名长度3-20位||只能输入中文、字母、数字、下划线，且以中文或字母开头" 
-									id="name" name="name" /><button onclick="checkUserName()">检测(必须)</button>
+									id="name" name="name"  onchange="checkUserName()"/>
 									<span class="ie8 icon-close close hide"></span> 
 									<label class="icon-sucessfill blank hide"></label> 
 									<label class="focus" id="err"><span>3-20位，中文、字母、数字、下划线的组合，以中文或字母开头</span></label>
@@ -254,7 +254,7 @@ $(function(){
 				$("#times").text(c);
 			},
 			after:function(){
-				window.location.href="/jsp/login.jsp";		
+				window.location.href="/CBDSystem/jsp/login.jsp";		
 			}
 		});		
 	});	

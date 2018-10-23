@@ -63,11 +63,13 @@
 						id="picturecode" style="width:100px" /></a>
 					<lable>
 					<font color="red">${errorMsg}</font></lable>
+					<input type="hidden" name="path" value="/jsp/login.jsp" />
 					<br />
 					<button type="submit">登录</button>
-					<a href="/CBDSystem/jsp/regist.jsp"><button type="button">注册</button></a>
-					<input type="hidden" name="path" value="/jsp/login.jsp" />
+
+					<button type="button" onclick="goRegist()">注册</button>									
 				</form>
+				
 			</div>
 		</div>
 	</div>
@@ -78,6 +80,10 @@
 		}
 		getPictureCode();
 		
+		getPictureCode();		
+		function goRegist(){
+			window.location.href="regist.jsp"
+		}
 	</script>
 
 	<!-- Javascript -->
