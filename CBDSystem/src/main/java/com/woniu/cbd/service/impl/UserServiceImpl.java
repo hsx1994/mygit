@@ -1,15 +1,14 @@
 package com.woniu.cbd.service.impl;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.woniu.cbd.bean.CompanyInfoBean;
-import com.woniu.cbd.bean.ComplainBean;
+
 import com.woniu.cbd.bean.LoginBean;
-import com.woniu.cbd.bean.OrderBean;
-import com.woniu.cbd.bean.ParkingBean;
+
+
 import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.dao.IUserDao;
 import com.woniu.cbd.service.IUserService;
