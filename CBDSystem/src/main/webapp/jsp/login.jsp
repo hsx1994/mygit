@@ -65,7 +65,7 @@
 					<font color="red">${errorMsg}</font></lable>
 					<br />
 					<button type="submit">登录</button>
-					<button type="button" onclick="goRegist()">注册</button>
+					<a href="/CBDSystem/jsp/regist.jsp"><button type="button">注册</button></a>
 					<input type="hidden" name="path" value="/jsp/login.jsp" />
 				</form>
 			</div>
@@ -78,9 +78,6 @@
 		}
 		getPictureCode();
 		
-		function goRegist(){
-			window.location.href="/jsp/register.jsp"
-		}
 	</script>
 
 	<!-- Javascript -->

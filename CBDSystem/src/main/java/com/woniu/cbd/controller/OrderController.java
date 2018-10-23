@@ -48,7 +48,26 @@ public class OrderController {
 		return mav;
 
 	}
+	@RequestMapping("/showUserOrder.do")
+	public ModelAndView showUserOrder() {
+		ModelAndView mav = new ModelAndView();
+		int id =1;
+		int page = 2;
+		PageHelper.startPage(page, 5, true);
+		List<OrderBean> bean = order.showLog(id);
+		PageInfo<OrderBean> pageInfo = new PageInfo<OrderBean>(bean);
 
+		if (bean != null) {
+			mav.addObject("pageinfo", pageInfo);
+			mav.addObject("list", bean);
+
+		} else {
+			mav.addObject("Lease", "尚未租过车位");
+		}
+		mav.setViewName("/jsp/userorder.jsp");
+		return mav;
+
+	}
 	// 包租婆查看自己的被租赁记录
 	@RequestMapping("/selectlog.do")
 	public ModelAndView selectLog() {
