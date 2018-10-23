@@ -122,7 +122,6 @@ public class ParkingController {
 		mav.addObject("paging", pageInfo);
 		mav.addObject("all", bean);
 		mav.setViewName("/jsp/ShowParkingSpace.jsp");
-		System.out.println(page);
 		return mav;
 	}
 

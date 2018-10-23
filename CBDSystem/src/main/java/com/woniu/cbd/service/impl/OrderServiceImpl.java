@@ -53,7 +53,6 @@ public class OrderServiceImpl implements IOrderService {
 		List<OrderBean> orderList = orderDao.findByParkingId(order.getParking().getId());
 
 		if (orderList.size() != 0) {
-			System.out.println("进入判断");
 			b = true;
 			for (OrderBean orderBean : orderList) {
 				// 如果订单开始时间在其他订单时间段内,订单不成立

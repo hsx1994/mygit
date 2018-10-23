@@ -32,7 +32,7 @@ public class CompanyBargainController {
 
 	@RequestMapping("/companyBargainAdd.do")
 	public @ResponseBody String companyBargainAdd(CompanyBargainBean bean,String[] parkingNumber,String[] address) {
-		System.out.println(bean);
+		
 		CompanyInfoBean company = cis.findByCompanyName(bean.getCompany().getComName());
 		if(company == null){
 			return "该企业用户不存在";

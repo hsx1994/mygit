@@ -16,20 +16,6 @@ public class RegisterAction {
 	@Autowired
 	private IUserService service;
 
-	@RequestMapping("/personl.do")
-	/***
-	 * 注册是否成功
-	 * @param user
-	 * @return
-	 */
-	
-	public @ResponseBody void addUser(RegisterBean user) {
-		System.out.println(user);
-		}
-	
-		
-
-	
 	/***
 	 * 修改个人信息是否成功
 	 * @param user
