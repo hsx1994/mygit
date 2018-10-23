@@ -37,8 +37,8 @@
 						<div class="item col-xs-12"><span class="intelligent-label f-fl"><b class="ftx04">*</b>用户角色： </span>
 							<select class="required" id="role" name="role" data-valid="isNonEmpty" data-error="角色不能为空">
 								<option></option>
-								<option value="包租用户" style="height:">包租婆</option>
-								<option value="抢租用户">抢租客</option>
+								<option value="包租婆" style="height:">包租婆</option>
+								<option value="抢租客">抢租客</option>
 							</select>
 					</div>
 					

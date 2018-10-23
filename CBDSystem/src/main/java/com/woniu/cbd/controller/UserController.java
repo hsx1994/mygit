@@ -40,6 +40,7 @@ public class UserController {
 	@RequestMapping("regist.do")
 	public @ResponseBody String Regist(HttpServletRequest request, UserBean bean, String code) {
 		HttpSession session = request.getSession();
+		
 		// 获取session给中的验证码
 		String num = (String) session.getAttribute("code");
 		// 验证验证码

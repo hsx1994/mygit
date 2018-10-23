@@ -29,7 +29,7 @@ public class MyFormAuthenticationFilter extends FormAuthenticationFilter {
 			log.trace("Adding login url to applied paths.");
 		}
 
-		System.out.println("这是登录失败需要返回的默认路径");
+//		System.out.println("这是登录失败需要返回的默认路径");
 		this.appliedPaths.put(getLoginUrl(), null);
 	}
 
