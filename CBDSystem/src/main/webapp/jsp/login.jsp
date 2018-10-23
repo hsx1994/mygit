@@ -33,7 +33,7 @@
 					</h1>
 				</div>
 				<div class="links span8">
-					<a class="home" href="ShowParkingSpace.jsp" rel="tooltip" data-placement="bottom"
+					<a class="home" href="/index.jsp" rel="tooltip" data-placement="bottom"
 						data-original-title="Home"></a> <a class="blog" href=""
 						rel="tooltip" data-placement="bottom" data-original-title="Blog"></a>
 				</div>
@@ -79,7 +79,7 @@
 		getPictureCode();
 		
 		function goRegist(){
-			window.location.href="/jsp/PersonalRegister.jsp"
+			window.location.href="/jsp/register.jsp"
 		}
 	</script>
 
