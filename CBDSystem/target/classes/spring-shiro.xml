@@ -40,7 +40,7 @@
 			<value>	
 				<!-- 默认访问官网页面，待改showall.do?page=1 -->
 				/picturecode =anon		
-				/index=anon
+				/index*=anon
 				/alipay/**=anon
 				/bootstrap/**=anon
 				/company/**=anon

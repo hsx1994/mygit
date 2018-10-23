@@ -1,6 +1,5 @@
 package com.woniu.cbd.controller;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -13,6 +12,7 @@ import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -36,12 +36,14 @@ public class ParkingController {
 
 	// 包租婆批量添加车位信息
 	@RequestMapping("/application.do")
-	public @ResponseBody String applicationParking(HttpServletRequest request, MultipartFile imgFile, ParkingBean bean,
-			MultipartFile ImgFile, HttpServletRequest req) {
+	public @ResponseBody String applicationParking(HttpServletRequest request,
+			MultipartFile imgFile, ParkingBean bean, MultipartFile ImgFile,
+			HttpServletRequest req) {
 
 		// 获取上传文件的文件名
 		String img = UUID.randomUUID() + "_" + imgFile.getOriginalFilename();
-		String certImg = UUID.randomUUID() + "_" + ImgFile.getOriginalFilename();
+		String certImg = UUID.randomUUID() + "_"
+				+ ImgFile.getOriginalFilename();
 		// 将文件名放入对象中
 		bean.setImg(img);
 		bean.setCertImg(certImg);
@@ -62,9 +64,11 @@ public class ParkingController {
 			f.mkdirs();
 		g.mkdirs();
 		// 创建服务器路径下的文件用uuid命名
-		File file = new File(path, UUID.randomUUID() + "_" + imgFile.getOriginalFilename());
+		File file = new File(path, UUID.randomUUID() + "_"
+				+ imgFile.getOriginalFilename());
 		// 创建服务器路径下的文件用uuid命名
-		File file1 = new File(sum, UUID.randomUUID() + "_" + ImgFile.getOriginalFilename());
+		File file1 = new File(sum, UUID.randomUUID() + "_"
+				+ ImgFile.getOriginalFilename());
 		try {
 			// 将文件保存到服务器img文件夹
 			imgFile.transferTo(file);
@@ -93,7 +97,8 @@ public class ParkingController {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		format.setLenient(false);// 是否严格按照格式
 
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(format,
+				true));
 
 	}
 
@@ -108,7 +113,7 @@ public class ParkingController {
 		return mav;
 
 	}
-	
+
 	// 抢租客查看所有上架车位
 	@ResponseBody
 	@RequestMapping("showall.do")
@@ -121,8 +126,7 @@ public class ParkingController {
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
 		mav.addObject("paging", pageInfo);
 		mav.addObject("all", bean);
-		mav.setViewName("/jsp/ShowParkingSpace.jsp");
-		System.out.println(page);
+		mav.setViewName("/index.jsp");
 		return mav;
 	}
 
@@ -141,11 +145,11 @@ public class ParkingController {
 	// 抢租客车位号模糊查询上架车位
 
 	@RequestMapping("findByNum.do")
-
 	public ModelAndView selectParkingByNum(String num, Integer page) {
 
 		ModelAndView mav = new ModelAndView();
 		List<ParkingBean> bean = park.selectParkingByNum(num);
+		System.out.println("num:"+num);
 		if (bean != null) {
 			mav.addObject("num", bean);
 			mav.setViewName("");
@@ -159,7 +163,6 @@ public class ParkingController {
 
 	// 抢租客根据价格查询上架车位
 	@RequestMapping("findByPrice.do")
-
 	public ModelAndView selectParking(Integer price, Integer page) {
 
 		ModelAndView mav = new ModelAndView();
@@ -184,10 +187,10 @@ public class ParkingController {
 	// 包租婆查看自己的车位信息
 	@RequestMapping("/showme.do")
 	public ModelAndView showMe(HttpServletRequest request, Integer page) {
-        //在session中取得当前登录的包租婆id
-		/*int id=request.getSession().getAttribute("");*/
-		int id=1;//测试使用
-		
+		// 在session中取得当前登录的包租婆id
+		/* int id=request.getSession().getAttribute(""); */
+		int id = 1;// 测试使用
+
 		ModelAndView mav = new ModelAndView();
 		PageHelper.startPage(page, 8, true);
 		List<ParkingBean> bean = park.showMe(id);
@@ -203,22 +206,26 @@ public class ParkingController {
 		mav.setViewName("063/ShowLandladyParking.jsp");
 		return mav;
 	}
+
 	/**
 	 * 通过ID查询单个车位信息
+	 * 
 	 * @param id
 	 * @return
 	 */
 	@RequestMapping("showDetailsParking.do")
-	public ModelAndView findParkingById(Integer id){
+	public ModelAndView findParkingById(Integer id) {
 		ModelAndView mav = new ModelAndView();
 		ParkingBean bean = park.findParkingById(id);
-		
-		mav.addObject("park",bean);
+
+		mav.addObject("park", bean);
 		mav.setViewName("views/landlord_carpart_check.jsp");
 		return mav;
 	}
+
 	/**
 	 * 通过ID删除车位
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -247,7 +254,7 @@ public class ParkingController {
 
 		return mav;
 	}
-	
+
 	@RequestMapping("passApply.do")
 	public @ResponseBody String passApply(Integer id) {
 		String result = "通过失败";
@@ -267,18 +274,15 @@ public class ParkingController {
 		}
 		return result;
 	}
-	
-	/**
-	 * springmvc提供的数据类型转换器
-	 * @param binder
-	 */
+
 	@org.springframework.web.bind.annotation.InitBinder
 	public void initBinder(WebDataBinder binder) {
-		
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		format.setLenient(false);  //是否需要严格转化
-		
-		//使用springmvc封装好的类进行格式转换
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		format.setLenient(false); // 是否需要严格转化
+
+		// 使用springmvc封装好的类进行格式转换
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(format,
+				true));
 	}
 }
+
