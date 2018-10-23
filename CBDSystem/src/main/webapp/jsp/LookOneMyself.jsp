@@ -1,14 +1,18 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>抢租客修改信息</title>
-<link type="text/css" href="../css/csss.css" rel="stylesheet" />
-<script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
-<script type="text/javascript" src="../js/js.js"></script>
+<title>包租用户主页</title>
+<link type="text/css" href="/CBDSystem/css/csss.css" rel="stylesheet" />
+<script type="text/javascript" src="/CBDSystem/js/jquery-1.9.11.min.js"></script>
+<script type="text/javascript" src="/CBDSystem//js/js.js"></script>
 
 </head>
 
@@ -18,105 +22,111 @@
    <a href="login.html" style="color:#C94E13;">请登录</a> 
    <a href="reg.html">注册</a>
    <ul class="topNav">
-    <li><a href="order.html">我的订单 </a></li>
-    <li class="gouwuche"><a href="car.html">购物车</a> <strong style="color:#C94E13;">3</strong></li>
-    <li class="shoucangjia"><a href="shoucang.html">收藏夹</a></li>
-    <li class="kefus"><a href="#">联系客服</a></li>
-<li><a href="#" class="lan">中文</a></li>
-    <li><a href="#" class="lan">English</a></li>
+    <li><a href="order.html"> </a></li>
+    <li class="gouwuche"><a href="car.html"></a> <strong style="color:#C94E13;">3</strong></li>
+    <li class="shoucangjia"><a href="shoucang.html"></a></li>
+    <li class="kefus"><a href="#"></a></li>
+<li><a href="#" class="lan"></a></li>
+    <li><a href="#" class="lan"></a></li>
     <div class="clears"></div>
    </ul><!--topNav/-->
   </div><!--top/-->
  </div><!--hrader/-->
  <div class="mid">
   <h1 class="logo" style="text-align:left;">
-  <a href="index.html"><img src="../images/logo.png" width="304" height="74" /></a>
+  <a href="index.html"><img src="/CBDSystem/images/logo.png" width="304" height="74" /></a>
   </h1>
   <form action="#" method="get" class="subBox">
    <div class="subBox2">
     <input type="text" class="subText" />
-    <input type="image" src="../images/sub.jpg" width="95" height="32" class="subImg" />
+    <input type="image" src="/CBDSystem/images/sub.jpg" width="95" height="32" class="subImg" />
     <div class="hotci">
- 
+    
    </div><!--hotci/-->
    </div><!--subBox2/-->
   </form><!--subBox/-->
   <div class="ding-gou">
    <div class="ding">
-    <a href="order.html"><img src="../images/dingdan.jpg" width="106" height="32" /></a>
+    <a href="order.html"><img src="/CBDSystem/images/dingdan.jpg" width="106" height="32" /></a>
    </div><!--ding/-->
    <div class="gou">
-    <a href="car.html"><img src="../images/gouwuche.jpg" width="126" height="32" /></a>
+   <!--  <a href="car.html"><img src="../images/gouwuche.jpg" width="126" height="32" /></a> -->
    </div><!--gou/-->
    <div class="clears"></div>
   </div><!--ding-gou/-->
  </div><!--mid-->
  <div class="navBox navBg3">
   <ul class="nav">
-   <li><a href="index.html">首页</a></li>
-   <li><a href="buy.html">买家</a></li>
-   <li><a href="sell.html">卖家</a></li>
-   <li class="navCur"><a href="vip.html">会员中心</a></li>
-   <li><a href="xuanshang.html">悬赏榜</a></li>
-   <li><a href="luntan.html" class="luntan">论坛</a></li>
-   <li><a href="help.html">帮助</a></li>
+   <li><a href="/CBDSystem/jsp/one.jsp">首页</a></li>
+   <li><a href=""></a></li>
+   <li><a href=""></a></li>
+   <li><a href="/CBDSystem/jsp/one.jsp">用户中心</a></li>
+   <li><a href=""></a></li>
+   <li><a href=""></a></li>
+   <li><a href=""></a></li>
    <div class="clears"></div>
   </ul><!--nav/-->
  </div><!--navBox/-->
  <div class="vipBox">
   <div class="vipLeft">
-   <h2 class="headImg"><img src="../images/vipImg.jpg" width="183" height="169" /></h2>
-   <h3 class="vipName">测试webqin</h3>
+   <h2 class="headImg"><img src="/CBDSystem/images/vipImg.jpg" width="183" height="169" /></h2>
+   <h3 class="vipName">用户</h3>
    <dl class="vipNav">
-    <dt class="vip_1 vipCur">买家中心</dt>
-     <dd><a href="vipOrder.html">我的订单</a></dd>
-     <dd><a href="vipShoucang.html">收藏关注</a></dd>
-    <dt class="vip_2">账户设置</dt>
-     <dd class="ddCur"><a href="#">个人信息</a></dd>
-     <dd><a href="#">个人信息修改</a></dd>
-     <dd><a href="vipAddress.html">收货地址</a></dd>
-     <dd><a href="vipXiaofei.html">消费记录</a></dd>
-    <dt class="vip_3">客户服务</dt>
-     <dd><a href="vipQuxiao.html">取消订单/退货</a></dd>
+    <dt class="vip_1 vipCur">账户中心</dt>
+     <dd><a href="/CBDSystem/jsp/LookMyCar.jsp">我的车位</a></dd>
+     <dd><a href="/CBDSystem/jsp/LookOneUser.jsp">申请上架车位</a></dd>
+     <dd><a href="/CBDSystem/jsp/LookOnCar.jsp">已上架车位</a></dd>
+    <dt class="vip_2">个人</dt>
+     <dd class="ddCur"><a href="/CBDSystem/jsp/one.jsp">个人信息</a></dd>
+     <dd><a href="/CBDSystem/jsp/RentUser.jsp">修改个人信息</a></dd>
+     <dd><a href=""></a></dd>
+     <dd><a href="/CBDSystem/jsp/LookCar.jsp">查看租赁记录</a></dd>
+    <dt class="vip_3"></dt>
+     <dd><a href="vipQuxiao.html"></a></dd>
      
-     <dd><a href="vipTousu.html">我的投诉</a></dd>
+     <dd><a href="vipTousu.html"></a></dd>
    </dl><!--vipNav/-->
   </div><!--vipLeft/-->
-  <div class="vipRight">
-   <h2 class="vipTitle">个人信息修改</h2>
+  <div class="vipRight">  
+   <h2 class="vipTitle">个人信息</h2>
    
-   <form action="/look.do" method="post">
-       <table class="grzx" width="705" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td width="90"><span>*</span>密码：</td>
-          <td width="430"><input type="text" name="password"></td>
-          <td rowspan="8" valign="top"><div id="tx"></div>
-            <span class="file"><input name="" type="file" class="file1" /></span></td>
-        </tr>
-       
-        <tr>
-          <td>&nbsp;邮箱:</td>
-          <td><input type="text" name="email" /></td>
-        </tr>
-        <tr>
-          <td>&nbsp;住址:</td>
-          <td><input type="text" name="address" ></td>
-        </tr>
-        <tr>
-          <td>&nbsp;&nbsp;电话：</td>
-          <td><input type="text" name="tel" ></td>
-        </tr>
-        <tr>
-          <td>&nbsp;职业：</td>
-          <td><input type="text" name="tel" ></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td><button  type="submit" >返回</button></td>
-        </tr>
-      </table>
-    
-      </form>
+    <div>
+  	  	<table  class="grzx" width="705" border="0" cellspacing="0" cellpadding="0">
+  	  	<!-- <td width="90"><button type="submit">查看</button><br/> -->
+  	  			</td>
+  	  	<%-- <c:forEach items="${one}" var="obj"> --%>
+  	  		<tr>
+  	  			<td width="90"><span>*</span>真实姓名:&nbsp;${one.realName}<br/>
+  	  			</td>
+  	  		</tr>
+  	  		<tr>
+  	  			<td width="90"><span>*</span>身份证号  :&nbsp;${one.idcard}<br/>
+  	  			</td>
+  	  		</tr>
+  	  		<tr>
+  	  			<td width="90"><span>*</span>电话 :&nbsp;${one.tel }<br/>
+  	  			</td>
+  	  		</tr>
+  	  		<tr>
+  	  			<td width="90"><span>*</span>住址 :&nbsp;${one.address }<br/>
+  	  			</td>
+  	  		</tr>
+  	  		<tr>
+  	  			<td width="90"><span>*</span> 职业 :&nbsp;${one.job }<br/>
+  	  			</td>
+  	  		</tr>
+  	  		<tr>
+  	  			<td width="90"><span>*</span>邮箱 :&nbsp;${one.email}<br/>
+  	  			</td>
+  	  		</tr>
+  	  		<tr>
+  	  			<td width="90"><a href="CBDSystem/jsp/one.jsp">返回</a><br/>
+  	  			</td>
+  	  		</tr>
+  	  		<%-- </c:forEach> --%>
+        </table>
+  	  </div>
+  	
   </div><!--vipRight/-->
   <div class="clears"></div>
  </div><!--vipBox/-->

@@ -248,10 +248,10 @@ public class ParkingController {
 
 	@RequestMapping("passApplyFail.do")
 	public @ResponseBody String passApplyFail(Integer id) {
-		String result = "失败";
+		String result = "驳回失败";
 		boolean re = park.passApplyFail(id);
 		if (re) {
-			result = "成功";
+			result = "成功驳回";
 		}
 		return result;
 	}
