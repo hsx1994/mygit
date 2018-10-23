@@ -4,6 +4,8 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -17,6 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<script type="text/javascript" src="js/public/jquery.1.9.1.js"></script>
+	<script type="text/javascript" src="js/datatime.js"></script>
 
   </head>
   <style>
@@ -83,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
         .message {
             float: left;
-            height: 100px;
+            height: 70px;
             width: 500px;
             padding-left: 200px;
             line-height: 100px;
@@ -93,6 +96,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             color: #ff8208;
             font-weight: 700;
             font-size: 22px
+        }
+        .date{
+        	color: #ff8208;
+    		font-weight: 700;
+    		font-size: 18px;
         }
     </style>
   <body>
@@ -105,10 +113,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <div class="main">
         <div class="image"><img alt="支付二维码" src="${QRcode}"></div>
-        <div class="message">收款方:CBDSystem停车租赁公司</div>
-        <div class="message">订单编号:${order.id}</div>
+        <div class="message">收款方:  <span class="date">CBDSystem停车租赁公司</span></div>
+        <div class="message">订单编号:  <span class="date">${order.id}</span></div>
+        <div class="message">车位位置:  <span class="date">${order.parking.address}  ${order.parking.parkingNum}</span></div>
+        <div class="message"> 时间:  <span class="date"><fmt:formatDate value="${order.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/></span>  到  <span class="date"><fmt:formatDate value="${order.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/></span></div>
         <div class="message">金额:<span class="pay"> ${order.pay}</span>元</div>
     </div>
+    <div><fmt:formatDate value="${order.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
   </body>
   <script type="text/javascript">
  	function QueryState(){

@@ -84,8 +84,11 @@ public class CompanyInfoController {
 		mv.addObject("result", result);
 		
 		return result;
-		
-		
 	}
-
+	// 车位区域信息
+		@RequestMapping("/showCompany.do")
+		public @ResponseBody List<CompanyInfoBean> showParkingAddress() {
+			List<CompanyInfoBean> list = comService.showAllCompany();
+			return list;
+		}
 }

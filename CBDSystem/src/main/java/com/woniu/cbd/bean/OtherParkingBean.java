@@ -20,7 +20,7 @@ public class OtherParkingBean implements Serializable {
 	//第三方提供的车位图片
 	private String img;
 	//第三方提供的车位价格
-	private int price;
+	private double price;
 	//第三方提供的车位开始时间
 	private Date startTime;
 	//第三方提供的车位结束时间
@@ -66,10 +66,10 @@ public class OtherParkingBean implements Serializable {
 	public void setImg(String img) {
 		this.img = img;
 	}
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	public Date getStartTime() {

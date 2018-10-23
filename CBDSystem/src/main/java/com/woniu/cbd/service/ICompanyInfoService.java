@@ -39,7 +39,7 @@ public interface ICompanyInfoService {
 	 * @param lid
 	 * @return
 	 */
-	public int findIdByLid(int lid); 
+	public int findIdByLid(int lid);
 		
 
 }

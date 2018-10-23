@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdministratorMapper">
+	
+	<!-- 根据登录表的id查管理员表的Id -->
+	<select id="findIdByLid" parameterType="int" resultType="int">
+		select
+		a_id as id from t_administrator where a_l_id=#{lid}
+	</select>
+
+
+	<!-- 普通添加管理员 -->
+	<insert id="addAdmin" parameterType="AdministratorBean" useGeneratedKeys="true" keyProperty="id">
+		insert into
+		t_administrator
+		(a_l_id,a_job_number,a_name,a_tel) values
+		(#{login.id},#{jobNumber},#{realName},#{tel});
+	</insert>
+
+	<!-- 软删除普通管理员 (实质将a_delete置1) -->
+	<delete id="administratorDelete" parameterType="java.lang.Integer">
+		update
+		t_administrator set a_delete=1 where a_id=#{id};
+	</delete>
+
+	<!-- 修改管理员权限信息 <update id="administratorUpdate" parameterType="AdministratorBean"> 
+		update t_administrator set a_limit=#{limit} where a_id=#{id} and a_delete=0 
+		; </update> -->
+
+
+	<!-- 登录时查询管理员信息 -->
+	<select id="administratorSelect" parameterType="LoginBean"
+		resultType="AdministratorBean">
+		select a_id as id,l_name as name,l_password as
+		pass,a_job_number as jobNumber,a_name as realName, a_tel as
+		tel from
+		t_login
+		inner
+		join t_administrator on
+		t_id=a_l_id where
+		t_login.l_role=4
+		and
+		a_delete=0 and l_name=#{name} and
+		l_password=#{password};
+	</select>
+	
+	<!-- 通过登录ID查询单个管理员信息 -->
+	<select id="findByLoginId" parameterType="int" resultMap="map">
+		select * from t_administrator where a_l_id=#{id} and a_delete=0
+	</select>
+	
+	<!-- 通过ID查询单个管理员信息 -->
+	<select id="findById" parameterType="int" resultMap="map">
+		select *
+		from t_administrator where a_id=#{id} and a_delete=0
+	</select>
+	
+	<!-- 查询所有管理员信息 -->
+	<select id="administratorSelectAll" resultMap="map">
+		select * from t_administrator where a_delete=0
+	</select>
+
+	<resultMap type="AdministratorBean" id="map">
+		<id property="id" column="a_id"></id>
+		<result property="jobNumber" column="a_job_number" />
+		<result property="realName" column="a_name" />
+		<result property="tel" column="a_tel" />
+	</resultMap>
+
+	<!-- 修改管理员电话 -->
+	<update id="updateAdmintTel" parameterType="AdministratorBean">
+		update t_administrator set a_tel=#{tel} where a_l_id=#{id}
+	</update>
+</mapper>

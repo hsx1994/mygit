@@ -1,5 +1,4 @@
 package com.woniu.cbd.util;
-/*
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -102,8 +101,6 @@ public class AlipayUtil {
 	                String fileName = String.format("images%sqr-%s.png", File.separator, res.getOutTradeNo());
 	                String filePath = new StringBuilder(basePath).append(fileName).toString();
 
-	                out.println("<img src=\"" + fileName + "\" />");
-	                out.println("filePath:" + filePath);
 	                image =fileName;
 	                ZxingUtils.getQRCodeImge(res.getQrCode(), 256, filePath);
 	                break;
@@ -120,8 +117,7 @@ public class AlipayUtil {
 	                log.error("不支持的交易状态，交易返回异常!!!");
 	                break;
 	        }
-	        out.println(result.getResponse().getBody());
-	       
+	        
 	    }
 		return image;
 	}
@@ -168,4 +164,3 @@ public class AlipayUtil {
 		return payState;
 	}
 }
-*/

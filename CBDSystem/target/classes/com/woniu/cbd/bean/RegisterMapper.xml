@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.woniu.cbd.dao.IUserDao">
+	
+	<insert id="addUserInfor" parameterType="RegisterBean">
+		insert into t_user_info(u_address,u_email,u_idcard,u_profession,u_realname,u_tel
+		) values(#{address},#{email},#{idcard},#{job},#{realName},#{tel});
+	</insert>
+	
+	<insert id="addUser" parameterType="RegisterBean">
+		insert into t_login(l_name,l_password)values(#{name},#{password});
+	</insert>
+	
+
+</mapper>

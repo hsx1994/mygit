@@ -15,6 +15,7 @@ public class FileUpUtil {
 	public static  List<String> fileUpUtil(MultipartFile[] files,HttpServletRequest request,String path) {
 		// 创建文件路径
 		String basePath = request.getSession().getServletContext().getRealPath(path);
+		basePath =basePath+ "/CBDSystem/"+path+"/";
 		File f = new File(basePath);
 		if (!f.exists()) {
 			f.mkdirs();
@@ -24,7 +25,7 @@ public class FileUpUtil {
 		for (int i = 0; i < files.length; i++) {
 			MultipartFile file = files[i];
 			// 循环获取上传文件的文件名
-			String fileName = "/CBDSystem/"+path+"/"+ UUID.randomUUID() + "_" + file.getOriginalFilename();
+			String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
 			
 			temp.add(fileName);
 			// 目标文件

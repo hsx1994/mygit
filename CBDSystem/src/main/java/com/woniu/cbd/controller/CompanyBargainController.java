@@ -147,7 +147,6 @@ public class CompanyBargainController {
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		format.setLenient(false);  //是否需要严格转化
 		
