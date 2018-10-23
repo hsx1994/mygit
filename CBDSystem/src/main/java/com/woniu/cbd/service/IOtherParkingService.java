@@ -17,7 +17,7 @@ public interface IOtherParkingService {
 	 * @return
 	 */
 	public boolean addOtherParking(BargainBean bean,String[] address,
-			String[] parkingNumber,String[] imgPath,double price[],String startNumber,String endNumber); 
+			String[] parkingNumber,String[] imgPath,String[] price,String startNumber,String endNumber); 
 	/**
 	 * 第三方车位批量添加
 	 * @param list

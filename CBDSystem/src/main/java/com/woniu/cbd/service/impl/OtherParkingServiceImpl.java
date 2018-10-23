@@ -29,7 +29,7 @@ public class OtherParkingServiceImpl implements IOtherParkingService {
 	 * @return
 	 */
 	public boolean addOtherParking(BargainBean bean,String[] address,
-			String[] parkingNumber,String[] imgPath,double price[],String startNumber,String endNumber) {
+			String[] parkingNumber,String[] imgPath,String price[],String startNumber,String endNumber) {
 		List<OtherParkingBean> list =new ArrayList<OtherParkingBean>();
 		if (parkingNumber != null && parkingNumber.length != 0) {
 			for (int i = 0; i < address.length; i++) {
@@ -40,7 +40,7 @@ public class OtherParkingServiceImpl implements IOtherParkingService {
 				parkingBean.setStartTime(bean.getStartTime());
 				parkingBean.setEndTime(bean.getEndTime());
 				parkingBean.setImg(imgPath[i]);
-				parkingBean.setPrice(price[i]);
+				parkingBean.setPrice(Double.parseDouble(price[i]));
 				list.add(parkingBean);
 			}
 		}else {
@@ -54,7 +54,7 @@ public class OtherParkingServiceImpl implements IOtherParkingService {
 				parkingBean.setStartTime(bean.getStartTime());
 				parkingBean.setEndTime(bean.getEndTime());
 				parkingBean.setImg(imgPath[0]);
-				parkingBean.setPrice(price[0]);
+				parkingBean.setPrice(Double.parseDouble(price[0]));
 				list.add(parkingBean);
 			}
 		}

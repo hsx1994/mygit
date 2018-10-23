@@ -3,11 +3,9 @@ package com.woniu.cbd.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +23,7 @@ public class OtherParkingController {
 	@Autowired
 	private IOtherParkingService service;
 
-	@RequestMapping("otherParkingAdd.do")
+	@RequestMapping("/otherParkingAdd.do")
 	public @ResponseBody String otherParkingAdd(List<OtherParkingBean> list) {
 		String result = "添加失败";
 		boolean re = service.otherParkingAdd(list);
@@ -59,13 +57,13 @@ public class OtherParkingController {
 	@RequestMapping("allOtherParkingSelect.do")
 	public ModelAndView allOtherParkingSelect(Integer page) {
 		ModelAndView mav = new ModelAndView();
-		
-		PageHelper.startPage(page,10,true);
+
+		PageHelper.startPage(page, 10, true);
 		List<OtherParkingBean> parking = service.allOtherParkingSelect();
 		PageInfo<OtherParkingBean> pageInfo = new PageInfo<OtherParkingBean>(parking);
-		
+
 		mav.addObject("pageinfo", pageInfo);
-		mav.addObject("list",parking);
+		mav.addObject("list", parking);
 		mav.setViewName("views/cbd_carport.jsp");
 
 		return mav;
@@ -73,14 +71,14 @@ public class OtherParkingController {
 
 	// 企业查看自己的所有车位
 	@RequestMapping("showCompanyParkingAll.do")
-	public ModelAndView showComPanyParkingAll(Integer id,Integer page) {
+	public ModelAndView showComPanyParkingAll(Integer id, Integer page) {
 		ModelAndView mav = new ModelAndView();
-		
-		PageHelper.startPage(page,8,true);
+
+		PageHelper.startPage(page, 8, true);
 		List<OtherParkingBean> parking = service.showCompanyParkingAll(id);
 		PageInfo<OtherParkingBean> pageInfo = new PageInfo<OtherParkingBean>(parking);
 		mav.addObject("pageinfo", pageInfo);
-		mav.addObject("list",parking);
+		mav.addObject("list", parking);
 		mav.setViewName("views/cbd_carport.jsp");
 
 		return mav;

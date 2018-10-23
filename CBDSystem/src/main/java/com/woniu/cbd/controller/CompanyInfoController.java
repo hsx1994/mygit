@@ -13,8 +13,6 @@ import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.CompanyInfoBean;
 import com.woniu.cbd.bean.LoginBean;
 import com.woniu.cbd.service.ICompanyInfoService;
-import com.woniu.cbd.service.ILoginService;
-
 /**
  * 企业信息（用户后台管理员查询、新增企业）
  * @author Administrator
@@ -25,7 +23,6 @@ public class CompanyInfoController {
 	
 	@Autowired
 	private ICompanyInfoService comService;
-	private ILoginService logService;
 	/**
 	 * 查询所有企业信息
 	 * @return

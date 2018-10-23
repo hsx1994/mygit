@@ -52,7 +52,7 @@
     </tr>
     <tr>
         <td align="left" valign="top">
-            <form method="post" action="/CBDSystem/bargainAdd.do">
+            <form method="post" action="/CBDSystem/bargainAdd.do" enctype="multipart/form-data">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">合&nbsp; 同&nbsp; 编&nbsp; 号：</td>
@@ -99,7 +99,7 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">合 同 复 印 件：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="img" value="" class="text-word" id="contact_tel">
+                        	<input type="file" name="barginCopy" >
                         </td>
                     </tr>
                  </table>
@@ -107,7 +107,7 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">车位地址：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="address" value="${parkingNumber }" class="text-word" id="5">
+                            <input type="text" name="parkingAddress" value="${parkingNumber }" class="text-word" id="5">
                         </td>
                         <td align="right" valign="middle" class="borderright borderbottom bggray">车位编号：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
@@ -119,7 +119,7 @@
                         </td>
                         <td align="right" valign="middle" class="borderright borderbottom bggray">车位图片：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="file" name="img" >
+                            <input type="file" name="parkingImg" >
                         </td>
                         <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;">
                         	<a href="javascript:addParking()" target="mainFrame" onFocus="this.blur()" class="add">新增车位</a>
@@ -130,11 +130,11 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">车位地址：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="address" value="${parkingNumber }" class="text-word" >
+                            <input type="text" name="parkingAddress" value="${parkingNumber }" class="text-word" >
                         </td>
                         <td align="right" valign="middle" class="borderright borderbottom bggray">开始编号：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="parkingNumber" value="" class="text-word" >
+                            <input type="text" name="startNumber" value="" class="text-word" >
                         </td>
                         <td align="right" valign="middle" class="borderright borderbottom bggray">结束编号：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
@@ -146,7 +146,7 @@
                         </td>
                         <td align="right" valign="middle" class="borderright borderbottom bggray">车位图片：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="file" name="img">
+                            <input type="file" name="parkingImg">
                         </td>
                     </tr>
                 </table>
@@ -168,14 +168,21 @@
 	function addParking(){
 		$("#parking").append(line);
 	}
+	var table1 = $("#parking").html();
+	var table2	=	$("#batchAdd").html();
+	$("#batchAdd").empty();
 	function change(){
 		if($("#change").html() == "批量添加"){
 			$("#parking").css("display", "none");
 			$("#batchAdd").css("display","block");
+			$("#parking").empty();
+			$("#batchAdd").html(table2);
 			$("#change").html("逐个添加");
 		}else{
 			$("#parking").css("display", "block");
 			$("#batchAdd").css("display","none");
+			$("#parking").html(table1);
+			$("#batchAdd").empty();
 			$("#change").html("批量添加");
 		}
 	}
