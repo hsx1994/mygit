@@ -3,6 +3,7 @@ package com.woniu.cbd.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -113,6 +114,7 @@ public class OtherParkingController {
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
+
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		format.setLenient(false);  //是否需要严格转化
 		

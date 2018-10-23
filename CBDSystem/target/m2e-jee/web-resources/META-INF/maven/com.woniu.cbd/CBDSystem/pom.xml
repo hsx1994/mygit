@@ -293,9 +293,12 @@
 			<version>1.0</version>
 		</dependency>
 		<dependency>
+
 			<groupId>alipay.core</groupId>
 			<artifactId>alipay.core</artifactId>
 			<version>1.0</version>
+
+
 		</dependency>
 		<!-- 需要手动加载到maven本地仓库的两个包 -->
 		<dependency>

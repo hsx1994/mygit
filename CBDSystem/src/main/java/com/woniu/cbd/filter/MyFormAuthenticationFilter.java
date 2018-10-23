@@ -54,8 +54,13 @@ public class MyFormAuthenticationFilter extends FormAuthenticationFilter {
 	protected boolean onLoginSuccess(AuthenticationToken token,
 			Subject subject, ServletRequest request, ServletResponse response)
 			throws Exception {
+
 		System.out.println("进入了MyFormAuthenticationFilter");
+
+
+
 		WebUtils.getAndClearSavedRequest(request);
+
 		HttpServletRequest req = (HttpServletRequest) request;
 
 		String url = req.getServletPath();

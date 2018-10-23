@@ -16,20 +16,6 @@ public class RegisterAction {
 	@Autowired
 	private IUserService service;
 
-	@RequestMapping("/personl.do")
-	/***
-	 * 注册是否成功
-	 * @param user
-	 * @return
-	 */
-	
-	public @ResponseBody void addUser(RegisterBean user) {
-		System.out.println(user);
-		}
-	
-		
-
-	
 	/***
 	 * 修改个人信息是否成功
 	 * @param user
@@ -40,7 +26,6 @@ public class RegisterAction {
 		boolean row = service.updateUser(user);
 		String result = "失败";
 		if (row) {
-			System.out.println("成功");
 			result = "成功";
 
 		}
@@ -52,13 +37,13 @@ public class RegisterAction {
 	 * @param user
 	 * @return
 	 */
-	public String updateCompany(@Validated CompanyInfoBean company){
-		int row = service.updateCompany(company);
-		if(row>0){
-			return "/某页面";	
-		}else{
-			return "/ModificationPersonal.jsp";	
-		}
-	}
+//	public String updateCompany(@Validated CompanyInfoBean company){
+//		int row = service.updateCompany(company);
+//		if(row>0){
+//			return "/某页面";	
+//		}else{
+//			return "/ModificationPersonal.jsp";	
+//		}
+//	}
 
 }

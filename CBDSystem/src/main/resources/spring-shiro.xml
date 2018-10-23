@@ -48,8 +48,7 @@
 				/images/**=anon
 				/js/**=anon
 				/jsp/login.jsp=anon
-				/jsp/PersonalRegister.jsp=anon
-				/jsp/register.jsp=anon
+				/jsp/regist.jsp=anon
 				/views/login.jsp=anon				
 				/jsp/**=authc
 				/views/** = authc

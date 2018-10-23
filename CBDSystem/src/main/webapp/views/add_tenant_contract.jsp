@@ -80,13 +80,13 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">合同生效日期：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="startTime" value="${bean.startTime }" class="text-word" id="2">
+                            <input type="date" name="startTime" value="${bean.startTime }" class="text-word" id="2">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">合同截至日期：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="endTime" value="${bean.endTime }" class="text-word" id="3">
+                            <input type="date" name="endTime" value="${bean.endTime }" class="text-word" id="3">
                         </td>
                     </tr>
                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">

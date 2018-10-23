@@ -38,4 +38,16 @@
 	<insert id="addUser" parameterType="LoginBean" useGeneratedKeys="true" keyProperty="id">
 		insert into t_login(l_name,l_password,l_role)values(#{name},#{password},#{role});
 	</insert>
+	
+	<select id="findUserInfo" parameterType="int" resultType="UserBean">
+	select u_realName as realName,u_idcard as idcard,u_address as address,u_tel as tel,u_profession as job,
+	u_email as email from
+		t_user_info where u_delete=0 and u_l_id=#{id}
+	</select>
+	<select id="findCompanyInfo" parameterType="int" resultType="CompanyInfoBean">
+	select c_name as name,c_contact as contact,c_address as address,c_tel as tel,
+	c_email as email from
+		t_company_info where u_delete=0 and c_l_id=#{id}
+	</select>
+	
 </mapper>

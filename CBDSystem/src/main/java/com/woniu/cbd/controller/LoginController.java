@@ -60,7 +60,7 @@ public class LoginController {
 			}else{
 				session.removeAttribute("login");
 				request.setAttribute("user", user);
-				request.setAttribute("errorMsg", "账户不存在");
+				request.setAttribute("errorMsg", "管理账户不存在");
 				return path;
 			}
 			
@@ -84,8 +84,8 @@ public class LoginController {
 		Session session = SecurityUtils.getSubject().getSession();
 		Object realCode = session.getAttribute("randCheckCode");
 		if (!checkcode.equalsIgnoreCase((String) realCode)) {
-			request.setAttribute("errorMsg", "验证码错误");
-			return path;
+			session.setAttribute("errorMsg", "验证码错误");
+			return "redirect:"+path;
 		}
 
 		// 加密密码Md5
@@ -106,15 +106,15 @@ public class LoginController {
 				return "redirect:/index.jsp";
 			}else{
 				session.removeAttribute("login");
-				request.setAttribute("user", user);
-				request.setAttribute("errorMsg", "用户名不存在！");
-				return path;
+				session.setAttribute("user", user);
+				session.setAttribute("errorMsg", "用户不存在！");
+				return "redirect:"+path;
 			}
 			
 		} catch (Exception e) {
-			request.setAttribute("user", user);
-			request.setAttribute("errorMsg", "用户名或密码错误！");
-			return path;
+			session.setAttribute("user", user);
+			session.setAttribute("errorMsg", "用户名或密码错误！");
+			return "redirect:"+path;
 		}
 	}
 
