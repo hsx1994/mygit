@@ -30,7 +30,7 @@ public class ParkingController {
 	@Autowired
 	private IParkingService park;
 
-	// 包租婆批量添加车位信息
+	// 包租婆添加车位信息
 	@RequestMapping("/application.do")
 	public @ResponseBody String applicationParking(HttpServletRequest request,
 			MultipartFile imgFile, ParkingBean bean, MultipartFile ImgFile,
@@ -87,17 +87,6 @@ public class ParkingController {
 
 	}
 
-	// 时间格式转换
-	@org.springframework.web.bind.annotation.InitBinder
-	public void InitBinder(WebDataBinder binder) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		format.setLenient(false);// 是否严格按照格式
-
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(format,
-				true));
-
-	}
-
 	// 包租婆查看单个上架车位
 	@RequestMapping("/landladyshowOne.do")
 	public ModelAndView showOne(Integer id) {
@@ -123,7 +112,7 @@ public class ParkingController {
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
 		mav.addObject("paging", pageInfo);
 		mav.addObject("all", bean);
-		mav.setViewName("/jsp/ShowParkingSpace.jsp");
+		mav.setViewName("/index.jsp");
 		return mav;
 	}
 
@@ -140,9 +129,7 @@ public class ParkingController {
 	}
 
 	// 抢租客车位号模糊查询上架车位
-
 	@RequestMapping("findByNum.do")
-
 	public ModelAndView selectParkingByNum(String num, Integer page) {
 
 		ModelAndView mav = new ModelAndView();
@@ -230,7 +217,6 @@ public class ParkingController {
 		if (re) {
 			result = "删除成功";
 		}
-
 		return result;
 	}
 
