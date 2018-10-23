@@ -91,7 +91,7 @@ public class LoginController {
 			}
 			subject.login(token);
 			session.setAttribute("loginPath", path);
-			return "redirect:/jsp/ShowParkingSpace.jsp";
+			return "redirect:/index.jsp";
 		} catch (Exception e) {
 			request.setAttribute("user", user);
 			request.setAttribute("errorMsg", "用户名或密码错误！");

@@ -1,8 +1,9 @@
 package com.woniu.cbd.bean;
 
 import java.io.Serializable;
-
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * 普通用户信息表
@@ -14,6 +15,7 @@ public class UserBean implements Serializable {
 	//普通用户ID
 	private int id;
 	//登录信息(用户名密码信息)
+	@JsonIgnore
 	private LoginBean login;
 	//普通用户账号真实姓名
 	private String realName;
@@ -32,6 +34,7 @@ public class UserBean implements Serializable {
 	//普通用户被投诉次数
 	private int complaintCount;
 	//包租婆所拥有的车位集合
+	@JsonIgnore
 	private List<ParkingBean> parking;
 	
 	

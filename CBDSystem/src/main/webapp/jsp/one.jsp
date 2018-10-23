@@ -9,6 +9,7 @@
 <link type="text/css" href="../css/csss.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
 <script type="text/javascript" src="../js/js.js"></script>
+<script type="text/javascript" src="/CBDSystem/js/jQuery-2.2.2.js"></script>
 
 </head>
 
@@ -77,36 +78,32 @@
    <h2 class="vipTitle">个人信息</h2>
    
     <div>
-  	  <form  action="../look.do" method="post" enctype="multipart/form-data">
   	  	<table  class="grzx" width="705" border="0" cellspacing="0" cellpadding="0">
   	  		<tr>
-  	  			<td width="90"><span>*</span>真实姓名:&nbsp;${one.realName}<br/>
+  	  			<td id="realName" width="90"><br/>
   	  			</td>
   	  		</tr>
   	  		<tr>
-  	  			<td width="90"><span>*</span>身份证号  :&nbsp;${one.idcard}<br/>
+  	  			<td id="idcard" width="90"><br/>
   	  			</td>
   	  		</tr>
   	  		<tr>
-  	  			<td width="90"><span>*</span>电话 :&nbsp;${one.tel }<br/>
+  	  			<td id="tel" width="90"><br/>
   	  			</td>
   	  		</tr>
   	  		<tr>
-  	  			<td width="90"><span>*</span>住址 :&nbsp;${one.address }<br/>
+  	  			<td id="address" width="90"><br/>
   	  			</td>
   	  		</tr>
   	  		<tr>
-  	  			<td width="90"><span>*</span> 职业 :&nbsp;${one.job }<br/>
+  	  			<td id="job" width="90"><br/>
   	  			</td>
   	  		</tr>
   	  		<tr>
-  	  			<td width="90"><span>*</span>邮箱 :&nbsp;${one.email}<br/>
+  	  			<td id="email" width="90"><br/>
   	  			</td>
   	  		</tr>
-  	  		 --%>
-  	  		<%-- </c:forEach> --%>
         </table>
-        </form> 
   	</div>
   	
   </div><!--vipRight/-->
@@ -174,6 +171,27 @@
   <a href="#">网站地图</a>
   <br />
   <span>&copy; 2014 Unqezi 使用前必读 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></span>
- </div><!--footer/-->
+ </div>
+ <script>
+ 	function findById(){
+	 	$.ajax({
+	 		url:"/CBDSystem/look.do",
+	 		type:"post",
+	 		data:{
+	 			"id":$("#uid").val()
+	 		},
+	 		dataType:"json",
+	 		success:function(data){
+	 			$("#realName").html("<span>*</span>真实姓名:&nbsp;"+data.realName);
+	 			$("#idcard").html("<span>*</span>身份证号:&nbsp;"+data.idcard);
+	 			$("#tel").html("<span>*</span>电话号码:&nbsp;"+data.tel);
+	 			$("#address").html("<span>*</span>居住地址:&nbsp;"+data.address);
+	 			$("#job").html("<span>*</span>工作:&nbsp;"+data.job);
+	 			$("#email").html("<span>*</span>电子邮箱:&nbsp;"+data.email);
+	 		}
+	 	});
+ 	}
+ 	findById();
+ </script>
 </body>
 </html>

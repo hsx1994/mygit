@@ -15,12 +15,13 @@
 	src="/CBDSystem/js/dateutil/WdatePicker.js"></script>
 </head>
 <body onload="upCurrentPage(1)">
+<input type="hidden" value="${sessionScope.login.role }" id="role">
 	<!-- <body > -->
 	<div class="hrader" id="header">
 		<div class="top">
 			<a href="login.html" style="color:#C94E13;">登录</a> <a href="reg.html">注册</a>
 			<ul class="topNav">
-				<li class="shoucangjia"><a href="shoucang.html">个人中心</a></li>
+				<li class="shoucangjia"><a onclick="turn()">个人中心</a></li>
 				<div class="clears"></div>
 			</ul>
 		</div>
@@ -216,8 +217,7 @@
 	</div>
 
 			<!-- 引入外部js文件 -->
-			<script type="text/javascript"
-				src="/CBDSystem/js/ShowParkingSpace.js"></script>
+			<script type="text/javascript" src="/CBDSystem/js/ShowParkingSpace.js"></script>
 </body>
 	</html>
 </div>

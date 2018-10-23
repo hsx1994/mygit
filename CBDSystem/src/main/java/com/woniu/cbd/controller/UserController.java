@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.aliyuncs.exceptions.ClientException;
 import com.woniu.cbd.bean.CompanyInfoBean;
@@ -78,14 +77,9 @@ public class UserController {
 	}
 	//查看个人信息
 	@RequestMapping("look.do")
-	public ModelAndView findUserInfo() {
-		ModelAndView mav = new ModelAndView();
-		int id = 1;
+	public @ResponseBody UserBean findUserInfo(Integer id) {
 		UserBean bean = user.findUserInfo(id);
-		mav.addObject("one", bean);
-		mav.setViewName("jsp/LookOneMyself.jsp");
-
-		return mav;
+		return bean;
 	}
 
 	/***
