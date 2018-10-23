@@ -47,7 +47,7 @@
 								<input type="text" maxlength="20" class="txt03 f-r3 required"
 									tabindex="1" data-valid="isNonEmpty||between:3-20||isUname"
 									data-error="用户名不能为空||用户名长度3-20位||只能输入中文、字母、数字、下划线，且以中文或字母开头" 
-									id="name" name="name" /><button onclick="checkUserName()">检测(必须)</button>
+									id="name" name="name"/><button onclick="checkUserName()">检测(必须)</button>
 									<span class="ie8 icon-close close hide"></span> 
 									<label class="icon-sucessfill blank hide"></label> 
 									<label class="focus" id="err"><span>3-20位，中文、字母、数字、下划线的组合，以中文或字母开头</span></label>
@@ -58,7 +58,7 @@
 						<div class="item col-xs-12">
 							<span class="intelligent-label f-fl"><b class="ftx04">*</b>密码：</span>
 							<div class="f-fl item-ifo">
-								<input type="password" id="password" name="password"
+								<input type="password" id="password" name="password" value="${user.password}"
 									maxlength="20" class="txt03 f-r3 required" tabindex="3"
 									style="ime-mode:disabled;" onpaste="return  false"
 									autocomplete="off"
@@ -105,7 +105,7 @@
 								<input type="text" maxlength="10" class="txt03 f-r3 required"
 									tabindex="1" data-valid="isNonEmpty||between:2-10||isZh"
 									data-error="真实姓名不能为空||真实姓名长度2-10位||只能输入中文" id="realName"
-									name="realName" /> <span class="ie8 icon-close close hide"></span>
+									name="realName"value="${user.realName}" /> <span class="ie8 icon-close close hide"></span>
 								<label class="icon-sucessfill blank hide"></label> <label
 									class="focus">2-10位，中文真实姓名</label> <label class="focus valid"></label>
 							</div>
@@ -116,7 +116,7 @@
 								<input type="text" class="txt03 f-r3 required" tabindex="2"
 									data-valid="isNonEmpty||isCard"
 									data-error="身份证号不能为空||身份证号码格式不正确" maxlength="18" id="idcard"
-									name="idcard" /> <span class="ie8 icon-close close hide"></span>
+									name="idcard"value="${user.idcard}" /> <span class="ie8 icon-close close hide"></span>
 								<label class="icon-sucessfill blank hide"></label> <label
 									class="focus">请填写18位有效的身份证号码</label> <label class="focus valid"></label>
 							</div>
@@ -126,7 +126,7 @@
 							<div class="f-fl item-ifo">
 								<input type="text" class="txt03 f-r3 required" tabindex="2"
 									data-valid="isNonEmpty" data-error="地址格式不能为空" id="address"
-									name="address" /> <span class="ie8 icon-close close hide"></span>
+									name="address"value="${user.address}" /> <span class="ie8 icon-close close hide"></span>
 								<label class="icon-sucessfill blank hide"></label> <label
 									class="focus">例如：XXX小区10(栋)-1(单元)-10(楼层)-1(号)</label> <label
 									class="focus valid"></label>
@@ -137,7 +137,7 @@
 							<div class="f-fl item-ifo">
 								<input type="text" class="txt03 f-r3 required" tabindex="2"
 									data-valid="isNonEmpty" data-error="身份证号不能为空" id="job"
-									name="job" /> <span class="ie8 icon-close close hide"></span>
+									name="job" value="${user.job}"/> <span class="ie8 icon-close close hide"></span>
 								<label class="icon-sucessfill blank hide"></label> <label
 									class="focus">请填写您的职业</label> <label class="focus valid"></label>
 							</div>
@@ -147,7 +147,7 @@
 							<div class="f-fl item-ifo">
 								<input type="text" class="txt03 f-r3 required" tabindex="2"
 									data-valid="isNonEmpty||isEmail" data-error="邮箱不能为空||邮箱格式不正确"
-									id="email" name="email" /> <span
+									id="email" name="email" value="${user.email}"/> <span
 									class="ie8 icon-close close hide"></span> <label
 									class="icon-sucessfill blank hide"></label> <label
 									class="focus">例如：4325234@qq.com</label> <label
@@ -168,7 +168,7 @@
 								<input type="text" class="txt03 f-r3 required" keycodes="tel"
 									tabindex="2" data-valid="isNonEmpty||isPhone"
 									data-error="手机号码不能为空||手机号码格式不正确" maxlength="11" id="tel"
-									name="tel" /> <span class="ie8 icon-close close hide"></span>
+									name="tel" value="${user.tel}"/> <span class="ie8 icon-close close hide"></span>
 								<label class="icon-sucessfill blank hide"></label> <label
 									class="focus">请填写11位有效的手机号码</label> <label class="focus valid"></label>
 							</div>
@@ -199,7 +199,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="part4 text-center" style="display:none">
+					 <div class="part4 text-center" style="display:none">
 						<h3>恭喜,您已注册成功</h3>
 						<p class="c-666 f-mt30 f-mb50">页面将在 <strong id="times" class="f-size18">10</strong> 秒钟后，跳转到 <a href="/CBDSystem/jsp/login.jsp" class="c-blue">登录</a></p>
 					</div>

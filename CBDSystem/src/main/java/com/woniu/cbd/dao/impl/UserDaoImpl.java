@@ -27,7 +27,7 @@ public class UserDaoImpl implements IUserDao {
 		session.close();
 		return row;
 	}
-
+	//包租婆添加个人信息
 	@Override
 	public int addUserInfor(UserBean bean) {
 		SqlSession session = fa.openSession(true);
@@ -36,7 +36,8 @@ public class UserDaoImpl implements IUserDao {
 		session.close();
 		return row;
 	}
-
+	
+	//包租婆修改个人信息
 	@Override
 	public int updateUser(UserBean bean) {
 		SqlSession session = fa.openSession(true);
@@ -45,7 +46,7 @@ public class UserDaoImpl implements IUserDao {
 		session.close();
 		return row;
 	}
-
+	//企业修改信息
 	@Override
 	public int updateCompany(CompanyInfoBean company) {
 		SqlSession session = fa.openSession(true);
@@ -62,5 +63,23 @@ public class UserDaoImpl implements IUserDao {
 		int id = session.selectOne("userMapper.findIdByLid", lid);
 		session.close();
 		return id;
+	}
+	//查看个人信息
+	@Override
+	public UserBean findUserInfo(int id) {
+		SqlSession session = fa.openSession(true);
+		UserBean bean = session.selectOne("userMapper.findUserInfo", id);
+
+		session.close();
+		return bean;
+	}
+	//查看企业信息
+	@Override
+	public CompanyInfoBean findCompanyInfo(int id) {
+		SqlSession session = fa.openSession(true);
+		CompanyInfoBean bean = session.selectOne("userMapper.findCompanyInfo", id);
+
+		session.close();
+		return bean;
 	}
 }

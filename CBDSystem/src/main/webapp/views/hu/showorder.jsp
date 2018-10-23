@@ -46,13 +46,13 @@
 		<tbody>
 			<c:forEach items="${list}" var="obj">
 				<tr>
-					<td style="width: 198px;height: 100px;text-align: center;">${obj.id }</td>
-					<td style="width: 198px;height: 100px;text-align: center;">${obj.startTime }</td>
+					<td style="width: 198px;height: 100px;text-align: center;">${obj.id}</td>
+					<td style="width: 198px;height: 100px;text-align: center;">${obj.startTime}</td>
 					<td style="width: 198px;height: 100px;text-align: center;">${obj.endTime}</td>
 					
 					<td style="width: 198px;height: 100px;text-align: center;">${obj.parking.parkingNum }</td>
-					<td style="width: 198px;height: 100px;text-align: center;">${obj.pay }</td>
-				    <td style="width: 198px;height: 100px;text-align: center;">${obj.state }</td>
+					<td style="width: 198px;height: 100px;text-align: center;">${obj.pay}</td>
+				    <td style="width: 198px;height: 100px;text-align: center;">${obj.state}</td>
 				    <td style="width: 198px;height: 100px;text-align: center;">
 				    <form action="/CBDSystem/addComplaint.do" method="post">
 					<input type="hidden" value="${obj.id }" name="id">

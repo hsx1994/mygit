@@ -29,11 +29,11 @@
 			<div class="row">
 				<div class="logo span4">
 					<h1>
-						<a href="index.jsp">CBD登录 <span class="red">.</span></a>
+						<a href="/jsp/login.jsp">CBD登录 <span class="red">.</span></a>
 					</h1>
 				</div>
 				<div class="links span8">
-					<a class="home" href="" rel="tooltip" data-placement="bottom"
+					<a class="home" href="/index.jsp" rel="tooltip" data-placement="bottom"
 						data-original-title="Home"></a> <a class="blog" href=""
 						rel="tooltip" data-placement="bottom" data-original-title="Blog"></a>
 				</div>
@@ -65,6 +65,7 @@
 					<font color="red">${errorMsg}</font></lable>
 					<br />
 					<button type="submit">登录</button>
+					<button type="button" onclick="goRegist()">注册</button>
 					<input type="hidden" name="path" value="/jsp/login.jsp" />
 				</form>
 			</div>
@@ -75,7 +76,11 @@
 			var pictureimg = document.getElementById("picturecode");
 			pictureimg.src = "/CBDSystem/picturecode?a=" + Math.random();
 		}
-		getPictureCode()
+		getPictureCode();
+		
+		function goRegist(){
+			window.location.href="/jsp/register.jsp"
+		}
 	</script>
 
 	<!-- Javascript -->

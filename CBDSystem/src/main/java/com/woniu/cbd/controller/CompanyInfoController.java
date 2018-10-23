@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -84,7 +85,6 @@ public class CompanyInfoController {
 		
 		return result;
 	}
-	
 	// 车位区域信息
 		@RequestMapping("/showCompany.do")
 		public @ResponseBody List<CompanyInfoBean> showParkingAddress() {

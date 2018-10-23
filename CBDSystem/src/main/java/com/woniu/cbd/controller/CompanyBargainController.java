@@ -32,7 +32,7 @@ public class CompanyBargainController {
 
 	@RequestMapping("/companyBargainAdd.do")
 	public @ResponseBody String companyBargainAdd(CompanyBargainBean bean,String[] parkingNumber,String[] address) {
-
+		
 		CompanyInfoBean company = cis.findByCompanyName(bean.getCompany().getComName());
 		if(company == null){
 			return "该企业用户不存在";
@@ -68,13 +68,16 @@ public class CompanyBargainController {
 	}
     //企业查看合约
 	@RequestMapping("companyBargainSelect.do")
-	public ModelAndView companyBargainSelect(CompanyBargainBean bean,Integer page) {
+	public ModelAndView companyBargainSelect(CompanyBargainBean bean) {
+		bean.setId(1);
+		System.out.println(bean);
 		ModelAndView mav = new ModelAndView();
-
+		int page = 1 ;
 		PageHelper.startPage(page,10,true);
 		List<CompanyBargainBean> bargain = service.companyBargainSelect(bean);
+		System.out.println(bargain);
 		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(bargain);
-		
+		System.out.println(pageInfo);
 		if(bargain != null){
 			mav.addObject("pageinfo", pageInfo);
 			mav.addObject("list",bargain);
@@ -87,9 +90,9 @@ public class CompanyBargainController {
 	}
 
 	@RequestMapping("allCompanyBargainSelect.do")
-	public ModelAndView allCompanyBargainSelect(Integer page) {
+	public ModelAndView allCompanyBargainSelect() {
 		ModelAndView mav = new ModelAndView();
-		
+		int page = 1;
 		PageHelper.startPage(page,10,true);
 		List<CompanyBargainBean> bargain = service.allCompanyBargainSelect();
 		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(bargain);
@@ -145,7 +148,7 @@ public class CompanyBargainController {
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		format.setLenient(false);  //是否需要严格转化
+		format.setLenient(true);  //是否需要严格转化
 		
 		//使用springmvc封装好的类进行格式转换
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));

@@ -17,7 +17,6 @@ public class TestMain {
 		IOtherParkingDao dao = (IOtherParkingDao) context.getBean("otherParkingDaoImpl");
 		List<String> list = dao.findAddressByGroup();
 		for (String string : list) {
-			System.out.println(string);
 		}
 	}
 }

@@ -14,8 +14,8 @@ input,button,textarea,select{*font-size:100%}
 a,img{border:0;}
 a,a:visited{color:#5e5e5e; text-decoration:none;}
 a:hover{color:#4183C4;text-decoration:underline;}
-.clear{display:block;overflow:hidden;clear:both;height:0;line-height:0;font-size:0;}
-.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clear{display:block;overflow:hidden;clear:both;height:330px;line-height:10px;font-size:10px;}
+.clearfix:after{content:".";display:block;height:330px;clear:both;visibility:hidden;}
 .clearfix{display:inline-table;}/* Hides from IE-mac \*/
 *html .clearfix{height:1%;}
 .clearfix{display:block;}/* End hide from IE-mac */
