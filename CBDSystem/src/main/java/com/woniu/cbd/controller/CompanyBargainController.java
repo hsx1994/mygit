@@ -155,11 +155,9 @@ public class CompanyBargainController {
 	@RequestMapping("queryUseingBargain.do")
 	public ModelAndView queryUseingBargainByCondition(Integer page,String condition){
 		ModelAndView mv = new ModelAndView();
-		System.out.println(condition);
 		if(condition!=null){
 			PageHelper.startPage(page,10,true);
 			List<CompanyBargainBean>  list = service.queryUseingBarginByCondition(condition);
-			System.out.println(list);
 			PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(list);
 			mv.addObject("pageinfo",pageInfo);
 			mv.addObject("list",list);
