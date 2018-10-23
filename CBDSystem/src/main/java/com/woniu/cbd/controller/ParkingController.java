@@ -114,6 +114,7 @@ public class ParkingController {
 	@ResponseBody
 	@RequestMapping("showall.do")
 	public ModelAndView ShowAll(Integer page) {
+
 		ModelAndView mav = new ModelAndView();
 
 		PageHelper.startPage(page, 8, true);

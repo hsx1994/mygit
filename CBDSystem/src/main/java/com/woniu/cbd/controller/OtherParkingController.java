@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -115,12 +114,11 @@ public class OtherParkingController {
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
+
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-
-		format.setLenient(false); // 是否需要严格转化
-
-		// 使用springmvc封装好的类进行格式转换
+		format.setLenient(false);  //是否需要严格转化
+		
+		//使用springmvc封装好的类进行格式转换
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
 	}
 }

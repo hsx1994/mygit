@@ -1,8 +1,9 @@
 package com.woniu.cbd.bean;
 
 import java.io.Serializable;
-
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * 企业用户信息
@@ -14,6 +15,7 @@ public class CompanyInfoBean implements Serializable {
 	//企业ID
 	private int id;
 	//企业用户loginbean对象
+	@JsonIgnore
 	private LoginBean comLogin;
 	//企业名称
 	private String comName;
@@ -26,8 +28,10 @@ public class CompanyInfoBean implements Serializable {
 	//企业用户邮箱
 	private String email;
 	//企业用户的订单信息
+	@JsonIgnore
 	private List<CompanyOrderBean> comOrder;
 	//企业用户的合约信息
+	@JsonIgnore
 	private List<CompanyBargainBean> comBargain;
 	
 	
