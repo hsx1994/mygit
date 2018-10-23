@@ -52,13 +52,13 @@ public class RegisterAction {
 	 * @param user
 	 * @return
 	 */
-	public String updateCompany(@Validated CompanyInfoBean company){
-		int row = service.updateCompany(company);
-		if(row>0){
-			return "/某页面";	
-		}else{
-			return "/ModificationPersonal.jsp";	
-		}
-	}
+//	public String updateCompany(@Validated CompanyInfoBean company){
+//		int row = service.updateCompany(company);
+//		if(row>0){
+//			return "/某页面";	
+//		}else{
+//			return "/ModificationPersonal.jsp";	
+//		}
+//	}
 
 }

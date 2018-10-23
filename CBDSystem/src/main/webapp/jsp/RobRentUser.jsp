@@ -8,82 +8,183 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>抢租用户修改信息页面</title>
-<link href="../css/styles.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+<title>抢租客修改信息</title>
+<link type="text/css" href="../css/csss.css" rel="stylesheet" />
+<script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
+<script type="text/javascript" src="../js/js.js"></script>
+
 </head>
+
 <body>
-<!--演示内容开始-->
-<style type="text/css">
-*{margin:0;padding:0;list-style-type:none;}
-a,img{border:0;text-decoration:none;}
-body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";background:#E8E8E8;}
-.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
-.clearfix{display:inline-table;}/* Hides from IE-mac */
-*html .clearfix{height:1%;}
-.clearfix{display:block;}/* End hide from IE-mac */
-*+html .clearfix{min-height:1%;}
-/* menu */
-.menu{width:355px;background:url(../images/nav-bg.png) no-repeat;}
-.menu ul{margin:0 0 0 42px;}
-.menu ul li{width:164px;height:29px;padding-bottom:8px;overflow:hidden;position:relative;float:left;display:inline;}
-.menu ul li a{display:block;width:164px;height:29px;line-height:26px;font-family:"微软雅黑";font-size:16px;color:#FFFFFF;text-indent:62px;overflow:hidden;position:relative;z-index:100000;}
-.menu ul li p{position:absolute;z-index:100;top:0;left:-164px;width:164px;height:29px;background:url(images/nav-libg.png) no-repeat; }
-.menu ul li b{position:absolute;z-index:100000;top:0;left:0;display:block;width:11px;height:29px;background:url(images/nav-jiao2.png) no-repeat;}
-.menu ul li.current p{left:0;}
-.menu ul li.current a{color:#0072d2;}
-</style>
-
-<div class="menu">
-	<ul class="clearfix">
-		<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp密码：<input type="text" name="password"value=${user.password}></li>
-		<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp电话：<input type="text" name="tel"value=${user.tel}></li>
-		<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp地址：<input type="text" name="address"value=${user.address}></li>
-		<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp邮箱：<input type="text" name="email"value=${user.email}></li>
-		<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp职业：<input type="text" name="job"value=${user.job}></li>
-		<li><a href="http://sc.chinaz.com/"></a></li>
-		<li><a href="http://sc.chinaz.com/"></a></li>
-		<li><a href="twoHome.jsp">完成</a></li>
-	</ul>
-</div>
-
-
-<script type="text/javascript">
-$(function(){
-	$(".menu ul li").append("<b class='pngFix'></b><p class='pngFix'></p>");
-	
-	$(".menu ul li").hover(function(){
-		if($(this).attr("class") != "current"){
-			$(this).children("p").stop().animate({left:"0px"},200);
-			$(this).children("a").css({color:"#0072d2"},900);
-		}
-	},function(){
-		if($(this).attr("class") != "current"){
-			$(this).children("p").stop().animate({left:"-164px"},300);
-			$(this).children("a").css({color:"#FFFFFF"},900);
-		}
-	});
-
-	$(".menu ul li.current").unbind("hover");
-});
-
-$(function($){
-	var left=0;
-	var length=$(".menu li").length;
-	for(length;length>0;length--){
-		left+=12.60;
-		$(".menu li").eq(length-1).css("margin-left",left)
-	}
-});
-
-function setNav(id){
-	var navList = $(".menu ul li");
-	$(navList).eq(id-1).addClass("current");
-}
-</script>
-<!--演示内容结束-->
-<div style="text-align:center;clear:both">
-<p>适用浏览器：IE8、360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. </p>
-</div>
+ <div class="hrader" id="header">
+  <div class="top">
+   <a href="login.html" style="color:#C94E13;">请登录</a> 
+   <a href="reg.html">注册</a>
+   <ul class="topNav">
+    <li><a href="order.html">我的订单 </a></li>
+    <li class="gouwuche"><a href="car.html">购物车</a> <strong style="color:#C94E13;">3</strong></li>
+    <li class="shoucangjia"><a href="shoucang.html">收藏夹</a></li>
+    <li class="kefus"><a href="#">联系客服</a></li>
+<li><a href="#" class="lan">中文</a></li>
+    <li><a href="#" class="lan">English</a></li>
+    <div class="clears"></div>
+   </ul><!--topNav/-->
+  </div><!--top/-->
+ </div><!--hrader/-->
+ <div class="mid">
+  <h1 class="logo" style="text-align:left;">
+  <a href="index.html"><img src="../images/logo.png" width="304" height="74" /></a>
+  </h1>
+  <form action="#" method="get" class="subBox">
+   <div class="subBox2">
+    <input type="text" class="subText" />
+    <input type="image" src="../images/sub.jpg" width="95" height="32" class="subImg" />
+    <div class="hotci">
+ 
+   </div><!--hotci/-->
+   </div><!--subBox2/-->
+  </form><!--subBox/-->
+  <div class="ding-gou">
+   <div class="ding">
+    <a href="order.html"><img src="../images/dingdan.jpg" width="106" height="32" /></a>
+   </div><!--ding/-->
+   <div class="gou">
+    <a href="car.html"><img src="../images/gouwuche.jpg" width="126" height="32" /></a>
+   </div><!--gou/-->
+   <div class="clears"></div>
+  </div><!--ding-gou/-->
+ </div><!--mid-->
+ <div class="navBox navBg3">
+  <ul class="nav">
+   <li><a href="index.html">首页</a></li>
+   <li><a href="buy.html">买家</a></li>
+   <li><a href="sell.html">卖家</a></li>
+   <li class="navCur"><a href="vip.html">会员中心</a></li>
+   <li><a href="xuanshang.html">悬赏榜</a></li>
+   <li><a href="luntan.html" class="luntan">论坛</a></li>
+   <li><a href="help.html">帮助</a></li>
+   <div class="clears"></div>
+  </ul><!--nav/-->
+ </div><!--navBox/-->
+ <div class="vipBox">
+  <div class="vipLeft">
+   <h2 class="headImg"><img src="../images/vipImg.jpg" width="183" height="169" /></h2>
+   <h3 class="vipName">测试webqin</h3>
+   <dl class="vipNav">
+    <dt class="vip_1 vipCur">买家中心</dt>
+     <dd><a href="vipOrder.html">我的订单</a></dd>
+     <dd><a href="vipShoucang.html">收藏关注</a></dd>
+    <dt class="vip_2">账户设置</dt>
+     <dd class="ddCur"><a href="#">个人信息</a></dd>
+     <dd><a href="#">个人信息修改</a></dd>
+     <dd><a href="vipAddress.html">收货地址</a></dd>
+     <dd><a href="vipXiaofei.html">消费记录</a></dd>
+    <dt class="vip_3">客户服务</dt>
+     <dd><a href="vipQuxiao.html">取消订单/退货</a></dd>
+     
+     <dd><a href="vipTousu.html">我的投诉</a></dd>
+   </dl><!--vipNav/-->
+  </div><!--vipLeft/-->
+  <div class="vipRight">
+   <h2 class="vipTitle">个人信息修改</h2>
+   
+   <form action="/look.do" method="post">
+       <table class="grzx" width="705" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="90"><span>*</span>密码：</td>
+          <td width="430"><input type="text" name="password"></td>
+          <td rowspan="8" valign="top"><div id="tx"></div>
+            <span class="file"><input name="" type="file" class="file1" /></span></td>
+        </tr>
+       
+        <tr>
+          <td>&nbsp;邮箱:</td>
+          <td><input type="text" name="email" /></td>
+        </tr>
+        <tr>
+          <td>&nbsp;住址:</td>
+          <td><input type="text" name="address" ></td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;电话：</td>
+          <td><input type="text" name="tel" ></td>
+        </tr>
+        <tr>
+          <td>&nbsp;职业：</td>
+          <td><input type="text" name="tel" ></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><button  type="submit" >返回</button></td>
+        </tr>
+      </table>
+    
+      </form>
+  </div><!--vipRight/-->
+  <div class="clears"></div>
+ </div><!--vipBox/-->
+ <div class="footBox">
+  <div class="footers">
+   <div class="footersLeft">
+    <a href="index.html"><img src="../images/ftlogo.jpg" width="240" height="64" /></a>
+    <h3 class="ftphone">400 000 0000 </h3>
+    <div class="ftKe">
+     客服 7x24小时(全年无休)<br />
+     <span>客服邮箱：kefu@webqin.net </span>
+    </div><!--ftKe/-->
+   </div><!--footersLeft/-->
+   <div class="footersRight">
+    <ul>
+     <li class="ftTitle">新手指南</li>
+     <li><a href="#">购物流程</a></li>
+     <li><a href="#">会员计划及划分</a></li>
+     <li><a href="#">优惠券规则</a></li>
+     <li><a href="#">联系客服</a></li>
+     <li><a href="#">常见问题</a></li>
+    </ul>
+    <ul>
+     <li class="ftTitle">付款方式</li>
+     <li><a href="#">在线支付</a></li>
+     <li><a href="#">礼品卡支付</a></li>
+     <li><a href="#">货到付款</a></li>
+     <li><a href="#">银行付款</a></li>
+    </ul>
+    <ul>
+     <li class="ftTitle">配送服务</li>
+     <li><a href="#">配送时效及运费</a></li>
+     <li><a href="#">超时赔付</a></li>
+     <li><a href="#">验货与签收</a></li>
+     <li><a href="#">配货信息跟踪</a></li>
+    </ul>
+    <ul>
+     <li class="ftTitle">售后服务</li>
+     <li><a href="#">退换货政策</a></li>
+     <li><a href="#">退换货区域</a></li>
+     <li><a href="#">退款时限</a></li>
+     <li><a href="#">先行赔付</a></li>
+     <li><a href="#">发票说明</a></li>
+    </ul>
+    <ul>
+     <li class="ftTitle">特色服务</li>
+     <li><a href="#">礼品卡</a></li>
+     <li><a href="#">产品试用</a></li>
+     <li><a href="#">花粉中心</a></li>
+     <li><a href="#">快速购物</a></li>
+     <li><a href="#">推荐好友</a></li>
+    </ul>
+    
+    <div class="clears"></div>
+   </div><!--footersRight/-->
+   <div class="clears"></div>
+  </div><!--footers/-->
+ </div><!--footBox/-->
+ <div class="footer" style="text-align:left;">
+  <a href="#">关于我们</a>
+  <a href="#">友情链接</a>
+  <a href="#">版权声明</a>
+  <a href="#">网站地图</a>
+  <br />
+  <span>&copy; 2014 Unqezi 使用前必读 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></span>
+ </div><!--footer/-->
 </body>
 </html>
