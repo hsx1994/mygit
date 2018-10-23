@@ -10,6 +10,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.woniu.cbd.bean.LoginBean;
+
 
 public class LoginAdminUrlFilter implements Filter{
 
@@ -25,12 +29,18 @@ public class LoginAdminUrlFilter implements Filter{
 		
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
+		HttpSession session = request.getSession();
+		LoginBean login = (LoginBean) session.getAttribute("login");
 		String url = request.getServletPath();
-		System.out.println("进入了LoginAdminUrlFilter:"+url);
+		
 		if (url.endsWith("login.jsp")) {
 			chain.doFilter(request, response);
 		}else{
+			if(login==null){
 			response.sendRedirect("/CBDSystem/views/login.jsp");
+			} else {
+				chain.doFilter(request, response);
+			}
 		}
 		
 	}

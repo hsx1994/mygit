@@ -26,9 +26,8 @@ public class LoginUrlFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		String url = request.getServletPath();
-		System.out.println("进入了过滤器LoginUrlFilter");
 		
-		if (url.endsWith("login.jsp")) {
+		if (url.endsWith("login.jsp") || url.endsWith("login.do")  || url.endsWith("regist.jsp")) {
 			chain.doFilter(request, response);
 		}else{
 			response.sendRedirect("/CBDSystem/jsp/login.jsp");

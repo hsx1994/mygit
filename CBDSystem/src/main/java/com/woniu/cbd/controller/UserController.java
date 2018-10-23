@@ -44,7 +44,6 @@ public class UserController {
 		HttpSession session = request.getSession();
 		// 密码加密
 		String pass = Md5pwdUtil.md5(password, name);
-
 		// 获取session给中的验证码
 		String num = (String) session.getAttribute("code");
 		LoginBean beans = new LoginBean();
