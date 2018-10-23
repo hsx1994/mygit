@@ -1,11 +1,14 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>抢租客修改信息</title>
+<title>申请上架车位</title>
 <link type="text/css" href="../css/csss.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
 <script type="text/javascript" src="../js/js.js"></script>
@@ -37,7 +40,7 @@
     <input type="text" class="subText" />
     <input type="image" src="../images/sub.jpg" width="95" height="32" class="subImg" />
     <div class="hotci">
- 
+    
    </div><!--hotci/-->
    </div><!--subBox2/-->
   </form><!--subBox/-->
@@ -53,70 +56,85 @@
  </div><!--mid-->
  <div class="navBox navBg3">
   <ul class="nav">
-   <li><a href="index.html">首页</a></li>
-   <li><a href="buy.html">买家</a></li>
-   <li><a href="sell.html">卖家</a></li>
-   <li class="navCur"><a href="vip.html">会员中心</a></li>
-   <li><a href="xuanshang.html">悬赏榜</a></li>
-   <li><a href="luntan.html" class="luntan">论坛</a></li>
-   <li><a href="help.html">帮助</a></li>
+   <li><a href="one.jsp">首页</a></li>
+   <li><a href=""></a></li>
+   <li><a href=""></a></li>
+   <li><a href="one.jsp">用户中心</a></li>
+   <li><a href=""></a></li>
+   <li><a href=""></a></li>
+   <li><a href=""></a></li>
    <div class="clears"></div>
   </ul><!--nav/-->
  </div><!--navBox/-->
  <div class="vipBox">
   <div class="vipLeft">
    <h2 class="headImg"><img src="../images/vipImg.jpg" width="183" height="169" /></h2>
-   <h3 class="vipName">测试webqin</h3>
+   <h3 class="vipName">用户</h3>
    <dl class="vipNav">
-    <dt class="vip_1 vipCur">买家中心</dt>
-     <dd><a href="vipOrder.html">我的订单</a></dd>
-     <dd><a href="vipShoucang.html">收藏关注</a></dd>
-    <dt class="vip_2">账户设置</dt>
-     <dd class="ddCur"><a href="#">个人信息</a></dd>
-     <dd><a href="#">个人信息修改</a></dd>
-     <dd><a href="vipAddress.html">收货地址</a></dd>
-     <dd><a href="vipXiaofei.html">消费记录</a></dd>
-    <dt class="vip_3">客户服务</dt>
-     <dd><a href="vipQuxiao.html">取消订单/退货</a></dd>
+    <dt class="vip_1 vipCur">账户中心</dt>
+     <dd><a href="LookMyCar.jsp">我的车位</a></dd>
+     <dd><a href="LookOneUser.jsp">申请上架车位</a></dd>
+     <dd><a href="vipShoucang.html">已上架车位</a></dd>
+    <dt class="vip_2">个人</dt>
+     <dd class="ddCur"><a href="one.jsp">个人信息</a></dd>
+     <dd><a href="RentUser.jsp">修改个人信息</a></dd>
+     <dd><a href=""></a></dd>
+     <dd><a href="LookCar.jsp">查看租赁记录</a></dd>
+    <dt class="vip_3"></dt>
+     <dd><a href="vipQuxiao.html"></a></dd>
      
-     <dd><a href="vipTousu.html">我的投诉</a></dd>
+     <dd><a href="vipTousu.html"></a></dd>
    </dl><!--vipNav/-->
   </div><!--vipLeft/-->
   <div class="vipRight">
-   <h2 class="vipTitle">个人信息修改</h2>
+   <h2 class="vipTitle">申请上架</h2>
    
-   <form action="/look.do" method="post">
-       <table class="grzx" width="705" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td width="90"><span>*</span>密码：</td>
-          <td width="430"><input type="text" name="password"></td>
-          <td rowspan="8" valign="top"><div id="tx"></div>
-            <span class="file"><input name="" type="file" class="file1" /></span></td>
-        </tr>
-       
-        <tr>
-          <td>&nbsp;邮箱:</td>
-          <td><input type="text" name="email" /></td>
-        </tr>
-        <tr>
-          <td>&nbsp;住址:</td>
-          <td><input type="text" name="address" ></td>
-        </tr>
-        <tr>
-          <td>&nbsp;&nbsp;电话：</td>
-          <td><input type="text" name="tel" ></td>
-        </tr>
-        <tr>
-          <td>&nbsp;职业：</td>
-          <td><input type="text" name="tel" ></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td><button  type="submit" >返回</button></td>
-        </tr>
-      </table>
-    
-      </form>
+   
+  	<div>
+  	  <form action="/CBDSystem/application.do" method="post" enctype="multipart/form-data">
+  	  	<table  class="grzx" width="705" border="0" cellspacing="0" cellpadding="0">
+  	  		<tr>
+  	  			<td width="90"><span>*</span>车位地址:&nbsp;<input style="width: 180px;" type="text" name="address"><br/>
+  	  			</td>
+  	  		</tr>
+  	  		<tr>
+  	  			<td width="90"><span>*</span>车位号  :&nbsp;<input style="width: 180px;" type="text" name="parkingNum"><br/>
+  	  			</td>
+  	  		</tr>
+  	  		<tr>
+  	  			<td width="90"><span>*</span>车位图片 :&nbsp;<input style="width: 180px;" type="file" name="imgFile"><br/>
+  	  			</td>
+  	  		</tr>
+  	  		<tr>
+  	  			<td width="90"><span>*</span>开始时间 :&nbsp;<input style="width: 180px;" type="date" name="startTime"><br/>
+  	  			</td>
+  	  		</tr>
+  	  		<tr>
+  	  			<td width="90"><span>*</span> 结束时间 :&nbsp;<input style="width: 180px;" type="date" name="endTime"><br/>
+  	  			</td>
+  	  		</tr>
+  	  		<tr>
+  	  			<td width="90"><span>*</span>车位价格 :&nbsp;<input style="width: 180px;" type="text" name="price"><br/>
+  	  			</td>
+  	  		</tr>
+  	  		<tr>
+  	  			<td width="90"><span>*</span>产权证编号:&nbsp;<input style="width: 180px;" type="text"  name="certificate"><br/>
+  	  			</td>
+  	  		</tr>
+  	  		<tr>
+  	  			<td width="90"><span>*</span>产权证复印件:&nbsp;<input style="width: 180px;" type="file"  name="ImgFile"><br/> 
+  	  			</td>
+  	  		</tr>
+  	  			<tr>
+  	  			<td width="90"><button type="submit">申请上架</button>
+  	  			</td>
+  	  		</tr>
+         </table>
+        </form> 
+  	</div>
+  	
+  	
+  
   </div><!--vipRight/-->
   <div class="clears"></div>
  </div><!--vipBox/-->

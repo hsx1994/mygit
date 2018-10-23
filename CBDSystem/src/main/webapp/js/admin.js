@@ -36,7 +36,6 @@ function addAdmin(id){
 		arr.push($(this).val());
 
 	});
-	alert(arr);
 	$.ajax({
 		url:"/CBDSystem/addAdmin.do",
 		type:"post",
@@ -51,7 +50,8 @@ function addAdmin(id){
 		traditional:true,
 		dataType:"json",
 		success:function(data){
-			window.location.href="/CBDSystem/views/add_admin.jsp";
+			alert(data);
+			window.location.href="/CBDSystem/views/all_admin_info.jsp";
 		}
 	});
 }

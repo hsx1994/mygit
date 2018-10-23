@@ -122,7 +122,6 @@ public class ParkingController {
 	@RequestMapping("showall.do")
 	public ModelAndView ShowAll(Integer page) {
 		ModelAndView mav = new ModelAndView();
-
 		PageHelper.startPage(page, 8, true);
 		List<ParkingBean> bean = park.showAll();
 
@@ -146,13 +145,11 @@ public class ParkingController {
 	}
 
 	// 抢租客车位号模糊查询上架车位
-
 	@RequestMapping("findByNum.do")
 	public ModelAndView selectParkingByNum(String num, Integer page) {
 
 		ModelAndView mav = new ModelAndView();
 		List<ParkingBean> bean = park.selectParkingByNum(num);
-		System.out.println("num:"+num);
 		if (bean != null) {
 			mav.addObject("num", bean);
 			mav.setViewName("");
@@ -166,6 +163,7 @@ public class ParkingController {
 
 	// 抢租客根据价格查询上架车位
 	@RequestMapping("findByPrice.do")
+
 	public ModelAndView selectParking(Integer price, Integer page) {
 
 		ModelAndView mav = new ModelAndView();
@@ -190,10 +188,10 @@ public class ParkingController {
 	// 包租婆查看自己的车位信息
 	@RequestMapping("/showme.do")
 	public ModelAndView showMe(HttpServletRequest request, Integer page) {
-		// 在session中取得当前登录的包租婆id
-		/* int id=request.getSession().getAttribute(""); */
-		int id = 1;// 测试使用
-
+        //在session中取得当前登录的包租婆id
+		/*int id=request.getSession().getAttribute("");*/
+		int id=1;//测试使用
+		
 		ModelAndView mav = new ModelAndView();
 		PageHelper.startPage(page, 8, true);
 		List<ParkingBean> bean = park.showMe(id);
@@ -209,26 +207,22 @@ public class ParkingController {
 		mav.setViewName("063/ShowLandladyParking.jsp");
 		return mav;
 	}
-
 	/**
 	 * 通过ID查询单个车位信息
-	 * 
 	 * @param id
 	 * @return
 	 */
 	@RequestMapping("showDetailsParking.do")
-	public ModelAndView findParkingById(Integer id) {
+	public ModelAndView findParkingById(Integer id){
 		ModelAndView mav = new ModelAndView();
 		ParkingBean bean = park.findParkingById(id);
-
-		mav.addObject("park", bean);
+		
+		mav.addObject("park",bean);
 		mav.setViewName("views/landlord_carpart_check.jsp");
 		return mav;
 	}
-
 	/**
 	 * 通过ID删除车位
-	 * 
 	 * @param id
 	 * @return
 	 */
@@ -239,7 +233,6 @@ public class ParkingController {
 		if (re) {
 			result = "删除成功";
 		}
-
 		return result;
 	}
 
@@ -257,7 +250,7 @@ public class ParkingController {
 
 		return mav;
 	}
-
+	
 	@RequestMapping("passApply.do")
 	public @ResponseBody String passApply(Integer id) {
 		String result = "通过失败";
@@ -270,13 +263,16 @@ public class ParkingController {
 
 	@RequestMapping("passApplyFail.do")
 	public @ResponseBody String passApplyFail(Integer id) {
-		String result = "失败";
+		String result = "驳回失败";
 		boolean re = park.passApplyFail(id);
 		if (re) {
-			result = "成功";
+			result = "成功驳回";
 		}
 		return result;
 	}
+
+
+
 
 	@org.springframework.web.bind.annotation.InitBinder
 	public void initBinder(WebDataBinder binder) {
