@@ -14,10 +14,8 @@ public class MyFormAuthenticationFilter extends FormAuthenticationFilter {
 	protected boolean onLoginSuccess(AuthenticationToken token,
 			Subject subject, ServletRequest request, ServletResponse response)
 			throws Exception {
-		System.out.println("进入了MyFormAuthenticationFilter");
 
 		WebUtils.getAndClearSavedRequest(request);
-		System.out.println("进入了MyFormAuthenticationFilter");
 
 		WebUtils.redirectToSavedRequest(request, response, "/success.jsp");
 

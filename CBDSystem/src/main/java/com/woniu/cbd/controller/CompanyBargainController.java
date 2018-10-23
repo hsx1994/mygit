@@ -32,7 +32,7 @@ public class CompanyBargainController {
 
 	@RequestMapping("/companyBargainAdd.do")
 	public @ResponseBody String companyBargainAdd(CompanyBargainBean bean,String[] parkingNumber,String[] address) {
-
+		
 		CompanyInfoBean company = cis.findByCompanyName(bean.getCompany().getComName());
 		if(company == null){
 			return "该企业用户不存在";
@@ -148,7 +148,7 @@ public class CompanyBargainController {
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		format.setLenient(false);  //是否需要严格转化
+		format.setLenient(true);  //是否需要严格转化
 		
 		//使用springmvc封装好的类进行格式转换
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));

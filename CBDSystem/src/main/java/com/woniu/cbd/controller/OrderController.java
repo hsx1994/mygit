@@ -1,16 +1,25 @@
 package com.woniu.cbd.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
+import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.service.IOrderService;
 
 @Controller
@@ -71,5 +80,24 @@ public class OrderController {
         mav.setViewName("/views/hu/showorder.jsp");
 		return mav;
 	}
-
+	
+	@RequestMapping("pay.do")
+	public @ResponseBody int pay(HttpServletRequest req,OrderBean bean){
+		int id = (int) req.getSession().getAttribute("id");
+		UserBean user = new UserBean();
+		user.setId(id);
+		bean.setUser(user);
+		order.privateOrder(bean);
+		int oid = bean.getId();
+		return oid;
+	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		format.setLenient(false);  //是否需要严格转化
+		
+		//使用springmvc封装好的类进行格式转换
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
+	}
 }

@@ -55,7 +55,6 @@ public class PhoneCodeUtil {
 		//查看处理结果
 		if (sendSmsResponse.getCode() != null && sendSmsResponse.getCode().equals("OK")) {
 			//
-			System.out.println("OK");
 		}
 		return string;
 	}

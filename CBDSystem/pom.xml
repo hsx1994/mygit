@@ -293,7 +293,7 @@
 			<version>1.0</version> 
 		</dependency>
 		<dependency>
-		 	 <groupId>alipay.core</groupId> 
+		 	<groupId>alipay.core</groupId> 
 			<artifactId>alipay.core</artifactId> 
 			<version>1.0</version> 
 		</dependency>
