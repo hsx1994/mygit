@@ -797,8 +797,8 @@ a:hover {
 }
 
 .rslides_tabs {
-	margin-left: -290px
-	margin: -6px;
+	margin-left: -275px;
+	margin-top:-5px;
 	clear: both;
 	text-align: center
 }
@@ -3000,6 +3000,12 @@ div.badoo span.disabled {
 
 
 /* ***********************************车位详情展示**************************************** */
+
+body{
+	/* background-color:rgb(231,226,229); */
+}
+
+
 
 .clj{
 	margin-left:35px;

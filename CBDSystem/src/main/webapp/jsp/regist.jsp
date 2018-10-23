@@ -254,7 +254,7 @@ $(function(){
 				$("#times").text(c);
 			},
 			after:function(){
-				window.location.href="login.html";		
+				window.location.href="/jsp/login.jsp";		
 			}
 		});		
 	});	

@@ -4,7 +4,7 @@ function getCurrentPage() {
 	return currentPage;
 }
 
-// 加载首页
+//展示抢租客车位页面（page当前页数）
 function upCurrentPage(page) {
 	$.ajax({
 		type : "post",

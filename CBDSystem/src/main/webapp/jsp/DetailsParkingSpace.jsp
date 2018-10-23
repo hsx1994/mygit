@@ -22,66 +22,28 @@
 <body>
 	<div class="hrader" id="header">
 		<div class="top">
-			<a href="login.html" style="color:#C94E13;">请登录</a> <a
-				href="reg.html">注册</a>
+			<a href="/jsp/login.jsp" style="color:#C94E13;">登录</a> <a
+				href="/jsp/regist.jsp">注册</a>
 			<ul class="topNav">
-				<li><a href="order.html">我的订单 </a></li>
-
-				<li class="shoucangjia"><a href="shoucang.html">收藏夹</a></li>
-				<li class="kefus"><a href="#">客服</a></li>
-
+				<li class="shoucangjia"><a href="shoucang.html">个人中心</a></li>
 				<div class="clears"></div>
 			</ul>
-			<!--topNav/-->
 		</div>
-		<!--top/-->
 	</div>
 	<!--hrader/-->
 	<div class="mid">
-		<h1 class="logo" style="text-align:left;">
+		 <h1 class="logo" style="text-align:left;">
 			<a href="index.html"><img
 				src="/CBDSystem/parking/images/logo.png" width="304" height="74" /></a>
-		</h1>
-		<!-- <form action="#" method="get" class="subBox">
-			<div class="subBox2">
-				<input type="text" class="subText" /> <input type="image"
-					src="/CBDSystem/parking/images/sub.jpg" width="95" height="32"
-					class="subImg" />
-				<div class="hotci">
-					<a href="#">酷派大神</a> <a href="#">三星s5</a> <a href="#">诺基亚1020</a> <a
-						href="#">Iphone 6</a> <a href="#">htc one</a>
-				</div>
-				hotci/
-			</div>
-			subBox2/
-		</form> -->
-		<!--subBox/-->
-		<div class="ding-gou">
-			<div class="ding">
-				<a href="order.html"><img
-					src="/CBDSystem/parking/images/dingdan.jpg" width="106" height="32" /></a>
-			</div>
-			<!--ding/-->
-			<div class="gou">
-				<a href="car.html"><img
-					src="/CBDSystem/parking/images/gouwuche.jpg" width="126"
-					height="32" /></a>
-			</div>
-			<!--gou/-->
-			<div class="clears"></div>
+		</h1> 
+		<div class="ding-gou"><div class="clears"></div>
 		</div>
 		<!--ding-gou/-->
 	</div>
 	<!--mid-->
 	<div class="navBox navBg2">
 		<ul class="nav">
-			<li><a href="index.html">首页</a></li>
-			<li><a href="buy.html">买家</a></li>
-			<li class="navCur"><a href="sell.html">卖家</a></li>
-			<li><a href="vip.html">会员中心</a></li>
-			<li><a href="xuanshang.html">悬赏榜</a></li>
-			<li><a href="luntan.html" class="luntan">论坛</a></li>
-			<li><a href="help.html">帮助</a></li>
+			<li><a href="/CBDSystem/index.jsp">首页</a></li>
 			<div class="clears"></div>
 		</ul>
 		<!--nav/-->
@@ -125,16 +87,6 @@
 	</div>
 	<!--banner/-->
 	<div class="proBox">
-		<!-- <ul class="proSelect">
-			<li>功能机 &darr;</li>
-			<li>智能机 &darr;</li>
-			<li>原器件 &darr;</li>
-			<li>其他 &darr;</li>
-			<div class="clears"></div>
-		</ul> -->
-
-
-
 
 		<!--*********************车位详情展示部分**************************************************************************-->
 		<div class="sells">
@@ -182,8 +134,9 @@
 								<div class="time2">
 									<!-- <input class="time2-button" type="submit"/> -->
 								</div>
-								<a href="quanjing/index.html">选用此模型</a> <a class="sellmai"
-									onclick="pay()">立即购买</a>
+
+								<a href="quanjing/index.html">预约车位</a> <a class="sellmai"
+									onclick="pay()">立即下单</a>
 							</form>
 						</div>
 					</div>
@@ -196,13 +149,7 @@
 			<br />
 
 			<!--*****************************页码部分***********************************************  -->
-			<!-- <div class="badoo">
-				<span class="disabled"> < Prev</span><span class="current">1</span><a
-					href="#?page=2">2</a><a href="#?page=3">3</a><a href="#?page=4">4</a><a
-					href="#?page=5">5</a><a href="#?page=6">6</a><a href="#?page=7">7</a>...<a
-					href="#?page=199">199</a><a href="#?page=200">200</a><a
-					href="#?page=2">Next > </a>
-			</div> -->
+
 		</div>
 
 
@@ -211,7 +158,8 @@
 	<div class="footBox">
 		<div class="footers">
 			<div class="footersLeft">
-				<a href="https://baike.baidu.com/item/%E5%85%B0%E5%8D%9A%E5%9F%BA%E5%B0%BC/246705?fr=aladdin"><img src="/CBDSystem/parking/images/pc1.jpg" width="240"
+				<a href="#"><img
+					src="/CBDSystem/images/parking/images/ftlogo.jpg" width="240"
 					height="64" /></a>
 				<h3 class="ftphone">400 000 0000</h3>
 				<div class="ftKe">
@@ -267,13 +215,7 @@
 		</div>
 		<!--footers/-->
 	</div>
-	<!--footBox/-->
-	<div class="footer" style="text-align:left;">
-		<a href="#">关于我们</a> <a href="#">友情链接</a> <a href="#">版权声明</a> <a
-			href="#">网站地图</a> <br /> <span>&copy; 2014 Unqezi 使用前必读 更多模板：<a
-			href="http://www.mycodes.net/" target="_blank">源码之家</a></span>
-	</div>
-	<!--footer/-->
+	
 	<script>
 		function pay(){
 			$.ajax({

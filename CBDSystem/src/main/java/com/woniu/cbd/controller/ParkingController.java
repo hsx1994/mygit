@@ -1,14 +1,11 @@
 package com.woniu.cbd.controller;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -17,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,12 +32,14 @@ public class ParkingController {
 
 	// 包租婆批量添加车位信息
 	@RequestMapping("/application.do")
-	public @ResponseBody String applicationParking(HttpServletRequest request, MultipartFile imgFile, ParkingBean bean,
-			MultipartFile ImgFile, HttpServletRequest req) {
+	public @ResponseBody String applicationParking(HttpServletRequest request,
+			MultipartFile imgFile, ParkingBean bean, MultipartFile ImgFile,
+			HttpServletRequest req) {
 
 		// 获取上传文件的文件名
 		String img = UUID.randomUUID() + "_" + imgFile.getOriginalFilename();
-		String certImg = UUID.randomUUID() + "_" + ImgFile.getOriginalFilename();
+		String certImg = UUID.randomUUID() + "_"
+				+ ImgFile.getOriginalFilename();
 		// 将文件名放入对象中
 		bean.setImg(img);
 		bean.setCertImg(certImg);
@@ -62,9 +60,11 @@ public class ParkingController {
 			f.mkdirs();
 		g.mkdirs();
 		// 创建服务器路径下的文件用uuid命名
-		File file = new File(path, UUID.randomUUID() + "_" + imgFile.getOriginalFilename());
+		File file = new File(path, UUID.randomUUID() + "_"
+				+ imgFile.getOriginalFilename());
 		// 创建服务器路径下的文件用uuid命名
-		File file1 = new File(sum, UUID.randomUUID() + "_" + ImgFile.getOriginalFilename());
+		File file1 = new File(sum, UUID.randomUUID() + "_"
+				+ ImgFile.getOriginalFilename());
 		try {
 			// 将文件保存到服务器img文件夹
 			imgFile.transferTo(file);
@@ -93,7 +93,8 @@ public class ParkingController {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		format.setLenient(false);// 是否严格按照格式
 
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(format,
+				true));
 
 	}
 
@@ -108,7 +109,7 @@ public class ParkingController {
 		return mav;
 
 	}
-	
+
 	// 抢租客查看所有上架车位
 	@ResponseBody
 	@RequestMapping("showall.do")
@@ -281,3 +282,4 @@ public class ParkingController {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
 	}
 }
+
