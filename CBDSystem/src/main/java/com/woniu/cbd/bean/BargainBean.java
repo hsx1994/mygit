@@ -3,6 +3,7 @@ package com.woniu.cbd.bean;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 /**

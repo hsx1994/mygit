@@ -18,7 +18,8 @@ public class OrderServiceImpl implements IOrderService {
 	@Autowired
 	private IOrderDao orderDao;
 	@Autowired
-	private IParkingDao	parkingDao;
+	private IParkingDao parkingDao;
+
 	/**
 	 * 企业用户租赁订单生成方法
 	 */
@@ -27,6 +28,7 @@ public class OrderServiceImpl implements IOrderService {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 	/**
 	 * 个人订单生成方法
 	 */
@@ -34,52 +36,57 @@ public class OrderServiceImpl implements IOrderService {
 	public boolean privateOrder(OrderBean order) {
 		boolean b = false;
 		ParkingBean parking = parkingDao.findParkingById(order.getParking().getId());
-		
-		//如果订单开始结束时间时过去时间,订单不成立
-		if (order.getStartTime().compareTo(new Date())<0||order.getEndTime().compareTo(new Date())<=0) {
+
+		// 如果订单开始结束时间时过去时间,订单不成立
+		if (order.getStartTime().compareTo(new Date()) < 0 || order.getEndTime().compareTo(new Date()) <= 0) {
 			return b;
 		}
-		//如果订单开始时间大于等于结束时间,订单不成立
-		if (order.getStartTime().compareTo(order.getEndTime())>=0) {
+		// 如果订单开始时间大于等于结束时间,订单不成立
+		if (order.getStartTime().compareTo(order.getEndTime()) >= 0) {
 			return b;
 		}
-		//如果订单时间段不在车位可租时间段内,订单不成立
-		if ((order.getStartTime().compareTo(parking.getStartTime())<0)||(order.getEndTime().compareTo(parking.getEndTime())>0)) {
+		// 如果订单时间段不在车位可租时间段内,订单不成立
+		if ((order.getStartTime().compareTo(parking.getStartTime()) < 0)
+				|| (order.getEndTime().compareTo(parking.getEndTime()) > 0)) {
 			return b;
 		}
 		List<OrderBean> orderList = orderDao.findByParkingId(order.getParking().getId());
-	
+
 		if (orderList.size() != 0) {
 			System.out.println("进入判断");
 			b = true;
 			for (OrderBean orderBean : orderList) {
-				//如果订单开始时间在其他订单时间段内,订单不成立
-				if (order.getStartTime().compareTo(orderBean.getStartTime())>0 && order.getStartTime().compareTo(orderBean.getEndTime())<0) {
+				// 如果订单开始时间在其他订单时间段内,订单不成立
+				if (order.getStartTime().compareTo(orderBean.getStartTime()) > 0
+						&& order.getStartTime().compareTo(orderBean.getEndTime()) < 0) {
 					b = false;
 					break;
 				}
-				//如果订单结束时间在其他订单时间段内,订单不成立
-				if (order.getEndTime().compareTo(orderBean.getStartTime())>0 && order.getEndTime().compareTo(orderBean.getEndTime())<0) {
+				// 如果订单结束时间在其他订单时间段内,订单不成立
+				if (order.getEndTime().compareTo(orderBean.getStartTime()) > 0
+						&& order.getEndTime().compareTo(orderBean.getEndTime()) < 0) {
 					b = false;
 					break;
 				}
-				//如果订单的时间端内包含了其他订单,订单不成立
-				if (order.getStartTime().compareTo(orderBean.getStartTime())<=0 && order.getEndTime().compareTo(orderBean.getEndTime())>=0) {
+				// 如果订单的时间端内包含了其他订单,订单不成立
+				if (order.getStartTime().compareTo(orderBean.getStartTime()) <= 0
+						&& order.getEndTime().compareTo(orderBean.getEndTime()) >= 0) {
 					b = false;
 					break;
 				}
 			}
-			//判断完后标志位依然为true,表示该订单正确,可以生成
+			// 判断完后标志位依然为true,表示该订单正确,可以生成
 			if (b) {
-				order.setPay(DateUtil.timeMinus(order.getStartTime(), order.getEndTime())*parking.getPrice());
+				order.setPay(DateUtil.timeMinus(order.getStartTime(), order.getEndTime()) * parking.getPrice());
 				b = orderDao.addOrder(order);
 			}
-		}else {
-			order.setPay(DateUtil.timeMinus(order.getStartTime(), order.getEndTime())*parking.getPrice());
+		} else {
+			order.setPay(DateUtil.timeMinus(order.getStartTime(), order.getEndTime()) * parking.getPrice());
 			b = orderDao.addOrder(order);
 		}
 		return b;
 	}
+
 	/**
 	 * 通过订单id查找订单信息
 	 */
@@ -87,6 +94,7 @@ public class OrderServiceImpl implements IOrderService {
 	public OrderBean findOrderById(int id) {
 		return orderDao.findByOrderId(id);
 	}
+
 	/**
 	 * 修改订单的状态信息
 	 */
@@ -94,5 +102,19 @@ public class OrderServiceImpl implements IOrderService {
 	public boolean changeOrderState(OrderBean order) {
 		return orderDao.changeState(order);
 	}
-	
+
+	// 查看抢租客的租赁记录
+	@Override
+	public List<OrderBean> showLog(int id) {
+		List<OrderBean> bean = orderDao.showLog(id);
+		return bean;
+	}
+
+	// 查看包租婆的被租赁记录
+	@Override
+	public List<ParkingBean> selectLog(int id) {
+		List<ParkingBean> bean = orderDao.selectLog(id);
+		return bean;
+	}
+
 }
