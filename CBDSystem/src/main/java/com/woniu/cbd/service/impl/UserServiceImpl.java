@@ -1,6 +1,7 @@
 package com.woniu.cbd.service.impl;
 
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,12 +53,12 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public int updateCompany(CompanyInfoBean company) {
+	public boolean updateCompany(CompanyInfoBean company) {
 		int row = dao.updateCompany(company);
 		if(row>0){
-			return 1;
+			return true;
 		}
-		return 0;	
+		return false;	
 		
 	}
 
@@ -66,5 +67,21 @@ public class UserServiceImpl implements IUserService {
 	public int findIdByLid(int lid) {
 		return dao.findIdByLid(lid);
 	}
+	@Override
+	public UserBean findUserInfo(int id) {
+		
+		UserBean bean = dao.findUserInfo(id);
+		
+		return bean;
+	}
+	@Override
+	public CompanyInfoBean findCompanyInfo(int id) {
+
+		CompanyInfoBean bean = dao.findCompanyInfo(id);
+		
+		return bean;
+	}
+	
+	
 
 }

@@ -1,18 +1,18 @@
 package com.woniu.cbd.controller;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.aliyuncs.exceptions.ClientException;
-
 import com.woniu.cbd.bean.CompanyInfoBean;
 import com.woniu.cbd.bean.LoginBean;
 import com.woniu.cbd.bean.UserBean;
@@ -76,6 +76,17 @@ public class UserController {
 		}
 		return result;
 	}
+	//查看个人信息
+	@RequestMapping("look.do")
+	public ModelAndView findUserInfo() {
+		ModelAndView mav = new ModelAndView();
+		int id = 1;
+		UserBean bean = user.findUserInfo(id);
+		mav.addObject("one", bean);
+		mav.setViewName("jsp/LookOneMyself.jsp");
+
+		return mav;
+	}
 
 	/***
 	 * 修改企业信息是否成功
@@ -85,9 +96,9 @@ public class UserController {
 	 */
 	@RequestMapping("companyUpdate.do")
 	public String updateCompany(@Validated CompanyInfoBean company) {
-		int row = user.updateCompany(company);
-		if (row > 0) {
-			return "/某页面";
+		boolean row = user.updateCompany(company);
+		if (row) {
+			return "/three.jsp";
 		} else {
 			return "/ModificationPersonal.jsp";
 		}

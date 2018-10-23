@@ -29,8 +29,10 @@ public class OrderController {
 
 	// 抢租客查看租赁记录
 	@RequestMapping("/showlog.do")
-	public ModelAndView ShowLog(Integer id, Integer page) {
+	public ModelAndView showLog() {
 		ModelAndView mav = new ModelAndView();
+		int id =1;
+		int page = 2;
 		PageHelper.startPage(page, 5, true);
 		List<OrderBean> bean = order.showLog(id);
 		PageInfo<OrderBean> pageInfo = new PageInfo<OrderBean>(bean);
@@ -49,8 +51,10 @@ public class OrderController {
 
 	// 包租婆查看自己的被租赁记录
 	@RequestMapping("/selectlog.do")
-	public ModelAndView selectLog(Integer id, Integer page) {
+	public ModelAndView selectLog() {
 		ModelAndView mav = new ModelAndView();
+		int id = 2;
+		int page = 1;
 		PageHelper.startPage(page, 8, true);
 		List<ParkingBean> bean = order.selectLog(id);
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
@@ -71,8 +75,9 @@ public class OrderController {
 	public ModelAndView showOneOrder(Integer id) {
 		ModelAndView mav = new ModelAndView();
 		OrderBean bean=order.findOrderById(id);
+		System.out.println(bean);
         mav.addObject("order",bean);
-        mav.setViewName("/views/hu/oneorder.jsp");
+        mav.setViewName("/views/hu/showorder.jsp");
 		return mav;
 	}
 	
