@@ -26,7 +26,6 @@ public class RegisterAction {
 		boolean row = service.updateUser(user);
 		String result = "失败";
 		if (row) {
-			System.out.println("成功");
 			result = "成功";
 
 		}
