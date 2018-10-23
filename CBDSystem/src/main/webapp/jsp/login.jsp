@@ -63,10 +63,12 @@
 						id="picturecode" style="width:100px" /></a>
 					<lable>
 					<font color="red">${errorMsg}</font></lable>
+					<input type="hidden" name="path" value="/jsp/login.jsp" />
 					<br />
 					<button type="submit">登录</button>
 					<button type="button" onclick="goRegist()">注册</button>
 				</form>
+				
 			</div>
 		</div>
 	</div>
@@ -75,8 +77,7 @@
 			var pictureimg = document.getElementById("picturecode");
 			pictureimg.src = "/CBDSystem/picturecode?a=" + Math.random();
 		}
-		getPictureCode();
-		
+		getPictureCode();		
 		function goRegist(){
 			window.location.href="regist.jsp"
 		}

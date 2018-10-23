@@ -11,33 +11,32 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CharserFilter implements Filter{
+public class LoginAdminUrlFilter implements Filter{
 
 	@Override
-	public void destroy() {
+	public void init(FilterConfig filterConfig) throws ServletException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
-			throws IOException, ServletException {
-		
+	public void doFilter(ServletRequest req, ServletResponse resp,
+			FilterChain chain) throws IOException, ServletException {
 		
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
-		System.out.println("进入了过滤器CharserFilter");
-		
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
-		
-		chain.doFilter(request, response);
+		String url = request.getServletPath();
+		System.out.println("进入了LoginAdminUrlFilter:"+url);
+		if (url.endsWith("login.jsp")) {
+			chain.doFilter(request, response);
+		}else{
+			response.sendRedirect("/CBDSystem/views/login.jsp");
+		}
 		
 	}
 
 	@Override
-	public void init(FilterConfig arg0) throws ServletException {
+	public void destroy() {
 		// TODO Auto-generated method stub
 		
 	}
