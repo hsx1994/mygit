@@ -141,10 +141,7 @@ public class LoginController {
 	 * @return
 	 */
 	@ResponseBody
-
 	@RequestMapping("changePwd.do")
-
-
 	public String changePwd(String password,String newpwd,String checkpwd,HttpServletRequest req){
 
 		String str = "更改失败";

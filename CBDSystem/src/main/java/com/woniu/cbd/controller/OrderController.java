@@ -20,7 +20,7 @@ public class OrderController {
 
 	// 抢租客查看租赁记录
 	@RequestMapping("/showlog.do")
-	public ModelAndView ShowLog(Integer id, Integer page) {
+	public ModelAndView showLog(Integer id,Integer page) {
 		ModelAndView mav = new ModelAndView();
 		PageHelper.startPage(page, 5, true);
 		List<OrderBean> bean = order.showLog(id);
@@ -40,21 +40,19 @@ public class OrderController {
 
 	// 包租婆查看自己的被租赁记录
 	@RequestMapping("/selectlog.do")
-	public ModelAndView selectLog(Integer id, Integer page) {
+
+	public ModelAndView selectLog(Integer id,Integer page) {
 		ModelAndView mav = new ModelAndView();
-		PageHelper.startPage(page, 8, true);
+		PageHelper.startPage(page, 5, true);
 		List<ParkingBean> bean = order.selectLog(id);
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
 		if (bean != null) {
 			mav.addObject("pageinfo", pageInfo);
 			mav.addObject("list", bean);
-
 		} else {
-			mav.addObject("lease", "尚未有车位被租赁");
+			mav.addObject("list", "尚未有车位被租赁");
 		}
-
-		mav.setViewName("/views/hu/selectlog.jsp");
-
+		mav.setViewName("jsp/LookCar.jsp");
 		return mav;
 	}
 	//查看单个订单详情

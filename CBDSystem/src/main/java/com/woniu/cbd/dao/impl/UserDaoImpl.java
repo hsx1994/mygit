@@ -114,7 +114,7 @@ public class UserDaoImpl implements IUserDao {
 	@Override
 	public UserBean findUserInfo(int id) {
 		SqlSession session = fa.openSession(true);
-		UserBean bean = session.selectOne("userMapper.findUserInfo", id);
+		UserBean bean = session.selectOne("userMapper.findById", id);
 
 		session.close();
 		return bean;
