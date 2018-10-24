@@ -68,12 +68,12 @@
    <h3 class="vipName">抢租客</h3>
    <dl class="vipNav">
     <dt class="vip_1">用户中心</dt>
-     <dd><a href="LookTwoCar.jsp">查看上架车位</a></dd>
      <dd><a href="vipShoucang.html"></a></dd>
-    <dt class="vip_2">个人中心</dt>
      <dd class="ddCur"><a href="two.jsp">个人信息</a></dd>
-     <dd><a href="RentUser.jsp">修改个人信息</a></dd>
-     <dd><a href="LookTwoUser.jsp">查看租赁记录</a></dd>
+    <dt class="vip_2">个人中心</dt>
+     <dd><a href="changeUserInfo.jsp">修改个人信息</a></dd>
+     <dd><a href="LookTwoUser.jsp">查看已完成订单</a></dd>
+     <dd><a href="LookTwoCar.jsp">查看未完成订单</a></dd>
      <dd><a href="vipXiaofei.html"></a></dd>
     <dt class="vip_3"></dt>
      <dd><a href="vipQuxiao.html"></a></dd>
@@ -81,45 +81,42 @@
      <dd><a href="vipTousu.html"></a></dd>
    </dl><!--vipNav/-->
   </div><!--vipLeft/-->
-  <div class="vipRight">
-   <h2 class="vipTitle">个人中心</h2>
+  <div class="vipRight">  
+   <h2 class="vipTitle">个人信息</h2>
    
-  <div>
-  	  <form  action="../look.do" method="post" enctype="multipart/form-data">
-  	  	<table  class="grzx" width="705" border="0" cellspacing="0" cellpadding="0"
-  	  	>
-  	  	<td width="90"><button type="submit">查看</button><br/>
-  	  			</td>
-  	  	<%-- <c:forEach items="${one}" var="obj"> --%>
-  	  		<%-- <tr>
-  	  			<td width="90"><span>*</span>真实姓名:&nbsp;${one.realName}<br/>
+    <div>
+  	  	<table  class="grzx" width="705" border="0" cellspacing="0" cellpadding="0">
+  	  		<tr>
+  	  			<td id="realName" width="90"><br/>
   	  			</td>
   	  		</tr>
   	  		<tr>
-  	  			<td width="90"><span>*</span>身份证号  :&nbsp;${one.idcard}<br/>
+  	  			<td id="idcard" width="90"><br/>
   	  			</td>
   	  		</tr>
   	  		<tr>
-  	  			<td width="90"><span>*</span>电话 :&nbsp;${one.tel }<br/>
+  	  			<td id="tel" width="90"><br/>
   	  			</td>
   	  		</tr>
   	  		<tr>
-  	  			<td width="90"><span>*</span>住址 :&nbsp;${one.address }<br/>
+  	  			<td id="address" width="90"><br/>
   	  			</td>
   	  		</tr>
   	  		<tr>
-  	  			<td width="90"><span>*</span> 职业 :&nbsp;${one.job }<br/>
+  	  			<td id="job" width="90"><br/>
   	  			</td>
   	  		</tr>
   	  		<tr>
-  	  			<td width="90"><span>*</span>邮箱 :&nbsp;${one.email}<br/>
+  	  			<td id="email" width="90"><br/>
   	  			</td>
   	  		</tr>
-  	  		 --%>
-  	  		<%-- </c:forEach> --%>
+  	  		<tr>
+  	  			<td id="countOrder" width="90"><br/>
+  	  			</td>
+  	  		</tr>
         </table>
-        </form> 
   	</div>
+  	
   </div><!--vipRight/-->
   <div class="clears"></div>
  </div><!--vipBox/-->
@@ -186,5 +183,28 @@
   <br />
   <span>&copy; 2014 Unqezi 使用前必读 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></span>
  </div><!--footer/-->
+ <input type="hidden" value="${sessionScope.id }" id="uid" />
+ <script>
+ 	function findById(){
+	 	$.ajax({
+	 		url:"/CBDSystem/look.do",
+	 		type:"post",
+	 		data:{
+	 			"id":$("#uid").val()
+	 		},
+	 		dataType:"json",
+	 		success:function(data){
+	 			$("#realName").html("<span>*</span>真实姓名:&nbsp;"+data.realName);
+	 			$("#idcard").html("<span>*</span>身份证号:&nbsp;"+data.idcard);
+	 			$("#tel").html("<span>*</span>电话号码:&nbsp;"+data.tel);
+	 			$("#address").html("<span>*</span>居住地址:&nbsp;"+data.address);
+	 			$("#job").html("<span>*</span>工作:&nbsp;"+data.job);
+	 			$("#email").html("<span>*</span>电子邮箱:&nbsp;"+data.email);
+	 			$("#countOrder").html("<span>*</span>完成交易次数:&nbsp;"+data.orderCount);
+	 		}
+	 	});
+ 	}
+ 	findById();
+ </script>
 </body>
 </html>

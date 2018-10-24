@@ -3,7 +3,6 @@ package com.woniu.cbd.service;
 
 import com.woniu.cbd.bean.CompanyInfoBean;
 import com.woniu.cbd.bean.LoginBean;
-
 import com.woniu.cbd.bean.UserBean;
 
 public interface IUserService {

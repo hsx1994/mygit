@@ -9,7 +9,10 @@
 		select * from
 		t_order where or_u_id=#{id}
 	</select>
-
+	
+	<select id="findOrderByState" parameterType="OrderBean" resultMap="order">
+		select * from t_order where or_u_id=#{user.id} and or_state=#{state}
+	</select>
 	<!-- 封装成一个完整的OrderBean -->
 	<resultMap type="OrderBean" id="order">
 		<id property="id" column="or_id" />

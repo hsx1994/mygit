@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
+import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.dao.IOrderDao;
 
 @Repository
@@ -91,5 +92,19 @@ public class OrderDaoImpl implements IOrderDao {
 
 		session.close();
 		return bean;
+	}
+
+	@Override
+	public List<OrderBean> findOrderByState(int id, int state) {
+		UserBean bean = new UserBean();
+		bean.setId(id);
+		OrderBean bean2 = new OrderBean();
+		bean2.setUser(bean);
+		bean2.setState(state);
+		SqlSession session = fa.openSession(true);
+		List<OrderBean> list = session.selectList("orderMapper.findOrderByState", bean2);
+
+		session.close();
+		return list;
 	}
 }

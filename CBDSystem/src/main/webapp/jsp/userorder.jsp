@@ -1,27 +1,16 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<div id="show">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>查看租赁记录</title>
-<link type="text/css" href="../css/csss.css" rel="stylesheet" />
-<script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
-<script type="text/javascript" src="../js/js.js"></script>
-<style>
-		td{
-			text-align:center;
-		}
-  </style>
+<title>抢租用户主页</title>
+<link type="text/css" href="/CBDSystem/css/csss.css" rel="stylesheet" />
+<script type="text/javascript" src="/CBDSystem/js/jquery-1.9.11.min.js"></script>
+
 </head>
 
-<body onload="select(1)">
+<body>
  <div class="hrader" id="header">
   <div class="top">
    <a href="login.html" style="color:#C94E13;">请登录</a> 
@@ -55,35 +44,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="order.html"><img src="../images/dingdan.jpg" width="106" height="32" /></a>
    </div><!--ding/-->
    <div class="gou">
-    <a href="car.html"><img src="../images/gouwuche.jpg" width="126" height="32" /></a>
+<!--     <a href="car.html"><img src="../images/gouwuche.jpg" width="126" height="32" /></a> -->
    </div><!--gou/-->
    <div class="clears"></div>
   </div><!--ding-gou/-->
  </div><!--mid-->
  <div class="navBox navBg3">
   <ul class="nav">
-   <li><a href="index.html">首页</a></li>
-   <li><a href="buy.html">买家</a></li>
-   <li><a href="sell.html">卖家</a></li>
-   <li class="navCur"><a href="vip.html">会员中心</a></li>
-   <li><a href="xuanshang.html">悬赏榜</a></li>
-   <li><a href="luntan.html" class="luntan">论坛</a></li>
-   <li><a href="help.html">帮助</a></li>
+   <li><a href="index.html"></a></li>
+   <li><a href="buy.html"></a></li>
+   <li><a href="sell.html"></a></li>
+   <li class="navCur"><a href="vip.html">个人中心</a></li>
+   <li><a href="xuanshang.html"></a></li>
+   <li><a href="luntan.html" class="luntan"></a></li>
+   <li><a href="help.html"></a></li>
    <div class="clears"></div>
   </ul><!--nav/-->
  </div><!--navBox/-->
  <div class="vipBox">
   <div class="vipLeft">
    <h2 class="headImg"><img src="../images/vipImg.jpg" width="183" height="169" /></h2>
-    <h3 class="vipName">抢租客</h3>
+   <h3 class="vipName">抢租客</h3>
    <dl class="vipNav">
     <dt class="vip_1">用户中心</dt>
+     <dd><a href="LookTwoCar.jsp">查看上架车位</a></dd>
      <dd><a href="vipShoucang.html"></a></dd>
-     <dd ><a href="two.jsp">个人信息</a></dd>
     <dt class="vip_2">个人中心</dt>
-     <dd><a href="changeUserInfo.jsp">修改个人信息</a></dd>
-     <dd><a href="LookTwoUser.jsp">查看已完成订单</a></dd>
-     <dd class="ddCur"><a href="LookTwoCar.jsp">查看未完成订单</a></dd>
+     <dd class="ddCur"><a href="two.jsp">个人信息</a></dd>
+     <dd><a href="RentUser.jsp">修改个人信息</a></dd>
+     <dd><a href="LookTwoUser.jsp">查看租赁记录</a></dd>
      <dd><a href="vipXiaofei.html"></a></dd>
     <dt class="vip_3"></dt>
      <dd><a href="vipQuxiao.html"></a></dd>
@@ -91,52 +80,66 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      <dd><a href="vipTousu.html"></a></dd>
    </dl><!--vipNav/-->
   </div><!--vipLeft/-->
-<div class="vipRight">
-   <h2 class="vipTitle">未完成订单</h2>
+	<div class="vipRight">
+		<h2 class="vipTitle">我的订单</h2>
+		<button onclick="changeOrder(success)">已完成订单</button>
+		<button onclick="changeOrder(failed)">未支付订单</button>
    
-				<table class="grzx" width="705" border="0" cellspacing="0"
-					cellpadding="0">
-						<tr>
-							<th width="100"><span>*</span>订单编号</th>
-							<th width="100"><span>*</span>开始时间</th>
-							<th width="100"><span>*</span>结束时间</th>
-							<th width="100"><span>*</span>车位编号</th>
-							<th width="100"><span>*</span>订单总价</th>
-							<th width="100"><span>*</span>操作</th>
-						</tr>
-					<c:forEach items="${list}" var="obj">
-						<tr>
-							<td>${obj.id }<br/></td>
-							<td><fmt:formatDate value="${obj.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/><br/></td>
-							<td><fmt:formatDate value="${obj.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/><br/></td>
-							<td>${obj.parking.address }${obj.parking.parkingNum }<br /></td>
-							<td>${obj.pay}<br/></td>
-							<td><a href="/CBDSystem/apply.do?orderId=${obj.id }">去支付</a></td>
-						</tr>
-					</c:forEach>
-					<tr>
-				        <td width="100"> 
-				       		<a href="#" onclick="select(${pageinfo.firstPage})"  target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
-				       	</td>
-				       	<td width="100">
-					        <c:if test="${pageinfo.hasPreviousPage}">
-					        <a href="#"onclick="select(${pageinfo.prePage})" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
-					        </c:if>
-					    </td>
-					    <td width="100">
-					        ${pageinfo.pageNum}/${pageinfo.pages} 页&nbsp;&nbsp;
-					    </td>
-					    <td width="100">
-					        <c:if test="${pageinfo.hasNextPage}">
-					        <a href="#"onclick="select(${pageinfo.nextPage})" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
-					        </c:if>
-					    </td>
-					    <td width="100">
-					        <a href="#" onclick="select(${pageinfo.lastPage})" target="mainFrame" onFocus="this.blur()">尾页</a>
-				      </td>
-				    </tr>
-				</table>
-    
+   		<h2 class="oredrName">我的订单 <span style="margin-left:40px;">已完成: <span class="red" id="successfulOrder"></span> </span>
+    		<span>未支付: <span class="red" id="failedOrder"></span></span>
+    	</h2>
+    	<table class="main">
+    		<tr>
+				
+				<th>订单编号</th>
+				<th>开始时间</th>
+				<th>结束时间</th>
+				<th>车位号</th>
+				<th>车位总价</th>
+				<th>订单状态</th>
+				<th>操作</th>
+				
+			</tr>
+    		<c:forEach items="${list}" var="obj">
+				<tr>
+					<td style="width: 198px;height: 100px;text-align: center;">${obj.id }</td>
+					<td style="width: 198px;height: 100px;text-align: center;">${obj.startTime }</td>
+					<td style="width: 198px;height: 100px;text-align: center;">${obj.endTime}</td>
+					
+					<td style="width: 198px;height: 100px;text-align: center;">${obj.parking.parkingNum }</td>
+					<td style="width: 198px;height: 100px;text-align: center;">${obj.pay }</td>
+					<c:if test="${obj.state==1 }">
+						<a>已完成</a>
+						<form action="/CBDSystem/addComplaint.do" method="post">
+							<input type="hidden" value="${obj.id }" name="id">
+				     		<button type="submit">添加投诉</button>
+				    	</form>
+					</c:if>
+					<c:if test="${obj.state==0 }">
+						<a>未完成</a>
+						<form action="/CBDSystem/addComplaint.do" method="post">
+							<input type="hidden" value="${obj.id }" name="id">
+				     		<button type="submit">去付款</button>
+				    	</form>
+					</c:if>
+				    <td style="width: 198px;height: 100px;text-align: center;">
+				    </td>
+				</tr>
+			</c:forEach>
+     		<tr>
+        		<td align="left" valign="top" class="fenye"> &nbsp;&nbsp;
+      			<a href="#" onclick="showHTContract(${pageinfo.firstPage})"  target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
+	        	<c:if test="${pageinfo.hasPreviousPage}">
+	        	<a href="#"onclick="showHTContract(${pageinfo.prePage})" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
+	        	</c:if>
+	    			 ${pageinfo.pageNum}/${pageinfo.pages} 页&nbsp;&nbsp;
+	        	<c:if test="${pageinfo.hasNextPage}">
+	        	<a href="#"onclick="showHTContract(${pageinfo.nextPage})" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
+	        	</c:if>
+	        	<a href="#" onclick="showHTContract(${pageinfo.lastPage})" target="mainFrame" onFocus="this.blur()">尾页</a>
+         		</td>
+    		</tr>
+    </table><!--vipOrder/-->
   </div><!--vipRight/-->
   <div class="clears"></div>
  </div><!--vipBox/-->
@@ -201,24 +204,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <a href="#">版权声明</a>
   <a href="#">网站地图</a>
   <br />
-  <input type="hidden" value="${sessionScope.id }" id="uid" />
  </div><!--footer/-->
-  <script>
- 	function select(page){
- 		$.ajax({
- 			url:"/CBDSystem/showlog.do",
- 			type:"post",
- 			data:{
- 				"id":$("#uid").val(),
- 				"page":page
- 			},
- 			dataType:"html",
- 			success:function(data){
- 				$("#show").html(data);
- 			}
- 		});
- 	}
- </script>
+ 	<script type="text/javascript">
+		function showOrder(){
+			$.ajax({
+				url:"",
+				type:"post",
+				data:{},
+				dataType:"json",
+				successful:function(data){
+					
+				}
+			})
+		}
+	</script>
 </body>
+	
 </html>
-</div>

@@ -20,4 +20,6 @@ public interface IOrderDao {
 
 	// 包租婆查看被租赁记录
 	List<ParkingBean> selectLog(int id);
+
+	public List<OrderBean> findOrderByState(int id, int state);
 }

@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.woniu.cbd.bean.CompanyInfoBean;
-
 import com.woniu.cbd.bean.LoginBean;
-
 import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.dao.IUserDao;
 
