@@ -61,6 +61,7 @@
 						<input type="text" id="code" name="checkcode" placeholder="验证码 ..." style="width:50%">
 						<a href="javaScript:getPictureCode()"><img src=""
 						id="picturecode" style="width:100px" /></a>
+					<br/>
 					<lable>
 					<font color="red">${errorMsg}</font></lable>
 					<input type="hidden" name="path" value="/jsp/login.jsp" />
