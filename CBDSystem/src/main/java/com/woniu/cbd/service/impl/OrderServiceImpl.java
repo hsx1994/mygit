@@ -116,4 +116,10 @@ public class OrderServiceImpl implements IOrderService {
 		return bean;
 	}
 
+	@Override
+	public List<OrderBean> findOrderByState(int id, int state) {
+		List<OrderBean> bean = orderDao.findOrderByState(id, state);
+		return bean;
+	}
+
 }

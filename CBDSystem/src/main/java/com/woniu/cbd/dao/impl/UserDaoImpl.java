@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.woniu.cbd.bean.CompanyInfoBean;
-
 import com.woniu.cbd.bean.LoginBean;
-
 import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.dao.IUserDao;
 
@@ -68,7 +66,7 @@ public class UserDaoImpl implements IUserDao {
 	@Override
 	public UserBean findUserInfo(int id) {
 		SqlSession session = fa.openSession(true);
-		UserBean bean = session.selectOne("userMapper.findUserInfo", id);
+		UserBean bean = session.selectOne("userMapper.findById", id);
 
 		session.close();
 		return bean;

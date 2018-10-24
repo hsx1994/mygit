@@ -134,7 +134,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			success:function(data){
   				if(data){
   					alert("支付成功");
-  					window.location.href="";
+  					window.location.href="/CBDSystem/index.jsp";
   				}
   			}
  		})

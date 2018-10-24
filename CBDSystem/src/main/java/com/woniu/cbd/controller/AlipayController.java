@@ -1,5 +1,7 @@
 package com.woniu.cbd.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +11,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.woniu.cbd.bean.OrderBean;
+import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.service.IOrderService;
+import com.woniu.cbd.service.IUserService;
 import com.woniu.cbd.util.AlipayUtil;
 
 
 @Controller
 public class AlipayController {
-	
+	@Autowired
+	private IUserService userService;
 	@Autowired
 	private IOrderService orderService;
 	@RequestMapping("/apply.do")
@@ -23,9 +28,15 @@ public class AlipayController {
 		OrderBean order2 = orderService.findOrderById(orderId);
 		ModelAndView result = new ModelAndView();
 		if (order2 != null) {
-			result.setViewName("/alipay/apply.jsp");
-			result.addObject("QRcode", AlipayUtil.getQRcode(request,order2));
-			result.addObject("order", order2);
+			if(order2.getStartTime().compareTo(new Date())<=0){
+				result.setViewName("/jsp/two.jsp");
+			}else{
+				result.setViewName("/alipay/apply.jsp");
+				result.addObject("QRcode", AlipayUtil.getQRcode(request,order2));
+				result.addObject("order", order2);
+			}
+		}else {
+			result.setViewName("/index.jsp");
 		}
 		return result;
 	}
@@ -39,6 +50,10 @@ public class AlipayController {
 			order.setId(orderId);
 			order.setState(1);
 			orderService.changeOrderState(order);
+			String userId = (String)request.getSession().getAttribute("id");
+			UserBean user = userService.findUserInfo(Integer.parseInt(userId));
+			user.setOrderCount(user.getOrderCount()+1);
+			userService.updateUser(user);
 		}
 		return b;
 	}

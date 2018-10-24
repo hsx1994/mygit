@@ -110,7 +110,6 @@ public class LoginController {
 				session.setAttribute("errorMsg", "用户不存在！");
 				return "redirect:"+path;
 			}
-			
 		} catch (Exception e) {
 			session.setAttribute("user", user);
 			session.setAttribute("errorMsg", "用户名或密码错误！");
@@ -141,10 +140,7 @@ public class LoginController {
 	 * @return
 	 */
 	@ResponseBody
-
 	@RequestMapping("changePwd.do")
-
-
 	public String changePwd(String password,String newpwd,String checkpwd,HttpServletRequest req){
 
 		String str = "更改失败";

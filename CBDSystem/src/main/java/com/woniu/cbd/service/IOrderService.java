@@ -20,5 +20,7 @@ public interface IOrderService {
 
 	// 用于包租婆查看自己被租赁的记录
 	public List<ParkingBean> selectLog(int id);
+	
+	public List<OrderBean> findOrderByState(int id,int state);
 
 }
