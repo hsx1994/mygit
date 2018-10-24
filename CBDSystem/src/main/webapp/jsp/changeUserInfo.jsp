@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  </div><!--mid-->
  <div class="navBox navBg3">
   <ul class="nav">
-   <li><a href="one.jsp">首页</a></li>
+   <li><a href="/CBDSystem/index.jsp">首页</a></li>
   </ul><!--nav/-->
  </div><!--navBox/-->
  <div class="vipBox">

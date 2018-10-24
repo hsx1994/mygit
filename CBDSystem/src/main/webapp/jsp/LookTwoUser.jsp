@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>查看租赁记录</title>
+<title>已完成订单</title>
 <link type="text/css" href="../css/csss.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
 <script type="text/javascript" src="../js/js.js"></script>
@@ -26,15 +26,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="top">
    <a href="login.html" style="color:#C94E13;">请登录</a> 
    <a href="reg.html">注册</a>
-   <ul class="topNav">
-    <li><a href="order.html">我的订单 </a></li>
-    <li class="gouwuche"><a href="car.html">购物车</a> <strong style="color:#C94E13;">3</strong></li>
-    <li class="shoucangjia"><a href="shoucang.html">收藏夹</a></li>
-    <li class="kefus"><a href="#">联系客服</a></li>
-<li><a href="#" class="lan">中文</a></li>
-    <li><a href="#" class="lan">English</a></li>
-    <div class="clears"></div>
-   </ul><!--topNav/-->
   </div><!--top/-->
  </div><!--hrader/-->
  <div class="mid">
@@ -62,13 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  </div><!--mid-->
  <div class="navBox navBg3">
   <ul class="nav">
-   <li><a href="index.html">首页</a></li>
-   <li><a href="buy.html">买家</a></li>
-   <li><a href="sell.html">卖家</a></li>
-   <li class="navCur"><a href="vip.html">会员中心</a></li>
-   <li><a href="xuanshang.html">悬赏榜</a></li>
-   <li><a href="luntan.html" class="luntan">论坛</a></li>
-   <li><a href="help.html">帮助</a></li>
+   <li><a href="/CBDSystem/index.jsp">首页</a></li>
    <div class="clears"></div>
   </ul><!--nav/-->
  </div><!--navBox/-->
@@ -77,8 +62,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <h2 class="headImg"><img src="../images/vipImg.jpg" width="183" height="169" /></h2>
    <h3 class="vipName">抢租客</h3>
    <dl class="vipNav">
-    <dd><a href="vipShoucang.html"></a></dd>
-     <dd class="ddCur"><a href="two.jsp">个人信息</a></dd>
+    <dt class="vip_1">用户中心</dt>
+     <dd><a href="vipShoucang.html"></a></dd>
+     <dd ><a href="two.jsp">个人信息</a></dd>
     <dt class="vip_2">个人中心</dt>
      <dd><a href="changeUserInfo.jsp">修改个人信息</a></dd>
      <dd class="ddCur"><a href="LookTwoUser.jsp">查看已完成订单</a></dd>
