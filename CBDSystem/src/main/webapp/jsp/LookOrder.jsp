@@ -7,6 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%@ page isELIgnored="false"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<div id="show">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -14,10 +15,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link type="text/css" href="../css/csss.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
 <script type="text/javascript" src="../js/js.js"></script>
-
+<style>
+	td{
+		text-align:center;
+	}
+	th{
+		text-align:center;
+	}
+</style>
 </head>
 
-<body>
+<body onload="select(1)">
  <div class="hrader" id="header">
   <div class="top">
    <a href="login.html" style="color:#C94E13;">请登录</a> 
@@ -67,20 +75,61 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					cellpadding="0">
 					<thead>
 						<tr>
-							<th><span>*</span>车位号</th>
-							<th></th>
+							<th width="100"><span>*</span>车位号</th>
+							<th width="700"><span>*</span>订单信息</th>
 						</tr>
 					</thead>
-					<c:forEach items="${all}" var="obj">
+					<c:forEach items="${list }" var="obj">
+					<c:if test="${not empty obj.orders }">
 						<tr>
-							<td width="100"><span>*</span>车位地址:&nbsp;"${obj.address}"<br/></td>
-							<td width="100"><span>*</span>单价：&nbsp;"${obj.price}"<br/></td>
-							<td width="100"><span>*</span>开始时间：&nbsp;"${obj.startTime}"<br/></td>
-							<td width="100"><span>*</span>结束时间：&nbsp;"${obj.endTime}"<br /></td>
-							<td width="100"><span>*</span>车位号：&nbsp;"${obj.parkingNum}"<br /></td>
-							<td><a href="jsp/one.jsp">返回</a></td>
+							<td>${obj.parkingNum}<br/></td>
+							<td>
+								<table>
+									<thead>
+										<tr>
+											<th width="150"><span>*</span>订单开始时间</th>
+											<th width="150"><span>*</span>订单结束时间</th>
+											<th width="150"><span>*</span>订单使用用户</th>
+											<th width="150"><span>*</span>订单总价</th>
+											<th width="70"><span>*</span>操作</th>
+										</tr>
+									</thead>
+									<c:forEach items="${obj.orders }" var="order">
+										<tr>
+											<td><fmt:formatDate value="${order.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/><br/></td>
+											<td><fmt:formatDate value="${order.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/><br /></td>
+											<td>${order.user.login.name }</td>
+											<td>${order.pay }</td>
+											<td><button onclick="addComplaint()">投诉</button></td>
+										</tr>
+									</c:forEach>
+									
+								</table>
+							</td>
 						</tr>
+						</c:if>
 					</c:forEach>
+					<tr>
+				        <td width="100"> 
+				       		<a href="#" onclick="select(${pageinfo.firstPage})"  target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
+				       	</td>
+				       	<td width="100">
+					        <c:if test="${pageinfo.hasPreviousPage}">
+					        <a href="#"onclick="select(${pageinfo.prePage})" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
+					        </c:if>
+					    </td>
+					    <td width="100">
+					        ${pageinfo.pageNum}/${pageinfo.pages} 页&nbsp;&nbsp;
+					    </td>
+					    <td width="100">
+					        <c:if test="${pageinfo.hasNextPage}">
+					        <a href="#"onclick="select(${pageinfo.nextPage})" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
+					        </c:if>
+					    </td>
+					    <td width="100">
+					        <a href="#" onclick="select(${pageinfo.lastPage})" target="mainFrame" onFocus="this.blur()">尾页</a>
+				      </td>
+				    </tr>
 				</table>
 	</form>
      
@@ -150,5 +199,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <br />
   <span>&copy; 2014 Unqezi 使用前必读 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></span>
  </div><!--footer/-->
+ <input type="hidden" value="${sessionScope.id }" id="uid" />
+ <script>
+ 	function select(page){
+ 		$.ajax({
+ 			url:"/CBDSystem/selectOrder.do",
+ 			type:"post",
+ 			data:{
+ 				"id":$("#uid").val(),
+ 				"page":page
+ 			},
+ 			dataType:"html",
+ 			success:function(data){
+ 				$("#show").html(data);
+ 			}
+ 		});
+ 	}
+ 	
+ 	function addComplaint(){
+ 		
+ 	}
+ </script>
 </body>
 </html>
+</div>

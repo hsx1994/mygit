@@ -148,7 +148,6 @@ public class ParkingController {
 
 	// 抢租客根据价格查询上架车位
 	@RequestMapping("findByPrice.do")
-
 	public ModelAndView selectParking(Integer price, Integer page) {
 
 		ModelAndView mav = new ModelAndView();
