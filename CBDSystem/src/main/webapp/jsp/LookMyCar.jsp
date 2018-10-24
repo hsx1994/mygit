@@ -97,7 +97,7 @@
 					<thead>
 						<tr>
 							<th width="100"><span>*</span>车位地址</th>
-							<th width="100"><span>*</span>单价</th>
+							<th width="200"><span>*</span>单价(元/小时)</th>
 							<th width="100"><span>*</span>开始时间</th>
 							<th width="100"><span>*</span>结束时间</th>
 							<th width="100"><span>*</span>车位号</th>

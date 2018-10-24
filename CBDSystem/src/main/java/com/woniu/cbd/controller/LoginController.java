@@ -31,7 +31,6 @@ public class LoginController {
 	@RequestMapping("adminLogin.do")
 	public String adminLogin(LoginBean user, String checkcode, String path,
 			HttpServletRequest request) {
-
 		// 获取真实验证码
 		Session session = SecurityUtils.getSubject().getSession();
 		Object realCode = session.getAttribute("randCheckCode");
