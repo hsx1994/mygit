@@ -17,6 +17,8 @@
 <!-- 引入时间插件My97DatePicke中的WdatePicker.js文件 -->
 <script language="javascript" type="text/javascript"
 	src="/CBDSystem/js/dateutil/WdatePicker.js"></script>
+	<!-- 引入外部js文件 -->
+			<script type="text/javascript" src="/CBDSystem/js/ShowParkingSpace.js"></script>
 </head>
 
 <body>
@@ -25,7 +27,7 @@
 			<a href="/jsp/login.jsp" style="color:#C94E13;">登录</a> <a
 				href="/jsp/regist.jsp">注册</a>
 			<ul class="topNav">
-				<li class="shoucangjia"><a href="shoucang.html">个人中心</a></li>
+				<li class="shoucangjia"><a onclick="turn()">个人中心</a></li>
 				<div class="clears"></div>
 			</ul>
 		</div>
@@ -135,8 +137,8 @@
 									<!-- <input class="time2-button" type="submit"/> -->
 								</div>
 
-								<a href="quanjing/index.html">预约车位</a> <a class="sellmai"
-									onclick="pay()">立即下单</a>
+								<a href="javascript:order()">预约车位</a>
+								 <a class="sellmai" onclick="pay()">立即下单</a>
 							</form>
 						</div>
 					</div>
@@ -232,6 +234,26 @@
 						alert("添加订单失败");
 					} else {
 						window.location.href="/CBDSystem/apply.do?orderId="+data;
+					}
+				}
+			});
+		}
+		
+		function order(){
+			$.ajax({
+				url:"/CBDSystem/pay.do",
+				type:"post",
+				data:{
+					"startTime":$("#startTime").val(),
+					"endTime":$("#endTime").val(),
+					"parking.id":$("#pid").val()
+				},
+				dataType:"json",
+				success:function(data){
+					if(data==0){
+						alert("添加订单失败");
+					} else {
+						alert("添加订单成功");
 					}
 				}
 			});

@@ -27,15 +27,10 @@
 		<!-- ======================；连接数据库的配置=============== -->
     	<!--配置数据源-->
 	    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-
 			<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-<<<<<<< HEAD
-			<property name="url" value="jdbc:mysql://127.0.0.1:3306/test"></property>
-=======
 			<property name="url" value="jdbc:mysql://192.168.6.249:3306/test"></property>
->>>>>>> branch 'master' of https://github.com/hsx1994/mygit.git
 			<property name="username" value="root"></property>
-			<property name="password" value=""></property>
+			<property name="password" value="123456"></property>
 		</bean>
 		
 		<!--配置sqlSessionFactory 并将数据源注入-->

@@ -49,12 +49,15 @@
 		
 	<!-- 修改个人用户信息 -->
     <update id="updateUser" parameterType="UserBean">
-<<<<<<< HEAD
-		update t_user_info set u_address=address, u_email=email, u_tel=tel, 
-		u_profession=job,u_order_count=orderCount where u_l_id=#{id};
-=======
-		update t_user_info set u_address=#{address}, u_email=#{email}, u_tel=#{tel}, u_profession=#{job} where u_l_id=#{login.id};
->>>>>>> branch 'master' of https://github.com/hsx1994/mygit.git
+		update t_user_info
+		<set>
+			<if test="address != null">u_address=#{address},</if>
+			<if test="email != null">u_email=#{email},</if>
+			<if test="tel != null">u_tel=#{tel},</if>
+			<if test="job != null">u_profession=#{job},</if>
+			<if test="orderCount != 0">u_order_count=#{orderCount} ,</if>
+		</set>
+		where u_l_id=#{login.id};
 	</update>
 
 	<!-- 修改企业用户信息 -->
