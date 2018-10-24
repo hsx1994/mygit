@@ -235,6 +235,30 @@ public class BargainController {
 		return map;
 		
 	}
+	
+	/**
+	 * 外部合约续约详情
+	 * @param id
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("outContractExtension.do")
+	public Map<String, Object> outContractExtension(int id){
+		Map<String, Object> map = new HashMap<String, Object>();
+		BargainBean bean = service.showDetailsBargain(id);		
+		List<OtherParkingBean> list = bean.getParking();
+		String num = "";
+		for (int i = 0; i < list.size(); i++) {
+			if(i==0){
+				num=list.get(i).getParkingNum();
+			}
+			num+="、"+list.get(i).getParkingNum();
+		}
+		map.put("bargin", bean);
+		map.put("carNum", num);
+		return map;
+		
+	}
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

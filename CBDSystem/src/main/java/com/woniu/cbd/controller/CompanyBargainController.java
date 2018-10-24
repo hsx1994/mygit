@@ -215,6 +215,33 @@ public class CompanyBargainController {
 		
 	}
 	
+	/**
+	 * 企业（租户）续约详情
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("tenantContractEextension.do")
+	public ModelAndView tenantContractEextension(int id){
+		System.out.println(id);
+		ModelAndView mv = new ModelAndView();
+		CompanyBargainBean bean = service.showCompanyBargainDetails(id);
+		List<CompanyOrderBean>  list = bean.getComOrder();
+		String num = "";
+		for (int i = 0; i < list.size(); i++) {
+			if(i==0){
+				num=list.get(i).getOtherParking().getParkingNum();
+				continue;
+			}
+			num+="、"+list.get(i).getOtherParking().getParkingNum();
+		}
+		mv.addObject("carNum", num);
+		mv.addObject("comBargain",bean);
+		mv.setViewName("views/tenant_contract_extension.jsp");
+		return mv;
+		
+	}
+	
+	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

@@ -120,3 +120,45 @@ function showCompanyBargainDetails(bid){
 	});
 }
 
+//企业用户续约界面
+function companyContractEextension(bid){
+	$.ajax({
+		url:"/CBDSystem/tenantContractEextension.do",
+		type:"post",
+		data:{
+			"id":bid
+		},
+		dataType:"html",
+		success:function(data){
+			alert(666);
+			$("#aaa").html(data);
+		}
+		
+		
+	});
+}
+
+//外部合约续约界面
+function showOutDetailsBargain(bid){
+	$.ajax({
+		url:"/CBDSystem/outContractExtension.do",
+		type:"post",
+		data:{
+			"id":bid
+		},
+		dataType: "json",
+		success:function(data){
+			$("#oldNumber").html(data.bargin.number);
+			$("#company").html(data.bargin.company);
+			$("#address").html(data.bargin.address);
+			$("#contact").html(data.bargin.contact);
+			$("#tel").html(data.bargin.tel);
+			$("#startTime").html(data.bargin.startTime);
+			$("#endTime").html(data.bargin.endTime);
+			$("#carNum").html(data.carNum);
+			$("#image").attr("src",data.bargin.img);
+		}
+	
+	});
+}
+

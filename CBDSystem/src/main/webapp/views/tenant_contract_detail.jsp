@@ -64,8 +64,8 @@
                     <td align="left" valign="middle" class="borderright borderbottom main-for" style="line-height:24px;">${comBargain.company.address }</td>
                 </tr>
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                    <td align="right" valign="middle" class="borderright borderbottom bggray"></td>
-                    <td align="left" valign="middle" class="borderright borderbottom main-for"></td>
+                    <td align="right" valign="middle" class="borderright borderbottom bggray">对方联系人：</td>
+                    <td align="left" valign="middle" class="borderright borderbottom main-for">${comBargain.contact}</td>
                 </tr>
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                     <td align="right" valign="middle" class="borderright borderbottom bggray">联 系 人 电 话：</td>

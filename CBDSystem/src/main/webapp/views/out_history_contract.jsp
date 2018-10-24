@@ -29,6 +29,14 @@
         td.fenye{ padding:10px 0 0 0; text-align:right;}
         #addinfo a{ font-size:14px; font-weight:bold; background:url(../images/main/replayblack.jpg) no-repeat 0 0px; padding:0px 0 0px 20px; line-height:45px;}
         #addinfo a:hover{ background:url(../images/main/replayblue.jpg) no-repeat 0 0px;}
+   		 input::-webkit-input-placeholder {
+         /* placeholder颜色  */
+         color: #aab2bd;
+         /* placeholder字体大小  */
+         font-size: 12px;
+         /* placeholder位置  */
+	     text-align: left;
+     }
     </style>
 </head>
 <body onload="showHContract(1)">
@@ -48,7 +56,7 @@
                 <tr>
                     <td width="90%" align="left" valign="middle">
                             <span>搜索：</span>
-                            <input type="text" id="condition"  class="text-word" value="${condition }">
+                            <input type="text" id="condition"  class="text-word" value="${condition }" placeholder="输入合同编号、联系人">
                             <input name="" type="button" value="查询" class="text-but" onclick="queryOutHistoryBargain(1)">
                     </td>
                 </tr>

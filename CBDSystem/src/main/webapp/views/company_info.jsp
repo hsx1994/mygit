@@ -53,7 +53,7 @@
                 <tr>
                     <td width="90%" align="left" valign="middle">
                          <span>搜索：</span>
-                         <input type="text" id="condition" value="" class="text-word" placeholder="输入企业名称、位置、联系人、电话">
+                         <input type="text" id="condition" value="${condition }" class="text-word" placeholder="输入企业名称、位置、联系人、电话">
                          <input name="" type="button" value="查询" class="text-but" onclick="searchCompany(1)">
                     </td>
                     <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a href="add_company_info.jsp" target="mainFrame" onFocus="this.blur()" class="add">新增企业</a></td>
@@ -86,15 +86,19 @@
     </tr>
     <tr>
         <td align="left" valign="top" class="fenye">
-			<a href="#" onclick="showCompany(${pageinfo.firstPage})"  target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
+        	<input type="hidden" value="${pageinfo.firstPage}" id="first"/>
+        	<input type="hidden" value="${pageinfo.lastPage}" id="last"/>
+        	<input type="hidden" value="${pageinfo.prePage}" id="pre"/>
+        	<input type="hidden" value="${pageinfo.nextPage}" id="next"/>
+			<a href="#" onclick="showCompany(${pageinfo.firstPage})"  target="mainFrame" onFocus="this.blur()" id="firstPage">首页</a>&nbsp;&nbsp;
 	        <c:if test="${pageinfo.hasPreviousPage}">
-	        <a href="#"onclick="showCompany(${pageinfo.prePage})" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
+	        <a href="#"onclick="showCompany(${pageinfo.prePage})" target="mainFrame" onFocus="this.blur()" id="prePage">上一页</a>&nbsp;&nbsp;
 	        </c:if>
 	        ${pageinfo.pageNum}/${pageinfo.pages} 页&nbsp;&nbsp;
 	        <c:if test="${pageinfo.hasNextPage}">
-	        <a href="#"onclick="showCompany(${pageinfo.nextPage})" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
+	        <a href="#"onclick="showCompany(${pageinfo.nextPage})" target="mainFrame" onFocus="this.blur()" id="nextPage">下一页</a>&nbsp;&nbsp;
 	        </c:if>
-	        <a href="#" onclick="showCompany(${pageinfo.lastPage})" target="mainFrame" onFocus="this.blur()">尾页</a>
+	        <a href="#" onclick="showCompany(${pageinfo.lastPage})" target="mainFrame" onFocus="this.blur()" id="lastPage">尾页</a>
 	    </td>
 	</tr>
 </table>
