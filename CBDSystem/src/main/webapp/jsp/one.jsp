@@ -17,8 +17,8 @@
 <input type="hidden" value="${sessionScope.id }" id="uid" />
  <div class="hrader" id="header">
   <div class="top">
-   <a href="/jsp/login.jsp" style="color:#C94E13;">请登录</a> 
-   <a href="/jsp/regist.jsp">注册</a>
+	<a style="color:#C94E13;">欢迎您:${sessionScope.login.name }</a> 
+    <a onclick="logOut()">注销</a>
   </div><!--top/-->
  </div><!--hrader/-->
  <div class="mid">
@@ -29,20 +29,9 @@
    <div class="subBox2">
     <input type="text" class="subText" />
     <input type="image" src="../images/sub.jpg" width="95" height="32" class="subImg" />
-    <div class="hotci">
-    
-   </div><!--hotci/-->
+    <div class="hotci"></div><!--hotci/-->
    </div><!--subBox2/-->
   </form><!--subBox/-->
-  <div class="ding-gou">
-   <!-- <div class="ding">
-    <a href="order.html"><img src="../images/dingdan.jpg" width="106" height="32" /></a>
-   </div>ding/
-   <div class="gou"> -->
-   <!--  <a href="car.html"><img src="../images/gouwuche.jpg" width="126" height="32" /></a> -->
-   </div><!--gou/-->
-   <div class="clears"></div>
-  </div><!--ding-gou/-->
  </div><!--mid-->
  <div class="navBox navBg3">
   <ul class="nav">

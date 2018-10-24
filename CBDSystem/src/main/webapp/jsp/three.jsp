@@ -18,9 +18,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
  <div class="hrader" id="header">
   <div class="top">
-   <a href="login.html" style="color:#C94E13;">请登录</a> 
-   <a href="reg.html">注册</a>
-   </ul><!--topNav/-->
+	<a style="color:#C94E13;">欢迎您:${sessionScope.login.name }</a> 
+    <a onclick="logOut()">注销</a>
   </div><!--top/-->
  </div><!--hrader/-->
  <div class="mid">
@@ -36,6 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    </div><!--hotci/-->
    </div><!--subBox2/-->
   </form><!--subBox/-->
+  </div>
  <div class="navBox navBg3">
   <ul class="nav">
    <li><a href="one.jsp">首页</a></li>

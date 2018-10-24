@@ -33,7 +33,7 @@
 					</h1>
 				</div>
 				<div class="links span8">
-					<a class="home" href="/index.jsp" rel="tooltip" data-placement="bottom"
+					<a class="home" href="/CBDSystem/index.jsp" rel="tooltip" data-placement="bottom"
 						data-original-title="Home"></a> <a class="blog" href=""
 						rel="tooltip" data-placement="bottom" data-original-title="Blog"></a>
 				</div>
