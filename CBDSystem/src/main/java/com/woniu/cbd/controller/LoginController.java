@@ -37,7 +37,7 @@ public class LoginController {
 		Object realCode = session.getAttribute("randCheckCode");
 
 		if (!checkcode.equalsIgnoreCase((String) realCode)) {
-			request.setAttribute("errorMsg", "验证码错误");
+			session.setAttribute("errorMsg", "验证码错误");
 			return "redirect:" + path;
 		}
 
