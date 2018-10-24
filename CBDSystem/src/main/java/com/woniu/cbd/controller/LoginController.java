@@ -1,6 +1,7 @@
 package com.woniu.cbd.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -34,10 +35,10 @@ public class LoginController {
 		// 获取真实验证码
 		Session session = SecurityUtils.getSubject().getSession();
 		Object realCode = session.getAttribute("randCheckCode");
-		
+
 		if (!checkcode.equalsIgnoreCase((String) realCode)) {
 			request.setAttribute("errorMsg", "验证码错误");
-			return "redirect:"+path;
+			return "redirect:" + path;
 		}
 
 		// 加密密码Md5
@@ -54,26 +55,30 @@ public class LoginController {
 			subject.login(token);
 			session.setAttribute("loginPath", path);
 			LoginBean lo = (LoginBean) session.getAttribute("login");
-			if(lo.getRole().endsWith("管理员")){
+			if (lo.getRole().endsWith("管理员")) {
 				return "redirect:/views/manage.jsp";
-			}else{
+			} else {
 				session.removeAttribute("login");
-				request.setAttribute("user", user);
-				request.setAttribute("errorMsg", "管理账户不存在");
-				return "redirect:"+path;
+				session.setAttribute("user", user);
+				session.setAttribute("errorMsg", "管理账户不存在");
+				return "redirect:" + path;
 			}
-			
+
 		} catch (Exception e) {
-			request.setAttribute("user", user);
-			request.setAttribute("errorMsg", "用户名或密码错误！");
-			return "redirect:"+path;
+			session.setAttribute("user", user);
+			session.setAttribute("errorMsg", "用户名或密码错误！");
+			return "redirect:" + path;
 		}
 
 	}
 
-	/* 普通用户登录
+	/*
+	 * 普通用户登录
+	 * 
 	 * @param admin
+	 * 
 	 * @param request
+	 * 
 	 * @return
 	 */
 	@RequestMapping("login.do")
@@ -84,11 +89,12 @@ public class LoginController {
 		Object realCode = session.getAttribute("randCheckCode");
 		if (!checkcode.equalsIgnoreCase((String) realCode)) {
 			session.setAttribute("errorMsg", "验证码错误");
-			return "redirect:"+path;
+			return "redirect:" + path;
 		}
 
 		// 加密密码Md5
-		String realPassword = Md5pwdUtil.md5(user.getPassword(), user.getName());
+		String realPassword = Md5pwdUtil
+				.md5(user.getPassword(), user.getName());
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(user.getName(),
 				realPassword);
@@ -101,37 +107,58 @@ public class LoginController {
 			session.setAttribute("loginPath", path);
 			LoginBean lo = (LoginBean) session.getAttribute("login");
 			String role = lo.getRole();
-			if(role.equals("抢租客") || role.equals("包租婆") ||role.equals("企业用户")){
+			if (role.equals("抢租客") || role.equals("包租婆") || role.equals("企业用户")) {
 				return "redirect:/index.jsp";
-			}else{
+			} else {
 				session.removeAttribute("login");
 				session.setAttribute("user", user);
 				session.setAttribute("errorMsg", "用户不存在！");
-				return "redirect:"+path;
+				return "redirect:" + path;
+
 			}
 		} catch (Exception e) {
 			session.setAttribute("user", user);
 			session.setAttribute("errorMsg", "用户名或密码错误！");
-			return "redirect:"+path;
+			return "redirect:" + path;
 		}
 	}
 
 	/**
+	 * 注销功能
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("logoutExit.do")
+	public String logoutExit(HttpSession session) {
+		String path = (String) session.getAttribute("loginPath");
+		if (session != null) {
+			session.removeAttribute("login");
+			session.removeAttribute("id");
+			session.removeAttribute("user");
+			session.removeAttribute("errorMsg");
+		}
+		return "redirect:" + path;
+	}
+
+	/**
 	 * 验证用户名是否可用
+	 * 
 	 * @param name
 	 * @return
 	 */
 	@RequestMapping("checkUserName.do")
-	public @ResponseBody String checkUserName(String name){
+	public @ResponseBody String checkUserName(String name) {
 		String result = "用户名已存在";
 		LoginBean bean = service.getLoginUserByName(name);
-		if(bean == null){
+		if (bean == null) {
 			result = "用户名可用";
 		}
 		return result;
 	}
+
 	/**
 	 * 管理员修改密码
+	 * 
 	 * @param password
 	 * @param newpwd
 	 * @param checkpwd
@@ -140,7 +167,8 @@ public class LoginController {
 	 */
 	@ResponseBody
 	@RequestMapping("changePwd.do")
-	public String changePwd(String password,String newpwd,String checkpwd,HttpServletRequest req){
+	public String changePwd(String password, String newpwd, String checkpwd,
+			HttpServletRequest req) {
 
 		String str = "更改失败";
 		if (!newpwd.equals(checkpwd)) {
@@ -149,16 +177,16 @@ public class LoginController {
 		}
 		LoginBean user = (LoginBean) req.getSession().getAttribute("login");
 		String realPwd = service.selectPwd(user.getId());
-		if(!Md5pwdUtil.md5(password, user.getName()).equals(realPwd)){
+		if (!Md5pwdUtil.md5(password, user.getName()).equals(realPwd)) {
 			str = "旧密码不正确";
 			return str;
 		}
 		user.setPassword(Md5pwdUtil.md5(newpwd, user.getName()));
 		boolean re = service.updatePwd(user);
-		if(re){
-			str="更改成功";
+		if (re) {
+			str = "更改成功";
 		}
 		return str;
 	}
-	
+
 }

@@ -57,8 +57,8 @@
 					<label for="username">用户名</label> <input type="text" id="username"
 						name="name" placeholder="请输入用户名..."> <label for="password">密码</label>
 					<input type="password" id="password" name="password"
-						placeholder="请输入密码 ..."> <label for="code">验证码</label>  <input type="text" id="code"
-						name="checkcode" placeholder="验证码 ...">
+						placeholder="请输入密码 ..."> <label for="code">验证码</label>  
+						<input type="text" id="code" name="checkcode" placeholder="验证码 ..." style="width:50%">
 						<a href="javaScript:getPictureCode()"><img src=""
 						id="picturecode" style="width:100px" /></a>
 					<lable>

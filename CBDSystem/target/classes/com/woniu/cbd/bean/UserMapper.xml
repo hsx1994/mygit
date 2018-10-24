@@ -51,11 +51,19 @@
     <update id="updateUser" parameterType="UserBean">
 		update t_user_info
 		<set>
+<<<<<<< HEAD
 			<if test="address != null">u_address=#{address},</if>
 			<if test="email != null">u_email=#{email},</if>
 			<if test="tel != null">u_tel=#{tel},</if>
 			<if test="job != null">u_profession=#{job},</if>
 			<if test="orderCount != 0">u_order_count=#{orderCount} ,</if>
+=======
+			<if test="address != null">u_address=#{address}</if>
+			<if test="email != null">u_email=#{email}</if>
+			<if test="tel != null">u_tel=#{tel}</if>
+			<if test="job != null">u_profession=#{job}</if>
+			<if test="orderCount != 0">u_order_count=#{orderCount} </if>
+>>>>>>> branch 'master' of https://github.com/hsx1994/mygit.git
 		</set>
 		where u_l_id=#{login.id};
 	</update>
