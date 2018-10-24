@@ -5,9 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>抢租用户主页</title>
-<link type="text/css" href="../css/csss.css" rel="stylesheet" />
-<script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
-<script type="text/javascript" src="../js/js.js"></script>
+<link type="text/css" href="/CBDSystem/css/csss.css" rel="stylesheet" />
+<script type="text/javascript" src="/CBDSystem/js/jquery-1.9.11.min.js"></script>
+<script type="text/javascript" src="/CBDSystem/js/js.js"></script>
 <script type="text/javascript" src="/CBDSystem/js/logOut.js"></script>
 
 </head>
@@ -15,7 +15,6 @@
 <body>
  <div class="hrader" id="header">
   <div class="top">
-<<<<<<< HEAD
 	<a style="color:#C94E13;">欢迎您:${sessionScope.login.name }</a> 
     <a onclick="logOut()">注销</a>
   </div><!--top/-->

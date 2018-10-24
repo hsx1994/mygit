@@ -29,11 +29,13 @@ public class AlipayController {
 		ModelAndView result = new ModelAndView();
 		if (order2 != null) {
 			if(order2.getStartTime().compareTo(new Date())<=0){
-				result.setViewName("/jsp/two.jsp");
+				result.setViewName("redirect:/jsp/two.jsp");
 			}else{
 				result.setViewName("/alipay/apply.jsp");
+				System.out.println(AlipayUtil.getQRcode(request,order2));
 				result.addObject("QRcode", AlipayUtil.getQRcode(request,order2));
 				result.addObject("order", order2);
+				System.out.println(order2.getPay());
 			}
 		}else {
 			result.setViewName("/index.jsp");

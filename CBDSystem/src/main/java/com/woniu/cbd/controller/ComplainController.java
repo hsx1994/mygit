@@ -120,7 +120,6 @@ public class ComplainController {
 		int uid = bean.getUser().getId();
 
 		UserBean user = new UserBean();
-		System.out.println(request.getSession().getAttribute("id"));
 		user.setId((int)request.getSession().getAttribute("id"));
 
 		UserBean buser = new UserBean();

@@ -96,7 +96,7 @@
 						<div class="item col-xs-12">
 							<span class="intelligent-label f-fl">&nbsp;</span>
 							<div class="f-fl item-ifo">
-								<a href="javascript:;" style="display: none" class="btn btn-blue f-r3" id="btn_part1">下一步</a>
+								<a href="javascript:;" class="btn btn-blue f-r3" id="btn_part1">下一步</a>
 							</div>
 						</div>
 					</div>
@@ -321,7 +321,7 @@ function checkUserName(){
 		success:function(masage){
 			$("#err").html(masage);
 			if(masage == "用户名可用"){
-				$("#btn_part1").show();
+			
 			}
 		}
 	});
