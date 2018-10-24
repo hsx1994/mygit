@@ -61,4 +61,23 @@ public interface ICompanyBargainService {
 
 	// 前台用于企业查询企业合同
 	public List<CompanyBargainBean> companyBargainById(int id);
+	
+	/**
+	 * 按条件查询执行中的合约
+	 * @param condition
+	 * @return
+	 */
+	public List<CompanyBargainBean> queryUseingBarginByCondition(String condition);
+	/**
+	 * 按条件查询历史合约
+	 * @param condition
+	 * @return
+	 */
+	public List<CompanyBargainBean> queryHistoryBargainByCondition(String condition);
+	/**
+	 * 通过id查看企业合约详情
+	 * @param id
+	 * @return
+	 */
+	public CompanyBargainBean showCompanyBargainDetails(int id);
 }

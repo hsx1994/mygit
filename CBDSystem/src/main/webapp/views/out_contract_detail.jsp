@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -7,6 +8,7 @@
     <link href="../css/css.css" type="text/css" rel="stylesheet" />
     <link href="../css/main.css" type="text/css" rel="stylesheet" />
     <link rel="shortcut icon" href="../images/main/favicon.ico" />
+    <script type="text/javascript" src="/CBDSystem/js/jQuery-2.2.2.js"></script>
     <style>
         body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
         #searchmain{ font-size:12px;}
@@ -28,7 +30,7 @@
         #addinfo a:hover{ background:url(../images/main/replayblue.jpg) no-repeat 0 0px;}
     </style>
 </head>
-<body>
+<body onload="showOutDetailsBargain(${param.id})">
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
     <tr>
@@ -44,46 +46,47 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                     <td align="right" valign="middle" class="borderright borderbottom bggray">合&nbsp; 同&nbsp; 编&nbsp; 号：</td>
-                    <td align="left" valign="middle" class="borderright borderbottom main-for">123456</td>
+                    <td align="left" valign="middle" class="borderright borderbottom main-for" id="number">${param.id}</td>
                 </tr>
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                     <td align="right" valign="middle" class="borderright borderbottom bggray">合&nbsp; 同&nbsp; 单&nbsp; 位：</td>
-                    <td align="left" valign="middle" class="borderright borderbottom main-for">admin@sina.com</td>
+                    <td align="left" valign="middle" class="borderright borderbottom main-for" id="company"></td>
                 </tr>
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                     <td align="right" valign="middle" class="borderright borderbottom bggray">单&nbsp; 位&nbsp; 地&nbsp; 址：</td>
-                    <td align="left" valign="middle" class="borderright borderbottom main-for" style="line-height:24px;">测试</td>
+                    <td align="left" valign="middle" class="borderright borderbottom main-for" style="line-height:24px;" id="address"></td>
                 </tr>
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                     <td align="right" valign="middle" class="borderright borderbottom bggray">对 方 联 系 人：</td>
-                    <td align="left" valign="middle" class="borderright borderbottom main-for">666</td>
+                    <td align="left" valign="middle" class="borderright borderbottom main-for" id="contact"></td>
                 </tr>
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                     <td align="right" valign="middle" class="borderright borderbottom bggray">联 系 人 电 话：</td>
-                    <td align="left" valign="middle" class="borderright borderbottom main-for">测试内容</td>
+                    <td align="left" valign="middle" class="borderright borderbottom main-for" id="tel"></td>
                 </tr>
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                     <td align="right" valign="middle" class="borderright borderbottom bggray">合同生效日期：</td>
-                    <td align="left" valign="middle" class="borderright borderbottom main-for" style="line-height:24px;">测试</td>
+                    <td align="left" valign="middle" class="borderright borderbottom main-for" style="line-height:24px;"id="startTime" ></td>
                 </tr>
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                     <td align="right" valign="middle" class="borderright borderbottom bggray">合同截止日期：</td>
-                    <td align="left" valign="middle" class="borderright borderbottom main-for" style="line-height:24px;">测试</td>
+                    <td align="left" valign="middle" class="borderright borderbottom main-for" style="line-height:24px;" id="endTime"></td>
                 </tr>
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                     <td align="right" valign="middle" class="borderright borderbottom bggray">车&nbsp; 位&nbsp; 编&nbsp; 号：</td>
-                    <td align="left" valign="middle" class="borderright borderbottom main-for" style="line-height:24px;">测试</td>
+                    <td align="left" valign="middle" class="borderright borderbottom main-for" style="line-height:24px;" id="carNum"></td>
                 </tr>
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                     <td align="right" valign="middle" class="borderright borderbottom bggray">合 同 复 印 件：</td>
-                    <td align="left" valign="middle" class="borderright borderbottom main-for" style="line-height:24px;">测试</td>
+                    <td align="left" valign="middle" class="borderright borderbottom main-for" style="line-height:24px;"></td>
                 </tr>
             </table>
             <div style="width:89%;height: 500px;border: solid 1px #b0b0b0;margin-left: 130px">
-
+				<img id="image" src="">
             </div>
         </td>
     </tr>
 </table>
+<script type="text/javascript" src="../js/bargain.js"></script>
 </body>
 </html>

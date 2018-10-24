@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="../js/pageinfo.js"></script>
+<script type="text/javascript" src="../js/bargain.js"></script>
 <div id="aaa">
 <html>
 <head>
@@ -15,9 +16,9 @@
         body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
         #searchmain{ font-size:12px;}
         #search{ font-size:12px; background:#548fc9; margin:10px 10px 0 0; display:inline; width:100%; color:#FFF; float:left}
-        #search form span{height:40px; line-height:40px; padding:0 0px 0 10px; float:left;}
-        #search form input.text-word{height:24px; line-height:24px; width:180px; margin:8px 0 6px 0; padding:0 0px 0 10px; float:left; border:1px solid #FFF;}
-        #search form input.text-but{height:24px; line-height:24px; width:55px; background:url(../images/main/list_input.jpg) no-repeat left top; border:none; cursor:pointer; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; color:#666; float:left; margin:8px 0 0 6px; display:inline;}
+        #search span{height:40px; line-height:40px; padding:0 0px 0 10px; float:left;}
+        #search input.text-word{height:24px; line-height:24px; width:180px; margin:8px 0 6px 0; padding:0 0px 0 10px; float:left; border:1px solid #FFF;}
+        #search input.text-but{height:24px; line-height:24px; width:55px; background:url(../images/main/list_input.jpg) no-repeat left top; border:none; cursor:pointer; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; color:#666; float:left; margin:8px 0 0 6px; display:inline;}
         #search a.add{ background:url(../images/main/add.jpg) no-repeat -3px 7px #548fc9; padding:0 10px 0 26px; height:40px; line-height:40px; font-size:14px; font-weight:bold; color:#FFF; float:right}
         #search a:hover.add{ text-decoration:underline; color:#d2e9ff;}
         #main-tab{ border:1px solid #eaeaea; background:#FFF; font-size:12px;}
@@ -48,12 +49,10 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" id="search">
                 <tr>
                     <td width="90%" align="left" valign="middle">
-                        <form method="post" action="">
-                            <span>搜索：</span>
-                            <input type="text" name="" value="" class="text-word">
-                            <input name="" type="button" value="查询" class="text-but">
-                        </form>
-                        <a name="" type="button"  class="history-but" href="out_history_contract.jsp" ><span style="margin-left: 4px;">历史合约</span></a>
+                          <span>搜索：</span>
+                          <input type="text" id="condition" class="text-word" value="${condition }">
+                          <input type="button" value="查询" class="text-but" onclick="queryOutBargain(1)">
+                        <a name="" type="button"  class="history-but" href="out_history_contract.jsp" ><span style="margin-left: -6px; margin-top: -7px;">历史合约</span></a>
                     </td>
                     <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a href="add_out_contract.jsp" target="mainFrame" onFocus="this.blur()" class="add">新增合约</a></td>
                 </tr>
@@ -81,7 +80,7 @@
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.tel }</td>
                     <td align="center" valign="middle" class="borderright borderbottom"><fmt:formatDate value="${obj.startTime }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
                     <td align="center" valign="middle" class="borderright borderbottom"><fmt:formatDate value="${obj.endTime }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                    <td align="center" valign="middle" class="borderbottom"><a href="out_contract_extension.jsp" target="mainFrame" onFocus="this.blur()" class="add">续约</a><span class="gray">&nbsp;|&nbsp;</span><a href="out_contract_detail.jsp" target="mainFrame" onFocus="this.blur()" class="add">详情</a></td>
+                    <td align="center" valign="middle" class="borderbottom"><a href="out_contract_extension.jsp" target="mainFrame" onFocus="this.blur()" class="add">续约</a><span class="gray">&nbsp;|&nbsp;</span><a href="out_contract_detail.jsp?id=${obj.id }" target="mainFrame" onFocus="this.blur()" class="add">详情</a></td>
                 </tr>
                 </c:forEach>
             </table>
@@ -89,15 +88,19 @@
     </tr>
     <tr>
         <td align="left" valign="top" class="fenye"> &nbsp;&nbsp;
-       		<a href="#" onclick="showContract(${pageinfo.firstPage})"  target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
+        	<input type="hidden" value="${pageinfo.firstPage}" id="first"/>
+        	<input type="hidden" value="${pageinfo.lastPage}" id="last"/>
+        	<input type="hidden" value="${pageinfo.prePage}" id="pre"/>
+        	<input type="hidden" value="${pageinfo.nextPage}" id="next"/>
+       		<a href="#" onclick="showContract(${pageinfo.firstPage})"  target="mainFrame" onFocus="this.blur()" id="firstPage">首页</a>&nbsp;&nbsp;
 	        <c:if test="${pageinfo.hasPreviousPage}">
-	        <a href="#"onclick="showContract(${pageinfo.prePage})" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
+	        <a href="#"onclick="showContract(${pageinfo.prePage})" target="mainFrame" onFocus="this.blur()" id="prePage">上一页</a>&nbsp;&nbsp;
 	        </c:if>
 	        ${pageinfo.pageNum}/${pageinfo.pages} 页&nbsp;&nbsp;
 	        <c:if test="${pageinfo.hasNextPage}">
-	        <a href="#"onclick="showContract(${pageinfo.nextPage})" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
+	        <a href="#"onclick="showContract(${pageinfo.nextPage})" target="mainFrame" onFocus="this.blur()" id="nextPage">下一页</a>&nbsp;&nbsp;
 	        </c:if>
-	        <a href="#" onclick="showContract(${pageinfo.lastPage})" target="mainFrame" onFocus="this.blur()">尾页</a>
+	        <a href="#" onclick="showContract(${pageinfo.lastPage})" target="mainFrame" onFocus="this.blur()" id="lastPage">尾页</a>
 		</td>
     </tr>
 </table>

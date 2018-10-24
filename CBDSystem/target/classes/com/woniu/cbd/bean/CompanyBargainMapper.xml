@@ -4,6 +4,10 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 企业合约管理 -->
 <mapper namespace="companyBargainMapper">
+<!--管理员通过id查询企业合约  -->
+	<select id="findBargainById" parameterType="int" resultMap="selectMap">
+	    select * from t_company_bargain where cb_id=#{id}
+	</select>
 	<!-- 添加企业合约，签约续约 -->
 	<insert id="companyBargainAdd" parameterType="CompanyBargainBean"
 		useGeneratedKeys="true" keyProperty="id">
@@ -61,10 +65,15 @@
 	    select * from t_company_bargain where cb_c_id=#{id} and cb_state=0
 	</select>
 	
-	<!-- 模糊查询合同期间企业合约信息 -->
-	<select id="fuzzyQueryBargainBeUseing" resultMap="selectMap">
+		<!-- 根据条件模糊查询合同期间企业合约信息 -->
+	<select id="fuzzyQueryBargainBeUseing" parameterType="String" resultMap="selectMap">
 		select * from t_company_bargain where 
-		CONCAT(cb_numbe,cb_contact,) like "%" #{condition} "%" where cb_state
+		CONCAT(cb_numbe,cb_contact) like "%" #{condition} "%" and cb_state=0
+	</select>
+	<!-- 根据条件模糊查询企业历史合约信息 -->
+	<select id="queryHistoryBargain" parameterType="String" resultMap="selectMap">
+		select * from t_company_bargain where 
+		CONCAT(cb_numbe,cb_contact) like "%" #{condition} "%" and cb_state=1
 	</select>
 	
 </mapper>
