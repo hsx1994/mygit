@@ -2,8 +2,9 @@ package com.woniu.cbd.bean;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 /**
  * 第三方合约内容信息
  * @author hsx
@@ -26,8 +27,10 @@ public class BargainBean implements Serializable {
 	//第三方合约复印件
 	private String img;
 	//第三方合约开始时间
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 	private Date startTime;
 	//第三方合约结束时间
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 	private Date endTime;
 	//第三方合约状态(0:正在用,2:毁约)
 	private int state;

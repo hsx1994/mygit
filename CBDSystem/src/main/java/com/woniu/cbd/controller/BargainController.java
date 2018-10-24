@@ -2,7 +2,9 @@ package com.woniu.cbd.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.BargainBean;
+import com.woniu.cbd.bean.OtherParkingBean;
 import com.woniu.cbd.service.IBargainService;
 import com.woniu.cbd.service.IOtherParkingService;
 import com.woniu.cbd.util.FileUpUtil;
@@ -166,6 +169,72 @@ public class BargainController {
 		return mav;
 	}
 	
+	/**
+	 * 管理员根据条件查询执行中第三方合同
+	 * @param page
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("queryOutUseingBargain.do")
+	public ModelAndView queryUseingBargainByCondition(Integer page,String condition){
+		ModelAndView mv = new ModelAndView();
+		if(condition!=null){
+			PageHelper.startPage(page,10,true);
+			List<BargainBean> list = service.queryUseingBargainByCondition(condition);
+			PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(list);
+			mv.addObject("condition", condition);
+			mv.addObject("pageinfo", pageInfo);
+			mv.addObject("list",list);
+			mv.setViewName("views/out_contract_info.jsp");
+		}
+		return mv;
+		
+	}
+	
+	/**
+	 * 管理员根据条件查询第三方历史合同
+	 * @param page
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("queryOutHistoryBargain.do")
+	public ModelAndView queryHistoryBargainByCondition(Integer page,String condition){
+		ModelAndView mv = new ModelAndView();
+		if(condition!=null){
+			PageHelper.startPage(page,10,true);
+			List<BargainBean> list = service.queryHistoryBargainByCondition(condition);
+			PageInfo<BargainBean> pageInfo = new PageInfo<BargainBean>(list);
+			mv.addObject("condition", condition);
+			mv.addObject("pageinfo", pageInfo);
+			mv.addObject("list",list);
+			mv.setViewName("views/out_history_contract.jsp");
+		}
+		return mv;
+		
+	}
+	/**
+	 * 显示合约详情
+	 * @param id
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("showOutDetailsBargain.do")
+	public Map<String, Object> showDetailsBargain(int id){
+		Map<String, Object> map = new HashMap<String, Object>();
+		BargainBean bean = service.showDetailsBargain(id);		
+		List<OtherParkingBean> list = bean.getParking();
+		String num = "";
+		for (int i = 0; i < list.size(); i++) {
+			if(i==0){
+				num=list.get(i).getParkingNum();
+			}
+			num+="、"+list.get(i).getParkingNum();
+		}
+		map.put("bargin", bean);
+		map.put("carNum", num);
+		return map;
+		
+	}
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

@@ -77,5 +77,31 @@ public class CompanyBargainDaoImpl implements ICompanyBargainDao {
 		session.close();
 		return bean;
 	}
+	
+	@Override
+	public List<CompanyBargainBean> queryUseingBargainByCondition(
+			String condition) {
+		SqlSession session = fa.openSession(true);
+		List<CompanyBargainBean> list= session.selectList("companyBargainMapper.fuzzyQueryBargainBeUseing",condition);
+		session.close();
+		return list;
+	}
+
+	@Override
+	public List<CompanyBargainBean> queryHistoryBargainByCondition(
+			String condition) {
+		SqlSession session = fa.openSession(true);
+		List<CompanyBargainBean> list= session.selectList("companyBargainMapper.queryHistoryBargain",condition);
+		session.close();
+		return list;
+	}
+
+	@Override
+	public CompanyBargainBean findBargainById(int id) {
+		SqlSession session = fa.openSession(true);
+		CompanyBargainBean  bean = session.selectOne("companyBargainMapper.findBargainById",id);
+		
+		return bean;
+	}
 
 }
