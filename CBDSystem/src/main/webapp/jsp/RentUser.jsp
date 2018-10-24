@@ -12,10 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link type="text/css" href="../css/csss.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
 <script type="text/javascript" src="../js/js.js"></script>
-
-
 </head>
-
 <body>
  <div class="hrader" id="header">
   <div class="top">
@@ -32,20 +29,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <input type="text" class="subText" />
     <input type="image" src="../images/sub.jpg" width="95" height="32" class="subImg" />
     <div class="hotci">
- 
+
    </div><!--hotci/-->
    </div><!--subBox2/-->
   </form><!--subBox/-->
-  <div class="ding-gou">
-   <div class="ding">
-    <a href="order.html"><img src="../images/dingdan.jpg" width="106" height="32" /></a>
-   </div><!--ding/-->
-   <div class="gou">
-    <a href="car.html"><img src="../images/gouwuche.jpg" width="126" height="32" /></a>
-   </div><!--gou/-->
-   <div class="clears"></div>
-  </div><!--ding-gou/-->
- </div><!--mid-->
+  </div>
  <div class="navBox navBg3">
   <ul class="nav">
    <li><a href="one.jsp">首页</a></li>
@@ -64,6 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      <dd class="ddCur"><a href="one.jsp">个人信息</a></dd>
      <dd><a href="RentUser.jsp">修改个人信息</a></dd>
      <dd><a href="LookOrder.jsp">查看租赁记录</a></dd>
+     </dl>
   </div><!--vipLeft/-->
   <div class="vipRight">
    <h2 class="vipTitle">个人信息修改</h2>
@@ -93,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
           <td>&nbsp;</td>
-          <td><button type="submit" onclick="sends()"><a herf="one.jsp">完成</a></button></td>
+          <td><button type="submit" onclick="sends()">完成</button></td>
         </tr>
       </table>
     
