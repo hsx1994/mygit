@@ -40,8 +40,6 @@ public interface IUserService {
 
 	public boolean updateCompany(CompanyInfoBean company);
 	
-	//查看个人信息
-	public UserBean findUserInfo(int id);
 	//查看企业信息
 	public CompanyInfoBean findCompanyInfo(int id);
 	//通过uid查看个人信息

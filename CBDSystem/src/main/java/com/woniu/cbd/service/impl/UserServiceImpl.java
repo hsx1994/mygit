@@ -63,19 +63,13 @@ public class UserServiceImpl implements IUserService {
 		return dao.findIdByLid(lid);
 	}
 	@Override
-	public UserBean findUserInfo(int id) {
-		
-		UserBean bean = dao.findUserInfo(id);
-		
-		return bean;
-	}
-	@Override
 	public CompanyInfoBean findCompanyInfo(int id) {
 
 		CompanyInfoBean bean = dao.findCompanyInfo(id);
 		
 		return bean;
 	}
+	//查看个人信息
 	@Override
 	public UserBean findById(int uid) {
 		UserBean user = dao.findById(uid);

@@ -15,12 +15,4 @@ import com.woniu.cbd.service.IUserService;
 
 public class TestMain {
 
-	@Test
-	public void test() {
-		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		IUserService userService = (IUserService) context.getBean("userServiceImpl");
-		UserBean user = userService.findUserInfo(1);
-		user.setOrderCount(user.getOrderCount()+1);
-		userService.updateUser(user);
-	}
 }

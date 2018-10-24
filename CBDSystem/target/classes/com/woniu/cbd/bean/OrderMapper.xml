@@ -11,7 +11,7 @@
 	</select>
 	
 	<select id="findOrderByState" parameterType="OrderBean" resultMap="order">
-		select * from t_order where or_u_id=#{user.id} and or_state=#{state} order by or_id desc
+		select * from t_order where or_u_id=#{user.id} and or_state=#{state} order by or_end_time desc
 	</select>
 	<!-- 封装成一个完整的OrderBean -->
 	<resultMap type="OrderBean" id="order">
@@ -33,7 +33,7 @@
 
 	<!-- 通过车位id查找该车位的所有订单信息 -->
 	<select id="findByParkingId" parameterType="int" resultMap="order">
-		select * from t_order where or_p_id=#{parkingId} order by or_id desc
+		select * from t_order where or_p_id=#{parkingId} order by or_end_time desc
 	</select>
 	<!-- 通过订单Id查找当前订单 -->
 	<select id="findByOrderId" parameterType="int" resultMap="order">

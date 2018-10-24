@@ -51,7 +51,7 @@ public class AlipayController {
 			order.setState(1);
 			orderService.changeOrderState(order);
 			int userId = (int)request.getSession().getAttribute("id");
-			UserBean user = userService.findUserInfo(userId);
+			UserBean user = userService.findById(userId);
 			user.setOrderCount(user.getOrderCount()+1);
 			userService.updateUser(user);
 		}

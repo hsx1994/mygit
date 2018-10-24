@@ -87,7 +87,7 @@ public class UserController {
 	//查看个人信息
 	@RequestMapping("look.do")
 	public @ResponseBody UserBean findUserInfo(Integer id) {
-		UserBean bean = user.findUserInfo(id);
+		UserBean bean = user.findById(id);
 		return bean;
 	}
 
