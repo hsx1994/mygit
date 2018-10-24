@@ -102,7 +102,7 @@
 							<th width="100"><span>*</span>开始时间</th>
 							<th width="100"><span>*</span>结束时间</th>
 							<th width="100"><span>*</span>车位号</th>
-							<th width="300"><span>*</span>状态(0:待审,1:审核通过,2：审核未通过)</th>
+							<th width="400"><span>*</span>状态(0:待审,1:审核通过,2：审核未通过)</th>
 						</tr>
 					</thead>
 					<c:forEach items="${all}" var="obj">

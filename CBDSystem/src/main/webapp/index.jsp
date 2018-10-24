@@ -50,6 +50,7 @@
 	</div>
 	<div class="navBox navBg2">
 		<ul class="nav">
+   		<li><a href="/CBDSystem/index.jsp">首页</a></li>
 		</ul>
 	</div>
 	<!--navBox/-->

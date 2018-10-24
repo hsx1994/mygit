@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -24,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.ParkingBean;
+import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.service.IParkingService;
 
 @Controller
@@ -33,8 +33,7 @@ public class ParkingController {
 
 	// 包租婆添加车位信息
 	@RequestMapping("/application.do")
-	public @ResponseBody String applicationParking(HttpServletRequest request,
-			MultipartFile imgFile, ParkingBean bean, MultipartFile ImgFile,
+	public String applicationParking(MultipartFile imgFile, ParkingBean bean, MultipartFile ImgFile,
 			HttpServletRequest req) {
 
 		// 获取上传文件的文件名
@@ -46,8 +45,10 @@ public class ParkingController {
 		bean.setCertImg(certImg);
 
 		// session中取得当前包租婆的id给parking实体类
-		/* UserBean user=request.getSession().getAttribute(""); */
-
+		int uid=(int) req.getSession().getAttribute("id");
+		UserBean user = new UserBean();
+		user.setId(uid);
+		bean.setUser(user);
 		ServletContext context = req.getServletContext();
 		ServletContext text = req.getServletContext();
 		// 车位图片路径
@@ -79,10 +80,11 @@ public class ParkingController {
 
 		List<ParkingBean> parking = new ArrayList<ParkingBean>();
 		parking.add(bean);
+		System.out.println(bean);
 		boolean num = park.addParking(parking);
-		String result = "redirect:/CBDSystem/jsp/LookOneUser.jsp";
+		String result = "redirect:/jsp/LookOneUser.jsp";
 		if (num) {
-			result = "redirect:/CBDSystem/LookMyCar.jsp";
+			result = "redirect:/jsp/LookMyCar.jsp";
 		}
 		return result;
 
