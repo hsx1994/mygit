@@ -101,11 +101,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</c:forEach>
 					<tr>
 				        <td width="100"> 
-				       		<a href="#" onclick="select(${pageinfo.firstPage})"  target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
+				       		<a href="#" onclick="select(${pageinfo.firstPage})" >首页</a>&nbsp;&nbsp;
 				       	</td>
 				       	<td width="100">
 					        <c:if test="${pageinfo.hasPreviousPage}">
-					        <a href="#"onclick="select(${pageinfo.prePage})" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
+					        <a href="#"onclick="select(${pageinfo.prePage})">上一页</a>&nbsp;&nbsp;
 					        </c:if>
 					    </td>
 					    <td width="100">
@@ -113,11 +113,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					    </td>
 					    <td width="100">
 					        <c:if test="${pageinfo.hasNextPage}">
-					        <a href="#"onclick="select(${pageinfo.nextPage})" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
+					        <a href="#"onclick="select(${pageinfo.nextPage})">下一页</a>&nbsp;&nbsp;
 					        </c:if>
 					    </td>
 					    <td width="100">
-					        <a href="#" onclick="select(${pageinfo.lastPage})" target="mainFrame" onFocus="this.blur()">尾页</a>
+					        <a href="#" onclick="select(${pageinfo.lastPage})">尾页</a>
 				      </td>
 				    </tr>
 				</table>
