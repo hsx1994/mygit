@@ -96,7 +96,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<td><fmt:formatDate value="${obj.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/><br/></td>
 							<td>${obj.parking.address }${obj.parking.parkingNum }<br /></td>
 							<td>${obj.pay}<br/></td>
-							<td><a href="">去投诉</a></td>
+							<td><a href="javascript:addComplain(${obj.id })">去投诉</a></td>
 						</tr>
 					</c:forEach>
 					<tr>
@@ -201,6 +201,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  			dataType:"html",
  			success:function(data){
  				$("#show").html(data);
+ 			}
+ 		});
+ 	}
+ 	
+ 	function addComplain(data){
+ 		var context = prompt("请输入投诉内容")
+ 		$.ajax({
+ 			url:"/CBDSystem/addComplaint.do",
+ 			type:"post",
+ 			data:{
+ 				"id":data,
+ 				"text":context
+ 			},
+ 			dataType:"json",
+ 			success:function(data){
+ 				alert(data);
  			}
  		});
  	}
