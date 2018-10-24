@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.woniu.cbd.bean.BargainBean;
 import com.woniu.cbd.bean.OtherParkingBean;
-import com.woniu.cbd.bean.ParkingBean;
 import com.woniu.cbd.dao.IOtherParkingDao;
 import com.woniu.cbd.service.IOtherParkingService;
 
@@ -118,7 +117,6 @@ public class OtherParkingServiceImpl implements IOtherParkingService {
 	 */
 	@Override
 	public List<String> findParkingNumberByAddress(String address) {
-		// TODO Auto-generated method stub
 		return dao.findParkingNumberByAddress(address);
 	}
 

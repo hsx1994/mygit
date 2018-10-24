@@ -20,14 +20,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="top">
    <a href="login.html" style="color:#C94E13;">请登录</a> 
    <a href="reg.html">注册</a>
-   <ul class="topNav">
-    <li><a href="order.html">我的订单 </a></li>
-    <li class="gouwuche"><a href="car.html">购物车</a> <strong style="color:#C94E13;">3</strong></li>
-    <li class="shoucangjia"><a href="shoucang.html">收藏夹</a></li>
-    <li class="kefus"><a href="#">联系客服</a></li>
-<li><a href="#" class="lan">中文</a></li>
-    <li><a href="#" class="lan">English</a></li>
-    <div class="clears"></div>
    </ul><!--topNav/-->
   </div><!--top/-->
  </div><!--hrader/-->
@@ -44,26 +36,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    </div><!--hotci/-->
    </div><!--subBox2/-->
   </form><!--subBox/-->
-  <div class="ding-gou">
-   <div class="ding">
-    <a href="order.html"><img src="../images/dingdan.jpg" width="106" height="32" /></a>
-   </div><!--ding/-->
-   <div class="gou">
-    <a href="car.html"><img src="../images/gouwuche.jpg" width="126" height="32" /></a>
-   </div><!--gou/-->
-   <div class="clears"></div>
-  </div><!--ding-gou/-->
- </div><!--mid-->
  <div class="navBox navBg3">
   <ul class="nav">
    <li><a href="one.jsp">首页</a></li>
-   <li><a href=""></a></li>
-   <li><a href=""></a></li>
-   <li><a href="one.jsp">用户中心</a></li>
-   <li><a href=""></a></li>
-   <li><a href=""></a></li>
-   <li><a href=""></a></li>
-   <div class="clears"></div>
   </ul><!--nav/-->
  </div><!--navBox/-->
  <div class="vipBox">
@@ -89,20 +64,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="vipRight">
    <h2 class="vipTitle">个人中心</h2>
    
-        <form action="../companyUpdate.do" method="post" enctype="multipart/form-data">
+        <form action="/CBDSystem/companyUpdate.do" method="post" enctype="multipart/form-data">
 				<table class="grzx" width="705" border="0" cellspacing="0"
 					cellpadding="0">
-					<td width="90"><button type="submit">查看</button></td>
-					<%-- <c:forEach items="${all}" var="obj">
-						<tr>
-							<td width="100"><span>*</span>车位地址:&nbsp;"${obj.address}"<br/></td>
-							<td width="100"><span>*</span>单价：&nbsp;"${obj.price}"<br/></td>
-							<td width="100"><span>*</span>开始时间：&nbsp;"${obj.startTime}"<br/></td>
-							<td width="100"><span>*</span>结束时间：&nbsp;"${obj.endTime}"<br /></td>
-							<td width="100"><span>*</span>车位号：&nbsp;"${obj.parkingNum}"<br /></td>
-							<td><a href="jsp/one.jsp">返回</a></td>
-						</tr>
-					</c:forEach> --%>
 				</table>
 	</form>
       

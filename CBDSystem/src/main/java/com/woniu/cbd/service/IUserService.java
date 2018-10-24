@@ -44,5 +44,8 @@ public interface IUserService {
 	public UserBean findUserInfo(int id);
 	//查看企业信息
 	public CompanyInfoBean findCompanyInfo(int id);
-
+	//通过uid查看个人信息
+	public UserBean findById(int uid);
+	//更改用户被投诉次数
+	public boolean updaCount(UserBean u);
 }

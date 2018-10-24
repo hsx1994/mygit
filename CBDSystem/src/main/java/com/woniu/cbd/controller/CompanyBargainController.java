@@ -70,14 +70,11 @@ public class CompanyBargainController {
 	@RequestMapping("companyBargainSelect.do")
 	public ModelAndView companyBargainSelect(CompanyBargainBean bean) {
 		bean.setId(1);
-		System.out.println(bean);
 		ModelAndView mav = new ModelAndView();
 		int page = 1 ;
 		PageHelper.startPage(page,10,true);
 		List<CompanyBargainBean> bargain = service.companyBargainSelect(bean);
-		System.out.println(bargain);
 		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(bargain);
-		System.out.println(pageInfo);
 		if(bargain != null){
 			mav.addObject("pageinfo", pageInfo);
 			mav.addObject("list",bargain);

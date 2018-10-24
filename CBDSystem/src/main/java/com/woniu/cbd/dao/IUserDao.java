@@ -50,4 +50,8 @@ public interface IUserDao {
 	public UserBean findUserInfo(int id);
 	//查看公司信息
 	public CompanyInfoBean findCompanyInfo(int id);
+
+	public UserBean findById(int uid);
+
+	public int updateCounet(UserBean u);
 }

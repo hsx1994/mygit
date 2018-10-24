@@ -12,10 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link type="text/css" href="../css/csss.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
 <script type="text/javascript" src="../js/js.js"></script>
-
-
 </head>
-
 <body>
  <div class="hrader" id="header">
   <div class="top">
@@ -32,20 +29,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <input type="text" class="subText" />
     <input type="image" src="../images/sub.jpg" width="95" height="32" class="subImg" />
     <div class="hotci">
- 
+
    </div><!--hotci/-->
    </div><!--subBox2/-->
   </form><!--subBox/-->
-  <div class="ding-gou">
-   <div class="ding">
-    <a href="order.html"><img src="../images/dingdan.jpg" width="106" height="32" /></a>
-   </div><!--ding/-->
-   <div class="gou">
-    <a href="car.html"><img src="../images/gouwuche.jpg" width="126" height="32" /></a>
-   </div><!--gou/-->
-   <div class="clears"></div>
-  </div><!--ding-gou/-->
- </div><!--mid-->
+  </div>
  <div class="navBox navBg3">
   <ul class="nav">
    <li><a href="one.jsp">首页</a></li>
@@ -64,6 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      <dd class="ddCur"><a href="one.jsp">个人信息</a></dd>
      <dd><a href="RentUser.jsp">修改个人信息</a></dd>
      <dd><a href="LookOrder.jsp">查看租赁记录</a></dd>
+     </dl>
   </div><!--vipLeft/-->
   <div class="vipRight">
    <h2 class="vipTitle">个人信息修改</h2>
@@ -72,28 +61,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        <table class="grzx" width="705" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td width="90"><span>*</span>密码：</td>
-          <td width="430"><input type="text" name="login.password"></td>
+          <td width="430"><input type="text" id="password" name="login.password" /></td>
         </tr>
        
         <tr>
          <td width="90"><span>*</span>邮箱:</td>
-          <td><input type="text" name="email" /></td>
+          <td><input type="text" id="email" name="email" /></td>
         </tr>
         <tr>
           <td width="90"><span>*</span>住址:</td>
-          <td><input type="text" name="address" ></td>
+          <td><input type="text" id="address" name="address" /></td>
         </tr>
         <tr>
           <td width="90"><span>*</span>电话：</td>
-          <td><input type="text" name="tel" ></td>
+          <td><input type="text" id="tel" name="tel" /></td>
         </tr>
         <tr>
           <td width="90"><span>*</span>职业：</td>
-          <td><input type="text" name="job" ></td>
+          <td><input type="text" id="job" name="job" /></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
-          <td><button type="submit" onclick="sends()"><a herf="one.jsp">完成</a></button></td>
+          <td><button type="submit" onclick="sends()">完成</button></td>
         </tr>
       </table>
     
@@ -164,27 +153,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <span>&copy; 2014 Unqezi 使用前必读 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></span>
  </div><!--footer/-->
  <input type="hidden" value="${sessionScope.id }" id="uid" />
+ <input type="hidden" value="${sessionScope.login.id }" id="lid"/>
+ <input type="hidden" value="${sessionScope.login.name }" id="ln"/>
+ 
 <script type="text/javascript">
     function sends(){
 		$.ajax({
-			   	url:"../up.do",
+			   	url:"/CBDSystem/up.do",
 				type:"post",
-				data:
-				{
+				data:{
+				 "login.id":$("#lid").val(),
+				 "login.name":$("#ln").val(),
 				 "login.password":$("#password").val(),
 				 "id":$("#uid").val(),
 	             "address":$("#address").val(),
 	             "job":$("#job").val(),
 	             "email":$("#email").val(),
-	             "tel":$("#tel").val(),
-			},
+	             "tel":$("#tel").val()
+				},
 				datatype: "json",
 				success:function(data){
 					alert(data);
 					window.location.href="one.jsp";
 				}
 			});
-			
 	};
 </script>
 </body>

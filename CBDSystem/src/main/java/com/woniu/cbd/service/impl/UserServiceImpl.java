@@ -17,9 +17,6 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private IUserDao dao;
-
-
-	
 	/**
 	 * 注册个人信息
 	 */
@@ -78,6 +75,19 @@ public class UserServiceImpl implements IUserService {
 		CompanyInfoBean bean = dao.findCompanyInfo(id);
 		
 		return bean;
+	}
+	@Override
+	public UserBean findById(int uid) {
+		UserBean user = dao.findById(uid);
+		return user;
+	}
+	@Override
+	public boolean updaCount(UserBean u) {
+		int row = dao.updateCounet(u);
+		if(row > 0){
+			return true;
+		}
+		return false;
 	}
 	
 }

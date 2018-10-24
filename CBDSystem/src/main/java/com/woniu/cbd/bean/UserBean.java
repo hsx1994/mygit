@@ -105,5 +105,4 @@ public class UserBean implements Serializable {
 	public void setComplaintCount(int complaintCount) {
 		this.complaintCount = complaintCount;
 	}
-	
 }

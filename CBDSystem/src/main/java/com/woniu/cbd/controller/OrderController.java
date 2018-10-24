@@ -78,7 +78,6 @@ public class OrderController {
 	public ModelAndView showOneOrder(Integer id) {
 		ModelAndView mav = new ModelAndView();
 		OrderBean bean=order.findOrderById(id);
-		System.out.println(bean);
         mav.addObject("order",bean);
         mav.setViewName("/views/hu/showorder.jsp");
 		return mav;
@@ -94,6 +93,22 @@ public class OrderController {
 		int oid = bean.getId();
 		return oid;
 	}
+	// 包租婆查看自己的被租赁记录
+		@RequestMapping("selectOrder.do")
+		public ModelAndView selectOrder(Integer id,Integer page) {
+			ModelAndView mav = new ModelAndView();
+			PageHelper.startPage(page, 5, true);
+			List<ParkingBean> bean = order.selectLog(id);
+			PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
+			if (bean != null) {
+				mav.addObject("pageinfo", pageInfo);
+				mav.addObject("list", bean);
+			} else {
+				mav.addObject("list", "尚未有车位被租赁");
+			}
+			mav.setViewName("jsp/LookOrder.jsp");
+			return mav;
+		}
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

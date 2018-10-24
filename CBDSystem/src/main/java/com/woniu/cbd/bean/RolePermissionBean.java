@@ -3,6 +3,8 @@ package com.woniu.cbd.bean;
 import java.io.Serializable;
 
 public class RolePermissionBean implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private int loginId;
 	private int perId;
 

@@ -3,31 +3,33 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<div id="show">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>包租客查看租赁记录</title>
+<title>包租婆查看租赁记录</title>
 <link type="text/css" href="../css/csss.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
 <script type="text/javascript" src="../js/js.js"></script>
-
+<style>
+	td{
+		text-align:center;
+	}
+	th{
+		text-align:center;
+	}
+</style>
 </head>
 
-<body>
+<body onload="select(1)">
  <div class="hrader" id="header">
   <div class="top">
    <a href="login.html" style="color:#C94E13;">请登录</a> 
    <a href="reg.html">注册</a>
-   <ul class="topNav">
-    <li><a href="order.html">我的订单 </a></li>
-    <li class="gouwuche"><a href="car.html">购物车</a> <strong style="color:#C94E13;">3</strong></li>
-    <li class="shoucangjia"><a href="shoucang.html">收藏夹</a></li>
-    <li class="kefus"><a href="#">联系客服</a></li>
-<li><a href="#" class="lan">中文</a></li>
-    <li><a href="#" class="lan">English</a></li>
-    <div class="clears"></div>
    </ul><!--topNav/-->
   </div><!--top/-->
  </div><!--hrader/-->
@@ -44,20 +46,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    </div><!--hotci/-->
    </div><!--subBox2/-->
   </form><!--subBox/-->
-  <div class="ding-gou">
-   <div class="ding">
-    <a href="order.html"><img src="../images/dingdan.jpg" width="106" height="32" /></a>
-   </div><!--ding/-->
-   <div class="gou">
-    <a href="car.html"><img src="../images/gouwuche.jpg" width="126" height="32" /></a>
-   </div><!--gou/-->
-   <div class="clears"></div>
-  </div><!--ding-gou/-->
+  
  </div><!--mid-->
  <div class="navBox navBg3">
   <ul class="nav">
-   <li><a href="one.jsp">首页</a></li>
-   <li><a href="one.jsp">用户中心</a></li>
+   <li><a href="/CBDSystem/index.jsp">首页</a></li>
   </ul><!--nav/-->
  </div><!--navBox/-->
  <div class="vipBox">
@@ -72,25 +65,71 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <dt class="vip_2">个人</dt>
      <dd class="ddCur"><a href="one.jsp">个人信息</a></dd>
      <dd><a href="RentUser.jsp">修改个人信息</a></dd>
-     <dd><a href="LookOneOrder.jsp">查看租赁记录</a></dd>
+     <dd><a href="LookOrder.jsp">查看租赁记录</a></dd>
   </div><!--vipLeft/-->
   <div class="vipRight">
-   <h2 class="vipTitle">个人中心</h2>
+   <h2 class="vipTitle">租赁记录</h2>
    
     <form action="../findByNum.do" method="post" enctype="multipart/form-data">
 				<table class="grzx" width="705" border="0" cellspacing="0"
 					cellpadding="0">
-					<td width="90"><button type="submit">查看</button></td>
-					<%-- <c:forEach items="${all}" var="obj">
+					<thead>
 						<tr>
-							<td width="100"><span>*</span>车位地址:&nbsp;"${obj.address}"<br/></td>
-							<td width="100"><span>*</span>单价：&nbsp;"${obj.price}"<br/></td>
-							<td width="100"><span>*</span>开始时间：&nbsp;"${obj.startTime}"<br/></td>
-							<td width="100"><span>*</span>结束时间：&nbsp;"${obj.endTime}"<br /></td>
-							<td width="100"><span>*</span>车位号：&nbsp;"${obj.parkingNum}"<br /></td>
-							<td><a href="jsp/one.jsp">返回</a></td>
+							<th width="100"><span>*</span>车位号</th>
+							<th width="700"><span>*</span>订单信息</th>
 						</tr>
-					</c:forEach> --%>
+					</thead>
+					<c:forEach items="${list }" var="obj">
+					<c:if test="${not empty obj.orders }">
+						<tr>
+							<td>${obj.parkingNum}<br/></td>
+							<td>
+								<table>
+									<thead>
+										<tr>
+											<th width="150"><span>*</span>订单开始时间</th>
+											<th width="150"><span>*</span>订单结束时间</th>
+											<th width="150"><span>*</span>订单使用用户</th>
+											<th width="150"><span>*</span>订单总价</th>
+											<th width="70"><span>*</span>操作</th>
+										</tr>
+									</thead>
+									<c:forEach items="${obj.orders }" var="order">
+										<tr>
+											<td><fmt:formatDate value="${order.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/><br/></td>
+											<td><fmt:formatDate value="${order.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/><br /></td>
+											<td>${order.user.login.name }</td>
+											<td>${order.pay }</td>
+											<td><button onclick="addComplaint()">投诉</button></td>
+										</tr>
+									</c:forEach>
+									
+								</table>
+							</td>
+						</tr>
+						</c:if>
+					</c:forEach>
+					<tr>
+				        <td width="100"> 
+				       		<a href="#" onclick="select(${pageinfo.firstPage})"  target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
+				       	</td>
+				       	<td width="100">
+					        <c:if test="${pageinfo.hasPreviousPage}">
+					        <a href="#"onclick="select(${pageinfo.prePage})" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
+					        </c:if>
+					    </td>
+					    <td width="100">
+					        ${pageinfo.pageNum}/${pageinfo.pages} 页&nbsp;&nbsp;
+					    </td>
+					    <td width="100">
+					        <c:if test="${pageinfo.hasNextPage}">
+					        <a href="#"onclick="select(${pageinfo.nextPage})" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
+					        </c:if>
+					    </td>
+					    <td width="100">
+					        <a href="#" onclick="select(${pageinfo.lastPage})" target="mainFrame" onFocus="this.blur()">尾页</a>
+				      </td>
+				    </tr>
 				</table>
 	</form>
      
@@ -160,5 +199,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <br />
   <span>&copy; 2014 Unqezi 使用前必读 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></span>
  </div><!--footer/-->
+ <input type="hidden" value="${sessionScope.id }" id="uid" />
+ <script>
+ 	function select(page){
+ 		$.ajax({
+ 			url:"/CBDSystem/selectOrder.do",
+ 			type:"post",
+ 			data:{
+ 				"id":$("#uid").val(),
+ 				"page":page
+ 			},
+ 			dataType:"html",
+ 			success:function(data){
+ 				$("#show").html(data);
+ 			}
+ 		});
+ 	}
+ 	
+ 	function addComplaint(){
+ 		
+ 	}
+ </script>
 </body>
 </html>
+</div>

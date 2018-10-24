@@ -31,7 +31,6 @@ public class LoginController {
 	@RequestMapping("adminLogin.do")
 	public String adminLogin(LoginBean user, String checkcode, String path,
 			HttpServletRequest request) {
-
 		// 获取真实验证码
 		Session session = SecurityUtils.getSubject().getSession();
 		Object realCode = session.getAttribute("randCheckCode");
@@ -61,13 +60,13 @@ public class LoginController {
 				session.removeAttribute("login");
 				request.setAttribute("user", user);
 				request.setAttribute("errorMsg", "管理账户不存在");
-				return path;
+				return "redirect:"+path;
 			}
 			
 		} catch (Exception e) {
 			request.setAttribute("user", user);
 			request.setAttribute("errorMsg", "用户名或密码错误！");
-			return path;
+			return "redirect:"+path;
 		}
 
 	}
@@ -161,4 +160,5 @@ public class LoginController {
 		}
 		return str;
 	}
+	
 }

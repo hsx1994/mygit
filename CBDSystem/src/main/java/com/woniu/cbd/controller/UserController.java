@@ -14,6 +14,7 @@ import com.aliyuncs.exceptions.ClientException;
 import com.woniu.cbd.bean.CompanyInfoBean;
 import com.woniu.cbd.bean.LoginBean;
 import com.woniu.cbd.bean.UserBean;
+import com.woniu.cbd.service.ILoginService;
 import com.woniu.cbd.service.IUserService;
 import com.woniu.cbd.util.Md5pwdUtil;
 import com.woniu.cbd.util.PhoneCodeUtil;
@@ -22,7 +23,8 @@ import com.woniu.cbd.util.PhoneCodeUtil;
 public class UserController {
 	@Autowired
 	private IUserService user;
-
+	@Autowired
+	private ILoginService ls;
 	// 手机发送验证码
 	@RequestMapping("/phone.do")
 	public void phoneCode(HttpServletRequest request, String number) throws ClientException {
@@ -38,6 +40,7 @@ public class UserController {
 	@RequestMapping("regist.do")
 	public @ResponseBody String Regist(HttpServletRequest request, UserBean bean, String code) {
 		HttpSession session = request.getSession();
+		
 		// 获取session给中的验证码
 		String num = (String) session.getAttribute("code");
 		// 验证验证码
@@ -66,7 +69,14 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("up.do")
-	public @ResponseBody String updateUser(@Validated UserBean bean) {
+	public @ResponseBody String updateUser(UserBean bean) {
+		String newPwd = Md5pwdUtil.md5(bean.getLogin().getPassword(), bean.getLogin().getName());
+		LoginBean login = bean.getLogin();
+		login.setPassword(newPwd);
+		boolean check = ls.updatePwd(login);
+		if(!check){
+			return "密码修改失败";
+		}
 		boolean row = user.updateUser(bean);
 		String result = "修改失败";
 		if (row) {

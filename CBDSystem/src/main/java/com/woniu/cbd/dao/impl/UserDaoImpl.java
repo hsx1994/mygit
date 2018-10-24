@@ -80,4 +80,18 @@ public class UserDaoImpl implements IUserDao {
 		session.close();
 		return bean;
 	}
+	@Override
+	public UserBean findById(int uid) {
+		SqlSession session = fa.openSession(true);
+		UserBean user = session.selectOne("userMapper.findById",uid);
+		
+		session.close();
+		return user;
+	}
+	@Override
+	public int updateCounet(UserBean u) {
+		SqlSession session = fa.openSession(true);
+		int row = session.update("userMapper.updateCounet",u);
+		return row;
+	}
 }

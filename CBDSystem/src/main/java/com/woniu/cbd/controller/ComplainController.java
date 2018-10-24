@@ -4,6 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -20,6 +23,7 @@ import com.woniu.cbd.bean.ParkingBean;
 import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.service.IComplainService;
 import com.woniu.cbd.service.IParkingService;
+import com.woniu.cbd.service.IUserService;
 
 /**
  * 处理投诉信息
@@ -31,7 +35,8 @@ import com.woniu.cbd.service.IParkingService;
 public class ComplainController {
 	@Autowired
 	private IComplainService service;
-
+	@Autowired
+	private IUserService user;
 	@Autowired
 	private IParkingService parking;
 
@@ -79,15 +84,25 @@ public class ComplainController {
 	/**
 	 * 处理投诉信息
 	 * 
-	 * @param state
+	 * @param state 1:通过,2:驳回
 	 * @param id
 	 * @return
 	 */
 	@RequestMapping("acceptComplain.do")
-	public @ResponseBody String acceptComplain(Integer state, Integer id) {
-
+	public @ResponseBody String acceptComplain(HttpServletRequest req,Integer state, Integer id) {
+		HttpSession session = req.getSession();
+		int uid = (int) session.getAttribute("id");
 		String result = service.acceptComplain(state, id);
-
+		if(state.equals(1)){
+			UserBean u = user.findById(uid);
+			int count = u.getComplaintCount();
+			int newCount = count + 1;
+			u.setComplaintCount(newCount);
+			boolean re = user.updaCount(u);
+			if(!re){
+				result = "处理失败";
+			}
+		}
 		return result;
 
 	}

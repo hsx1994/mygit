@@ -26,7 +26,6 @@ public class CharserFilter implements Filter{
 		
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
-		System.out.println("进入了过滤器CharserFilter");
 		
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");

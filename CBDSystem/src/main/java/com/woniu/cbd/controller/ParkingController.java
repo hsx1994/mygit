@@ -148,7 +148,6 @@ public class ParkingController {
 
 	// 抢租客根据价格查询上架车位
 	@RequestMapping("findByPrice.do")
-
 	public ModelAndView selectParking(Integer price, Integer page) {
 
 		ModelAndView mav = new ModelAndView();
@@ -174,11 +173,9 @@ public class ParkingController {
 	@RequestMapping("/showme.do")
 	public ModelAndView showMe(HttpServletRequest request, Integer page) {
         //在session中取得当前登录的包租婆id
-		/*int id=request.getSession().getAttribute("");*/
-		int id=1;//测试使用
-		
+		int id=(int) request.getSession().getAttribute("id");
 		ModelAndView mav = new ModelAndView();
-		PageHelper.startPage(page, 8, true);
+		PageHelper.startPage(page, 5, true);
 		List<ParkingBean> bean = park.showMe(id);
 		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
 
@@ -189,7 +186,7 @@ public class ParkingController {
 		} else {
 			mav.addObject("noresult", "尚未添加车位");
 		}
-		mav.setViewName("063/ShowLandladyParking.jsp");
+		mav.setViewName("/jsp/LookMyCar.jsp");
 		return mav;
 	}
 	/**

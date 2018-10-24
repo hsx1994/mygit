@@ -61,7 +61,7 @@
     <dt class="vip_2">个人</dt>
      <dd class="ddCur"><a href="one.jsp">个人信息</a></dd>
      <dd><a href="RentUser.jsp">修改个人信息</a></dd>
-     <dd><a href="LookOneOrdr.jsp">查看租赁记录</a></dd>
+     <dd><a href="LookOrder.jsp">查看租赁记录</a></dd>
     <dt class="vip_3"></dt>
    </dl><!--vipNav/-->
   </div><!--vipLeft/-->
