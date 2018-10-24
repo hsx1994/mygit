@@ -32,21 +32,31 @@ public class OrderController {
 	public ModelAndView showLog(Integer id,Integer page) {
 		ModelAndView mav = new ModelAndView();
 		PageHelper.startPage(page, 5, true);
-		List<OrderBean> bean = order.showLog(id);
+		List<OrderBean> bean = order.findOrderByState(id, 0);
 		PageInfo<OrderBean> pageInfo = new PageInfo<OrderBean>(bean);
-
-		if (bean != null) {
-			mav.addObject("pageinfo", pageInfo);
-			mav.addObject("list", bean);
-
-		} else {
-			mav.addObject("Lease", "尚未租过车位");
-		}
-		mav.setViewName("/views/hu/showorder.jsp");
+		
+		mav.addObject("pageinfo", pageInfo);
+		mav.addObject("list", bean);
+		mav.setViewName("jsp/LookTwoCar.jsp");
 		return mav;
 
 	}
+	@RequestMapping("/showSuccessOrder.do")
+	public ModelAndView showUserOrder(Integer id,Integer page) {
+		ModelAndView mav = new ModelAndView();
+		PageHelper.startPage(page, 5, true);
+		List<OrderBean> bean = order.findOrderByState(id, 1);
+		PageInfo<OrderBean> pageInfo = new PageInfo<OrderBean>(bean);
+		for (OrderBean orderBean : bean) {
+			System.out.println(orderBean.getId());
+		}
+		System.out.println(bean != null);
+		mav.addObject("pageinfo", pageInfo);
+		mav.addObject("list", bean);
+		mav.setViewName("jsp/LookTwoUser.jsp");
+		return mav;
 
+	}
 	// 包租婆查看自己的被租赁记录
 	@RequestMapping("/selectlog.do")
 	public ModelAndView selectLog(Integer id,Integer page) {

@@ -80,9 +80,9 @@ public class ParkingController {
 		List<ParkingBean> parking = new ArrayList<ParkingBean>();
 		parking.add(bean);
 		boolean num = park.addParking(parking);
-		String result = "失败";
+		String result = "redirect:/CBDSystem/jsp/LookOneUser.jsp";
 		if (num) {
-			result = "成功";
+			result = "redirect:/CBDSystem/LookMyCar.jsp";
 		}
 		return result;
 

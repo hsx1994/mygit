@@ -59,14 +59,14 @@ public class LoginController {
 				return "redirect:/views/manage.jsp";
 			} else {
 				session.removeAttribute("login");
-				request.setAttribute("user", user);
-				request.setAttribute("errorMsg", "管理账户不存在");
+				session.setAttribute("user", user);
+				session.setAttribute("errorMsg", "管理账户不存在");
 				return "redirect:" + path;
 			}
 
 		} catch (Exception e) {
-			request.setAttribute("user", user);
-			request.setAttribute("errorMsg", "用户名或密码错误！");
+			session.setAttribute("user", user);
+			session.setAttribute("errorMsg", "用户名或密码错误！");
 			return "redirect:" + path;
 		}
 
@@ -114,6 +114,7 @@ public class LoginController {
 				session.setAttribute("user", user);
 				session.setAttribute("errorMsg", "用户不存在！");
 				return "redirect:" + path;
+
 			}
 		} catch (Exception e) {
 			session.setAttribute("user", user);
