@@ -18,9 +18,9 @@
       <tr>
         <td align="left" valign="bottom" id="header-name">CBD停车管理系统</td>
         <td align="right" valign="top" id="header-right">
-        	<a href="index.jsp" target="topFrame" onFocus="this.blur()" class="admin-out">注销</a>
-            <a href="index.jsp" target="top" onFocus="this.blur()" class="admin-home">管理首页</a>
-        	<a href="index.jsp" target="_blank" onFocus="this.blur()" class="admin-index">网站首页</a>       	
+        	<a href="/CBDSystem/logoutExit.do" target="topFrame"  class="admin-out">注销</a>
+            <a href="/CBDSystem/views/manage.jsp" target="top"  class="admin-home">管理首页</a>
+        	<a href="/CBDSystem/index.jsp" target="_blank"  class="admin-index">网站首页</a>       	
             <span>
 <!-- 日历 -->
 <SCRIPT type=text/javascript src="../js/clock.js"></SCRIPT>

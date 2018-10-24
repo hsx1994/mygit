@@ -9,7 +9,7 @@
 <link type="text/css" href="../css/csss.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
 <script type="text/javascript" src="../js/js.js"></script>
-
+<script type="text/javascript" src="/CBDSystem/js/logOut.js"></script>
 </head>
 
 <body>

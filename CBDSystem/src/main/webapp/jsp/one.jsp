@@ -10,7 +10,7 @@
 <script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
 <script type="text/javascript" src="../js/js.js"></script>
 <script type="text/javascript" src="/CBDSystem/js/jQuery-2.2.2.js"></script>
-
+<script type="text/javascript" src="/CBDSystem/js/logOut.js"></script>
 </head>
 
 <body>

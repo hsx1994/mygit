@@ -228,6 +228,7 @@
 
 			<!-- 引入外部js文件 -->
 			<script type="text/javascript" src="/CBDSystem/js/ShowParkingSpace.js"></script>
+			<script type="text/javascript" src="/CBDSystem/js/logOut.js"></script>
 </body>
 	</html>
 </div>

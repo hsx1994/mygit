@@ -5,8 +5,8 @@ function logOut(){
 		data:{},
 		dataType:"json",
 		success:function(data){
-			alert(data);
-			window.location.href="/CBDSystem/index.jsp";
+			alert("注销成功");
+			window.location.href="/CBDSystem"+data;
 		}
 	});
 }

@@ -47,10 +47,6 @@ public class OrderController {
 		PageHelper.startPage(page, 5, true);
 		List<OrderBean> bean = order.findOrderByState(id, 1);
 		PageInfo<OrderBean> pageInfo = new PageInfo<OrderBean>(bean);
-		for (OrderBean orderBean : bean) {
-			System.out.println(orderBean.getId());
-		}
-		System.out.println(bean != null);
 		mav.addObject("pageinfo", pageInfo);
 		mav.addObject("list", bean);
 		mav.setViewName("jsp/LookTwoUser.jsp");

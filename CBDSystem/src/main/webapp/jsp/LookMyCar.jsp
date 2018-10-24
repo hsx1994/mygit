@@ -17,6 +17,7 @@
 <link type="text/css" href="../css/csss.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
 <script type="text/javascript" src="../js/js.js"></script>
+<script type="text/javascript" src="/CBDSystem/js/logOut.js"></script>
 <style>
 	td{
 		text-align:center;
@@ -116,11 +117,11 @@
 					</c:forEach>
 					<tr>
 				        <td width="10"> 
-				       		<a href="#" onclick="showAll(${paging.firstPage})"  target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
+				       		<a href="#" onclick="showAll(${paging.firstPage})">首页</a>&nbsp;&nbsp;
 				       	</td>
 				       	<td width="10">
 					        <c:if test="${paging.hasPreviousPage}">
-					        <a href="#"onclick="showAll(${paging.prePage})" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
+					        <a href="#"onclick="showAll(${paging.prePage})">上一页</a>&nbsp;&nbsp;
 					        </c:if>
 					    </td>
 					    <td width="10">
@@ -128,11 +129,11 @@
 					    </td>
 					    <td width="10">
 					        <c:if test="${paging.hasNextPage}">
-					        <a href="#"onclick="showAll(${paging.nextPage})" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
+					        <a href="#"onclick="showAll(${paging.nextPage})">下一页</a>&nbsp;&nbsp;
 					        </c:if>
 					    </td>
 					    <td width="10">
-					        <a href="#" onclick="showAll(${pageing.lastPage})" target="mainFrame" onFocus="this.blur()">尾页</a>
+					        <a href="#" onclick="showAll(${pageing.lastPage})">尾页</a>
 				      	</td>
 				    </tr>
 				</table>

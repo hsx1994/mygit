@@ -10,10 +10,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>查看租赁记录</title>
+<title>已完成订单</title>
 <link type="text/css" href="../css/csss.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
 <script type="text/javascript" src="../js/js.js"></script>
+<script type="text/javascript" src="/CBDSystem/js/logOut.js"></script>
 <style>
 		td{
 			text-align:center;
@@ -52,8 +53,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <h2 class="headImg"><img src="../images/vipImg.jpg" width="183" height="169" /></h2>
    <h3 class="vipName">抢租客</h3>
    <dl class="vipNav">
-    <dd><a href="vipShoucang.html"></a></dd>
-     <dd class="ddCur"><a href="two.jsp">个人信息</a></dd>
+    <dt class="vip_1">用户中心</dt>
+     <dd><a href="vipShoucang.html"></a></dd>
+     <dd ><a href="two.jsp">个人信息</a></dd>
     <dt class="vip_2">个人中心</dt>
      <dd><a href="changeUserInfo.jsp">修改个人信息</a></dd>
      <dd class="ddCur"><a href="LookTwoUser.jsp">查看已完成订单</a></dd>
@@ -90,11 +92,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</c:forEach>
 					<tr>
 				        <td width="100"> 
-				       		<a href="#" onclick="select(${pageinfo.firstPage})"  target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
+				       		<a href="#" onclick="select(${pageinfo.firstPage})">首页</a>&nbsp;&nbsp;
 				       	</td>
 				       	<td width="100">
 					        <c:if test="${pageinfo.hasPreviousPage}">
-					        <a href="#"onclick="select(${pageinfo.prePage})" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
+					        <a href="#"onclick="select(${pageinfo.prePage})">上一页</a>&nbsp;&nbsp;
 					        </c:if>
 					    </td>
 					    <td width="100">
@@ -102,11 +104,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					    </td>
 					    <td width="100">
 					        <c:if test="${pageinfo.hasNextPage}">
-					        <a href="#"onclick="select(${pageinfo.nextPage})" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
+					        <a href="#"onclick="select(${pageinfo.nextPage})">下一页</a>&nbsp;&nbsp;
 					        </c:if>
 					    </td>
 					    <td width="100">
-					        <a href="#" onclick="select(${pageinfo.lastPage})" target="mainFrame" onFocus="this.blur()">尾页</a>
+					        <a href="#" onclick="select(${pageinfo.lastPage})">尾页</a>
 				      </td>
 				    </tr>
 				</table>
