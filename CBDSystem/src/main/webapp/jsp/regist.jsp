@@ -40,6 +40,9 @@
 								<option value="包租婆" style="height:">包租婆</option>
 								<option value="抢租客">抢租客</option>
 							</select>
+							<span class="ie8 icon-close close hide"></span> 
+							<label class="icon-sucessfill blank hide"></label> 
+							<label class="focus"><span>选择您要注册的角色</span></label>
 					</div>
 					
 						<div class="item col-xs-12"><span class="intelligent-label f-fl"><b class="ftx04">*</b>用户名：</span>
