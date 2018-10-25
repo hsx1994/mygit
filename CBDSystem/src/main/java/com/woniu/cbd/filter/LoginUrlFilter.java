@@ -26,6 +26,7 @@ public class LoginUrlFilter implements Filter {
 	public void doFilter(ServletRequest req, ServletResponse resp,
 			FilterChain chain) throws IOException, ServletException {
 
+		
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		HttpSession session = request.getSession();
@@ -34,17 +35,13 @@ public class LoginUrlFilter implements Filter {
 		
 		if (url.endsWith("login.jsp") || url.endsWith("login.do")  || url.endsWith("regist.jsp")) {
 			chain.doFilter(request, response);
-		}else{
+		} else {
 			if(login==null){
-			response.sendRedirect("/CBDSystem/jsp/login.jsp");
+				response.sendRedirect("/CBDSystem/jsp/login.jsp");
 			} else {
 				chain.doFilter(request, response);
 			}
-			
-		}
-		
-		
-
+		}		
 	}
 
 	@Override

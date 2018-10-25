@@ -92,9 +92,10 @@ public class LoginController {
 			return "redirect:" + path;
 		}
 
+		
+		
 		// 加密密码Md5
-		String realPassword = Md5pwdUtil
-				.md5(user.getPassword(), user.getName());
+		String realPassword = Md5pwdUtil.md5(user.getPassword(), user.getName());		
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(user.getName(),
 				realPassword);
@@ -107,7 +108,8 @@ public class LoginController {
 			session.setAttribute("loginPath", path);
 			LoginBean lo = (LoginBean) session.getAttribute("login");
 			String role = lo.getRole();
-			if (role.equals("抢租客") || role.equals("包租婆") || role.equals("企业用户")) {
+			
+			if (role.equals("包租婆") || role.equals("抢租客") || role.equals("企业用户")) {
 				return "redirect:/index.jsp";
 			} else {
 				session.removeAttribute("login");
