@@ -69,12 +69,11 @@ public class CompanyBargainController {
 	}
     //企业查看合约
 	@RequestMapping("companyBargainSelect.do")
-	public ModelAndView companyBargainSelect(CompanyBargainBean bean) {
-		bean.setId(1);
+	public ModelAndView companyBargainSelect(Integer id,Integer page) {
+		
 		ModelAndView mav = new ModelAndView();
-		int page = 1 ;
 		PageHelper.startPage(page,10,true);
-		List<CompanyBargainBean> bargain = service.companyBargainSelect(bean);
+		List<CompanyBargainBean> bargain = service.companyBargainSelect(id);
 		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(bargain);
 		if(bargain != null){
 			mav.addObject("pageinfo", pageInfo);
@@ -82,8 +81,7 @@ public class CompanyBargainController {
 		} else {
 			mav.addObject("companBargain","尚未签订合约");
 		}
-		mav.setViewName("views/tenant_contract_info.jsp");
-
+		mav.setViewName("jsp/LookThreeUser.jsp");
 		return mav;
 	}
 
@@ -178,7 +176,6 @@ public class CompanyBargainController {
 		if(condition!=null){
 			PageHelper.startPage(page,10,true);
 			List<CompanyBargainBean>  list = service.queryHistoryBargainByCondition(condition);
-			System.out.println(list);
 			PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(list);
 			mv.addObject("condition", condition);
 			mv.addObject("pageinfo",pageInfo);
@@ -214,6 +211,32 @@ public class CompanyBargainController {
 		return mv;
 		
 	}
+	
+	/**
+	 * 企业（租户）续约详情
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("tenantContractEextension.do")
+	public ModelAndView tenantContractEextension(int id){
+		ModelAndView mv = new ModelAndView();
+		CompanyBargainBean bean = service.showCompanyBargainDetails(id);
+		List<CompanyOrderBean>  list = bean.getComOrder();
+		String num = "";
+		for (int i = 0; i < list.size(); i++) {
+			if(i==0){
+				num=list.get(i).getOtherParking().getParkingNum();
+				continue;
+			}
+			num+="、"+list.get(i).getOtherParking().getParkingNum();
+		}
+		mv.addObject("carNum", num);
+		mv.addObject("comBargain",bean);
+		mv.setViewName("views/tenant_contract_extension.jsp");
+		return mv;
+		
+	}
+	
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

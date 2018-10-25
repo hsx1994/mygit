@@ -42,7 +42,7 @@ public interface ICompanyBargainService {
 	 * @param bean
 	 * @return
 	 */
-	public List<CompanyBargainBean> companyBargainSelect(CompanyBargainBean bean);
+	public List<CompanyBargainBean> companyBargainSelect(int id);
 
 	/**
 	 * 通过合约状态查询所有该状态的合约信息

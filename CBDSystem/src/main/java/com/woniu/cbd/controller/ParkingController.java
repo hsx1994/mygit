@@ -81,7 +81,6 @@ public class ParkingController {
 
 		List<ParkingBean> parking = new ArrayList<ParkingBean>();
 		parking.add(bean);
-		System.out.println(bean);
 		boolean num = park.addParking(parking);
 		String result = "redirect:/jsp/LookOneUser.jsp";
 		if (num) {
@@ -97,7 +96,7 @@ public class ParkingController {
 		ModelAndView mav = new ModelAndView();
 		ParkingBean bean = park.selectParkingOne(id);
 		mav.addObject("one", bean);
-		mav.setViewName("063/ DetailsLandladyParking.jsp");
+		mav.setViewName("/jsp/DetailsParkingSpace.jsp");
 
 		return mav;
 

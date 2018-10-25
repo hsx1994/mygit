@@ -16,6 +16,7 @@ import com.woniu.cbd.service.impl.LoginServiceImpl;
 
 public class TestMain {
 
+
 	@Test
 	public void test() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");

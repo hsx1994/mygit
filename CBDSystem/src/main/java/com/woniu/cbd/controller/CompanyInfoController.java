@@ -60,6 +60,7 @@ public class CompanyInfoController {
 			List<CompanyInfoBean> list = comService.queryCompany(condition);
 			//取分页信息,需要填入你查询出的集合
 			PageInfo<CompanyInfoBean> pageInfo = new PageInfo<CompanyInfoBean>(list);
+			mv.addObject("condition", condition);
 			mv.addObject("pageinfo",pageInfo);
 			mv.addObject("list",list);
 			mv.setViewName("views/company_info.jsp");
@@ -85,9 +86,14 @@ public class CompanyInfoController {
 		return result;
 	}
 	// 车位区域信息
-		@RequestMapping("/showCompany.do")
-		public @ResponseBody List<CompanyInfoBean> showParkingAddress() {
-			List<CompanyInfoBean> list = comService.showAllCompany();
-			return list;
-		}
+	@RequestMapping("/showCompany.do")
+	public @ResponseBody List<CompanyInfoBean> showParkingAddress() {
+		List<CompanyInfoBean> list = comService.showAllCompany();
+		return list;
+	}
+	@RequestMapping("/findCompany.do")
+	public @ResponseBody CompanyInfoBean findById(Integer id){
+		CompanyInfoBean bean = comService.findById(id);
+		return bean;
+	}
 }

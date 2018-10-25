@@ -2,6 +2,7 @@ package com.woniu.cbd.dao;
 
 import java.util.List;
 
+import com.woniu.cbd.bean.CompanyBargainBean;
 import com.woniu.cbd.bean.OtherParkingBean;
 
 /**
@@ -44,7 +45,7 @@ public interface IOtherParkingDao {
 	public List<OtherParkingBean> allOtherParkingSelect();
 
 	// 前台查看企业的所有车位
-	public List<OtherParkingBean> showCompanyParkingAll(int id);
+	public List<CompanyBargainBean> showCompanyParkingAll(int id);
 
 	// 企业查看单个车位信息
 	public OtherParkingBean showCompanyParkingById(int c_id);

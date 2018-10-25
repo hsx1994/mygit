@@ -16,6 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <body>
+<input type="hidden" value="${sessionScope.id }" id="uid" />
  <div class="hrader" id="header">
   <div class="top">
 	<a style="color:#C94E13;">欢迎您:${sessionScope.login.name }</a> 
@@ -38,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </div>
  <div class="navBox navBg3">
   <ul class="nav">
-   <li><a href="one.jsp">首页</a></li>
+   <li><a href="/CBDSystem/index.jsp">首页</a></li>
   </ul><!--nav/-->
  </div><!--navBox/-->
  <div class="vipBox">
@@ -46,10 +47,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <h2 class="headImg"><img src="../images/vipImg.jpg" width="183" height="169" /></h2>
    <h3 class="vipName">企业</h3>
    <dl class="vipNav">
-    <dt class="vip_1 vipCur"></dt>
-     <dd><a href="LookMyCar.jsp"></a></dd>
-     <dd><a href="vipShoucang.html"></a></dd>
-     <dd><a href="vipShoucang.html"></a></dd>
     <dt class="vip_2">个人中心</dt>
      <dd class="ddCur"><a href="one.jsp">企业信息</a></dd>
      <dd><a href="RentCompany.jsp">修改修改信息</a></dd>
@@ -64,11 +61,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="vipRight">
    <h2 class="vipTitle">个人中心</h2>
    
-        <form action="/CBDSystem/companyUpdate.do" method="post" enctype="multipart/form-data">
-				<table class="grzx" width="705" border="0" cellspacing="0"
-					cellpadding="0">
-				</table>
-	</form>
+    <div>
+  	  	<table  class="grzx" width="705" border="0" cellspacing="0" cellpadding="0">
+  	  		<tr>
+  	  			<td id="comName" width="90"><br/>
+  	  			</td>
+  	  		</tr>
+  	  		<tr>
+  	  			<td id="address" width="90"><br/>
+  	  			</td>
+  	  		</tr>
+  	  		<tr>
+  	  			<td id="contact" width="90"><br/>
+  	  			</td>
+  	  		</tr>
+  	  		<tr>
+  	  			<td id="tel" width="90"><br/>
+  	  			</td>
+  	  		</tr>
+  	  		<tr>
+  	  			<td id="email" width="90"><br/>
+  	  			</td>
+  	  		</tr>
+        </table>
+  	</div>
       
   </div><!--vipRight/-->
   <div class="clears"></div>
@@ -136,5 +152,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <br />
   <span>&copy; 2014 Unqezi 使用前必读 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></span>
  </div><!--footer/-->
+ <script>
+ function findById(){
+	 	$.ajax({
+	 		url:"/CBDSystem/findCompany.do",
+	 		type:"post",
+	 		data:{
+	 			"id":$("#uid").val()
+	 		},
+	 		dataType:"json",
+	 		success:function(data){
+	 			$("#comName").html("<span>*</span>企业名称:&nbsp;"+data.comName);
+	 			$("#address").html("<span>*</span>企业位置:&nbsp;"+data.address);
+	 			$("#contact").html("<span>*</span>企业联系人:&nbsp;"+data.contact);
+	 			$("#tel").html("<span>*</span>联系人电话:&nbsp;"+data.tel);
+	 			$("#email").html("<span>*</span>电子邮箱:&nbsp;"+data.email);
+	 		}
+	 	});
+ 	}
+ 	findById();
+ </script>
 </body>
 </html>

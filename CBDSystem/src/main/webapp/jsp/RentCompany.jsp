@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>包租婆修改信息</title>
+<title>企业用户修改信息</title>
 <link type="text/css" href="../css/csss.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
 <script type="text/javascript" src="../js/js.js"></script>
@@ -19,17 +19,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
  <div class="hrader" id="header">
   <div class="top">
-   <a href="login.html" style="color:#C94E13;">请登录</a> 
-   <a href="reg.html">注册</a>
-   <ul class="topNav">
-    <li><a href="order.html">我的订单 </a></li>
-    <li class="gouwuche"><a href="car.html">购物车</a> <strong style="color:#C94E13;">3</strong></li>
-    <li class="shoucangjia"><a href="shoucang.html">收藏夹</a></li>
-    <li class="kefus"><a href="#">联系客服</a></li>
-<li><a href="#" class="lan">中文</a></li>
-    <li><a href="#" class="lan">English</a></li>
-    <div class="clears"></div>
-   </ul><!--topNav/-->
+   <a style="color:#C94E13;">欢迎您:${sessionScope.login.name }</a> 
+   <a onclick="logOut()">注销</a>
   </div><!--top/-->
  </div><!--hrader/-->
  <div class="mid">
@@ -45,42 +36,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    </div><!--hotci/-->
    </div><!--subBox2/-->
   </form><!--subBox/-->
-  <div class="ding-gou">
-   <div class="ding">
-    <a href="order.html"><img src="../images/dingdan.jpg" width="106" height="32" /></a>
-   </div><!--ding/-->
-   <div class="gou">
-    <a href="car.html"><img src="../images/gouwuche.jpg" width="126" height="32" /></a>
-   </div><!--gou/-->
-   <div class="clears"></div>
-  </div><!--ding-gou/-->
- </div><!--mid-->
+  </div><!--mid-->
  <div class="navBox navBg3">
   <ul class="nav">
-   <li><a href="one.jsp">首页</a></li>
-   <li><a href=""></a></li>
-   <li><a href=""></a></li>
-   <li class="navCur"><a href="one.jsp">用户中心</a></li>
-   <li><a href="xuanshang.html"></a></li>
-   <li><a href="luntan.html" class="luntan"></a></li>
-   <li><a href="help.html"></a></li>
-   <div class="clears"></div>
+   <li><a href="/CBDSystem/index.jsp">首页</a></li>
   </ul><!--nav/-->
  </div><!--navBox/-->
- <div class="vipBox">
+<div class="vipBox">
   <div class="vipLeft">
    <h2 class="headImg"><img src="../images/vipImg.jpg" width="183" height="169" /></h2>
-   <h3 class="vipName">用户</h3>
+   <h3 class="vipName">企业</h3>
    <dl class="vipNav">
-    <dt class="vip_1 vipCur">账户中心</dt>
-     <dd><a href="LookMyCar.jsp">我的车位</a></dd>
-     <dd><a href="LookOneUser.jsp">申请上架车位</a></dd>
-     <dd><a href="LookOnCar.jsp">已上架车位</a></dd>
-    <dt class="vip_2">个人</dt>
-     <dd class="ddCur"><a href="three.jsp">企业信息</a></dd>
-     <dd><a href="RentCompany.jsp">修改企业信息</a></dd>
-     <dd><a href=""></a></dd>
-     <dd><a href="LookCar.jsp">查看租赁记录</a></dd>
+    <dt class="vip_2">个人中心</dt>
+     <dd class="ddCur"><a href="one.jsp">企业信息</a></dd>
+     <dd><a href="RentCompany.jsp">修改修改信息</a></dd>
+     <dd><a href="LookThreeUser.jsp">查看合约信息</a></dd>
+     <dd><a href="LookThreeCar.jsp">查看在租车位</a></dd>
     <dt class="vip_3"></dt>
      <dd><a href="vipQuxiao.html"></a></dd>
      
@@ -94,22 +65,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        <table class="grzx" width="705" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td width="90"><span>*</span>密码：</td>
-          <td width="430"><input type="text" name="password"></td>
+          <td width="430"><input type="text" id="password" name="password"></td>
           
         </tr>
        
         <tr>
           <td>&nbsp;邮箱:</td>
-          <td><input type="text" name="email" /></td>
+          <td><input type="text" id="email" name="email" /></td>
         </tr>
         
         <tr>
           <td>&nbsp;&nbsp;电话：</td>
-          <td><input type="text" name="tel" ></td>
+          <td><input type="text" id="tel" name="tel" ></td>
         </tr>
         <tr>
           <td>&nbsp;联系人姓名：</td>
-          <td><input type="text" name="contact" ></td>
+          <td><input type="text" id="contact" name="contact" ></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -183,21 +154,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <br />
   <span>&copy; 2014 Unqezi 使用前必读 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></span>
  </div><!--footer/-->
+ <input type="hidden" value="${sessionScope.id }" id="uid"/>
+ <input type="hidden" value="${sessionScope.login.id }" id="lid"/>
+ <input type="hidden" value="${sessionScope.login.name }" id="ln"/>
 <script type="text/javascript">
     function sendss(){
 		$.ajax({
-			   	url:"../companyUpdate.do",
+			   	url:"/CBDSystem/companyUpdate.do",
 				type:"post",
 				data:
 				{
-				 password:$("#password").val(),
-	             contact:$("#contact").val(),
-	             email:$("#email").val(),
-	             tel:$("#tel").val(),
+				 "comLogin.id":$("#lid").val(),
+				 "comLogin.name":$("#ln").val(),
+				 "comLogin.password":$("#password").val(),
+				 "id":$("#uid").val(),
+	             "contact":$("#contact").val(),
+	             "email":$("#email").val(),
+	             "tel":$("#tel").val()
 			},
 				datatype: "json",
 				success:function(data){
 					alert(data);
+					window.location.href="/CBDSystem/jsp/three.jsp";
 				}
 			});
 			

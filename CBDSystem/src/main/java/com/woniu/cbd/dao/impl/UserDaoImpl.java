@@ -48,8 +48,8 @@ public class UserDaoImpl implements IUserDao {
 	@Override
 	public int updateCompany(CompanyInfoBean company) {
 		SqlSession session = fa.openSession(true);
-		int row = session.insert("userMapper.updateCompany", company);
-
+		int row = session.update("userMapper.updateCompany", company);
+		
 		session.close();
 		return row;
 	}
@@ -62,15 +62,7 @@ public class UserDaoImpl implements IUserDao {
 		session.close();
 		return id;
 	}
-	//查看个人信息
-	@Override
-	public UserBean findUserInfo(int id) {
-		SqlSession session = fa.openSession(true);
-		UserBean bean = session.selectOne("userMapper.findById", id);
-
-		session.close();
-		return bean;
-	}
+	
 	//查看企业信息
 	@Override
 	public CompanyInfoBean findCompanyInfo(int id) {
@@ -80,6 +72,7 @@ public class UserDaoImpl implements IUserDao {
 		session.close();
 		return bean;
 	}
+	//查看个人信息
 	@Override
 	public UserBean findById(int uid) {
 		SqlSession session = fa.openSession(true);
