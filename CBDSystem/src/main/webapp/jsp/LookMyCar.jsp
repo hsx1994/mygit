@@ -99,8 +99,8 @@
 						<tr>
 							<th width="100"><span>*</span>车位地址</th>
 							<th width="200"><span>*</span>单价(元/小时)</th>
-							<th width="100"><span>*</span>开始时间</th>
-							<th width="100"><span>*</span>结束时间</th>
+							<th width="150"><span>*</span>开始时间</th>
+							<th width="150"><span>*</span>结束时间</th>
 							<th width="100"><span>*</span>车位号</th>
 							<th width="400"><span>*</span>状态(0:待审,1:审核通过,2：审核未通过)</th>
 						</tr>
@@ -109,8 +109,8 @@
 						<tr>
 							<td>${obj.address}<br/></td>
 							<td>${obj.price}<br/></td>
-							<td><fmt:formatDate value="${obj.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/><br/></td>
-							<td><fmt:formatDate value="${obj.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/><br /></td>
+							<td><fmt:formatDate value="${obj.startTime}" pattern="yyyy-MM-dd"/><br/></td>
+							<td><fmt:formatDate value="${obj.endTime}" pattern="yyyy-MM-dd"/><br /></td>
 							<td>${obj.parkingNum}<br /></td>
 							<td>${obj.state}</td>
 						</tr>

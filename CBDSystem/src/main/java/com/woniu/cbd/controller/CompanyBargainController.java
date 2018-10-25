@@ -178,7 +178,6 @@ public class CompanyBargainController {
 		if(condition!=null){
 			PageHelper.startPage(page,10,true);
 			List<CompanyBargainBean>  list = service.queryHistoryBargainByCondition(condition);
-			System.out.println(list);
 			PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(list);
 			mv.addObject("condition", condition);
 			mv.addObject("pageinfo",pageInfo);
