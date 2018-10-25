@@ -19,10 +19,10 @@ public class ComplainDaoImpl implements IComplainDao {
 	@Override
 	public void updateComplainState(int state, int id) {
 		
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		IComplainDao dao = session.getMapper(IComplainDao.class);
 		dao.updateComplainState(state, id);
-		session.commit();
+		
 		session.close();
 	}
 
@@ -31,8 +31,8 @@ public class ComplainDaoImpl implements IComplainDao {
 		
 		SqlSession session = fa.openSession();
 		List<ComplainBean> list = session.selectList("com.woniu.cbd.dao.IComplainDao.findAllComplain");
-		session.close();
 		
+		session.close();
 		return list;
 	}
 
@@ -42,6 +42,7 @@ public class ComplainDaoImpl implements IComplainDao {
 		SqlSession session = fa.openSession();
 		IComplainDao dao = session.getMapper(IComplainDao.class);
 		List<ComplainBean> list = dao.findComplainByPage(page);
+		
 		session.close();
 		return list;
 	}
@@ -52,6 +53,7 @@ public class ComplainDaoImpl implements IComplainDao {
 		SqlSession session = fa.openSession();
 		IComplainDao dao = session.getMapper(IComplainDao.class);
 		ComplainBean bean = dao.findComplainById(id);
+		
 		session.close();
 		return bean;
 	}

@@ -74,6 +74,7 @@ public class CompanyBargainDaoImpl implements ICompanyBargainDao {
 	public List<CompanyBargainBean> companyBargainById(int id) {
 		SqlSession session = fa.openSession(true);
 		List<CompanyBargainBean> bean = session.selectList("companyBargainMapper.companyBargainById",id);
+		
 		session.close();
 		return bean;
 	}
@@ -83,6 +84,7 @@ public class CompanyBargainDaoImpl implements ICompanyBargainDao {
 			String condition) {
 		SqlSession session = fa.openSession(true);
 		List<CompanyBargainBean> list= session.selectList("companyBargainMapper.fuzzyQueryBargainBeUseing",condition);
+		
 		session.close();
 		return list;
 	}
@@ -92,6 +94,7 @@ public class CompanyBargainDaoImpl implements ICompanyBargainDao {
 			String condition) {
 		SqlSession session = fa.openSession(true);
 		List<CompanyBargainBean> list= session.selectList("companyBargainMapper.queryHistoryBargain",condition);
+		
 		session.close();
 		return list;
 	}
@@ -101,6 +104,7 @@ public class CompanyBargainDaoImpl implements ICompanyBargainDao {
 		SqlSession session = fa.openSession(true);
 		CompanyBargainBean  bean = session.selectOne("companyBargainMapper.findBargainById",id);
 		
+		session.close();
 		return bean;
 	}
 

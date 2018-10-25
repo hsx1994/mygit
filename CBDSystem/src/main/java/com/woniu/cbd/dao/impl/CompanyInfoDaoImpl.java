@@ -41,6 +41,7 @@ public class CompanyInfoDaoImpl implements ICompanyInfoDao {
 	public CompanyInfoBean findByCompanyName(String comName) {
 		SqlSession session = fa.openSession(true);
 		CompanyInfoBean bean = session.selectOne("companyInfoMapper.findByCompanyName",comName);
+		
 		session.close();
 		return bean;
 	}
@@ -51,7 +52,7 @@ public class CompanyInfoDaoImpl implements ICompanyInfoDao {
 		SqlSession session = fa.openSession(true);
 		
 		int row = session.insert("companyInfoMapper.addCompany",bean);
-		session.commit();
+		
 		session.close();
 		return row;
 	}
@@ -63,6 +64,7 @@ public class CompanyInfoDaoImpl implements ICompanyInfoDao {
 	public int findIdByLid(int lid) {
 		SqlSession session = fa.openSession(true);
 		int id = session.selectOne("companyInfoMapper.findIdByLid", lid);
+		
 		session.close();
 		return id;
 	}
@@ -72,6 +74,7 @@ public class CompanyInfoDaoImpl implements ICompanyInfoDao {
 	public CompanyInfoBean findById(Integer id) {
 		SqlSession session = fa.openSession(true);
 		CompanyInfoBean bean = session.selectOne("companyInfoMapper.findById",id);
+		
 		session.close();
 		return bean;
 	}

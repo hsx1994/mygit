@@ -90,6 +90,7 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 
 		AdministratorBean bean = session.selectOne(
 				"AdministratorMapper.findById", id);
+		
 		session.close();
 		return bean;
 	}
@@ -98,6 +99,8 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 	public int addAdmin(AdministratorBean admin) {
 		SqlSession session = fa.openSession(true);
 		int re = session.insert("AdministratorMapper.addAdmin", admin);
+		
+		session.close();
 		return re;
 	}
 
@@ -105,6 +108,7 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 	public int findIdByLid(int lid) {
 		SqlSession session = fa.openSession();
 		int id = session.selectOne("AdministratorMapper.findIdByLid", lid);
+		
 		session.close();
 		return id;
 	}
@@ -112,6 +116,8 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 	public int updateAdmintTel(AdministratorBean bean) {
 		SqlSession session = fa.openSession(true);
 		int re = session.update("AdministratorMapper.updateAdmintTel", bean);
+		
+		session.close();
 		return re;
 	}
 
@@ -120,6 +126,8 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 		SqlSession session = fa.openSession(true);
 		AdministratorBean bean = session.selectOne(
 				"AdministratorMapper.findByLoginId", uid);
+		
+		session.close();
 		return bean;
 	}
 }

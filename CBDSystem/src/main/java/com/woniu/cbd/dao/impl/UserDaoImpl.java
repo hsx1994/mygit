@@ -85,6 +85,8 @@ public class UserDaoImpl implements IUserDao {
 	public int updateCounet(UserBean u) {
 		SqlSession session = fa.openSession(true);
 		int row = session.update("userMapper.updateCounet",u);
+		
+		session.close();
 		return row;
 	}
 }

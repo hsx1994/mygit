@@ -21,6 +21,7 @@ public class CompanyOrderDaoImpl implements ICompanyOrderDao {
 	public int addCompanyOrder(List<CompanyOrderBean> companyOrders) {
 		SqlSession session = fa.openSession(true);
 		int result = session.insert("companyOrderMapper.addCompanyOrder", companyOrders);
+		
 		session.close();
 		return result;
 	}
@@ -44,6 +45,7 @@ public class CompanyOrderDaoImpl implements ICompanyOrderDao {
 		// TODO Auto-generated method stub
 		SqlSession session = fa.openSession(true);
 		List<CompanyOrderBean> bean=session.selectList("companyOrderMapper.selectCompanyOrder", id);
+		
 		session.close();
 		return bean;
 	}

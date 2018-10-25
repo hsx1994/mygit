@@ -71,6 +71,8 @@ public class OrderDaoImpl implements IOrderDao {
 		OrderBean order = null;
 		SqlSession session = fa.openSession(true);
 		order = session.selectOne("orderMapper.findByOrderId", orderId);
+		
+		session.close();
 		return order;
 	}
 

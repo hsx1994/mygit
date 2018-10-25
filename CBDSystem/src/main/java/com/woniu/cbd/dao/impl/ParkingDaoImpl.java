@@ -24,6 +24,7 @@ public class ParkingDaoImpl implements IParkingDao {
 	public int addParking(List<ParkingBean> park) {
 		SqlSession session = fa.openSession(true);
 		int num = session.insert("parkingMapper.addParking", park);
+		
 		session.close();
 		return num;
 	}
@@ -43,6 +44,7 @@ public class ParkingDaoImpl implements IParkingDao {
 	public List<ParkingBean> showAll() {
 		SqlSession session = fa.openSession(true);
 		List<ParkingBean> bean = session.selectList("parkingMapper.showall");
+		
 		session.close();
 		return bean;
 	}
@@ -55,6 +57,7 @@ public class ParkingDaoImpl implements IParkingDao {
 				map.put("startTime", startTime);
 				map.put("endTime", endTime);
 				List<ParkingBean> bean = session.selectList("parkingMapper.showdate", map);
+				
 				session.close();
 				return bean;
 			}
@@ -67,6 +70,7 @@ public class ParkingDaoImpl implements IParkingDao {
 				map.put("price2", price2);
 				SqlSession session = fa.openSession(true);
 				List<ParkingBean> bean = session.selectList("parkingMapper.showprice", map);
+				
 				session.close();
 				return bean;
 			}
@@ -76,6 +80,7 @@ public class ParkingDaoImpl implements IParkingDao {
 	public ParkingBean selectParkingOne(int id) {
 		SqlSession session = fa.openSession(true);
 		ParkingBean bean = session.selectOne("parkingMapper.showone", id);
+		
 		session.close();
 		return bean;
 	}
@@ -143,6 +148,7 @@ public class ParkingDaoImpl implements IParkingDao {
 	public ParkingBean selectParkingByOrderID(int id) {
 		SqlSession session = fa.openSession(true);
 		ParkingBean bean = session.selectOne("parkingMapper.selectParkingByOrderID", id);
+		
 		session.close();
 		return bean;
 	}

@@ -41,6 +41,7 @@ public class LoginDaoImpl implements ILoginDao {
 	public LoginBean getLoginUserByName(String name) {
 		SqlSession session = fa.openSession(true);
 		LoginBean bean = session.selectOne("loginMapper.findLoginUserByname",name);
+		
 		session.close();
 		return bean;
 	}
@@ -56,6 +57,8 @@ public class LoginDaoImpl implements ILoginDao {
 		for (PermissionBean P : list) {
 			permissions.add(P.getName());
 		}
+		
+		session.close();
 		return permissions;
 		
 	}
@@ -67,6 +70,7 @@ public class LoginDaoImpl implements ILoginDao {
 		
 		SqlSession session = fa.openSession(true);
 		int id = session.insert("loginMapper.addCompanyUser",login);
+		
 		session.close();
 		return id;
 		
@@ -78,12 +82,16 @@ public class LoginDaoImpl implements ILoginDao {
 	public String selecrPwd(Integer id) {
 		SqlSession session = fa.openSession(true);
 		String re = session.selectOne("loginMapper.selecrPwd",id);
+		
+		session.close();
 		return re;
 	}
 	@Override
 	public int updatePwd(LoginBean bean) {
 		SqlSession session = fa.openSession(true);
 		int re = session.update("loginMapper.updatePwd",bean);
+		
+		session.close();
 		return re;
 	}
 }

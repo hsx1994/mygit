@@ -39,6 +39,7 @@ public class RolePermissionDaoImpl implements IRolePermissionDao {
 		SqlSession session = fa.openSession(true);
 		int row = session.update("rolePermissionMapper.deletePerByAdminId",id);
 		
+		session.close();
 		return row;
 	}
 }

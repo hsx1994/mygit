@@ -92,6 +92,8 @@ public class BargainDaoImpl implements IBargainDao {
 	public BargainBean findBargainById(int id) {
 		SqlSession session = fa.openSession(true);
 		BargainBean bean = session.selectOne("bargainMapper.findById",id);
+		
+		session.close();
 		return bean;
 	}
 

@@ -38,7 +38,7 @@
 
 	function require(f) {
 		var g = {
-			phone: /^1(3\d|5[0-35-9]|77|8[01235-9]|47)\d{8}$/,
+			phone: /^1(3\d|5[0-35-9]|77|8[0-9]|47)\d{8}$/,
 			company: /^[一-龥a-zA-Z][一-龥a-zA-Z0-9\s-,-.]*$/,
 			uname: /^[a-zA-Z][a-zA-Z0-9_]*$/,
 			zh: /^[一-龥]+$/,
@@ -188,7 +188,7 @@
 				clearTimeout(h);
 				timerC = 60;
 				var b = /^1([^01269])\d{9}$/;
-				if (!b.test($("#phone").val())) {
+				if (!b.test($("#tel").val())) {
 					$("#time_box").text("发送验证码")
 				} else {
 					$("#verifyYz").show();
@@ -212,7 +212,7 @@
 				this.config.clearTips ? this.config.clearTips($("#verifyNo")) : j._clearTips($("#verifyNo"));
 				return
 			}
-			var c = /^1([^01269])\d{9}$/;
+			var c = /^1(3\d|5[0-35-9]|77|8[0-9]|47)\d{8}$/;
 			if (!c.test(a.val())) return false;
 			if (timerC === 60) {
 				$("#verifyYz").show();

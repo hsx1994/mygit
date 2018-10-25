@@ -58,6 +58,7 @@ public class OtherParkingDaoImpl implements IOtherParkingDao {
 		public List<CompanyBargainBean> showCompanyParkingAll(int id) {
 			SqlSession session = fa.openSession(true);
 			List<CompanyBargainBean> bean = session.selectList("companyBargainMapper.findCompanyBargainById", id);
+			
 			session.close();
 			return bean;
 		}
@@ -67,6 +68,7 @@ public class OtherParkingDaoImpl implements IOtherParkingDao {
 		public OtherParkingBean showCompanyParkingById(int id) {
 			SqlSession session = fa.openSession(true);
 			OtherParkingBean bean = session.selectOne("otherParkingMapper.findParkingById", id);
+			
 			session.close();
 			return bean;
 		}
@@ -75,6 +77,7 @@ public class OtherParkingDaoImpl implements IOtherParkingDao {
 		public List<OtherParkingBean> findByParkingNumber(String[] parkingNumber) {
 			SqlSession session = fa.openSession(true);
 			List<OtherParkingBean> list = session.selectList("otherParkingMapper.findByParkingNumber", parkingNumber);
+			
 			session.close();
 			return list;
 		}
@@ -85,6 +88,7 @@ public class OtherParkingDaoImpl implements IOtherParkingDao {
 		public List<String> findAddressByGroup() {
 			SqlSession session = fa.openSession(true);
 			List<String> list = session.selectList("otherParkingMapper.findAddressByGroup");
+			
 			session.close();
 			return list;
 		}
@@ -93,6 +97,7 @@ public class OtherParkingDaoImpl implements IOtherParkingDao {
 		public List<String> findParkingNumberByAddress(String address) {
 			SqlSession session = fa.openSession(true);
 			List<String> list = session.selectList("otherParkingMapper.findParkingNumberByAddress",address);
+			
 			session.close();
 			return list;
 		}
@@ -103,6 +108,7 @@ public class OtherParkingDaoImpl implements IOtherParkingDao {
 		public List<OtherParkingBean> findCompanyAll() {
 			SqlSession session = fa.openSession(true);
 			List<OtherParkingBean> list = session.selectList("otherParkingMapper.findCompanyAll");
+			
 			session.close();
 			return list;
 		}
