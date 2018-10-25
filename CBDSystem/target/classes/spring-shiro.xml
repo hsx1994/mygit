@@ -39,6 +39,7 @@
 		<property name="filterChainDefinitions">
 			<value>	
 				<!-- 默认访问官网页面，待改showall.do?page=1 -->
+				/success.jsp =anon
 				/picturecode =anon		
 				/index*=anon
 				/alipay/**=anon

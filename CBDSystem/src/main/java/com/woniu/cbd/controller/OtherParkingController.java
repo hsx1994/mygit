@@ -80,14 +80,12 @@ public class OtherParkingController {
 	@RequestMapping("showCompanyParkingAll.do")
 	public ModelAndView showComPanyParkingAll(Integer id, Integer page) {
 		ModelAndView mav = new ModelAndView();
-
-		PageHelper.startPage(page, 5, true);
+PageHelper.startPage(page, 5, true);
 		List<CompanyBargainBean> parking = service.showCompanyParkingAll(id);
 		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(parking);
 		mav.addObject("pageinfo", pageInfo);
 		mav.addObject("list", parking);
 		mav.setViewName("jsp/LookThreeCar.jsp");
-
 		return mav;
 	}
 	//企业查看自己的车位

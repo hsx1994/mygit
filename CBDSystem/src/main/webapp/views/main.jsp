@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html>
 <head>
@@ -25,22 +26,13 @@ div.main-order{ line-height:30px; padding:10px 0 0 0;}
 </style>
 </head>
 <body>
-<%-- 
-<shiro:hasRole name="admin">
-	欢迎有superadmin角色的用户！<shiro:principal/>
-</shiro:hasRole>
-<shiro:hasPermission name="student:create">
-	欢迎有student:create权限的用户！<shiro:principal/>
-</shiro:hasPermission> --%>
-
-
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="main">
   <tr>
     <td colspan="2" align="left" valign="top">
-    <span class="time"><strong>上午好！admin</strong><u>[超级管理员]</u></span>
-    <div class="top"><span class="left">您上次的登灵时间：2012-05-03  12:00   登录IP：127.0.0.1 &nbsp;&nbsp;&nbsp;&nbsp;如非您本人操作，请及时</span><a href="index.jsp" target="mainFrame" onFocus="this.blur()">更改密码</a></div>
-    <div class="sec">这是您第<span class="num">80</span>次,登录！</div>
+    <span class="time"><strong>上午好！${login.getName() }</strong><u>[${login.getRole() }]</u></span>
+<!--     <div class="top"><span class="left">您上次的登灵时间：2012-05-03  12:00   登录IP：127.0.0.1 &nbsp;&nbsp;&nbsp;&nbsp;如非您本人操作，请及时</span><a href="index.jsp" target="mainFrame" onFocus="this.blur()">更改密码</a></div>
+    <div class="sec">这是您第<span class="num">80</span>次,登录！</div> -->
     </td>
   </tr>
   <tr>
@@ -49,7 +41,7 @@ div.main-order{ line-height:30px; padding:10px 0 0 0;}
     <div class="main-con">
     会员注册：开启<br/>
 会员投稿：开启<br/>
-管理员个数：<font color="#538ec6"><strong>6</strong></font> 人<br/>
+<!-- 管理员个数：<font color="#538ec6"><strong>6</strong></font> 人<br/> -->
 登陆者IP：192.168.1.156<br/>
 程序编码：UTF-8<br/>
     </div>
@@ -58,7 +50,7 @@ div.main-order{ line-height:30px; padding:10px 0 0 0;}
     <div class="main-tit">服务器信息</div>
     <div class="main-con">
 服务器软件：Apache/2.2.6 (Win32) PHP/5.2.5<br/>
-PHP版本：5.2.5<br/>
+jdk版本：1.8<br/>
 MYSQL版本：5.0.45-community-nt<br/>
 魔术引用：开启 (建议开启)<br/>
 使用域名：192.168.1.124 <br/>

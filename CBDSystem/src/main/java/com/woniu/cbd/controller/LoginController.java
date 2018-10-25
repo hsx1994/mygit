@@ -107,8 +107,13 @@ public class LoginController {
 			session.setAttribute("loginPath", path);
 			LoginBean lo = (LoginBean) session.getAttribute("login");
 			String role = lo.getRole();
-			if (role.equals("抢租客") || role.equals("包租婆") || role.equals("企业用户")) {
+
+			if (role.equals("抢租客")) {
 				return "redirect:/index.jsp";
+			} else if (role.equals("企业用户")) {
+				return "redirect:/jsp/ConpanyShowParking.jsp";
+			} else if (role.equals("包租婆")) {
+				return "redirect:/jsp/one.jsp";
 			} else {
 				session.removeAttribute("login");
 				session.setAttribute("user", user);
@@ -125,6 +130,7 @@ public class LoginController {
 
 	/**
 	 * 注销功能
+	 * 
 	 * @param session
 	 * @return
 	 */
@@ -132,30 +138,38 @@ public class LoginController {
 	@RequestMapping("logoutExit.do")
 	public String logoutExit(HttpSession session) {
 		String path = (String) session.getAttribute("loginPath");
-		if (session != null) {
-			session.removeAttribute("login");
-			session.removeAttribute("id");
-			session.removeAttribute("user");
-			session.removeAttribute("errorMsg");
-		}
-		return path;
+		session.removeAttribute("login");
+		session.removeAttribute("id");
+		session.removeAttribute("user");
+		session.removeAttribute("errorMsg");
+		return "redirect:" + path;
+	}
+
+	@ResponseBody
+	@RequestMapping("logoutExitAdmin.do")
+	public String logoutExit(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		session.removeAttribute("login");
+		session.removeAttribute("id");
+		session.removeAttribute("user");
+		session.removeAttribute("errorMsg");
+		return "注销成功";
 	}
 
 	/**
 	 * 验证用户名是否可用
-	 * 
 	 * @param name
 	 * @return
 	 */
 	@RequestMapping("checkUserName.do")
-	public @ResponseBody String checkUserName(String name) {
-		String result = "用户名已存在";
-		LoginBean bean = service.getLoginUserByName(name);
-		if (bean == null) {
-			result = "用户名可用";
-		}
-		return result;
-	}
+	public @ResponseBody String checkUserName(String name){
+				  LoginBean bean = service.getLoginUserByName(name);
+				  String result = "用户名可以使用";
+				  if (bean!=null) {
+					  result = "用户名已存在";
+					}
+				  return  result;
+				  }
 
 	/**
 	 * 管理员修改密码
