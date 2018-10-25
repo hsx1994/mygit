@@ -35,6 +35,14 @@
         .history-but{
             height:24px; line-height:24px; width:55px; background:url(../images/main/list_input.jpg) no-repeat left top; border:none; cursor:pointer; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; color:#666; float:left; margin:8px 0 0 30px; display:inline;
         }
+           input::-webkit-input-placeholder {
+         /* placeholder颜色  */
+         color: #aab2bd;
+         /* placeholder字体大小  */
+         font-size: 12px;
+         /* placeholder位置  */
+	       text-align: left;
+     }
     </style>
 </head>
 <body onload="showTContract(1)">
@@ -49,7 +57,7 @@
                 <tr>
                     <td width="90%" align="left" valign="middle">
                            <span>搜索：</span>
-                           <input type="text"  id="condition" class="text-word" value="${condition }">
+                           <input type="text"  id="condition" class="text-word" value="${condition }" placeholder="输入合同编号、联系人">
                            <input name="" type="button" value="查询" class="text-but" onclick="queryCompanyBargain(1)">
                         <a name="" type="button"  class="history-but" href="tenant_history_contract.jsp" ><span style="margin-left: -6px;margin-top: -7px;">历史合约</span></a>
                     </td>
@@ -79,7 +87,7 @@
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.tel }</td>
                     <td align="center" valign="middle" class="borderright borderbottom"><fmt:formatDate value="${obj.startTime }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                     <td align="center" valign="middle" class="borderright borderbottom"><fmt:formatDate value="${obj.endTime }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                    <td align="center" valign="middle" class="borderbottom"><a href="tenant_contract_extension.jsp" target="mainFrame" onFocus="this.blur()" class="add">续约</a><span class="gray">&nbsp;|&nbsp;</span><a href="tenant_contract_detail.jsp?id=${obj.id }" target="mainFrame" onFocus="this.blur()" class="add">详情</a></td>
+                    <td align="center" valign="middle" class="borderbottom"><a href="tenant_contract_extension.jsp?id=${obj.id }" target="mainFrame" onFocus="this.blur()" class="add">续约</a><span class="gray">&nbsp;|&nbsp;</span><a href="tenant_contract_detail.jsp?id=${obj.id }" target="mainFrame" onFocus="this.blur()" class="add">详情</a></td>
                 </tr>
                 </c:forEach>
             </table>

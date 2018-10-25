@@ -42,9 +42,8 @@
                 <tr>
                     <td width="90%" align="left" valign="middle">
                         <form method="post" action="">
-                            <span>搜索：</span>
-                            <input type="text" name="" value="" class="text-word">
-                            <input name="" type="button" value="查询" class="text-but" >
+                            <span>车位信息▼</span>
+                            <input name="" type="hidden" value="查询" class="text-but" >
                         </form>
                     </td>
                     <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a href="add_carport.jsp" target="mainFrame" onFocus="this.blur()" class="add">添加车位</a></td>

@@ -60,6 +60,7 @@ public class CompanyInfoController {
 			List<CompanyInfoBean> list = comService.queryCompany(condition);
 			//取分页信息,需要填入你查询出的集合
 			PageInfo<CompanyInfoBean> pageInfo = new PageInfo<CompanyInfoBean>(list);
+			mv.addObject("condition", condition);
 			mv.addObject("pageinfo",pageInfo);
 			mv.addObject("list",list);
 			mv.setViewName("views/company_info.jsp");
