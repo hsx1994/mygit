@@ -51,4 +51,23 @@ public interface IBargainDao {
 	 * @return
 	 */
 	public List<BargainBean> allBargainSelect();
+	
+	/**
+	 * 按条件查询执行中的第三方合约
+	 * @param condition
+	 * @return
+	 */
+	public List<BargainBean> queryUseingBargain(String condition);
+	/**
+	 * 按条件查询第三方历史合约
+	 * @param condition
+	 * @return
+	 */
+	public List<BargainBean> queryHistoryBargain(String condition);
+	/**
+	 * 根据id查询合约信息
+	 * @param id
+	 * @return
+	 */
+	public BargainBean findBargainById(int id);
 }

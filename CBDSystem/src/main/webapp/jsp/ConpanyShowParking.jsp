@@ -24,7 +24,7 @@
 				<c:when test="${sessionScope.login.name != null}">
 					<span>欢迎您:&nbsp;&nbsp;</span>
 					<span>${sessionScope.login.name}</span>
-					<span><a href="/CBDSystem/logoutExit.do">注销</a></span>
+					<span><a onclick="exidLogout()">注销</a></span>
 				</c:when>
 				<c:otherwise>
 					<a href="/CBDSystem/jsp/login.jsp" style="color:#C94E13;">登录</a> <a href="/CBDSystem/jsp/regist.jsp">注册</a>
@@ -36,7 +36,30 @@
 			</ul>			
 		</div>
 	</div>
-
+	
+<!-- 注销 -->
+<script>
+        		function exidLogout(){
+        			$.ajax({
+        				url:"/CBDSystem/logoutExitAdmin.do",
+        				type:"post",
+        				data:{
+        				
+        				},
+        			dataType:"json",
+        			success:function(data){
+        				alert(data);
+        				window.parent.location.href="/CBDSystem/jsp/login.jsp"
+        			}
+        			
+        			
+        			})
+        		
+        		}
+        	
+        	
+        	</script>
+        	
 	<div class="mid">
 		<h1 class="logo" style="text-align:left;">
 			<a href="index.html"><img

@@ -29,7 +29,7 @@ public class AlipayController {
 		ModelAndView result = new ModelAndView();
 		if (order2 != null) {
 			if(order2.getStartTime().compareTo(new Date())<=0){
-				result.setViewName("/jsp/two.jsp");
+				result.setViewName("redirect:/jsp/two.jsp");
 			}else{
 				result.setViewName("/alipay/apply.jsp");
 				result.addObject("QRcode", AlipayUtil.getQRcode(request,order2));
@@ -51,7 +51,6 @@ public class AlipayController {
 			order.setState(1);
 			orderService.changeOrderState(order);
 			int userId = (int)request.getSession().getAttribute("id");
-			System.out.println("userId");
 			UserBean user = userService.findUserInfo(userId);
 			user.setOrderCount(user.getOrderCount()+1);
 			userService.updateUser(user);

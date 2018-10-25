@@ -22,6 +22,7 @@ import com.woniu.cbd.bean.OrderBean;
 import com.woniu.cbd.bean.ParkingBean;
 import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.service.IComplainService;
+import com.woniu.cbd.service.IOrderService;
 import com.woniu.cbd.service.IParkingService;
 import com.woniu.cbd.service.IUserService;
 
@@ -39,6 +40,8 @@ public class ComplainController {
 	private IUserService user;
 	@Autowired
 	private IParkingService parking;
+	@Autowired
+	private IOrderService orderService;
 
 	/**
 	 * 显示所有待处理的投诉信息
@@ -109,16 +112,15 @@ public class ComplainController {
 
 	// 抢租客针对订单添加投诉信息
 	@RequestMapping("/addComplaint.do")
-	public @ResponseBody String addCompiaint(OrderBean order, String text) {
+	public @ResponseBody String addCompiaint(HttpServletRequest request,OrderBean order, String text) {
 		// 在session中获取到当前登录用户的id
-		int i = 1;// 测试
-
+		order = orderService.findOrderById(order.getId());
 		// 由订单的id在车位表中获取到车位所有人的id
-		ParkingBean bean = parking.selectParkingByOrderID(order.getId());
+		ParkingBean bean = parking.selectParkingByOrderID(order.getParking().getId());
 		int uid = bean.getUser().getId();
 
 		UserBean user = new UserBean();
-		user.setId(i);
+		user.setId((int)request.getSession().getAttribute("id"));
 
 		UserBean buser = new UserBean();
 		buser.setId(uid);

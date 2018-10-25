@@ -1,5 +1,8 @@
 package com.woniu.cbd.realm;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -11,6 +14,8 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.woniu.cbd.bean.LoginBean;
 import com.woniu.cbd.service.IAdministratorService;
@@ -73,12 +78,6 @@ public class LoginRealm extends AuthorizingRealm {
 			Session session = SecurityUtils.getSubject().getSession();
 			session.setAttribute("login", loginUser);
 			session.setAttribute("id", currentId);
-			
-			
-//			LoginBean lo =(LoginBean) session.getAttribute("login");
-//			String roleName = lo.getRole();
-			
-			
 			return info;
 		} else {
 			return null;
@@ -90,16 +89,18 @@ public class LoginRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(
-			PrincipalCollection principals) {
-
-		String name = (String) principals.getPrimaryPrincipal();
+			PrincipalCollection principals) {		
+		Session session = SecurityUtils.getSubject().getSession();		
+		
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-//		Set<String> roles=new HashSet<String>();
-		info.addRole("管理员");
+//		Set<String> roles=new HashSet<String>();		
+		LoginBean bean =(LoginBean) session.getAttribute("login");
+		String name =  bean.getName();
+		String ro = bean.getRole();
+		info.addRole(ro);		
 		info.setStringPermissions(loginService.getPermissions(name));
 		return info;
 	}
-
 	// // 清除缓存
 	// public void clearCached() {
 	// // 获取当前登录的用户凭证，然后清除

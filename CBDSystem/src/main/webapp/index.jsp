@@ -14,6 +14,7 @@
 <script type="text/javascript" src="/CBDSystem/js/js.js"></script>
 <script language="javascript" type="text/javascript"
 	src="/CBDSystem/js/dateutil/WdatePicker.js"></script>
+
 </head>
 <body onload="upCurrentPage(1)">
 	<input type="hidden" value="${sessionScope.login.role }" id="role">
@@ -24,7 +25,7 @@
 				<c:when test="${sessionScope.login.name != null}">
 					<span>欢迎您:&nbsp;&nbsp;</span>
 					<span>${sessionScope.login.name}</span>
-					<span><a href="/CBDSystem/logoutExit.do">注销</a></span>
+					<span><a onclick="logOut()">注销</a></span>
 				</c:when>
 				<c:otherwise>
 					<a href="/CBDSystem/jsp/login.jsp" style="color:#C94E13;">登录</a> <a href="/CBDSystem/jsp/regist.jsp">注册</a>
@@ -51,8 +52,7 @@
 	</div>
 	<div class="navBox navBg2">
 		<ul class="nav">
-			<li><a href="/CBDSystem/jsp/ShowParkingSpace.jsp">首页</a></li>
-
+			<li><a href="/CBDSystem/index.jsp">首页</a></li>
 			<div class="clears"></div>
 		</ul>
 		<!--nav/-->
@@ -240,10 +240,9 @@
 			<!--footBox/-->
 
 			<!--footer/-->
-
 			<!-- 引入外部js文件 -->
-			<script type="text/javascript"
-				src="/CBDSystem/js/ShowParkingSpace.js"></script>
+			<script type="text/javascript" src="/CBDSystem/js/ShowParkingSpace.js"></script>
+			<script type="text/javascript" src="/CBDSystem/js/logOut.js"></script>
 </body>
 	</html>
 </div>

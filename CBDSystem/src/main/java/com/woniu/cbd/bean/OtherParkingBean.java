@@ -2,8 +2,9 @@ package com.woniu.cbd.bean;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 /**
  * 第三方提供的车位的信息
  * @author hsx 
@@ -26,8 +27,10 @@ public class OtherParkingBean implements Serializable {
 	//第三方提供的车位结束时间
 	private Date endTime;
 	//关联的第三方合约信息
+	@JsonIgnore
 	private BargainBean bargain;
 	//第三方车位出租产生的企业订单
+	@JsonIgnore
 	private List<CompanyOrderBean> order;
 	
 	public List<CompanyOrderBean> getOrder() {

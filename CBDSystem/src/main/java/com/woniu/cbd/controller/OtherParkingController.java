@@ -78,7 +78,7 @@ public class OtherParkingController {
 
 		PageHelper.startPage(page, 8, true);
 		List<OtherParkingBean> parking = service.showCompanyAll();
-		System.out.println("长度"+parking.size());
+		
 		PageInfo<OtherParkingBean> pageInfo = new PageInfo<OtherParkingBean>(parking);
 		mav.addObject("paging", pageInfo);
 		mav.addObject("all", parking);
@@ -95,7 +95,7 @@ public class OtherParkingController {
 			OtherParkingBean bean = service.showCompanyParkingById(id);
 //			mav.addObject("companyPark", bean);
 			mav.addObject("one", bean);
-			mav.setViewName("jsp/DetailsConpanyParking.jsp");
+			mav.setViewName("jsp/ DetailsConpanyParking.jsp");
 			return mav;
 		}
 	

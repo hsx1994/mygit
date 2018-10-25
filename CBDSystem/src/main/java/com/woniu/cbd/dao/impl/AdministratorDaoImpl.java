@@ -28,7 +28,7 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 		SqlSession session = fa.openSession(true);
 		// 执行sql删除语句，返回影响行数
 		int row = session.update("AdministratorMapper.administratorDelete", id);
-		
+
 		// 关闭session
 		session.close();
 		// 根据返回影响行数判断书否删除成功
@@ -47,7 +47,7 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 		SqlSession session = fa.openSession(true);
 		// 执行sql,接受执行sql返回的影响 行数
 		int row = session.delete("AdministratorMapper.administratorUpdate", ab);
-		
+
 		// 关闭session
 		session.close();
 		// 判断更新是否成功
@@ -63,8 +63,9 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 		// 获取session
 		SqlSession session = fa.openSession(true);
 		// 执行sql，获取结果集
-		AdministratorBean bean = session.selectOne("AdministratorMapper.administratorSelect", lb);
-		
+		AdministratorBean bean = session.selectOne(
+				"AdministratorMapper.administratorSelect", lb);
+
 		// 关闭session
 		session.close();
 		return bean;
@@ -72,11 +73,12 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 
 	@Override
 	public List<AdministratorBean> administratorSelectAll() {
-	
+
 		// 获取session
-		SqlSession session = fa.openSession(true);		
+		SqlSession session = fa.openSession(true);
 		// 执行sql，获取结果集
-		List<AdministratorBean> list = session.selectList("AdministratorMapper.administratorSelectAll");
+		List<AdministratorBean> list = session
+				.selectList("AdministratorMapper.administratorSelectAll");
 		// 关闭session
 		session.close();
 		return list;
@@ -85,8 +87,9 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 	@Override
 	public AdministratorBean findOneAdministrator(Integer id) {
 		SqlSession session = fa.openSession(true);
-		
-		AdministratorBean bean = session.selectOne("AdministratorMapper.findById",id);
+
+		AdministratorBean bean = session.selectOne(
+				"AdministratorMapper.findById", id);
 		session.close();
 		return bean;
 	}
@@ -94,12 +97,11 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 	@Override
 	public int addAdmin(AdministratorBean admin) {
 		SqlSession session = fa.openSession(true);
-		int re = session.insert("AdministratorMapper.addAdmin",admin);
+		int re = session.insert("AdministratorMapper.addAdmin", admin);
 		return re;
 	}
 
 	@Override
-
 	public int findIdByLid(int lid) {
 		SqlSession session = fa.openSession();
 		int id = session.selectOne("AdministratorMapper.findIdByLid", lid);
@@ -109,14 +111,15 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 
 	public int updateAdmintTel(AdministratorBean bean) {
 		SqlSession session = fa.openSession(true);
-		int re = session.update("AdministratorMapper.updateAdmintTel",bean);
+		int re = session.update("AdministratorMapper.updateAdmintTel", bean);
 		return re;
 	}
 
 	@Override
 	public AdministratorBean showAdministratorInfo(int uid) {
 		SqlSession session = fa.openSession(true);
-		AdministratorBean bean = session.selectOne("AdministratorMapper.findByLoginId",uid);
+		AdministratorBean bean = session.selectOne(
+				"AdministratorMapper.findByLoginId", uid);
 		return bean;
 	}
 }

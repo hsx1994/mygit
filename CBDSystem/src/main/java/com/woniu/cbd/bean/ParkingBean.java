@@ -117,7 +117,6 @@ public class  ParkingBean implements Serializable {
 	public void setApplyTime(Date applyTime) {
 		this.applyTime = applyTime;
 	}
-
 }
 	
 
