@@ -259,6 +259,7 @@ public class BargainController {
 		return map;
 		
 	}
+	
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

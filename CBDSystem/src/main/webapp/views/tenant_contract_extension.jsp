@@ -14,9 +14,9 @@
         body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
         #searchmain{ font-size:12px;}
         #search{ font-size:12px; background:#548fc9; margin:10px 10px 0 0; display:inline; width:100%; color:#FFF}
-        #search form span{height:40px; line-height:40px; padding:0 0px 0 10px; float:left;}
-        #search form input.text-word{height:24px; line-height:24px; width:180px; margin:8px 0 6px 0; padding:0 0px 0 10px; float:left; border:1px solid #FFF;}
-        #search form input.text-but{height:24px; line-height:24px; width:55px; background:url(../images/main/list_input.jpg) no-repeat left top; border:none; cursor:pointer; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; color:#666; float:left; margin:8px 0 0 6px; display:inline;}
+        #search span{height:40px; line-height:40px; padding:0 0px 0 10px; float:left;}
+        #search input.text-word{height:24px; line-height:24px; width:180px; margin:8px 0 6px 0; padding:0 0px 0 10px; float:left; border:1px solid #FFF;}
+        #search input.text-but{height:24px; line-height:24px; width:55px; background:url(../images/main/list_input.jpg) no-repeat left top; border:none; cursor:pointer; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; color:#666; float:left; margin:8px 0 0 6px; display:inline;}
         #search a.add{ background:url(../images/main/add.jpg) no-repeat 0px 6px; padding:0 10px 0 26px; height:40px; line-height:40px; font-size:14px; font-weight:bold; color:#FFF}
         #search a:hover.add{ text-decoration:underline; color:#d2e9ff;}
         #main-tab{ border:1px solid #eaeaea; background:#FFF; font-size:12px;}
@@ -48,7 +48,6 @@
     </tr>
     <tr>
         <td align="left" valign="top">
-            <form method="post" action="">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">原 合&nbsp;同&nbsp;编&nbsp;号：</td>
@@ -65,7 +64,8 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">企业用户名称：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <span style="font-size: 14px">${comBargain.company.comName }</span>
+                        <input type="text" name="" value="${comBargain.company.comName }" class="text-word">
+                            <span style="font-size: 14px"></span>
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
@@ -83,41 +83,41 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">联&nbsp; 系&nbsp; 电&nbsp; 话：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="${comBargain.tel}" class="text-word" id="company_name">
+                            <input type="text" name="" value="${comBargain.tel}" class="text-word" id="">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">合同生效日期：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word" id="company_address">
+                            <input type="text" name="" value="" class="text-word" id="">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">合同截至日期：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word" id="contact_name">
+                            <input type="text" name="" value="" class="text-word" id="">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">新合同复印件：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="file" name="" value="" class="text-word" id="contact_tel">
+                            <input type="file" name="" value="" class="text-word" id="">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">车&nbsp; 位&nbsp; 编&nbsp; 号：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="${carNum}" class="text-word" id="contact_mail">
+                            <input type="text" name="" value="${carNum}" class="text-word" id="">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">&nbsp;</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input name="" type="submit" value="提交" class="text-but">
+                            <input name="" type="button" value="提交" class="text-but">
                             <input name="" type="button" value="返回" class="text-but" onclick="javascript:history.go(-1);"></td>
                     </tr>
                 </table>
-            </form>
+           
         </td>
     </tr>
 </table>

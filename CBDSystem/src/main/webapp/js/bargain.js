@@ -130,7 +130,6 @@ function companyContractEextension(bid){
 		},
 		dataType:"html",
 		success:function(data){
-			alert(666);
 			$("#aaa").html(data);
 		}
 		
@@ -139,7 +138,7 @@ function companyContractEextension(bid){
 }
 
 //外部合约续约界面
-function showOutDetailsBargain(bid){
+function outContractExtension(bid){
 	$.ajax({
 		url:"/CBDSystem/outContractExtension.do",
 		type:"post",
@@ -149,14 +148,14 @@ function showOutDetailsBargain(bid){
 		dataType: "json",
 		success:function(data){
 			$("#oldNumber").html(data.bargin.number);
-			$("#company").html(data.bargin.company);
-			$("#address").html(data.bargin.address);
-			$("#contact").html(data.bargin.contact);
-			$("#tel").html(data.bargin.tel);
+			$("#company").val(data.bargin.company);
+			$("#address").val(data.bargin.address);
+			$("#contact").val(data.bargin.contact);
+			$("#tel").val(data.bargin.tel);
 			$("#startTime").html(data.bargin.startTime);
 			$("#endTime").html(data.bargin.endTime);
-			$("#carNum").html(data.carNum);
-			$("#image").attr("src",data.bargin.img);
+			$("#carNum").val(data.carNum);
+			
 		}
 	
 	});

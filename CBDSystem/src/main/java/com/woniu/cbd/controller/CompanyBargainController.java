@@ -222,7 +222,6 @@ public class CompanyBargainController {
 	 */
 	@RequestMapping("tenantContractEextension.do")
 	public ModelAndView tenantContractEextension(int id){
-		System.out.println(id);
 		ModelAndView mv = new ModelAndView();
 		CompanyBargainBean bean = service.showCompanyBargainDetails(id);
 		List<CompanyOrderBean>  list = bean.getComOrder();
