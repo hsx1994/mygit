@@ -121,4 +121,10 @@ public class OtherParkingServiceImpl implements IOtherParkingService {
 		return dao.findParkingNumberByAddress(address);
 	}
 
+	@Override
+	public List<OtherParkingBean> showCompanyAll() {
+		
+		return dao.findCompanyAll();
+	}
+
 }

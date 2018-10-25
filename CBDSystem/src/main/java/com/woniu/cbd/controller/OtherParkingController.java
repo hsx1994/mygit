@@ -67,7 +67,8 @@ public class OtherParkingController {
 
 		PageHelper.startPage(page, 10, true);
 		List<OtherParkingBean> parking = service.allOtherParkingSelect();
-		PageInfo<OtherParkingBean> pageInfo = new PageInfo<OtherParkingBean>(parking);
+		PageInfo<OtherParkingBean> pageInfo = new PageInfo<OtherParkingBean>(
+				parking);
 
 		mav.addObject("pageinfo", pageInfo);
 		mav.addObject("list", parking);
@@ -76,9 +77,37 @@ public class OtherParkingController {
 		return mav;
 	}
 
+	// 企业 前台 查看自己的所有车位
+	@RequestMapping("showCompanyAll.do")
+	public ModelAndView showComPanyAll( Integer page) {
+		ModelAndView mav = new ModelAndView();
+
+		PageHelper.startPage(page, 8, true);
+		List<OtherParkingBean> parking = service.showCompanyAll();
+		
+		PageInfo<OtherParkingBean> pageInfo = new PageInfo<OtherParkingBean>(parking);
+		mav.addObject("paging", pageInfo);
+		mav.addObject("all", parking);
+		mav.setViewName("jsp/ConpanyShowParking.jsp");
+
+		return mav;
+	}
+
+	// 企业查看自己的单个车位
+		@RequestMapping("showCompanyParkingById.do")
+		public ModelAndView showCompanyParkingById(Integer id) {
+			
+			ModelAndView mav = new ModelAndView();
+			OtherParkingBean bean = service.showCompanyParkingById(id);
+//			mav.addObject("companyPark", bean);
+			mav.addObject("one", bean);
+			mav.setViewName("jsp/ DetailsConpanyParking.jsp");
+			return mav;
+		}
+	
 	// 企业查看自己的所有车位
 	@RequestMapping("showCompanyParkingAll.do")
-	public ModelAndView showComPanyParkingAll(Integer id, Integer page) {
+	public ModelAndView showComPanyParkingAll( Integer id, Integer page) {
 		ModelAndView mav = new ModelAndView();
 PageHelper.startPage(page, 5, true);
 		List<CompanyBargainBean> parking = service.showCompanyParkingAll(id);
@@ -102,16 +131,8 @@ PageHelper.startPage(page, 5, true);
 		return mav;
 	}
 
-	// 企业查看自己的单个车位
-	@RequestMapping("showCompanyParkingById.do")
-	public ModelAndView showCompanyParkingById(Integer id) {
-		ModelAndView mav = new ModelAndView();
-		OtherParkingBean bean = service.showCompanyParkingById(id);
-		mav.addObject("companyPark", bean);
-		mav.setViewName("");
-		return mav;
-	}
 	
+
 	// 车位区域信息
 	@RequestMapping("/showAddress.do")
 	public @ResponseBody List<String> showParkingAddress() {
@@ -121,6 +142,7 @@ PageHelper.startPage(page, 5, true);
 
 	/**
 	 * 查找某区域车位的所有编号
+	 * 
 	 * @return
 	 */
 	@RequestMapping("/showParkingNumber.do")
@@ -133,9 +155,10 @@ PageHelper.startPage(page, 5, true);
 	public void initBinder(WebDataBinder binder) {
 
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		format.setLenient(false);  //是否需要严格转化
-		
-		//使用springmvc封装好的类进行格式转换
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
+		format.setLenient(false); // 是否需要严格转化
+
+		// 使用springmvc封装好的类进行格式转换
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(format,
+				true));
 	}
 }

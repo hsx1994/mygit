@@ -110,6 +110,7 @@ public class LoginController {
 
 			if (role.equals("抢租客")) {
 				return "redirect:/index.jsp";
+
 			} else if (role.equals("企业用户")) {
 				return "redirect:/jsp/ConpanyShowParking.jsp";
 			} else if (role.equals("包租婆")) {
@@ -142,7 +143,7 @@ public class LoginController {
 		session.removeAttribute("id");
 		session.removeAttribute("user");
 		session.removeAttribute("errorMsg");
-		return "redirect:" + path;
+		return  path;
 	}
 
 	@ResponseBody

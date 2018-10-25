@@ -14,9 +14,8 @@
 <script type="text/javascript" src="/CBDSystem/js/js.js"></script>
 <script language="javascript" type="text/javascript"
 	src="/CBDSystem/js/dateutil/WdatePicker.js"></script>
-
 </head>
-<body onload="upCurrentPage(1)">
+<body onload="upConpany(1)">
 	<input type="hidden" value="${sessionScope.login.role }" id="role">
 	<!-- <body > -->
 	<div class="hrader" id="header">
@@ -25,7 +24,7 @@
 				<c:when test="${sessionScope.login.name != null}">
 					<span>欢迎您:&nbsp;&nbsp;</span>
 					<span>${sessionScope.login.name}</span>
-					<span><a onclick="logOut()">注销</a></span>
+					<span><a onclick="exidLogout()">注销</a></span>
 				</c:when>
 				<c:otherwise>
 					<a href="/CBDSystem/jsp/login.jsp" style="color:#C94E13;">登录</a> <a href="/CBDSystem/jsp/regist.jsp">注册</a>
@@ -37,7 +36,30 @@
 			</ul>			
 		</div>
 	</div>
-
+	
+<!-- 注销 -->
+<script>
+        		function exidLogout(){
+        			$.ajax({
+        				url:"/CBDSystem/logoutExitAdmin.do",
+        				type:"post",
+        				data:{
+        				
+        				},
+        			dataType:"json",
+        			success:function(data){
+        				alert(data);
+        				window.parent.location.href="/CBDSystem/jsp/login.jsp"
+        			}
+        			
+        			
+        			})
+        		
+        		}
+        	
+        	
+        	</script>
+        	
 	<div class="mid">
 		<h1 class="logo" style="text-align:left;">
 			<a href="index.html"><img
@@ -52,7 +74,8 @@
 	</div>
 	<div class="navBox navBg2">
 		<ul class="nav">
-			<li><a href="/CBDSystem/index.jsp">首页</a></li>
+			<li><a href="/CBDSystem/jsp/ShowParkingSpace.jsp">首页</a></li>
+
 			<div class="clears"></div>
 		</ul>
 		<!--nav/-->
@@ -133,7 +156,7 @@
 						<div class="phonePars">地址：${parking.address}</div>
 						<div class="jiaru-shoucang">
 							<span class="jiaruCar">收藏车位</span> <span class="shoucangCar"><a
-								href="/CBDSystem/showOne.do?id=${parking.id}">查看详情</a></span>
+								href="/CBDSystem/showCompanyParkingById.do?id=${parking.id}">查看详情</a></span>
 							<div class="clears"></div>
 						</div>
 						<!--jiaru-shoucang/-->
@@ -160,7 +183,7 @@
 						
 					</script>
 					<c:if test="${paging.hasNextPage}">
-						<a id="next" onclick="">下一页</a>
+						<a id="next" onclick="upConpany(${paging.nextPage})">下一页</a>
 					</c:if>
 				</div>
 
@@ -169,11 +192,11 @@
 				</div>
 				<div class="content-bottom-paging">
 					<c:if test="${paging.hasPreviousPage}">
-						<a id="pre" href="#" onclick="">上一页</a>
+						<a id="pre" href="#" onclick="upConpany(${paging.prePage})">上一页</a>
 					</c:if>
 				</div>
 				<div class="content-bottom-paging">
-					<a id="first" href="#" onclick="">首页</a>
+					<a id="first" href="#" onclick="upConpany(1)">首页</a>
 				</div>
 			</div>
 
@@ -240,9 +263,10 @@
 			<!--footBox/-->
 
 			<!--footer/-->
+
 			<!-- 引入外部js文件 -->
-			<script type="text/javascript" src="/CBDSystem/js/ShowParkingSpace.js"></script>
-			<script type="text/javascript" src="/CBDSystem/js/logOut.js"></script>
+			<script type="text/javascript"
+				src="/CBDSystem/js/ShowParkingSpace.js"></script>
 </body>
 	</html>
 </div>

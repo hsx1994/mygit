@@ -1,7 +1,9 @@
 package com.woniu.cbd.dao.impl;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -46,22 +48,28 @@ public class ParkingDaoImpl implements IParkingDao {
 	}
 
 	// 抢租客根据上架时间查询
-	@Override
-	public List<ParkingBean> selectParking(Date date) {
-		SqlSession session = fa.openSession(true);
-		List<ParkingBean> bean = session.selectList("parkingMapper.showdate", date);
-		session.close();
-		return bean;
-	}
+			@Override
+			public List<ParkingBean> selectParking(String startTime,String endTime) {
+				SqlSession session = fa.openSession(true);
+				Map<String, String> map = new HashMap<String, String>();
+				map.put("startTime", startTime);
+				map.put("endTime", endTime);
+				List<ParkingBean> bean = session.selectList("parkingMapper.showdate", map);
+				session.close();
+				return bean;
+			}
 
-	// 抢租客根据价格查询
-	@Override
-	public List<ParkingBean> selectParking(int price) {
-		SqlSession session = fa.openSession(true);
-		List<ParkingBean> bean = session.selectList("parkingMapper.showprice", price);
-		session.close();
-		return bean;
-	}
+			// 抢租客根据价格查询
+			@Override
+			public List<ParkingBean> selectParking(int price1 ,int price2) {
+				Map<String, Integer> map = new HashMap<String, Integer>();
+				map.put("price1", price1);
+				map.put("price2", price2);
+				SqlSession session = fa.openSession(true);
+				List<ParkingBean> bean = session.selectList("parkingMapper.showprice", map);
+				session.close();
+				return bean;
+			}
 
 	// 抢租客查询指定车位的信息
 	@Override

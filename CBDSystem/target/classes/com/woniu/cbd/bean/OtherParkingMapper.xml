@@ -72,11 +72,25 @@
 		select * from  t_company_bargain where ot_id=#{id} and
 		ot_delete=0
 	</select>
+
 	
 	<!--通过车位id查询第三方车位信息  -->
 	<select id="findParkingById" parameterType="int" resultMap="map">
 	    select * from t_other_parking where ot_id=#{id} and ot_delete=0
 	</select>
+	
+	
+	
+	<!-- 查询企业所有车位（otherparking中的所有车位信息） -->
+	<select id="findCompanyAll"  resultMap="map">
+	    select * from t_other_parking where  ot_delete=0
+	</select>
+	<!-- <resultMap type="AdministratorBean" id="map1">
+		<id property="id" column="a_id"></id>
+		<result property="jobNumber" column="a_job_number" />
+		<result property="realName" column="a_name" />
+		<result property="tel" column="a_tel" />
+	</resultMap> -->
 	
 	<!-- 通过车位编号查询第三方车位信息 -->
 	<select id="findByParkingNumber" parameterType="java.util.List" resultMap="map">

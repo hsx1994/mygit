@@ -17,13 +17,13 @@ public interface IParkingService {
 	public List<ParkingBean> showAll();
 
 	// 用于抢租客通过时间查询自己需要的车位信息
-	public List<ParkingBean> selectParking(Date date);
+	public List<ParkingBean> selectParking(String startTime, String endTime);
 
 	// 用于抢租客通过车位号模糊查询自己需要的车位信息
 	public List<ParkingBean> selectParkingByNum(String num);
 
 	// 用于抢租客通过价格查询自己需要的车位信息
-	public List<ParkingBean> selectParking(int price);
+	public List<ParkingBean> selectParking(int price1,int price2);
 
 	// 用于抢租客查看指定的车位信息
 	public ParkingBean selectParkingOne(int id);

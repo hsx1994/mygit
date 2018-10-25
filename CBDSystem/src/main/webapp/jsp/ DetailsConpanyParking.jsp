@@ -13,7 +13,7 @@
 <link type="text/css" href="/CBDSystem/css/css1.css" rel="stylesheet" />
 <script type="text/javascript" src="/CBDSystem/js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="/CBDSystem/js/js.js"></script>
-<script type="text/javascript" src="/CBDSystem/js/logOut.js"></script>
+
 <!-- 引入时间插件My97DatePicke中的WdatePicker.js文件 -->
 <script language="javascript" type="text/javascript"
 	src="/CBDSystem/js/dateutil/WdatePicker.js"></script>
@@ -28,7 +28,7 @@
 				<c:when test="${sessionScope.login.name != null}">
 					<span>欢迎您:&nbsp;&nbsp;</span>
 					<span>${sessionScope.login.name}</span>
-					<span><a onclick="exidLogout()">注销</a></span>
+					<span><a href="/CBDSystem/logoutExit.do">注销</a></span>
 				</c:when>
 				<c:otherwise>
 					<a href="/CBDSystem/jsp/login.jsp" style="color:#C94E13;">登录</a> <a href="/CBDSystem/jsp/regist.jsp">注册</a>
@@ -38,29 +38,8 @@
 				<li class="shoucangjia"><a onclick="turn()">个人中心</a></li>
 				<div class="clears"></div>
 			</ul>			
+		</div>
 	</div>
-	<!-- 注销 -->
-<script>
-        		function exidLogout(){
-        			$.ajax({
-        				url:"/CBDSystem/logoutExitAdmin.do",
-        				type:"post",
-        				data:{
-        				
-        				},
-        			dataType:"json",
-        			success:function(data){
-        				alert(data);
-        				window.parent.location.href="/CBDSystem/jsp/login.jsp"
-        			}
-        			
-        			
-        			})
-        		
-        		}
-        	
-        	
-        	</script>
 	<!--hrader/-->
 	<div class="mid">
 		 <h1 class="logo" style="text-align:left;">
@@ -166,7 +145,7 @@
 									<!-- <input class="time2-button" type="submit"/> -->
 								</div>
 
-								<a href="javascript:order()">预约车位</a>
+							<!-- 	<a href="javascript:order()">预约车位</a> -->
 								 <a class="sellmai" onclick="pay()">立即下单</a>
 							</form>
 						</div>
@@ -181,7 +160,7 @@
 
 			<!--*****************************页码部分***********************************************  -->
 			
-			<div style="font-size:18px">
+			<%-- <div style="font-size:18px">
 				<h2>该车位历史订单:</h2><br />
 		<table style="width: 100%; text-align: center;">
 			<thead>
@@ -205,9 +184,9 @@
 		</table>
 	</div>
 		</div>
-
+--%>
 	
-	</div>
+	</div> 
 	<!--  ************************底部导航栏  *********************************************************************************-->
 	<div class="footBox">
 		<div class="footers">

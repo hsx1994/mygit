@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -95,7 +96,7 @@ public class ParkingController {
 		ModelAndView mav = new ModelAndView();
 		ParkingBean bean = park.selectParkingOne(id);
 		mav.addObject("one", bean);
-		mav.setViewName("063/ DetailsLandladyParking.jsp");
+		mav.setViewName("/jsp/DetailsParkingSpace.jsp");
 
 		return mav;
 
@@ -131,44 +132,77 @@ public class ParkingController {
 	}
 
 	// 抢租客车位号模糊查询上架车位
-	@RequestMapping("findByNum.do")
-	public ModelAndView selectParkingByNum(String num, Integer page) {
 
-		ModelAndView mav = new ModelAndView();
-		List<ParkingBean> bean = park.selectParkingByNum(num);
-		if (bean != null) {
-			mav.addObject("num", bean);
-			mav.setViewName("");
-		} else {
-			mav.addObject("空");
-			mav.setViewName("");
+		@RequestMapping("findByNum.do")
+		public ModelAndView selectParkingByNum(String num, Integer page) {
+			PageHelper.startPage(page, 8, true);
+			ModelAndView mav = new ModelAndView();
+			List<ParkingBean> bean = park.selectParkingByNum(num);
+			PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
+
+			if (bean != null) {
+				mav.addObject("paging", pageInfo);
+				mav.addObject("all", bean);
+				mav.setViewName("/numparking.jsp");
+			} else {
+				mav.addObject("空");
+				mav.setViewName("/jsp/numparking.jsp");
+			}
+			return mav;
+
 		}
-		return mav;
 
-	}
+		// 抢租客根据价格查询上架车位
+		@RequestMapping("/findByPrice.do")
+		public ModelAndView selectParking(HttpSession session, Integer price1,
+				Integer price2, Integer page) {
+			/**
+			 * 第一次搜索是会填价格，并将其存入session，在分页功能时直接从session中获取第一次输入的价格
+			 */
+			if (price1 != null || price2 != null) {
+				session.setAttribute("price1", price1);
+				session.setAttribute("price2", price2);
+			}
 
-	// 抢租客根据价格查询上架车位
-	@RequestMapping("findByPrice.do")
-	public ModelAndView selectParking(Integer price, Integer page) {
+			Integer relprice1 = (Integer) session.getAttribute("price1");
+			Integer relprice2 = (Integer) session.getAttribute("price2");
 
-		ModelAndView mav = new ModelAndView();
+			ModelAndView mav = new ModelAndView();
+			PageHelper.startPage(page, 8, true);
+			List<ParkingBean> bean = park.selectParking(relprice1, relprice2);
 
-		PageHelper.startPage(page, 8, true);
-		List<ParkingBean> bean = park.selectParking(price);
+			PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
 
-		PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
+			if (bean.size() > 0) {
 
-		if (bean != null) {
-
-			mav.addObject("price", pageInfo);
-			mav.addObject("list", bean);
-		} else {
-			mav.addObject("空");
+				mav.addObject("paging", pageInfo);
+				mav.addObject("all", bean);
+				mav.setViewName("/index.jsp");
+			} else {		
+				mav.setViewName("/jsp/404.jsp");
+			}
+			return mav;
+			
 		}
-		mav.setViewName("");
-		return mav;
+	
+	// 抢租客根据时间查询车位信息
+		@RequestMapping("/findByTime.do")
+		public ModelAndView selectParkingByTime(String startTime, String endTime,
+				Integer page) {
+			ModelAndView mav = new ModelAndView();
+			PageHelper.startPage(page, 8, true);
+			List<ParkingBean> bean = park.selectParking(startTime, endTime);
 
-	}
+			PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
+			if (bean.size() != 0) {
+				mav.addObject("paging", pageInfo);
+				mav.addObject("all", bean);
+			} else {
+				mav.addObject("空");
+			}
+			mav.setViewName("/jsp/timeparking.jsp");
+			return mav;
+		}
 
 	// 包租婆查看自己的车位信息
 	@RequestMapping("/showme.do")

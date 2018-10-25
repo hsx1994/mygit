@@ -62,4 +62,10 @@ public interface IOtherParkingService {
 	 * @return
 	 */
 	public List<String> findParkingNumberByAddress(String address);
+	
+	/**
+	 * 前台查看企业所有车位
+	 * @return
+	 */
+	public List<OtherParkingBean> showCompanyAll();
 }
