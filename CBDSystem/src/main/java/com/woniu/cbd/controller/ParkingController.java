@@ -1,14 +1,9 @@
 package com.woniu.cbd.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
-
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +12,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,6 +22,7 @@ import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.ParkingBean;
 import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.service.IParkingService;
+import com.woniu.cbd.util.FileUpUtil;
 
 @Controller
 public class ParkingController {
@@ -34,50 +31,37 @@ public class ParkingController {
 
 	// 包租婆添加车位信息
 	@RequestMapping("/application.do")
-	public String applicationParking(MultipartFile imgFile, ParkingBean bean, MultipartFile ImgFile,
+	public String applicationParking(
+			@RequestParam(value="imgFile", required=true)MultipartFile[] imgFile, ParkingBean bean, 
+			@RequestParam(value="ImgFile", required=true)MultipartFile[] ImgFile,
 			HttpServletRequest req) {
-
+		if(bean.getAddress() == null || bean.getCertificate() == null){
+			return "输入不能为空";
+		}
+		if(imgFile == null || ImgFile == null || bean.getAddress().trim().length() < 1 ||
+				bean.getCertificate().trim().length() < 1 || bean.getEndTime() == null ||
+				bean.getStartTime() == null){
+			return "输入不能为空";
+		}
+		int row = bean.getStartTime().compareTo(bean.getEndTime());
+		if(row >= 0){
+			return "开始时间不能在结束时间之后";
+		}
+		if(bean.getPrice() == 0){
+			return "价格不能为空且不能为0";
+		}
 		// 获取上传文件的文件名
-		String img = UUID.randomUUID() + "_" + imgFile.getOriginalFilename();
-		String certImg = UUID.randomUUID() + "_"
-				+ ImgFile.getOriginalFilename();
+	
 		// 将文件名放入对象中
-		bean.setImg(img);
-		bean.setCertImg(certImg);
+		bean.setImg(FileUpUtil.fileUpUtil(imgFile, req, "/images/parking").get(0));
+		bean.setCertImg(FileUpUtil.fileUpUtil(ImgFile, req, "/images/parking").get(0));
 
 		// session中取得当前包租婆的id给parking实体类
 		int uid=(int) req.getSession().getAttribute("id");
 		UserBean user = new UserBean();
 		user.setId(uid);
 		bean.setUser(user);
-		ServletContext context = req.getServletContext();
-		ServletContext text = req.getServletContext();
-		// 车位图片路径
-		String path = context.getRealPath("/img");
-		// 产权证图片路径
-		String sum = text.getRealPath("/certImg");
 
-		File g = new File(sum);
-		File f = new File(path);
-		if (!f.exists() && !g.exists())
-			f.mkdirs();
-		g.mkdirs();
-		// 创建服务器路径下的文件用uuid命名
-		File file = new File(path, UUID.randomUUID() + "_"
-				+ imgFile.getOriginalFilename());
-		// 创建服务器路径下的文件用uuid命名
-		File file1 = new File(sum, UUID.randomUUID() + "_"
-				+ ImgFile.getOriginalFilename());
-		try {
-			// 将文件保存到服务器img文件夹
-			imgFile.transferTo(file);
-			// 将文件保存到服务器certImg文件夹
-			ImgFile.transferTo(file1);
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
 		List<ParkingBean> parking = new ArrayList<ParkingBean>();
 		parking.add(bean);
@@ -145,8 +129,8 @@ public class ParkingController {
 				mav.addObject("all", bean);
 				mav.setViewName("/numparking.jsp");
 			} else {
-				mav.addObject("空");
-				mav.setViewName("/jsp/numparking.jsp");
+				mav.addObject("notFound","抱歉，未找到合适的车位");
+				mav.setViewName("/index.jsp");
 			}
 			return mav;
 
@@ -170,17 +154,15 @@ public class ParkingController {
 			ModelAndView mav = new ModelAndView();
 			PageHelper.startPage(page, 8, true);
 			List<ParkingBean> bean = park.selectParking(relprice1, relprice2);
-
 			PageInfo<ParkingBean> pageInfo = new PageInfo<ParkingBean>(bean);
 
 			if (bean.size() > 0) {
-
 				mav.addObject("paging", pageInfo);
 				mav.addObject("all", bean);
-				mav.setViewName("/index.jsp");
 			} else {		
-				mav.setViewName("/jsp/404.jsp");
+				mav.addObject("notFound","抱歉，未找到合适的车位");
 			}
+			mav.setViewName("/index.jsp");
 			return mav;
 			
 		}
@@ -190,6 +172,14 @@ public class ParkingController {
 		public ModelAndView selectParkingByTime(String startTime, String endTime,
 				Integer page) {
 			ModelAndView mav = new ModelAndView();
+			//判断两个时间的先后
+			int row = startTime.compareTo(endTime);
+			if(row >= 0){
+				mav.addObject("err","开始时间不能在结束时间之后");
+				mav.setViewName("/index.jsp");
+				return mav;
+			}
+			
 			PageHelper.startPage(page, 8, true);
 			List<ParkingBean> bean = park.selectParking(startTime, endTime);
 
@@ -197,10 +187,11 @@ public class ParkingController {
 			if (bean.size() != 0) {
 				mav.addObject("paging", pageInfo);
 				mav.addObject("all", bean);
+				mav.setViewName("/jsp/timeparking.jsp");
 			} else {
-				mav.addObject("空");
+				mav.addObject("notFound","抱歉，未找到合适的车位");
+				mav.setViewName("/index.jsp");
 			}
-			mav.setViewName("/jsp/timeparking.jsp");
 			return mav;
 		}
 

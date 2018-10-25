@@ -80,14 +80,24 @@ public class OrderController {
 	}
 	
 	@RequestMapping("/pay.do")
-	public @ResponseBody int pay(HttpServletRequest req,OrderBean bean){
+	public @ResponseBody String pay(HttpServletRequest req,OrderBean bean){
+		
+		if(bean.getStartTime() == null ||bean.getEndTime() == null ){
+			return "时间不能为空";
+		}
+		int row = bean.getStartTime().compareTo(bean.getEndTime());
+		if(row >= 0){
+			return "开始时间不能在结束时间之后";
+		}
 		int id = (int) req.getSession().getAttribute("id");
 		UserBean user = new UserBean();
 		user.setId(id);
 		bean.setUser(user);
-		order.privateOrder(bean);
-		int oid = bean.getId();
-		return oid;
+		String re = order.privateOrder(bean);
+		if(re.equals("订单插入成功")){
+			re = bean.getId() + "";
+		}
+		return re;
 	}
 	// 包租婆查看自己的被租赁记录
 		@RequestMapping("/selectOrder.do")

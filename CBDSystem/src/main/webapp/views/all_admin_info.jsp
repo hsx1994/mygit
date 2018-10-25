@@ -62,7 +62,11 @@
 				<tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.jobNumber }</td>
                     <td align="center" valign="middle" class="borderright borderbottom">${obj.realName }</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">${obj.limit }</td>
+                    
+                    <td align="center" valign="middle" class="borderright borderbottom">
+                    <c:forEach items="${obj.limit}" var="li">
+                    	${li.name }, 
+                    </c:forEach></td>
                     <td align="center" valign="middle" class="borderbottom">
                     	<a href="/CBDSystem/views/update_admin.jsp?id=${obj.id }" target="mainFrame" onFocus="this.blur()" class="add">修改</a>
                         <span class="gray">&nbsp;|&nbsp;</span><a href="#" onclick="deleteAdmin(${obj.id })" target="mainFrame" onFocus="this.blur()" class="add">删除</a>

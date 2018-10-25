@@ -61,10 +61,10 @@ function turn() {
 		window.location.href = "/CBDSystem/jsp/login.jsp";
 		break;
 	case "抢租客":
-		window.location.href = "/CBDSystem/jsp/one.jsp";
+		window.location.href = "/CBDSystem/jsp/two.jsp";
 		break;
 	case "包租婆":
-		window.location.href = "/CBDSystem/jsp/tow.jsp";
+		window.location.href = "/CBDSystem/jsp/one.jsp";
 		break;
 	case "企业用户":
 		window.location.href = "/CBDSystem/jsp/three.jsp";
@@ -86,7 +86,6 @@ function upTime(page) {
 		},
 		dataType : "html",
 		success : function(data) {
-
 			$("#show").html(data);
 		}
 

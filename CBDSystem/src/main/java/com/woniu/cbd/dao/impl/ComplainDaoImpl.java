@@ -29,7 +29,7 @@ public class ComplainDaoImpl implements IComplainDao {
 	@Override
 	public List<ComplainBean> findAllComplain() {
 		
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		List<ComplainBean> list = session.selectList("com.woniu.cbd.dao.IComplainDao.findAllComplain");
 		
 		session.close();
@@ -39,7 +39,7 @@ public class ComplainDaoImpl implements IComplainDao {
 	@Override
 	public List<ComplainBean> findComplainByPage(int page) {
 		
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		IComplainDao dao = session.getMapper(IComplainDao.class);
 		List<ComplainBean> list = dao.findComplainByPage(page);
 		
@@ -50,7 +50,7 @@ public class ComplainDaoImpl implements IComplainDao {
 
 	@Override
 	public ComplainBean findComplainById(int id) {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		IComplainDao dao = session.getMapper(IComplainDao.class);
 		ComplainBean bean = dao.findComplainById(id);
 		
@@ -61,12 +61,20 @@ public class ComplainDaoImpl implements IComplainDao {
 	// 抢租客添加投诉信息
 	@Override
 	public int addComplaint(ComplainBean bean) {
-		// TODO Auto-generated method stub
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		int num = session.insert("com.woniu.cbd.dao.IComplainDao.addcomplaint", bean);
 
 		session.close();
 		return num;
+	}
+
+	@Override
+	public ComplainBean findById(Integer id) {
+		SqlSession session = fa.openSession(true);
+		ComplainBean bean = session.selectOne("com.woniu.cbd.dao.IComplainDao.findById",id);
+		
+		session.close();
+		return bean;
 	}
 
 }

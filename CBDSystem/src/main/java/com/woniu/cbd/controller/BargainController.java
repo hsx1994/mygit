@@ -44,6 +44,17 @@ public class BargainController {
 			@RequestParam(value="parkingImg", required=true) MultipartFile[] parkingImg,
 			@RequestParam(value="barginCopy", required=true) MultipartFile[] barginCopy) {
 		String result = "添加失败";
+		
+		if(parkingAddress == null || parkingNumber == null || startNumber == null ||
+				endNumber == null || parkingImg == null || price == null || barginCopy == null
+		   ){
+			return "输入不能为空";
+		}
+		if(parkingAddress.length < 1 || parkingNumber.length <1 || startNumber.trim().length() < 1 ||
+				endNumber.trim().length() < 1 || parkingImg.length < 1|| price.length< 1 || barginCopy.length < 1
+		   ){
+			return "输入不能为空字符";
+		}
 		bean.setImg(FileUpUtil.fileUpUtil(barginCopy, request, "/images/bargain").get(0));
 		boolean re = service.bargainAdd(bean);
 		if (re) {

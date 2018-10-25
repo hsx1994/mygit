@@ -22,7 +22,7 @@ public class OrderBean implements Serializable {
 	private ParkingBean parking;
 	// 订单对应的投诉集合
 	private List<ComplainBean> complain;
-	// 个人用户信息
+	// 订单个人用户信息
 	private UserBean user;
 	// 个人用户租赁状态(0:未付款,1:已付款，在租,2:已取消)
 	private int state;

@@ -27,20 +27,23 @@
 		<!-- Shiro的核心安全接口,这个属性是必须的 -->
 		<property name="securityManager" ref="securityManager" />
 		<!-- 权限认证失败，则跳转到指定页面 -->
-		<property name="unauthorizedUrl" value="/system/nopermission.jsp" />
+		<property name="unauthorizedUrl" value="/403.jsp" />
 		<!-- 自定义Filter,用于登录验证成功后跳转到相应的页面 -->
 		<property name="filters">
 			<map>
-				<entry key="authc" value-ref="myFormAuthenticationFilter"></entry>
+				<entry key="authc">
+					<bean class="com.woniu.cbd.filter.MyFormAuthenticationFilter" />
+				</entry>
+				<entry key="roles">
+					<bean class="com.woniu.cbd.filter.MyRolesAuthorizationFilter" />
+				</entry>
 			</map>
 		</property>
 
 		<!-- Shiro连接约束配置,即过滤链的定义 -->
 		<property name="filterChainDefinitions">
-			<value>	
-				<!-- 默认访问官网页面，待改showall.do?page=1 -->
-				/success.jsp =anon
-				/picturecode =anon		
+			<value>
+				/picturecode =anon
 				/index*=anon
 				/alipay/**=anon
 				/bootstrap/**=anon
@@ -50,18 +53,12 @@
 				/js/**=anon
 				/jsp/login.jsp=anon
 				/jsp/regist.jsp=anon
-				/views/login.jsp=anon				
-				/jsp/**=authc
-				/views/** = authc
-				<!-- /logout=/logout -->				
+				/views/login.jsp=anon
+				/jsp/**=authc,roles["包租婆,抢租客,企业用户"]
+				/views/**=authc,roles["管理员,超级管理员"]
 			</value>
 		</property>
 	</bean>
-
-	<!-- 自定义表单认证过滤器 -->
-	<bean id="myFormAuthenticationFilter" class="com.woniu.cbd.filter.MyFormAuthenticationFilter"></bean>
-
-
 	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
 

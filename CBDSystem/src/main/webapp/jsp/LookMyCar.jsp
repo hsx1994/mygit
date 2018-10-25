@@ -39,18 +39,9 @@
 	<!--hrader/-->
 	<div class="mid">
 		<h1 class="logo" style="text-align:left;">
-			<a href="index.html"><img src="../images/logo.png" width="304"
+			<a><img src="../images/logo.png" width="304"
 				height="74" /></a>
 		</h1>
-		<form action="#" method="get" class="subBox">
-			<div class="subBox2">
-				<input type="text" class="subText" /> <input type="image"
-					src="../images/sub.jpg" width="95" height="32" class="subImg" />
-				<div class="hotci"></div>
-				<!--hotci/-->
-			</div>
-			<!--subBox2/-->
-		</form>
 	</div>
 	<!--mid-->
 	<div class="navBox navBg3">
@@ -65,7 +56,7 @@
 			<h2 class="headImg">
 				<img src="../images/vipImg.jpg" width="183" height="169" />
 			</h2>
-			<h3 class="vipName">用户</h3>
+			<h3 class="vipName">包租婆</h3>
 			<dl class="vipNav">
 				<dt class="vip_1 vipCur">账户中心</dt>
 				<dd>
@@ -85,6 +76,9 @@
 					<a href="RentUser.jsp">修改个人信息</a>
 				</dd>
 				<dd>
+					<a href="updatepasswd1.jsp">修改密码</a>
+				</dd>
+				<dd>
 					<a href="LookOrder.jsp">查看租赁记录</a>
 				</dd>
 			</dl>
@@ -99,10 +93,10 @@
 						<tr>
 							<th width="100"><span>*</span>车位地址</th>
 							<th width="200"><span>*</span>单价(元/小时)</th>
-							<th width="150"><span>*</span>开始时间</th>
-							<th width="150"><span>*</span>结束时间</th>
+							<th width="200"><span>*</span>开始时间</th>
+							<th width="200"><span>*</span>结束时间</th>
 							<th width="100"><span>*</span>车位号</th>
-							<th width="400"><span>*</span>状态(0:待审,1:审核通过,2：审核未通过)</th>
+							<th width="200"><span>*</span>状态</th>
 						</tr>
 					</thead>
 					<c:forEach items="${all}" var="obj">
@@ -112,7 +106,11 @@
 							<td><fmt:formatDate value="${obj.startTime}" pattern="yyyy-MM-dd"/><br/></td>
 							<td><fmt:formatDate value="${obj.endTime}" pattern="yyyy-MM-dd"/><br /></td>
 							<td>${obj.parkingNum}<br /></td>
-							<td>${obj.state}</td>
+							<td>
+								<c:if test="${obj.state==0}">待审核</c:if>
+								<c:if test="${obj.state==1}">审核通过</c:if>
+								<c:if test="${obj.state==2}">审核未通过</c:if>
+							</td>
 						</tr>
 					</c:forEach>
 					<tr>
@@ -133,7 +131,7 @@
 					        </c:if>
 					    </td>
 					    <td width="10">
-					        <a href="#" onclick="showAll(${pageing.lastPage})">尾页</a>
+					        <a href="#" onclick="showAll(${paging.lastPage})">尾页</a>
 				      	</td>
 				    </tr>
 				</table>
@@ -145,7 +143,7 @@
 	<div class="footBox">
 		<div class="footers">
 			<div class="footersLeft">
-				<a href="index.html"><img src="../images/ftlogo.jpg" width="240"
+				<a><img src="../images/ftlogo.jpg" width="240"
 					height="64" /></a>
 				<h3 class="ftphone">400 000 0000</h3>
 				<div class="ftKe">

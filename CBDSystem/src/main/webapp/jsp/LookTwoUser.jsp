@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  </div><!--hrader/-->
  <div class="mid">
   <h1 class="logo" style="text-align:left;">
-  <a href="index.html"><img src="../images/logo.png" width="304" height="74" /></a>
+  <a><img src="../images/logo.png" width="304" height="74" /></a>
   </h1>
   <form action="#" method="get" class="subBox">
    <div class="subBox2">
@@ -57,13 +57,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      <dd ><a href="two.jsp">个人信息</a></dd>
     <dt class="vip_2">个人中心</dt>
      <dd><a href="changeUserInfo.jsp">修改个人信息</a></dd>
-     <dd class="ddCur"><a href="LookTwoUser.jsp">查看已完成订单</a></dd>
+     <dd><a href="updatepasswd2.jsp">修改密码</a></dd>
+     <dd><a href="LookTwoUser.jsp">查看已完成订单</a></dd>
      <dd><a href="LookTwoCar.jsp">查看未完成订单</a></dd>
      <dd><a href="vipXiaofei.html"></a></dd>
     <dt class="vip_3"></dt>
-     <dd><a href="vipQuxiao.html"></a></dd>
+     <dd><a></a></dd>
      
-     <dd><a href="vipTousu.html"></a></dd>
+     <dd><a></a></dd>
    </dl><!--vipNav/-->
   </div><!--vipLeft/-->
   <div class="vipRight">
@@ -118,7 +119,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  <div class="footBox">
   <div class="footers">
    <div class="footersLeft">
-    <a href="index.html"><img src="../images/ftlogo.jpg" width="240" height="64" /></a>
+    <a><img src="../images/ftlogo.jpg" width="240" height="64" /></a>
     <h3 class="ftphone">400 000 0000 </h3>
     <div class="ftKe">
      客服 7x24小时(全年无休)<br />
@@ -176,7 +177,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <a href="#">版权声明</a>
   <a href="#">网站地图</a>
   <br />
-  <span>&copy; 2014 Unqezi 使用前必读 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></span>
+  <span>&copy; 2014 Unqezi 使用前必读 更多模板：<a target="_blank">源码之家</a></span>
  </div><!--footer/-->
  <input type="hidden" value="${sessionScope.id }" id="uid" />
   <script>

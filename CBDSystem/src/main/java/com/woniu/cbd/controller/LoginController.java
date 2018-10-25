@@ -55,6 +55,11 @@ public class LoginController {
 			subject.login(token);
 			session.setAttribute("loginPath", path);
 			LoginBean lo = (LoginBean) session.getAttribute("login");
+			if(session.getAttribute("errorMsg") != null){
+				session.removeAttribute("errorMsg");
+			}else if(session.getAttribute("user") != null){
+				session.removeAttribute("user");
+			}
 			if (lo.getRole().endsWith("管理员")) {
 				return "redirect:/views/manage.jsp";
 			} else {
@@ -105,6 +110,11 @@ public class LoginController {
 			}
 			subject.login(token);
 			session.setAttribute("loginPath", path);
+			if(session.getAttribute("errorMsg") != null){
+				session.removeAttribute("errorMsg");
+			}else if(session.getAttribute("user") != null){
+				session.removeAttribute("user");
+			}
 			LoginBean lo = (LoginBean) session.getAttribute("login");
 			String role = lo.getRole();
 
@@ -141,8 +151,6 @@ public class LoginController {
 		String path = (String) session.getAttribute("loginPath");
 		session.removeAttribute("login");
 		session.removeAttribute("id");
-		session.removeAttribute("user");
-		session.removeAttribute("errorMsg");
 		return  path;
 	}
 
@@ -152,8 +160,6 @@ public class LoginController {
 		HttpSession session = req.getSession();
 		session.removeAttribute("login");
 		session.removeAttribute("id");
-		session.removeAttribute("user");
-		session.removeAttribute("errorMsg");
 		return "注销成功";
 	}
 
@@ -164,13 +170,13 @@ public class LoginController {
 	 */
 	@RequestMapping("checkUserName.do")
 	public @ResponseBody String checkUserName(String name){
-				  LoginBean bean = service.getLoginUserByName(name);
-				  String result = "用户名可以使用";
-				  if (bean!=null) {
-					  result = "用户名已存在";
-					}
-				  return  result;
-				  }
+			LoginBean bean = service.getLoginUserByName(name);
+			String result = "用户名可以使用";
+			if (bean!=null) {
+			  result = "用户名已存在";
+			}
+			 return  result;
+		  }
 
 	/**
 	 * 管理员修改密码
@@ -185,7 +191,13 @@ public class LoginController {
 	@RequestMapping("changePwd.do")
 	public String changePwd(String password, String newpwd, String checkpwd,
 			HttpServletRequest req) {
-
+		
+		if(password == null || newpwd == null || checkpwd == null ){
+			return "输入不能为空";
+		}
+		if(password.trim().length() < 1 || newpwd.trim().length() <1 || checkpwd.trim().length() < 1){
+			return "输入不能为空字符";
+		}
 		String str = "更改失败";
 		if (!newpwd.equals(checkpwd)) {
 			str = "两次新密码输入不一致，请重新输入";

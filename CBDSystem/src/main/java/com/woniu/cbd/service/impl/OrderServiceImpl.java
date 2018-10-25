@@ -21,34 +21,26 @@ public class OrderServiceImpl implements IOrderService {
 	private IParkingDao parkingDao;
 
 	/**
-	 * 企业用户租赁订单生成方法
-	 */
-	@Override
-	public boolean companyOrder() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	/**
 	 * 个人订单生成方法
 	 */
 	@Override
-	public boolean privateOrder(OrderBean order) {
+	public String privateOrder(OrderBean order) {
 		boolean b = false;
+		String result = "订单插入失败";
 		ParkingBean parking = parkingDao.findParkingById(order.getParking().getId());
 
 		// 如果订单开始结束时间时过去时间,订单不成立
 		if (order.getStartTime().compareTo(new Date()) < 0 || order.getEndTime().compareTo(new Date()) <= 0) {
-			return b;
+			return "订单开始结束时间是过去时间,订单不成立";
 		}
 		// 如果订单开始时间大于等于结束时间,订单不成立
 		if (order.getStartTime().compareTo(order.getEndTime()) >= 0) {
-			return b;
+			return "订单开始时间在结束时间之后,订单不成立";
 		}
 		// 如果订单时间段不在车位可租时间段内,订单不成立
 		if ((order.getStartTime().compareTo(parking.getStartTime()) < 0)
 				|| (order.getEndTime().compareTo(parking.getEndTime()) > 0)) {
-			return b;
+			return "订单时间段不在车位可租时间段内,订单不成立";
 		}
 		List<OrderBean> orderList = orderDao.findByParkingId(order.getParking().getId());
 
@@ -59,31 +51,41 @@ public class OrderServiceImpl implements IOrderService {
 				if (order.getStartTime().compareTo(orderBean.getStartTime()) > 0
 						&& order.getStartTime().compareTo(orderBean.getEndTime()) < 0) {
 					b = false;
+					result = "订单开始时间在其他订单时间段内,订单不成立";
 					break;
 				}
 				// 如果订单结束时间在其他订单时间段内,订单不成立
 				if (order.getEndTime().compareTo(orderBean.getStartTime()) > 0
 						&& order.getEndTime().compareTo(orderBean.getEndTime()) < 0) {
 					b = false;
+					result = "订单结束时间在其他订单时间段内,订单不成立";
 					break;
 				}
 				// 如果订单的时间端内包含了其他订单,订单不成立
 				if (order.getStartTime().compareTo(orderBean.getStartTime()) <= 0
 						&& order.getEndTime().compareTo(orderBean.getEndTime()) >= 0) {
 					b = false;
+					result = "订单的时间段内包含了其他订单,订单不成立";
 					break;
 				}
 			}
+			System.out.println(b);
 			// 判断完后标志位依然为true,表示该订单正确,可以生成
 			if (b) {
 				order.setPay(DateUtil.timeMinus(order.getStartTime(), order.getEndTime()) * parking.getPrice());
 				b = orderDao.addOrder(order);
+				if(b){
+					result = "订单插入成功";
+				}
 			}
 		} else {
 			order.setPay(DateUtil.timeMinus(order.getStartTime(), order.getEndTime()) * parking.getPrice());
 			b = orderDao.addOrder(order);
+			if(b){
+				result = "订单插入成功";
+			}
 		}
-		return b;
+		return result;
 	}
 
 	/**
@@ -120,6 +122,11 @@ public class OrderServiceImpl implements IOrderService {
 	public List<OrderBean> findOrderByState(int id, int state) {
 		List<OrderBean> bean = orderDao.findOrderByState(id, state);
 		return bean;
+	}
+
+	@Override
+	public boolean companyOrder() {
+		return false;
 	}
 
 }

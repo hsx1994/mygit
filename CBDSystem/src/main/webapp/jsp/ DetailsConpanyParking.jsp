@@ -36,19 +36,16 @@
 			</c:choose>						
 			<ul class="topNav">
 				<li class="shoucangjia"><a onclick="turn()">个人中心</a></li>
-				<div class="clears"></div>
 			</ul>			
 		</div>
 	</div>
 	<!--hrader/-->
 	<div class="mid">
 		 <h1 class="logo" style="text-align:left;">
-			<a href="index.html"><img
+			<a><img
 				src="/CBDSystem/parking/images/logo.png" width="304" height="74" /></a>
 		</h1> 
-		<div class="ding-gou"><div class="clears"></div>
-		</div>
-		<!--ding-gou/-->
+		
 	</div>
 	<!--mid-->
 	<div class="navBox navBg2">
@@ -80,8 +77,6 @@
 		</div>
 		<!--banLeft/-->
 		<div class="banRight">
-			<!-- <img src="/CBDSystem/parking/images/xinpin.jpg" width="195"
-				height="57" /> -->
 			<div class="newPhone">
 				<img src="/CBDSystem/images/parking/images/qiangchewei.jpg"
 					width="180px" height="165px" />
@@ -102,12 +97,12 @@
 		<div class="sells">
 			<dl>
 				<dt>
-					<a href="buyinfo.html"><img src="${one.img}" width="200px"
+					<a><img src="${one.img}" width="200px"
 						height="220px" /></a>
 				</dt>
 				<dd>
 					<h3>
-						<a href="buyinfo.html">车位号：${one.parkingNum}</a>
+						<a>车位号：${one.parkingNum}</a>
 					</h3>
 					<h4>车位地点：${one.address}</h4>
 					<h5>
@@ -144,8 +139,6 @@
 								<div class="time2">
 									<!-- <input class="time2-button" type="submit"/> -->
 								</div>
-
-							<!-- 	<a href="javascript:order()">预约车位</a> -->
 								 <a class="sellmai" onclick="pay()">立即下单</a>
 							</form>
 						</div>
@@ -160,31 +153,6 @@
 
 			<!--*****************************页码部分***********************************************  -->
 			
-			<%-- <div style="font-size:18px">
-				<h2>该车位历史订单:</h2><br />
-		<table style="width: 100%; text-align: center;">
-			<thead>
-				<tr>
-					<th>订单编号</th>
-					<th>开始时间</th>
-					<th>结束时间</th>
-					<th>订单总价</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${one.orders}" var="obj">
-					<tr>
-						<td>${obj.id }<br/></td>
-						<td><fmt:formatDate value="${obj.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/><br/></td>
-						<td><fmt:formatDate value="${obj.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/><br/></td>
-						<td>${obj.pay}<br/></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
-		</div>
---%>
 	
 	</div> 
 	<!--  ************************底部导航栏  *********************************************************************************-->

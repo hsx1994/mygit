@@ -25,17 +25,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  </div><!--hrader/-->
  <div class="mid">
   <h1 class="logo" style="text-align:left;">
-  <a href="index.html"><img src="../images/logo.png" width="304" height="74" /></a>
+  <a><img src="../images/logo.png" width="304" height="74" /></a>
   </h1>
-  <form action="#" method="get" class="subBox">
-   <div class="subBox2">
-    <input type="text" class="subText" />
-    <input type="image" src="../images/sub.jpg" width="95" height="32" class="subImg" />
-    <div class="hotci">
- 
-   </div><!--hotci/-->
-   </div><!--subBox2/-->
-  </form><!--subBox/-->
+  
  </div><!--mid-->
  <div class="navBox navBg3">
   <ul class="nav">
@@ -45,20 +37,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  <div class="vipBox">
   <div class="vipLeft">
    <h2 class="headImg"><img src="../images/vipImg.jpg" width="183" height="169" /></h2>
-   <h3 class="vipName">用户</h3>
+   <h3 class="vipName">抢租客</h3>
    <dl class="vipNav">
     <dt class="vip_1">用户中心</dt>
-     <dd><a href="vipShoucang.html"></a></dd>
      <dd ><a href="two.jsp">个人信息</a></dd>
     <dt class="vip_2">个人中心</dt>
      <dd class="ddCur"><a href="changeUserInfo.jsp">修改个人信息</a></dd>
+     <dd><a href="updatepasswd2.jsp">修改密码</a></dd>
      <dd><a href="LookTwoUser.jsp">查看已完成订单</a></dd>
      <dd><a href="LookTwoCar.jsp">查看未完成订单</a></dd>
-     <dd><a href="vipXiaofei.html"></a></dd>
     <dt class="vip_3"></dt>
-     <dd><a href="vipQuxiao.html"></a></dd>
-     
-     <dd><a href="vipTousu.html"></a></dd>
+     <dd><a></a></dd>
+     <dd><a></a></dd>
      </dl>
   </div><!--vipLeft/-->
   <div class="vipRight">
@@ -66,26 +56,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    
   
        <table class="grzx" width="705" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td width="90"><span>*</span>密码：</td>
-          <td width="430"><input type="text" name="login.password"></td>
-        </tr>
-       
+        
         <tr>
          <td width="90"><span>*</span>邮箱:</td>
-          <td><input type="text" name="email" /></td>
+          <td><input type="text" id="email" name="email" /></td>
         </tr>
         <tr>
           <td width="90"><span>*</span>住址:</td>
-          <td><input type="text" name="address" ></td>
+          <td><input type="text" id="address" name="address" /></td>
         </tr>
         <tr>
           <td width="90"><span>*</span>电话：</td>
-          <td><input type="text" name="tel" ></td>
+          <td><input type="text" id="tel" name="tel" /></td>
         </tr>
         <tr>
           <td width="90"><span>*</span>职业：</td>
-          <td><input type="text" name="job" ></td>
+          <td><input type="text" id="job" name="job" /></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -167,7 +153,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				type:"post",
 				data:
 				{
-				 "login.password":$("#password").val(),
 				 "id":$("#uid").val(),
 	             "address":$("#address").val(),
 	             "job":$("#job").val(),

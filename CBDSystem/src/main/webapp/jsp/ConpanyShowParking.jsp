@@ -32,7 +32,6 @@
 			</c:choose>						
 			<ul class="topNav">
 				<li class="shoucangjia"><a onclick="turn()">个人中心</a></li>
-				<div class="clears"></div>
 			</ul>			
 		</div>
 	</div>
@@ -62,21 +61,14 @@
         	
 	<div class="mid">
 		<h1 class="logo" style="text-align:left;">
-			<a href="index.html"><img
+			<a><img
 				src="/CBDSystem/images/parking/images/logo.png" width="304"
 				height="74" /></a>
 		</h1>
-		<!--subBox/-->
-		<div class="ding-gou">
-			<div class="clears"></div>
-		</div>
-		<!--ding-gou/-->
 	</div>
 	<div class="navBox navBg2">
 		<ul class="nav">
 			<li><a href="/CBDSystem/jsp/ShowParkingSpace.jsp">首页</a></li>
-
-			<div class="clears"></div>
 		</ul>
 		<!--nav/-->
 	</div>

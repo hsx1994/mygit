@@ -39,8 +39,8 @@ public class UserDaoImpl implements IUserDao {
 	@Override
 	public int updateUser(UserBean bean) {
 		SqlSession session = fa.openSession(true);
-		int row = session.insert("userMapper.updateUser", bean);
-
+		int row = session.insert("userMapper.upUser", bean);
+		System.out.println(row);
 		session.close();
 		return row;
 	}

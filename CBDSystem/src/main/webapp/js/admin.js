@@ -64,7 +64,6 @@ function updatePer(){
 		arr.push($(this).val());
 	});
 	
-	alert(arr);
 	$.ajax({
 		url:"/CBDSystem/updatePer.do",
 		type:"post",

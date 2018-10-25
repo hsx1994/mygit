@@ -36,7 +36,6 @@
 			</c:choose>						
 			<ul class="topNav">
 				<li class="shoucangjia"><a onclick="turn()">个人中心</a></li>
-				<div class="clears"></div>
 			</ul>			
 	</div>
 	<!-- 注销 -->
@@ -64,18 +63,14 @@
 	<!--hrader/-->
 	<div class="mid">
 		 <h1 class="logo" style="text-align:left;">
-			<a href="index.html"><img
+			<a><img
 				src="/CBDSystem/parking/images/logo.png" width="304" height="74" /></a>
 		</h1> 
-		<div class="ding-gou"><div class="clears"></div>
-		</div>
-		<!--ding-gou/-->
 	</div>
 	<!--mid-->
 	<div class="navBox navBg2">
 		<ul class="nav">
 			<li><a href="/CBDSystem/index.jsp">首页</a></li>
-			<div class="clears"></div>
 		</ul>
 		<!--nav/-->
 	</div>
@@ -123,12 +118,12 @@
 		<div class="sells">
 			<dl>
 				<dt>
-					<a href="buyinfo.html"><img src="${one.img}" width="200px"
+					<a><img src="${one.img}" width="200px"
 						height="220px" /></a>
 				</dt>
 				<dd>
 					<h3>
-						<a href="buyinfo.html">车位号：${one.parkingNum}</a>
+						<a>车位号：${one.parkingNum}</a>
 					</h3>
 					<h4>车位地点：${one.address}</h4>
 					<h5>
@@ -282,8 +277,8 @@
 				},
 				dataType:"json",
 				success:function(data){
-					if(data==0){
-						alert("添加订单失败");
+					if(isNaN(data)){
+						alert(data);
 					} else {
 						window.location.href="/CBDSystem/apply.do?orderId="+data;
 					}
@@ -302,8 +297,8 @@
 				},
 				dataType:"json",
 				success:function(data){
-					if(data==0){
-						alert("添加订单失败");
+					if(isNaN(data)){
+						alert(data);
 					} else {
 						alert("添加订单成功");
 					}

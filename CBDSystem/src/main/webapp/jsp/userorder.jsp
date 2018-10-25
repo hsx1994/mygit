@@ -19,28 +19,12 @@
  </div><!--hrader/-->
  <div class="mid">
   <h1 class="logo" style="text-align:left;">
-  <a href="index.html"><img src="../images/logo.png" width="304" height="74" /></a>
+  <a><img src="../images/logo.png" width="304" height="74" /></a>
   </h1>
-  <form action="#" method="get" class="subBox">
-   <div class="subBox2">
-    <input type="text" class="subText" />
-    <input type="image" src="../images/sub.jpg" width="95" height="32" class="subImg" />
-    <div class="hotci">
-   
-   </div><!--hotci/-->
-   </div><!--subBox2/-->
-  </form><!--subBox/-->
  </div><!--mid-->
  <div class="navBox navBg3">
   <ul class="nav">
-   <li><a href="index.html"></a></li>
-   <li><a href="buy.html"></a></li>
-   <li><a href="sell.html"></a></li>
-   <li class="navCur"><a href="vip.html">个人中心</a></li>
-   <li><a href="xuanshang.html"></a></li>
-   <li><a href="luntan.html" class="luntan"></a></li>
-   <li><a href="help.html"></a></li>
-   <div class="clears"></div>
+   <li class="navCur"><a href="/CBDSystem/index.jsp">首页</a></li>
   </ul><!--nav/-->
  </div><!--navBox/-->
  <div class="vipBox">
@@ -50,16 +34,14 @@
    <dl class="vipNav">
     <dt class="vip_1">用户中心</dt>
      <dd><a href="LookTwoCar.jsp">查看上架车位</a></dd>
-     <dd><a href="vipShoucang.html"></a></dd>
     <dt class="vip_2">个人中心</dt>
      <dd class="ddCur"><a href="two.jsp">个人信息</a></dd>
      <dd><a href="RentUser.jsp">修改个人信息</a></dd>
+     <dd><a href="updatepasswd2.jsp">修改密码</a></dd>
      <dd><a href="LookTwoUser.jsp">查看租赁记录</a></dd>
-     <dd><a href="vipXiaofei.html"></a></dd>
     <dt class="vip_3"></dt>
-     <dd><a href="vipQuxiao.html"></a></dd>
-     
-     <dd><a href="vipTousu.html"></a></dd>
+     <dd><a></a></dd>
+     <dd><a></a></dd>
    </dl><!--vipNav/-->
   </div><!--vipLeft/-->
 	<div class="vipRight">
@@ -128,7 +110,7 @@
  <div class="footBox">
   <div class="footers">
    <div class="footersLeft">
-    <a href="index.html"><img src="../images/ftlogo.jpg" width="240" height="64" /></a>
+    <a><img src="../images/ftlogo.jpg" width="240" height="64" /></a>
     <h3 class="ftphone">400 000 0000 </h3>
     <div class="ftKe">
      客服 7x24小时(全年无休)<br />

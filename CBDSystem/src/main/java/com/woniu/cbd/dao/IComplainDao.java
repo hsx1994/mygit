@@ -40,5 +40,9 @@ public interface IComplainDao {
 
 	// 抢租客添加投诉信息
 	public int addComplaint(ComplainBean bean);
+	/**
+	 * 通过ID查投诉信息
+	 */
+	public ComplainBean findById(Integer id);
 
 }

@@ -106,7 +106,7 @@
                     </tr>
                 </table>
             <div style="width:89%;height: 500px;border: solid 1px #b0b0b0;margin-left: 130px">
-				<img src="${park.certImg }">
+				<img src="${park.certImg }" style="width:800px;">
             </div>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">

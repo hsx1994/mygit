@@ -59,7 +59,17 @@
 		</set>
 		where u_l_id=#{login.id};
 	</update>
-
+	<!-- 修改个人用户信息 -->
+	   <update id="upUser" parameterType="UserBean">
+		update t_user_info
+		<set>
+			<if test="address != null">u_address=#{address},</if>
+			<if test="email != null">u_email=#{email},</if>
+			<if test="tel != null">u_tel=#{tel},</if>
+			<if test="job != null">u_profession=#{job},</if>
+		</set>
+		where u_id=#{id};
+	</update>
 	<!-- 修改企业用户信息 -->
 	 <update id="updateCompany" parameterType="CompanyInfoBean">
 		update t_company_info set c_contact=#{contact} ,c_email=#{email}, c_tel=#{tel} where c_id=#{id};

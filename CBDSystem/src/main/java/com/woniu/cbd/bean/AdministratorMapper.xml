@@ -25,11 +25,6 @@
 		t_administrator set a_delete=1 where a_id=#{id};
 	</delete>
 
-	<!-- 修改管理员权限信息 <update id="administratorUpdate" parameterType="AdministratorBean"> 
-		update t_administrator set a_limit=#{limit} where a_id=#{id} and a_delete=0 
-		; </update> -->
-
-
 	<!-- 登录时查询管理员信息 -->
 	<select id="administratorSelect" parameterType="LoginBean"
 		resultType="AdministratorBean">
@@ -67,6 +62,7 @@
 		<result property="jobNumber" column="a_job_number" />
 		<result property="realName" column="a_name" />
 		<result property="tel" column="a_tel" />
+		<collection property="limit" ofType="PermissionBean" select="rolePermissionMapper.findPermission" column="a_id"/>
 	</resultMap>
 
 	<!-- 修改管理员电话 -->

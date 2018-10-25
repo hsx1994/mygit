@@ -92,12 +92,12 @@ public class ComplainController {
 	 * @return
 	 */
 	@RequestMapping("acceptComplain.do")
-	public @ResponseBody String acceptComplain(HttpServletRequest req,Integer state, Integer id) {
-		HttpSession session = req.getSession();
-		int uid = (int) session.getAttribute("id");
+	public @ResponseBody String acceptComplain(Integer state, Integer id) {
+		
 		String result = service.acceptComplain(state, id);
 		if(state.equals(1)){
-			UserBean u = user.findById(uid);
+			ComplainBean bean = service.findById(id);
+			UserBean u = bean.getBuser();
 			int count = u.getComplaintCount();
 			int newCount = count + 1;
 			u.setComplaintCount(newCount);
@@ -113,6 +113,13 @@ public class ComplainController {
 	// 抢租客针对订单添加投诉信息
 	@RequestMapping("/addComplaint.do")
 	public @ResponseBody String addCompiaint(HttpServletRequest request,OrderBean order, String text) {
+		if(order.getId() == 0){
+			return "投诉失败";
+		}
+		if(text.trim().length() < 1){
+			return "投诉内容不能为空";
+		}
+		
 		// 在session中获取到当前登录用户的id
 		order = orderService.findOrderById(order.getId());
 		// 由订单的id在车位表中获取到车位所有人的id
@@ -141,21 +148,29 @@ public class ComplainController {
 
 	// 包租婆针对订单添加投诉
 	@RequestMapping("/accComplaint.do")
-	public @ResponseBody String aComplain(OrderBean order, String text) {
+	public @ResponseBody String aComplain(HttpServletRequest req, OrderBean order, String text) {
 		ComplainBean complaint = new ComplainBean();
-
+		if(text.trim().length() < 1){
+			return "投诉内容不能为空";
+		}
+		HttpSession session = req.getSession();
 		// 在session中获取到当前登录包租婆用户的id
-		int i = 1;// 测试
-		
+		int i = (int) session.getAttribute("id");
 		UserBean user = new UserBean();
 		user.setId(i);
+		OrderBean o =  orderService.findOrderById(order.getId());
+		int nuid = o.getUser().getId();
 		
+		UserBean buser = new UserBean();
+		buser.setId(nuid);
 		// 当前登录用户的id
 		complaint.setUser(user);
 		// 投诉内容
 		complaint.setContent(text);
 		// 投诉订单id
 		complaint.setOrder(order);
+		//被投诉的抢租客ID
+		complaint.setBuser(buser);		
 		String result = service.addComplaint(complaint);
 		return result;
 	}

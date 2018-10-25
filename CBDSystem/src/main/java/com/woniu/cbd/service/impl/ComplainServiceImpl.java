@@ -49,5 +49,13 @@ public class ComplainServiceImpl implements IComplainService {
 		}
 		return "投诉失败";
 	}
+	/**
+	 * 通过ID查投诉信息
+	 */
+	@Override
+	public ComplainBean findById(Integer id) {
+		ComplainBean bean = dao.findById(id);
+		return bean;
+	}
 
 }

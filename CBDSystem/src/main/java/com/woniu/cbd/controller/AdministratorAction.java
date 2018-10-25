@@ -20,6 +20,7 @@ import com.woniu.cbd.bean.RolePermissionBean;
 import com.woniu.cbd.service.IAdministratorService;
 import com.woniu.cbd.service.ILoginService;
 import com.woniu.cbd.service.IRolePermissionService;
+import com.woniu.cbd.util.RegularExpression;
 
 /**
  * 描述 ：处理普通管理员所有前后端交互功能
@@ -45,16 +46,21 @@ public class AdministratorAction {
 	@Transactional(isolation=Isolation.DEFAULT,propagation=Propagation.REQUIRED)
 	public @ResponseBody String registerAdmin(String[] limits,AdministratorBean admin) {
 		String result = null;
-		if(admin.getJobNumber().length()<1){
-			result="工号不能为空";return result;
+		if(limits.length < 1 || limits == null){
+			return "权限不能为空";
 		}
-		if(admin.getTel().length()<1){
-			result="电话不能为空";return result;
+		if(admin.getJobNumber().length()<1 || admin.getJobNumber() == null){
+			return "工号不能为空";
 		}
-		if(admin.getRealName().length()<1){
-			result="姓名不能为空";return result;
+		if(admin.getTel().length()<1 || admin.getTel() == null){
+			return "电话不能为空";
 		}
-		
+		if(admin.getRealName().length()<1 || admin.getRealName() == null){
+			return "姓名不能为空";
+		}
+		if(!RegularExpression.testTel(admin.getTel())){
+			return "电话格式不合格";
+		}
 		List<RolePermissionBean> list = new ArrayList<RolePermissionBean>();
 		
 		//向登录表中添加普通管理员的相关信息
@@ -79,7 +85,6 @@ public class AdministratorAction {
 		}
 		//将权限封装为array,添加权限
 		boolean res = irs.addLimites(list);
-		
 		if(!res){
 			result = "权限添加失败";
 			return result;
@@ -95,6 +100,9 @@ public class AdministratorAction {
 	@RequestMapping("updatePer.do")
 	public @ResponseBody String updatePer(String[] limits,Integer id){
 		String result = "修改失败";
+		if(limits.length == 0 || id == 0){
+			return result;
+		}
 		boolean re = irs.deletePerByAdminId(id);
 		if(!re){
 			return result;
@@ -124,22 +132,29 @@ public class AdministratorAction {
 	 */
 	@RequestMapping("/deleteAdmin.do")
 	public @ResponseBody String delete(@RequestParam("id") int id) {
-		// 接收后台处理完删除后的结果
+		
+		if(id == 0){
+			return "删除失败";
+		}
 		String str = service.administratorDelet(id);
 		// 向页面传参
 		return str;
 	}
 
 	/**
-	 * 作用：修改电话号码
-	 * @param model
-	 * @param ab 前端传来的对象包含id、limit字段
+	 * 作用：修改电话号
 	 * @return  修改结果
 	 */
 	@ResponseBody
 	@RequestMapping("/updateAdminTel.do")
 	public String change(AdministratorBean bean){
 		String str = "修改失败";
+		if(bean.getTel().trim().length()<1){
+			return "电话号不能为空";
+		}
+		if(!RegularExpression.testTel(bean.getTel())){
+			return "电话格式不合格";
+		}
 		str = service.updateAdminTel(bean);
 		return str;
 	}

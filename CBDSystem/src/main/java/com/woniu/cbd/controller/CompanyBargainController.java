@@ -21,6 +21,7 @@ import com.woniu.cbd.bean.CompanyOrderBean;
 import com.woniu.cbd.service.ICompanyBargainService;
 import com.woniu.cbd.service.ICompanyInfoService;
 import com.woniu.cbd.service.ICompanyOrderService;
+import com.woniu.cbd.util.RegularExpression;
 
 @Controller
 public class CompanyBargainController {
@@ -33,10 +34,27 @@ public class CompanyBargainController {
 
 	@RequestMapping("/companyBargainAdd.do")
 	public @ResponseBody String companyBargainAdd(CompanyBargainBean bean,String[] parkingNumber,String[] address) {
-		
+		if(bean.getContact() == null || bean.getEndTime() == null || bean.getImg() == null ||
+				bean.getNumber() == null || bean.getStartTime() == null || bean.getTel() == null ||
+				parkingNumber == null || address == null){
+			return "输入不能为空";
+		}
+		if(bean.getContact().trim().length() < 1 || bean.getImg().length() < 1 ||
+				bean.getNumber().trim().length() < 1 || bean.getTel().trim().length() < 1 ||
+				parkingNumber.length < 1 || address.length < 1){
+			return "输入不能为空字符";
+		}
+		int row = bean.getStartTime().compareTo(bean.getEndTime());
+		if(row >= 0){
+			return "开始时间不能在结束时间之后";
+		}
+			
 		CompanyInfoBean company = cis.findByCompanyName(bean.getCompany().getComName());
 		if(company == null){
 			return "该企业用户不存在";
+		}
+		if(!RegularExpression.testTel(bean.getTel())){
+			return "联系人电话格式不合格";
 		}
 		bean.setCompany(company);
 		String result = "添加失败";

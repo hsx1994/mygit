@@ -31,7 +31,10 @@
 		<association property="buser" javaType="UserBean" select="userMapper.findById" column="com_bc_u_id"></association>
 		<association property="order" javaType="OrderBean" select="orderMapper.findByOrderId" column="com_o_id"></association>
 	</resultMap>
-	
+	<!-- 根据ID查询投诉信息 -->
+	<select id="findById" parameterType="int" resultMap="map1">
+		select * from t_complaint where com_id=#{id}
+	</select>
 	<!-- 后台分页查询投诉信息 -->
 		<select id="findComplainByPage" parameterType="int" resultMap="map1">
 			select * from t_complaint where com_state=0 limit #{num}, 10

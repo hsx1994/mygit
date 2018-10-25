@@ -17,6 +17,18 @@
 
 </head>
 <body onload="upCurrentPage(1)">
+<c:if test="${err != null }">
+	<script type="text/javascript">
+		alert("${err }");
+		upCurrentPage(1);
+	</script>
+</c:if>
+<c:if test="${notFound != null }">
+	<script type="text/javascript">
+		alert("${notFound }");
+		upCurrentPage(1);
+	</script>
+</c:if>
 	<input type="hidden" value="${sessionScope.login.role }" id="role">
 	<!-- <body > -->
 	<div class="hrader" id="header">
@@ -40,15 +52,11 @@
 
 	<div class="mid">
 		<h1 class="logo" style="text-align:left;">
-			<a href="index.html"><img
+			<a><img
 				src="/CBDSystem/images/parking/images/logo.png" width="304"
 				height="74" /></a>
 		</h1>
 		<!--subBox/-->
-		<div class="ding-gou">
-			<div class="clears"></div>
-		</div>
-		<!--ding-gou/-->
 	</div>
 	<div class="navBox navBg2">
 		<ul class="nav">
@@ -132,8 +140,7 @@
 						<h3>价格：${parking.price}元/小时</h3>
 						<div class="phonePars">地址：${parking.address}</div>
 						<div class="jiaru-shoucang">
-							<span class="jiaruCar">收藏车位</span> <span class="shoucangCar"><a
-								href="/CBDSystem/showOne.do?id=${parking.id}">查看详情</a></span>
+						<span class="shoucangCar"><a href="/CBDSystem/showOne.do?id=${parking.id}">查看详情</a></span>
 							<div class="clears"></div>
 						</div>
 						<!--jiaru-shoucang/-->

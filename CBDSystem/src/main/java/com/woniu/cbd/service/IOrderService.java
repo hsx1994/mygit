@@ -7,7 +7,7 @@ import com.woniu.cbd.bean.ParkingBean;
 
 public interface IOrderService {
 
-	public boolean privateOrder(OrderBean order);
+	public String privateOrder(OrderBean order);
 
 	public boolean companyOrder();
 

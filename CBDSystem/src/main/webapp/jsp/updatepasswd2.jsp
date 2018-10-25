@@ -3,58 +3,41 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<div id="show">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>未完成订单</title>
+<title>抢租客修改密码</title>
 <link type="text/css" href="../css/csss.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
 <script type="text/javascript" src="../js/js.js"></script>
 <script type="text/javascript" src="/CBDSystem/js/logOut.js"></script>
-<style>
-		td{
-			text-align:center;
-		}
-  </style>
 </head>
-
-<body onload="select(1)">
+<body>
  <div class="hrader" id="header">
   <div class="top">
-   	<a style="color:#C94E13;">欢迎您:${sessionScope.login.name }</a> 
+	<a style="color:#C94E13;">欢迎您:${sessionScope.login.name }</a> 
     <a onclick="logOut()">注销</a>
   </div><!--top/-->
  </div><!--hrader/-->
  <div class="mid">
   <h1 class="logo" style="text-align:left;">
-  <a><img src="../images/logo.png" width="304" height="74" /></a>
+  <a href="index.html"><img src="../images/logo.png" width="304" height="74" /></a>
   </h1>
-  <form action="#" method="get" class="subBox">
-   <div class="subBox2">
-    <input type="text" class="subText" />
-    <input type="image" src="../images/sub.jpg" width="95" height="32" class="subImg" />
-    <div class="hotci">
-   
-   </div><!--hotci/-->
-   </div><!--subBox2/-->
-  </form><!--subBox/-->
- </div><!--mid-->
+  </div>
  <div class="navBox navBg3">
   <ul class="nav">
    <li><a href="/CBDSystem/index.jsp">首页</a></li>
   </ul><!--nav/-->
  </div><!--navBox/-->
- <div class="vipBox">
+  <div class="vipBox">
   <div class="vipLeft">
    <h2 class="headImg"><img src="../images/vipImg.jpg" width="183" height="169" /></h2>
-    <h3 class="vipName">抢租客</h3>
+   <h3 class="vipName">抢租客</h3>
    <dl class="vipNav">
     <dt class="vip_1">用户中心</dt>
-     <dd ><a href="two.jsp">个人信息</a></dd>
+     <dd class="ddCur"><a href="two.jsp">个人信息</a></dd>
     <dt class="vip_2">个人中心</dt>
      <dd><a href="changeUserInfo.jsp">修改个人信息</a></dd>
      <dd><a href="updatepasswd2.jsp">修改密码</a></dd>
@@ -64,53 +47,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      <dd><a></a></dd>
      
      <dd><a></a></dd>
-   </dl><!--vipNav/-->
+     </dl>
   </div><!--vipLeft/-->
-<div class="vipRight">
-   <h2 class="vipTitle">未完成订单</h2>
+  <div class="vipRight">
+   <h2 class="vipTitle">密码修改</h2>
    
-				<table class="grzx" width="705" border="0" cellspacing="0"
-					cellpadding="0">
-						<tr>
-							<th width="100"><span>*</span>订单编号</th>
-							<th width="100"><span>*</span>开始时间</th>
-							<th width="100"><span>*</span>结束时间</th>
-							<th width="100"><span>*</span>车位编号</th>
-							<th width="100"><span>*</span>订单总价</th>
-							<th width="100"><span>*</span>操作</th>
-						</tr>
-					<c:forEach items="${list}" var="obj">
-						<tr>
-							<td>${obj.id }<br/></td>
-							<td><fmt:formatDate value="${obj.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/><br/></td>
-							<td><fmt:formatDate value="${obj.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/><br/></td>
-							<td>${obj.parking.address }${obj.parking.parkingNum }<br /></td>
-							<td>${obj.pay}<br/></td>
-							<td><a href="/CBDSystem/apply.do?orderId=${obj.id }">去支付</a></td>
-						</tr>
-					</c:forEach>
-					<tr>
-				        <td width="100"> 
-				       		<a href="#" onclick="select(${pageinfo.firstPage})">首页</a>&nbsp;&nbsp;
-				       	</td>
-				       	<td width="100">
-					        <c:if test="${pageinfo.hasPreviousPage}">
-					        <a href="#"onclick="select(${pageinfo.prePage})">上一页</a>&nbsp;&nbsp;
-					        </c:if>
-					    </td>
-					    <td width="100">
-					        ${pageinfo.pageNum}/${pageinfo.pages} 页&nbsp;&nbsp;
-					    </td>
-					    <td width="100">
-					        <c:if test="${pageinfo.hasNextPage}">
-					        <a href="#"onclick="select(${pageinfo.nextPage})">下一页</a>&nbsp;&nbsp;
-					        </c:if>
-					    </td>
-					    <td width="100">
-					        <a href="#" onclick="select(${pageinfo.lastPage})">尾页</a>
-				      </td>
-				    </tr>
-				</table>
+  
+       <table class="grzx" width="705" border="0" cellspacing="0" cellpadding="0">
+       <tr>
+          <td width="90"><span>*</span>旧密码：</td>
+          <td width="430"><input type="text" id="password" name="password" maxlength="20"/>
+          </td>
+        </tr>
+        <tr>
+          <td width="90"><span>*</span>新密码：</td>
+          <td width="430"><input type="text" id="newpwd" name="login.password" maxlength="20" /></td>
+        </tr>
+       
+        <tr>
+         <td width="90"><span>*</span>重复新密码:</td>
+          <td><input type="text" id="checkpwd" name="checkpwd" maxlength="20" /></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><button  type="submit" onclick="sends()">修改</button></td>
+        </tr>
+      </table>
     
   </div><!--vipRight/-->
   <div class="clears"></div>
@@ -176,24 +138,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <a href="#">版权声明</a>
   <a href="#">网站地图</a>
   <br />
-  <input type="hidden" value="${sessionScope.id }" id="uid" />
+  <span>&copy; 2014 Unqezi 使用前必读 更多模板：<a target="_blank">源码之家</a></span>
  </div><!--footer/-->
-  <script>
- 	function select(page){
- 		$.ajax({
- 			url:"/CBDSystem/showlog.do",
- 			type:"post",
- 			data:{
- 				"id":$("#uid").val(),
- 				"page":page
- 			},
- 			dataType:"html",
- 			success:function(data){
- 				$("#show").html(data);
- 			}
- 		});
- 	}
- </script>
+ <input type="hidden" value="${sessionScope.id }" id="uid" />
+ <input type="hidden" value="${sessionScope.login.id }" id="lid"/>
+ <input type="hidden" value="${sessionScope.login.name }" id="ln"/>
+ 
+<script type="text/javascript">
+    function sends(){
+		$.ajax({
+			   	url:"/CBDSystem/changePwd.do",
+				type:"post",
+				data:{
+				 "password":$("#password").val(),
+				 "newpwd":$("#newpwd").val(),
+	             "checkpwd":$("#checkpwd").val()
+				},
+				datatype: "json",
+				success:function(data){
+					alert(data);
+					window.location.href="two.jsp";
+				}
+			});
+	};
+</script>
 </body>
 </html>
-</div>

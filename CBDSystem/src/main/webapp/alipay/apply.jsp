@@ -116,7 +116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="message">收款方:  <span class="date">CBDSystem停车租赁公司</span></div>
         <div class="message">订单编号:  <span class="date">${order.id}</span></div>
         <div class="message">车位位置:  <span class="date">${order.parking.address}  ${order.parking.parkingNum}</span></div>
-        <div class="message"> 时间:  <span class="date"><fmt:formatDate value="${order.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/></span>  到  <span class="date"><fmt:formatDate value="${order.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/></span></div>
+        <div class="message"> 时间:  <span class="date"><fmt:formatDate value="${order.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/></span>  到  <span class="date"><fmt:formatDate value="${order.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/></span></div>
         <div class="message">金额:<span class="pay"> ${order.pay}</span>元</div>
     </div>
     <div><fmt:formatDate value="${order.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/></div>

@@ -34,7 +34,7 @@
 				</div>
 				<div class="links span8">
 					<a class="home" href="/CBDSystem/index.jsp" rel="tooltip" data-placement="bottom"
-						data-original-title="Home"></a> <a class="blog" href=""
+						data-original-title="Home"></a> <a class="blog"
 						rel="tooltip" data-placement="bottom" data-original-title="Blog"></a>
 				</div>
 			</div>

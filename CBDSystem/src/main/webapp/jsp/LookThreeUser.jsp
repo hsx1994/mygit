@@ -31,16 +31,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  </div><!--hrader/-->
  <div class="mid">
   <h1 class="logo" style="text-align:left;">
-  <a href="index.html"><img src="../images/logo.png" width="304" height="74" /></a>
+  <a><img src="../images/logo.png" width="304" height="74" /></a>
   </h1>
-  <form action="#" method="get" class="subBox">
-   <div class="subBox2">
-    <input type="text" class="subText" />
-    <input type="image" src="../images/sub.jpg" width="95" height="32" class="subImg" />
-    <div class="hotci">
-   </div><!--hotci/-->
-   </div><!--subBox2/-->
-  </form><!--subBox/-->
  </div><!--mid-->
  <div class="navBox navBg3">
   <ul class="nav">
@@ -53,14 +45,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <h3 class="vipName">企业</h3>
    <dl class="vipNav">
     <dt class="vip_2">个人中心</dt>
-     <dd class="ddCur"><a href="one.jsp">企业信息</a></dd>
-     <dd><a href="RentCompany.jsp">修改修改信息</a></dd>
+     <dd class="ddCur"><a href="/CBDSystem/jsp/three.jsp">企业信息</a></dd>
+     <dd><a href="RentCompany.jsp">修改企业信息</a></dd>
      <dd><a href="LookThreeUser.jsp">查看合约信息</a></dd>
      <dd><a href="LookThreeCar.jsp">查看在租车位</a></dd>
     <dt class="vip_3"></dt>
-     <dd><a href="vipQuxiao.html"></a></dd>
+     <dd><a></a></dd>
      
-     <dd><a href="vipTousu.html"></a></dd>
+     <dd><a></a></dd>
    </dl><!--vipNav/-->
   </div><!--vipLeft/-->
   <div class="vipRight">
@@ -114,7 +106,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  <div class="footBox">
   <div class="footers">
    <div class="footersLeft">
-    <a href="index.html"><img src="../images/ftlogo.jpg" width="240" height="64" /></a>
+    <a><img src="../images/ftlogo.jpg" width="240" height="64" /></a>
     <h3 class="ftphone">400 000 0000 </h3>
     <div class="ftKe">
      客服 7x24小时(全年无休)<br />
@@ -172,7 +164,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <a href="#">版权声明</a>
   <a href="#">网站地图</a>
   <br />
-  <span>&copy; 2014 Unqezi 使用前必读 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></span>
+  <span>&copy; 2014 Unqezi 使用前必读 更多模板：<a target="_blank">源码之家</a></span>
  </div><!--footer/-->
  <input type="hidden" value="${sessionScope.id }" id="uid"/>
  <script>

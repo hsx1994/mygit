@@ -8,17 +8,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>申请上架车位</title>
+<title>包租婆修改密码</title>
 <link type="text/css" href="../css/csss.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
 <script type="text/javascript" src="../js/js.js"></script>
 <script type="text/javascript" src="/CBDSystem/js/logOut.js"></script>
 </head>
-
 <body>
  <div class="hrader" id="header">
   <div class="top">
-   	<a style="color:#C94E13;">欢迎您:${sessionScope.login.name }</a> 
+	<a style="color:#C94E13;">欢迎您:${sessionScope.login.name }</a> 
     <a onclick="logOut()">注销</a>
   </div><!--top/-->
  </div><!--hrader/-->
@@ -26,6 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <h1 class="logo" style="text-align:left;">
   <a href="index.html"><img src="../images/logo.png" width="304" height="74" /></a>
   </h1>
+  </div>
  <div class="navBox navBg3">
   <ul class="nav">
    <li><a href="/CBDSystem/index.jsp">首页</a></li>
@@ -44,64 +44,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      <dd class="ddCur"><a href="one.jsp">个人信息</a></dd>
      <dd><a href="RentUser.jsp">修改个人信息</a></dd>
      <dd><a href="updatepasswd1.jsp">修改密码</a></dd>
-     <dd><a href="LookOneOrder.jsp">查看租赁记录</a></dd>
-    </dl>
-    </div>
-    <div class="vipRight">
-   <h2 class="vipTitle">申请上架</h2>
-  	<div>
-  	  <form action="/CBDSystem/application.do" method="post"
-						enctype="multipart/form-data">
-						<table class="grzx" width="705" border="0" cellspacing="0"
-							cellpadding="0">
-							<tr>
-								<td width="90"><span>*</span>车位地址:&nbsp;<input
-									style="width: 180px;" type="text" name="address" maxlength="50" required/><br />
-								</td>
-							</tr>
-							<tr>
-								<td width="90"><span>*</span>车位号 :&nbsp;<input
-									style="width: 180px;" type="text" name="parkingNum"
-									maxlength="50"  required /><br /></td>
-							</tr>
-							<tr>
-								<td width="90"><span>*</span>车位图片 :&nbsp;<input
-									style="width: 180px;" type="file" name="imgFile"
-									onchange="verificationPicFile(this)" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"  required/><br /></td>
-							</tr>
-							<tr>
-								<td width="90"><span>*</span>开始时间 :&nbsp;<input
-									style="width: 180px;" type="date" id="startTime" name="startTime" onchange="timeCheck()" required /><br /></td>
-							</tr>
-							<tr>
-								<td width="90"><span>*</span> 结束时间 :&nbsp;<input
-									style="width: 180px;" type="date" id="endTime" name="endTime" onchange="timeCheck()" required/><br /></td>
-							</tr>
-							<tr>
-								<td width="90"><span>*</span>车位价格 :&nbsp;<input
-									style="width: 180px;" type="text" name="price"
-									onchange="checkMobile(this);" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"  required /><br /></td>
-							</tr>
-							<tr>
-								<td width="90"><span>*</span>产权证编号:&nbsp;<input
-									style="width: 180px;" type="text" name="certificate"
-									maxlength="50"  required/><br /></td>
-							</tr>
-							<tr>
-								<td width="90"><span>*</span>产权证复印件:&nbsp;<input
-									style="width: 180px;" type="file" name="ImgFile"
-									onchange="verificationPicFile(this)"  required/><br /></td>
-							</tr>
-							<tr>
-								<td width="90"><button type="submit">申请上架</button></td>
-							</tr>
-						</table>
-					</form>
-
-  	</div>
-  	
-  	
+     <dd><a href="LookOrder.jsp">查看租赁记录</a></dd>
+     </dl>
+  </div><!--vipLeft/-->
+  <div class="vipRight">
+   <h2 class="vipTitle">密码修改</h2>
+   
   
+       <table class="grzx" width="705" border="0" cellspacing="0" cellpadding="0">
+       <tr>
+          <td width="90"><span>*</span>旧密码：</td>
+          <td width="430"><input type="text" id="password" name="password" maxlength="20"/>
+          </td>
+        </tr>
+        <tr>
+          <td width="90"><span>*</span>新密码：</td>
+          <td width="430"><input type="text" id="newpwd" name="login.password" maxlength="20" /></td>
+        </tr>
+       
+        <tr>
+         <td width="90"><span>*</span>重复新密码:</td>
+          <td><input type="text" id="checkpwd" name="checkpwd" maxlength="20" /></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><button  type="submit" onclick="sends()">修改</button></td>
+        </tr>
+      </table>
+    
   </div><!--vipRight/-->
   <div class="clears"></div>
  </div><!--vipBox/-->
@@ -168,53 +138,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <br />
   <span>&copy; 2014 Unqezi 使用前必读 更多模板：<a target="_blank">源码之家</a></span>
  </div><!--footer/-->
- <script>
-		//车位价格的输入约束
-			function checkMobile(obj) {
-				var str = obj.value;
-				if (str == "") {
-					alert("不能为空！");
-				} else {
-					var re = /^\+?[1-9][0-9]*$/ // 以1开始后面加10位数字
-					if (re.test(str)) {
-					} else {
-						alert("只能输入数字");
-					}
-				}
-			}
-			//验证时间
-			function timeCheck(){
-				var startTime = $("#startTime").val();
-				var endTime = $("#endTime").val();
-				if(startTime != "" && endTime != ""){
-					if(Date.parse(startTime)>Date.parse(endTime)){
-			            alert("开始时间不能在结束时间之后");
-			        }
-				}
-			}
-			//图片大小验证
-			function verificationPicFile(file) {
-				var fileSize = 0;
-				var fileMaxSize = 1024; //1M
-				var filePath = file.value;
-				if (filePath) {
-					fileSize = file.files[0].size;
-					var size = fileSize / 1024;
-					if (size > fileMaxSize) {
-						alert("文件大小不能大于1M！");
-						file.value = "";
-						return false;
-					} else if (size <= 0) {
-						alert("文件大小不能为0M！");
-						file.value = "";
-						return false;
-					}
-				} else {
-					return false;
-				}
-			}
-		</script>
+ <input type="hidden" value="${sessionScope.id }" id="uid" />
+ <input type="hidden" value="${sessionScope.login.id }" id="lid"/>
+ <input type="hidden" value="${sessionScope.login.name }" id="ln"/>
  
+<script type="text/javascript">
+    function sends(){
+		$.ajax({
+			   	url:"/CBDSystem/changePwd.do",
+				type:"post",
+				data:{
+				 "password":$("#password").val(),
+				 "newpwd":$("#newpwd").val(),
+	             "checkpwd":$("#checkpwd").val()
+				},
+				datatype: "json",
+				success:function(data){
+					alert(data);
+					window.location.href="one.jsp";
+				}
+			});
+	};
+</script>
 </body>
-
 </html>

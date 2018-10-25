@@ -35,4 +35,6 @@ public interface IComplainService {
 
 	// 用于针对订单的投诉信息
 	public String addComplaint(ComplainBean bean);
+	//通过ID查投诉信息
+	public ComplainBean findById(Integer id);
 }

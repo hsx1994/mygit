@@ -79,7 +79,7 @@ public class OtherParkingController {
 
 	// 企业 前台 查看自己的所有车位
 	@RequestMapping("showCompanyAll.do")
-	public ModelAndView showComPanyAll( Integer page) {
+	public ModelAndView showComPanyAll(Integer page) {
 		ModelAndView mav = new ModelAndView();
 
 		PageHelper.startPage(page, 8, true);
@@ -109,7 +109,7 @@ public class OtherParkingController {
 	@RequestMapping("showCompanyParkingAll.do")
 	public ModelAndView showComPanyParkingAll( Integer id, Integer page) {
 		ModelAndView mav = new ModelAndView();
-PageHelper.startPage(page, 5, true);
+		PageHelper.startPage(page, 5, true);
 		List<CompanyBargainBean> parking = service.showCompanyParkingAll(id);
 		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(parking);
 		mav.addObject("pageinfo", pageInfo);
