@@ -91,7 +91,7 @@
 	<script src="/CBDSystem/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/CBDSystem/js/public/jquery.backstretch.min.js"></script>
 	<script src="/CBDSystem/js/scripts.js"></script>
-
+	<script src="/CBDSystem/bootstrap/js/login.js""></script>
 </body>
 
 </html>

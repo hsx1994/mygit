@@ -107,9 +107,12 @@ public class LoginController {
 			session.setAttribute("loginPath", path);
 			LoginBean lo = (LoginBean) session.getAttribute("login");
 			String role = lo.getRole();
-			if (role.equals("抢租客") || role.equals("包租婆") || role.equals("企业用户")) {
+			if (role.equals("抢租客") || role.equals("包租婆")) {
 				return "redirect:/index.jsp";
-			} else {
+			}else if( role.equals("企业用户")){
+				return "redirect:/jsp/ConpanyShowParking.jsp";
+			} 
+			else {
 				session.removeAttribute("login");
 				session.setAttribute("user", user);
 				session.setAttribute("errorMsg", "用户不存在！");

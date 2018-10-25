@@ -74,18 +74,19 @@
 		select * from t_parking where p_delete=0
 	</select>
 
-	<!--抢租客根据上架时间时间来查询上架车位 -->
-	<select id="showdate" parameterType="Date" resultMap="apply">
+	<!--抢租客根据时间范围来查询上架车位 -->
+	<select id="showdate" parameterType="java.util.HashMap" resultMap="apply">
 		select *
-		from t_parking where p_state=1 and p_apply_time=#{date} and
+		from t_parking where p_start_time &lt; #{startTime} and p_end_time &gt; #{endTime} and
 		p_delete=0
 	</select>
 
 
-	<!--抢租客根据价格来查询上架车位 -->
-	<select id="showprice" parameterType="int" resultMap="apply">
-		select *
-		from t_parking where p_state=1 and p_price=#{price} and p_delete=0
+	<!--抢租客根据价格范围来查询上架车位 -->
+	<select id="showprice" parameterType="java.util.HashMap" resultMap="apply">
+		SELECT *
+		FROM t_parking WHERE p_price BETWEEN #{price1} AND #{price2} and 
+		p_delete=0 and p_state=1
 	</select>
 
 	<!--抢租客根据车位id查询单个信息 -->

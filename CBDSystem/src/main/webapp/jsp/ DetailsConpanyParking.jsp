@@ -145,7 +145,7 @@
 									<!-- <input class="time2-button" type="submit"/> -->
 								</div>
 
-								<a href="javascript:order()">预约车位</a>
+							<!-- 	<a href="javascript:order()">预约车位</a> -->
 								 <a class="sellmai" onclick="pay()">立即下单</a>
 							</form>
 						</div>
@@ -160,7 +160,7 @@
 
 			<!--*****************************页码部分***********************************************  -->
 			
-			<div style="font-size:18px">
+			<%-- <div style="font-size:18px">
 				<h2>该车位历史订单:</h2><br />
 		<table style="width: 100%; text-align: center;">
 			<thead>
@@ -184,9 +184,9 @@
 		</table>
 	</div>
 		</div>
-
+--%>
 	
-	</div>
+	</div> 
 	<!--  ************************底部导航栏  *********************************************************************************-->
 	<div class="footBox">
 		<div class="footers">

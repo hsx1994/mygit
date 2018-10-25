@@ -65,4 +65,10 @@ public interface IOtherParkingDao {
 	 * @return
 	 */
 	public List<String> findParkingNumberByAddress(String address);
+	
+	/**
+	 * 查询公司所有车位
+	 * @return
+	 */
+	public List<OtherParkingBean> findCompanyAll();
 }

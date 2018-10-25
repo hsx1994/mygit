@@ -96,4 +96,14 @@ public class OtherParkingDaoImpl implements IOtherParkingDao {
 			return list;
 		}
 		
+		
+		//查看企业所有车位
+		@Override
+		public List<OtherParkingBean> findCompanyAll() {
+			SqlSession session = fa.openSession(true);
+			List<OtherParkingBean> list = session.selectList("otherParkingMapper.findCompanyAll");
+			session.close();
+			return list;
+		}
+		
 }

@@ -13,10 +13,10 @@ public interface IParkingDao {
 	public List<ParkingBean> showAll();
 
 	// 日期查询
-	public List<ParkingBean> selectParking(Date date);
+	public List<ParkingBean> selectParking(String startTime, String endTime);
 
 	// 价格查询
-	public List<ParkingBean> selectParking(int price);
+	public List<ParkingBean> selectParking(int price1,int price2);
 
 	// 查询单个车位
 	public ParkingBean selectParkingOne(int id);

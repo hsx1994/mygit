@@ -45,17 +45,17 @@ public class ParkingServicelmpl implements IParkingService {
 	}
     //根据日期上架
 	@Override
-	public List<ParkingBean> selectParking(Date date) {
+	public List<ParkingBean> selectParking(String startTime, String endTime) {
 		// TODO Auto-generated method stub
-		List<ParkingBean> bean=dao.selectParking(date);
+		List<ParkingBean> bean=dao.selectParking( startTime, endTime);
 		return bean;
 	}
 
     //根据价格查询
 	@Override
-	public List<ParkingBean> selectParking(int price) {
+	public List<ParkingBean> selectParking(int price1,int price2) {
 		// TODO Auto-generated method stub
-		List<ParkingBean> bean=dao.selectParking(price);
+		List<ParkingBean> bean=dao.selectParking(price1,price2);
 		return bean;
 	}
     //查询单个车位
