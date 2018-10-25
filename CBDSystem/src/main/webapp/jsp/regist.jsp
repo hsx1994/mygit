@@ -34,28 +34,29 @@
 				</div>
 				<div class="reg-box" id="verifyCheck" style="margin-top:20px;">
 					<div class="part1">
-						<div class="item col-xs-12"><span class="intelligent-label f-fl"><b class="ftx04">*</b>用户角色： </span>
-							<select class="required" id="role" name="role" data-valid="isNonEmpty" data-error="角色不能为空">
+						<div class="item col-xs-12">
+							<span class="intelligent-label f-fl"><b class="ftx04">*</b>用户角色：
+							</span> <select class="required" id="role" name="role"
+								data-valid="isNonEmpty" data-error="角色不能为空">
 								<option></option>
 								<option value="包租婆" style="height:">包租婆</option>
 								<option value="抢租客">抢租客</option>
-							</select>
-							<span class="ie8 icon-close close hide"></span> 
-							<label class="icon-sucessfill blank hide"></label> 
-							<label class="focus"><span>选择您要注册的角色</span></label>
-					</div>
-					
-						<div class="item col-xs-12"><span class="intelligent-label f-fl"><b class="ftx04">*</b>用户名：</span>
+							</select> <span class="ie8 icon-close close hide"></span> <label
+								class="icon-sucessfill blank hide"></label> <label class="focus"
+								id="err"><span>选择你的角色</span></label> <label class="focus valid"></label>
+						</div>
+						<div class="item col-xs-12">
+							<span class="intelligent-label f-fl"><b class="ftx04">*</b>用户名：</span>
 							<div class="f-fl item-ifo">
 								<input type="text" maxlength="20" class="txt03 f-r3 required"
 									tabindex="1" data-valid="isNonEmpty||between:3-20||isUname"
-									data-error="用户名不能为空||用户名长度3-20位||只能输入中文、字母、数字、下划线，且以中文或字母开头" 
-									id="name" name="name"  onchange="checkUserName()"/>
-									<span class="ie8 icon-close close hide"></span> 
-									<label class="icon-sucessfill blank hide"></label> 
-									<label class="focus" id="err"><span>3-20位，中文、字母、数字、下划线的组合，以中文或字母开头</span></label>
+									data-error="用户名不能为空||用户名长度3-20位||只能输入字母、数字、下划线，且以字母开头"
+									id="name" name="name" onblur="checkUserName()" /> <span
+									class="ie8 icon-close close hide"></span> <label id="num"
+									class="icon-sucessfill blank hide" style="display: none;"></label>
+								<label class="focus" id="err"><span>3-20位，字母、数字、下划线的组合，以字母开头</span></label>
 								<label class="focus valid"></label>
-							
+
 							</div>
 						</div>
 						<div class="item col-xs-12">
@@ -85,7 +86,7 @@
 									style="ime-mode:disabled;" onpaste="return  false"
 									autocomplete="off"
 									data-valid="isNonEmpty||between:6-16||isRepeat:password"
-									data-error="密码不能为空||密码长度6-16位||两次密码输入不一致" id="rePassword"  /> <span
+									data-error="密码不能为空||密码长度6-16位||两次密码输入不一致" id="rePassword" /> <span
 									class="ie8 icon-close close hide" style="right:55px"></span> <span
 									class="showpwd" data-eye="rePassword"></span> <label
 									class="icon-sucessfill blank hide"></label> <label
@@ -204,7 +205,10 @@
 					</div>
 					<div class="part4 text-center" style="display:none">
 						<h3>恭喜,您已注册成功</h3>
-						<p class="c-666 f-mt30 f-mb50">页面将在 <strong id="times" class="f-size18">10</strong> 秒钟后，跳转到 <a href="/CBDSystem/jsp/login.jsp" class="c-blue">登录</a></p>
+						<p class="c-666 f-mt30 f-mb50">
+							页面将在 <strong id="times" class="f-size18">10</strong> 秒钟后，跳转到 <a
+								href="/CBDSystem/jsp/login.jsp" class="c-blue">登录</a>
+						</p>
 					</div>
 				</div>
 			</div>
@@ -229,104 +233,110 @@
 	</div>
 
 	<script>
-$(function(){	
-	//第一页的确定按钮
-	$("#btn_part1").click(function(){	
-		if(!verifyCheck._click()) return;
-		$(".part1").hide();
-		$(".part2").show();
-		$(".step li").eq(1).addClass("on");	
-	});
+		$(function() {
+			//第一页的确定按钮
+			$("#btn_part1").click(function() {
+				if (!verifyCheck._click()) return;
+				$(".part1").hide();
+				$(".part2").show();
+				$(".step li").eq(1).addClass("on");
+			});
 	
-	//第二页的确定按钮
-	$("#btn_part2").click(function(){			
-		if(!verifyCheck._click()) return;
-		$(".part2").hide();
-		$(".part3").show();	
-	});	
-	//第三页的确定按钮
-	$("#btn_part3").click(function(){			
-		if(!verifyCheck._click()) return;
-		$(".part3").hide();
-		$(".part4").show();
-		$(".step li").eq(2).addClass("on");
-		
-		countdown({
-			maxTime:10,
-			ing:function(c){
-				$("#times").text(c);
-			},
-			after:function(){
-				window.location.href="/CBDSystem/jsp/login.jsp";		
-			}
-		});		
-	});	
-});
-function showcode(){$("#verifyYz").show();
-}
-
-function phone() {
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("post", "../phone.do", true);
-		xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		xmlhttp.send("number=" + $("#tel").val());
-		//处理响应，监控状态码
-		xmlhttp.onreadystatechange = function() {
-			if (xmlhttp.status == 200 && xmlhttp.readyState == 4) {
-				//接受服务器响应回来的内容
-				var obj = xmlhttp.responseText;
-				//同dom操作将数据显示到页面
-				alert("验证码发送成功");
+			//第二页的确定按钮
+			$("#btn_part2").click(function() {
+				if (!verifyCheck._click()) return;
+				$(".part2").hide();
+				$(".part3").show();
+			});
+			//第三页的确定按钮
+			$("#btn_part3").click(function() {
+				if (!verifyCheck._click()) return;
+				$(".part3").hide();
+				$(".part4").show();
+				$(".step li").eq(2).addClass("on");
+	
+				countdown({
+					maxTime : 10,
+					ing : function(c) {
+						$("#times").text(c);
+					},
+					after : function() {
+						window.location.href = "/CBDSystem/jsp/login.jsp";
+					}
+				});
+			});
+		});
+		function showcode() {
+			$("#verifyYz").show();
+		}
+	
+		function phone() {
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.open("post", "../phone.do", true);
+			xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			xmlhttp.send("number=" + $("#tel").val());
+			//处理响应，监控状态码
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.status == 200 && xmlhttp.readyState == 4) {
+					//接受服务器响应回来的内容
+					var obj = xmlhttp.responseText;
+					//同dom操作将数据显示到页面
+					alert("验证码发送成功");
+				}
 			}
 		}
-	};
+		;
+	//验证用户名是否存在
+		function checkUserName() {
+			$.ajax({
+				url : "/CBDSystem/checkUserName.do",
+				type : "post",
+				data : {
+					name : $("#name").val(),
+				},
+				dataType : "json",
+				success : function(masage) {
+					if (masage == "用户名已存在") {
+						$("#btn_part1").hide();
+						$("#err").html(masage).css("color", "red");
+						$("#num").hide();
+					}else{
+					    $("#num").show();
+						$("#btn_part1").show();
+						
+					}
+				}
+			});
+		}
 
-
-function send(){
-		$.ajax({
-				url:"../regist.do",
-				type:"post",
-				data:
-				{
-				 "login.role":$("#role").val(),
-				 "login.name":$("#name").val(),
-				 "login.password":$("#password").val(),
-			     "realName":$("#realName").val(),
-			     "idcard":$("#idcard").val(),
-	             "address":$("#address").val(),
-	             "job":$("#job").val(),
-	             "email":$("#email").val(),
-	             "tel":$("#tel").val(),
-	             "code":$("#code").val() 
-			},
-				datatype: "json",
-				success:function(data){
-					if(data != "注册成功"){
+		function send() {
+			$.ajax({
+				url : "../regist.do",
+				type : "post",
+				data : {
+					"login.role" : $("#role").val(),
+					"login.name" : $("#name").val(),
+					"login.password" : $("#password").val(),
+					"realName" : $("#realName").val(),
+					"idcard" : $("#idcard").val(),
+					"address" : $("#address").val(),
+					"job" : $("#job").val(),
+					"email" : $("#email").val(),
+					"tel" : $("#tel").val(),
+					"code" : $("#code").val()
+				},
+				datatype : "json",
+				success : function(data) {
+					if (data != "注册成功") {
 						window.alert(data);
 						window.location.reload();
 					}
 				}
 			});
-			
-	};
-//验证用户名是否存在
-function checkUserName(){
-	$.ajax({
-		url:"/CBDSystem/checkUserName.do",
-		type:"post",
-		data:{
-			name:$("#name").val()
-		},
-		dataType:"json",
-		success:function(masage){
-			$("#err").html(masage);
-			if(masage == "用户名可用"){
-			
-			}
+	
 		}
-	});
-}
-</script>
+		;
+	</script>
 	<div style="text-align:center;"></div>
 
 </body>

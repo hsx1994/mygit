@@ -143,19 +143,18 @@ public class LoginController {
 
 	/**
 	 * 验证用户名是否可用
-	 * 
 	 * @param name
 	 * @return
 	 */
 	@RequestMapping("checkUserName.do")
-	public @ResponseBody String checkUserName(String name) {
-		String result = "用户名已存在";
-		LoginBean bean = service.getLoginUserByName(name);
-		if (bean == null) {
-			result = "用户名可用";
-		}
-		return result;
-	}
+	public @ResponseBody String checkUserName(String name){
+				  LoginBean bean = service.getLoginUserByName(name);
+				  String result = "用户名可以使用";
+				  if (bean!=null) {
+					  result = "用户名已存在";
+					}
+				  return  result;
+				  }
 
 	/**
 	 * 管理员修改密码

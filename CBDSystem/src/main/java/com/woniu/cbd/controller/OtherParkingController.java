@@ -74,14 +74,12 @@ public class OtherParkingController {
 	@RequestMapping("showCompanyParkingAll.do")
 	public ModelAndView showComPanyParkingAll(Integer id, Integer page) {
 		ModelAndView mav = new ModelAndView();
-
 		PageHelper.startPage(page, 8, true);
 		List<OtherParkingBean> parking = service.showCompanyParkingAll(id);
 		PageInfo<OtherParkingBean> pageInfo = new PageInfo<OtherParkingBean>(parking);
 		mav.addObject("pageinfo", pageInfo);
 		mav.addObject("list", parking);
 		mav.setViewName("views/cbd_carport.jsp");
-
 		return mav;
 	}
 
