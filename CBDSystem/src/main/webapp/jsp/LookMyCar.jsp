@@ -17,6 +17,7 @@
 <link type="text/css" href="../css/csss.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
 <script type="text/javascript" src="../js/js.js"></script>
+<script type="text/javascript" src="/CBDSystem/js/logOut.js"></script>
 <style>
 	td{
 		text-align:center;
@@ -30,8 +31,8 @@
 <body onload="showAll(1)">
 	<div class="hrader" id="header">
 		<div class="top">
-			<a href="login.html" style="color:#C94E13;">请登录</a> <a
-				href="reg.html">注册</a>
+			<a style="color:#C94E13;">欢迎您:${sessionScope.login.name }</a> 
+    		<a onclick="logOut()">注销</a>
 		</div>
 		<!--top/-->
 	</div>
@@ -101,7 +102,7 @@
 							<th width="100"><span>*</span>开始时间</th>
 							<th width="100"><span>*</span>结束时间</th>
 							<th width="100"><span>*</span>车位号</th>
-							<th width="300"><span>*</span>状态(0:待审,1:审核通过,2：审核未通过)</th>
+							<th width="400"><span>*</span>状态(0:待审,1:审核通过,2：审核未通过)</th>
 						</tr>
 					</thead>
 					<c:forEach items="${all}" var="obj">
@@ -116,11 +117,11 @@
 					</c:forEach>
 					<tr>
 				        <td width="10"> 
-				       		<a href="#" onclick="showAll(${paging.firstPage})"  target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
+				       		<a href="#" onclick="showAll(${paging.firstPage})">首页</a>&nbsp;&nbsp;
 				       	</td>
 				       	<td width="10">
 					        <c:if test="${paging.hasPreviousPage}">
-					        <a href="#"onclick="showAll(${paging.prePage})" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
+					        <a href="#"onclick="showAll(${paging.prePage})">上一页</a>&nbsp;&nbsp;
 					        </c:if>
 					    </td>
 					    <td width="10">
@@ -128,11 +129,11 @@
 					    </td>
 					    <td width="10">
 					        <c:if test="${paging.hasNextPage}">
-					        <a href="#"onclick="showAll(${paging.nextPage})" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
+					        <a href="#"onclick="showAll(${paging.nextPage})">下一页</a>&nbsp;&nbsp;
 					        </c:if>
 					    </td>
 					    <td width="10">
-					        <a href="#" onclick="showAll(${pageing.lastPage})" target="mainFrame" onFocus="this.blur()">尾页</a>
+					        <a href="#" onclick="showAll(${pageing.lastPage})">尾页</a>
 				      	</td>
 				    </tr>
 				</table>

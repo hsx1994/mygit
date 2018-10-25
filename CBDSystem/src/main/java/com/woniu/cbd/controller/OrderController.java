@@ -79,7 +79,7 @@ public class OrderController {
 		return mav;
 	}
 	
-	@RequestMapping("pay.do")
+	@RequestMapping("/pay.do")
 	public @ResponseBody int pay(HttpServletRequest req,OrderBean bean){
 		int id = (int) req.getSession().getAttribute("id");
 		UserBean user = new UserBean();
@@ -90,7 +90,7 @@ public class OrderController {
 		return oid;
 	}
 	// 包租婆查看自己的被租赁记录
-		@RequestMapping("selectOrder.do")
+		@RequestMapping("/selectOrder.do")
 		public ModelAndView selectOrder(Integer id,Integer page) {
 			ModelAndView mav = new ModelAndView();
 			PageHelper.startPage(page, 5, true);

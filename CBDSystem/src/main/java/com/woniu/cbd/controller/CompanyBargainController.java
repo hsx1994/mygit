@@ -17,6 +17,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniu.cbd.bean.CompanyBargainBean;
 import com.woniu.cbd.bean.CompanyInfoBean;
+import com.woniu.cbd.bean.CompanyOrderBean;
 import com.woniu.cbd.service.ICompanyBargainService;
 import com.woniu.cbd.service.ICompanyInfoService;
 import com.woniu.cbd.service.ICompanyOrderService;
@@ -140,6 +141,78 @@ public class CompanyBargainController {
 		mav.setViewName("views/tenant_history_contract.jsp");
 
 		return mav;
+	}
+	
+	/**
+	 * 根据条件查询执行中合约
+	 * @param page
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("queryUseingBargain.do")
+	public ModelAndView queryUseingBargainByCondition(Integer page,String condition){
+		ModelAndView mv = new ModelAndView();
+		if(condition!=null){
+			PageHelper.startPage(page,10,true);
+			List<CompanyBargainBean>  list = service.queryUseingBarginByCondition(condition);
+			PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(list);
+			mv.addObject("condition", condition);
+			mv.addObject("pageinfo",pageInfo);
+			mv.addObject("list",list);
+			mv.setViewName("views/tenant_contract_info.jsp");
+		}
+		
+		return mv;
+		
+	}
+	
+	/**
+	 * 根据条件查询历史合约
+	 * @param page
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("queryHistoryBargain.do")
+	public ModelAndView queryHistoryBargainByCondition(Integer page,String condition){
+		ModelAndView mv = new ModelAndView();
+		if(condition!=null){
+			PageHelper.startPage(page,10,true);
+			List<CompanyBargainBean>  list = service.queryHistoryBargainByCondition(condition);
+			System.out.println(list);
+			PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(list);
+			mv.addObject("condition", condition);
+			mv.addObject("pageinfo",pageInfo);
+			mv.addObject("list",list);
+			mv.setViewName("views/tenant_history_contract.jsp");
+		}
+		
+		return mv;
+		
+	}
+	/**
+	 * 显示企业合约详情
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("showCompanyBargainDetails.do")
+	public ModelAndView showCompanyBargainDetails(int id){
+		
+		ModelAndView mv = new ModelAndView();
+		CompanyBargainBean bean = service.showCompanyBargainDetails(id);
+		List<CompanyOrderBean>  list = bean.getComOrder();
+		String num = "";
+		for (int i = 0; i < list.size(); i++) {
+			if(i==0){
+				num=list.get(i).getOtherParking().getParkingNum();
+				continue;
+			}
+			num+="、"+list.get(i).getOtherParking().getParkingNum();
+		}
+		mv.addObject("carNum", num);
+		mv.addObject("comBargain",bean);
+		mv.setViewName("views/tenant_contract_detail.jsp");
+		return mv;
+		
 	}
 	
 	@InitBinder

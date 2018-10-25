@@ -78,8 +78,6 @@ public class LoginRealm extends AuthorizingRealm {
 			Session session = SecurityUtils.getSubject().getSession();
 			session.setAttribute("login", loginUser);
 			session.setAttribute("id", currentId);
-			// LoginBean lo =(LoginBean) session.getAttribute("login");
-			// String roleName = lo.getRole();
 			return info;
 		} else {
 			return null;
@@ -95,18 +93,12 @@ public class LoginRealm extends AuthorizingRealm {
 		Session session = SecurityUtils.getSubject().getSession();		
 		
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-//		Set<String> roles=new HashSet<String>();
-		
+//		Set<String> roles=new HashSet<String>();		
 		LoginBean bean =(LoginBean) session.getAttribute("login");
 		String name =  bean.getName();
 		String ro = bean.getRole();
 		info.addRole(ro);		
 		info.setStringPermissions(loginService.getPermissions(name));
-		
-		System.out.println("----------");
-		System.out.println("角色有："+info.getRoles());
-		System.out.println("权限有："+info.getStringPermissions());
-		System.out.println("info:"+info);
 		return info;
 	}
 	// // 清除缓存

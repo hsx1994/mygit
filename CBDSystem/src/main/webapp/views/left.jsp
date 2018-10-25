@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -42,7 +43,7 @@ body {
 		<div>
 			<img src="../images/main/member.gif" width="44" height="44" />
 		</div>
-		<span>用户：admin<br>角色：管理员</span>
+		<span>用户：${login.getName()}<br>角色：${login.getRole()}</span>
 	</div>
 	<div style="float: left" id="my_menu" class="sdmenu">
 		<shiro:hasRole name="超级管理员">
@@ -51,41 +52,38 @@ body {
 					onFocus="this.blur()">查看管理员</a> <a href="add_admin.jsp"
 					target="mainFrame" onFocus="this.blur()">新增管理员</a>
 			</div>
-			<shiro:principal />
 		</shiro:hasRole>
-		<div class="collapsed">
-			<span>个人信息</span> <a href="userinfo.jsp" target="mainFrame"
-				onFocus="this.blur()">详细信息</a>
-		</div>
-		<shiro:hasPermission name="管理员:用户管理">
+		<shiro:hasRole name="管理员">
+			<div class="collapsed">
+				<span>个人信息</span> <a href="userinfo.jsp" target="mainFrame"
+					onFocus="this.blur()">详细信息</a>
+			</div>
+		</shiro:hasRole>
+		<shiro:hasPermission name="用户管理">
 			<div class="collapsed">
 				<span>用户管理</span> <a href="company_info.jsp" target="mainFrame"
 					onFocus="this.blur()">企业管理</a> <a href="landlord_carpart_apply.jsp"
 					target="mainFrame" onFocus="this.blur()">包租婆车位审批</a>
 			</div>
-			<shiro:principal />
 		</shiro:hasPermission>
-		<shiro:hasPermission name="管理员:合约管理">
-		<div class="collapsed">
-			<span>合约管理</span> <a href="out_contract_info.jsp" target="mainFrame"
-				onFocus="this.blur()">外部合约管理</a> <a href="tenant_contract_info.jsp"
-				target="mainFrame" onFocus="this.blur()">租户合约管理</a>
-		</div>
-		<shiro:principal />
+		<shiro:hasPermission name="合约管理">
+			<div class="collapsed">
+				<span>合约管理</span> <a href="out_contract_info.jsp" target="mainFrame"
+					onFocus="this.blur()">外部合约管理</a> <a href="tenant_contract_info.jsp"
+					target="mainFrame" onFocus="this.blur()">租户合约管理</a>
+			</div>
 		</shiro:hasPermission>
-		<shiro:hasPermission name="管理员:车位管理">
-		<div class="collapsed">
-			<span>车位管理</span> <a href="cbd_carport.jsp" target="mainFrame"
-				onFocus="this.blur()">CBD车位管理</a>
-		</div>
-		<shiro:principal />
+		<shiro:hasPermission name="车位管理">
+			<div class="collapsed">
+				<span>车位管理</span> <a href="cbd_carport.jsp" target="mainFrame"
+					onFocus="this.blur()">CBD车位管理</a>
+			</div>
 		</shiro:hasPermission>
-		<shiro:hasPermission name="管理员:投诉管理">
-		<div class="collapsed">
-			<span>投诉管理</span> <a href="complain_info.jsp" target="mainFrame"
-				onFocus="this.blur()">投诉事件</a>
-		</div>
-		<shiro:principal />
+		<shiro:hasPermission name="投诉管理">
+			<div class="collapsed">
+				<span>投诉管理</span> <a href="complain_info.jsp" target="mainFrame"
+					onFocus="this.blur()">投诉事件</a>
+			</div>
 		</shiro:hasPermission>
 	</div>
 </body>

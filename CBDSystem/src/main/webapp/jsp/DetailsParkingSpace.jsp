@@ -13,7 +13,7 @@
 <link type="text/css" href="/CBDSystem/css/css1.css" rel="stylesheet" />
 <script type="text/javascript" src="/CBDSystem/js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="/CBDSystem/js/js.js"></script>
-
+<script type="text/javascript" src="/CBDSystem/js/logOut.js"></script>
 <!-- 引入时间插件My97DatePicke中的WdatePicker.js文件 -->
 <script language="javascript" type="text/javascript"
 	src="/CBDSystem/js/dateutil/WdatePicker.js"></script>
@@ -24,11 +24,18 @@
 <body>
 	<div class="hrader" id="header">
 		<div class="top">
-			<a href="/jsp/login.jsp" style="color:#C94E13;">登录</a> <a
-				href="/jsp/regist.jsp">注册</a>
+			<c:choose>
+				<c:when test="${sessionScope.login.name != null}">
+					<span>欢迎您:&nbsp;&nbsp;</span>
+					<span>${sessionScope.login.name}</span>
+					<span><a onclick="logOut()">注销</a></span>
+				</c:when>
+				<c:otherwise>
+					<a href="/CBDSystem/jsp/login.jsp" style="color:#C94E13;">登录</a> <a href="/CBDSystem/jsp/regist.jsp">注册</a>
+				</c:otherwise>
+			</c:choose>			
 			<ul class="topNav">
 				<li class="shoucangjia"><a onclick="turn()">个人中心</a></li>
-				<div class="clears"></div>
 			</ul>
 		</div>
 	</div>
@@ -151,10 +158,33 @@
 			<br />
 
 			<!--*****************************页码部分***********************************************  -->
-
+			
+			<div style="font-size:18px">
+				<h2>该车位历史订单:</h2><br />
+		<table style="width: 100%; text-align: center;">
+			<thead>
+				<tr>
+					<th>订单编号</th>
+					<th>开始时间</th>
+					<th>结束时间</th>
+					<th>订单总价</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${one.orders}" var="obj">
+					<tr>
+						<td>${obj.id }<br/></td>
+						<td><fmt:formatDate value="${obj.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/><br/></td>
+						<td><fmt:formatDate value="${obj.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/><br/></td>
+						<td>${obj.pay}<br/></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 		</div>
 
-
+	
 	</div>
 	<!--  ************************底部导航栏  *********************************************************************************-->
 	<div class="footBox">
@@ -217,7 +247,7 @@
 		</div>
 		<!--footers/-->
 	</div>
-	
+	<input type="hidden" value="${sessionScope.login.role }" id="role"/>
 	<script>
 		function pay(){
 			$.ajax({

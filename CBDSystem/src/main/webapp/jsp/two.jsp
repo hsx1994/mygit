@@ -5,17 +5,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>抢租用户主页</title>
-<link type="text/css" href="../css/csss.css" rel="stylesheet" />
-<script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
-<script type="text/javascript" src="../js/js.js"></script>
+<link type="text/css" href="/CBDSystem/css/csss.css" rel="stylesheet" />
+<script type="text/javascript" src="/CBDSystem/js/jquery-1.9.11.min.js"></script>
+<script type="text/javascript" src="/CBDSystem/js/js.js"></script>
+<script type="text/javascript" src="/CBDSystem/js/logOut.js"></script>
 
 </head>
 
 <body>
  <div class="hrader" id="header">
   <div class="top">
-   <a href="login.html" style="color:#C94E13;">请登录</a> 
-   <a href="reg.html">注册</a>
+	<a style="color:#C94E13;">欢迎您:${sessionScope.login.name }</a> 
+    <a onclick="logOut()">注销</a>
   </div><!--top/-->
  </div><!--hrader/-->
  <div class="mid">
@@ -31,20 +32,11 @@
    </div><!--hotci/-->
    </div><!--subBox2/-->
   </form><!--subBox/-->
-  <div class="ding-gou">
-   <div class="ding">
-    <a href="order.html"><img src="../images/dingdan.jpg" width="106" height="32" /></a>
-   </div><!--ding/-->
-   <div class="gou">
-<!--     <a href="car.html"><img src="../images/gouwuche.jpg" width="126" height="32" /></a> -->
-   </div><!--gou/-->
-   <div class="clears"></div>
-  </div><!--ding-gou/-->
+  
  </div><!--mid-->
  <div class="navBox navBg3">
   <ul class="nav">
-   <li><a href="/CBDSystem/index.jsp">首页</a></li>
-   <div class="clears"></div>
+   <li class="navCur"><a href="/CBDSystem/index.jsp">首页</a></li>
   </ul><!--nav/-->
  </div><!--navBox/-->
  <div class="vipBox">
@@ -53,7 +45,6 @@
    <h3 class="vipName">抢租客</h3>
    <dl class="vipNav">
     <dt class="vip_1">用户中心</dt>
-     <dd><a href="vipShoucang.html"></a></dd>
      <dd class="ddCur"><a href="two.jsp">个人信息</a></dd>
     <dt class="vip_2">个人中心</dt>
      <dd><a href="changeUserInfo.jsp">修改个人信息</a></dd>

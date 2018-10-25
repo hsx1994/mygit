@@ -14,6 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link type="text/css" href="../css/csss.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery-1.9.11.min.js"></script>
 <script type="text/javascript" src="../js/js.js"></script>
+<script type="text/javascript" src="/CBDSystem/js/logOut.js"></script>
 <style>
 		td{
 			text-align:center;
@@ -24,8 +25,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body onload="select(1)">
  <div class="hrader" id="header">
   <div class="top">
-   <a href="login.html" style="color:#C94E13;">请登录</a> 
-   <a href="reg.html">注册</a>
+   	<a style="color:#C94E13;">欢迎您:${sessionScope.login.name }</a> 
+    <a onclick="logOut()">注销</a>
   </div><!--top/-->
  </div><!--hrader/-->
  <div class="mid">
@@ -41,20 +42,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    </div><!--hotci/-->
    </div><!--subBox2/-->
   </form><!--subBox/-->
-  <div class="ding-gou">
-   <div class="ding">
-    <a href="order.html"><img src="../images/dingdan.jpg" width="106" height="32" /></a>
-   </div><!--ding/-->
-   <div class="gou">
-    <a href="car.html"><img src="../images/gouwuche.jpg" width="126" height="32" /></a>
-   </div><!--gou/-->
-   <div class="clears"></div>
-  </div><!--ding-gou/-->
  </div><!--mid-->
  <div class="navBox navBg3">
   <ul class="nav">
    <li><a href="/CBDSystem/index.jsp">首页</a></li>
-   <div class="clears"></div>
   </ul><!--nav/-->
  </div><!--navBox/-->
  <div class="vipBox">
@@ -63,7 +54,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <h3 class="vipName">抢租客</h3>
    <dl class="vipNav">
     <dt class="vip_1">用户中心</dt>
-     <dd><a href="vipShoucang.html"></a></dd>
      <dd ><a href="two.jsp">个人信息</a></dd>
     <dt class="vip_2">个人中心</dt>
      <dd><a href="changeUserInfo.jsp">修改个人信息</a></dd>
@@ -101,11 +91,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</c:forEach>
 					<tr>
 				        <td width="100"> 
-				       		<a href="#" onclick="select(${pageinfo.firstPage})"  target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;
+				       		<a href="#" onclick="select(${pageinfo.firstPage})">首页</a>&nbsp;&nbsp;
 				       	</td>
 				       	<td width="100">
 					        <c:if test="${pageinfo.hasPreviousPage}">
-					        <a href="#"onclick="select(${pageinfo.prePage})" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;
+					        <a href="#"onclick="select(${pageinfo.prePage})">上一页</a>&nbsp;&nbsp;
 					        </c:if>
 					    </td>
 					    <td width="100">
@@ -113,11 +103,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					    </td>
 					    <td width="100">
 					        <c:if test="${pageinfo.hasNextPage}">
-					        <a href="#"onclick="select(${pageinfo.nextPage})" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;
+					        <a href="#"onclick="select(${pageinfo.nextPage})">下一页</a>&nbsp;&nbsp;
 					        </c:if>
 					    </td>
 					    <td width="100">
-					        <a href="#" onclick="select(${pageinfo.lastPage})" target="mainFrame" onFocus="this.blur()">尾页</a>
+					        <a href="#" onclick="select(${pageinfo.lastPage})">尾页</a>
 				      </td>
 				    </tr>
 				</table>

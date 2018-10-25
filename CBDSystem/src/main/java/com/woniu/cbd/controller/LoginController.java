@@ -92,10 +92,9 @@ public class LoginController {
 			return "redirect:" + path;
 		}
 
-		
-		
 		// 加密密码Md5
-		String realPassword = Md5pwdUtil.md5(user.getPassword(), user.getName());		
+		String realPassword = Md5pwdUtil
+				.md5(user.getPassword(), user.getName());
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(user.getName(),
 				realPassword);
@@ -108,9 +107,13 @@ public class LoginController {
 			session.setAttribute("loginPath", path);
 			LoginBean lo = (LoginBean) session.getAttribute("login");
 			String role = lo.getRole();
-			
-			if (role.equals("包租婆") || role.equals("抢租客") || role.equals("企业用户")) {
+
+			if (role.equals("抢租客")) {
 				return "redirect:/index.jsp";
+			} else if (role.equals("企业用户")) {
+				return "redirect:/jsp/ConpanyShowParking.jsp";
+			} else if (role.equals("包租婆")) {
+				return "redirect:/jsp/one.jsp";
 			} else {
 				session.removeAttribute("login");
 				session.setAttribute("user", user);
@@ -127,19 +130,30 @@ public class LoginController {
 
 	/**
 	 * 注销功能
+	 * 
 	 * @param session
 	 * @return
 	 */
+	@ResponseBody
 	@RequestMapping("logoutExit.do")
 	public String logoutExit(HttpSession session) {
 		String path = (String) session.getAttribute("loginPath");
-		if (session != null) {
-			session.removeAttribute("login");
-			session.removeAttribute("id");
-			session.removeAttribute("user");
-			session.removeAttribute("errorMsg");
-		}
+		session.removeAttribute("login");
+		session.removeAttribute("id");
+		session.removeAttribute("user");
+		session.removeAttribute("errorMsg");
 		return "redirect:" + path;
+	}
+
+	@ResponseBody
+	@RequestMapping("logoutExitAdmin.do")
+	public String logoutExit(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		session.removeAttribute("login");
+		session.removeAttribute("id");
+		session.removeAttribute("user");
+		session.removeAttribute("errorMsg");
+		return "注销成功";
 	}
 
 	/**
