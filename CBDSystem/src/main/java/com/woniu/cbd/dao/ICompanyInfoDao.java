@@ -35,5 +35,11 @@ public interface ICompanyInfoDao {
 	 * @return
 	 */
 	public int findIdByLid(int lid);
+	/**
+	 * 根据ID查询企业信息
+	 * @param id
+	 * @return
+	 */
+	public CompanyInfoBean findById(Integer id);
 
 }

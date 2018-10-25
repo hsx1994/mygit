@@ -15,7 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.woniu.cbd.bean.CompanyBargainBean;
+import com.woniu.cbd.bean.CompanyInfoBean;
+import com.woniu.cbd.bean.CompanyOrderBean;
 import com.woniu.cbd.bean.OtherParkingBean;
+import com.woniu.cbd.service.ICompanyInfoService;
 import com.woniu.cbd.service.IOtherParkingService;
 
 @Controller
@@ -23,6 +27,8 @@ public class OtherParkingController {
 
 	@Autowired
 	private IOtherParkingService service;
+	@Autowired
+	private ICompanyInfoService ics;
 
 	@RequestMapping("/otherParkingAdd.do")
 	public @ResponseBody String otherParkingAdd(List<OtherParkingBean> list) {
@@ -75,13 +81,26 @@ public class OtherParkingController {
 	public ModelAndView showComPanyParkingAll(Integer id, Integer page) {
 		ModelAndView mav = new ModelAndView();
 
-		PageHelper.startPage(page, 8, true);
-		List<OtherParkingBean> parking = service.showCompanyParkingAll(id);
-		PageInfo<OtherParkingBean> pageInfo = new PageInfo<OtherParkingBean>(parking);
+		PageHelper.startPage(page, 5, true);
+		List<CompanyBargainBean> parking = service.showCompanyParkingAll(id);
+		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(parking);
 		mav.addObject("pageinfo", pageInfo);
 		mav.addObject("list", parking);
-		mav.setViewName("views/cbd_carport.jsp");
+		mav.setViewName("jsp/LookThreeCar.jsp");
 
+		return mav;
+	}
+	//企业查看自己的车位
+	@RequestMapping("showCParkingAll.do")
+	public ModelAndView findAllComParking(Integer id, Integer page){
+		ModelAndView mav = new ModelAndView();
+		PageHelper.startPage(page, 5, true);
+		CompanyInfoBean company = ics.findById(id);
+		List<CompanyOrderBean> parking = company.getComOrder();
+		PageInfo<CompanyOrderBean> pageInfo = new PageInfo<CompanyOrderBean>(parking);
+		mav.addObject("pageinfo", pageInfo);
+		mav.addObject("list", parking);
+		mav.setViewName("jsp/LookThreeCar.jsp");
 		return mav;
 	}
 

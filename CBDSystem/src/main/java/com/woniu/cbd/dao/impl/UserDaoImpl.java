@@ -48,8 +48,8 @@ public class UserDaoImpl implements IUserDao {
 	@Override
 	public int updateCompany(CompanyInfoBean company) {
 		SqlSession session = fa.openSession(true);
-		int row = session.insert("userMapper.updateCompany", company);
-
+		int row = session.update("userMapper.updateCompany", company);
+		
 		session.close();
 		return row;
 	}

@@ -50,6 +50,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public boolean updateCompany(CompanyInfoBean company) {
 		int row = dao.updateCompany(company);
+		System.out.println(row);
 		if(row>0){
 			return true;
 		}

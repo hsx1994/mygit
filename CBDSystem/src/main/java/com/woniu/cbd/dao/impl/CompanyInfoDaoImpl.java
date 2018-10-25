@@ -1,6 +1,7 @@
 package com.woniu.cbd.dao.impl;
 
 import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +39,9 @@ public class CompanyInfoDaoImpl implements ICompanyInfoDao {
 
 	@Override
 	public CompanyInfoBean findByCompanyName(String comName) {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		CompanyInfoBean bean = session.selectOne("companyInfoMapper.findByCompanyName",comName);
+		session.close();
 		return bean;
 	}
 
@@ -59,10 +61,19 @@ public class CompanyInfoDaoImpl implements ICompanyInfoDao {
 	 */
 	@Override
 	public int findIdByLid(int lid) {
-		SqlSession session = fa.openSession();
+		SqlSession session = fa.openSession(true);
 		int id = session.selectOne("companyInfoMapper.findIdByLid", lid);
 		session.close();
 		return id;
+	}
+
+
+	@Override
+	public CompanyInfoBean findById(Integer id) {
+		SqlSession session = fa.openSession(true);
+		CompanyInfoBean bean = session.selectOne("companyInfoMapper.findById",id);
+		session.close();
+		return bean;
 	}
 	
 }

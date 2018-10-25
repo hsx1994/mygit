@@ -85,9 +85,14 @@ public class CompanyInfoController {
 		return result;
 	}
 	// 车位区域信息
-		@RequestMapping("/showCompany.do")
-		public @ResponseBody List<CompanyInfoBean> showParkingAddress() {
-			List<CompanyInfoBean> list = comService.showAllCompany();
-			return list;
-		}
+	@RequestMapping("/showCompany.do")
+	public @ResponseBody List<CompanyInfoBean> showParkingAddress() {
+		List<CompanyInfoBean> list = comService.showAllCompany();
+		return list;
+	}
+	@RequestMapping("/findCompany.do")
+	public @ResponseBody CompanyInfoBean findById(Integer id){
+		CompanyInfoBean bean = comService.findById(id);
+		return bean;
+	}
 }

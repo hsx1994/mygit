@@ -69,12 +69,11 @@ public class CompanyBargainController {
 	}
     //企业查看合约
 	@RequestMapping("companyBargainSelect.do")
-	public ModelAndView companyBargainSelect(CompanyBargainBean bean) {
-		bean.setId(1);
+	public ModelAndView companyBargainSelect(Integer id,Integer page) {
+		
 		ModelAndView mav = new ModelAndView();
-		int page = 1 ;
 		PageHelper.startPage(page,10,true);
-		List<CompanyBargainBean> bargain = service.companyBargainSelect(bean);
+		List<CompanyBargainBean> bargain = service.companyBargainSelect(id);
 		PageInfo<CompanyBargainBean> pageInfo = new PageInfo<CompanyBargainBean>(bargain);
 		if(bargain != null){
 			mav.addObject("pageinfo", pageInfo);
@@ -82,8 +81,7 @@ public class CompanyBargainController {
 		} else {
 			mav.addObject("companBargain","尚未签订合约");
 		}
-		mav.setViewName("views/tenant_contract_info.jsp");
-
+		mav.setViewName("jsp/LookThreeUser.jsp");
 		return mav;
 	}
 

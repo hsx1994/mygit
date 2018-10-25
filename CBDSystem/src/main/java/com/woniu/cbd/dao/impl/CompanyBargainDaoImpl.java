@@ -42,11 +42,11 @@ public class CompanyBargainDaoImpl implements ICompanyBargainDao {
 		session.close();
 		return row;
 	}
-
+	
 	@Override
-	public List<CompanyBargainBean> companyBargainSelect(CompanyBargainBean bean) {
+	public List<CompanyBargainBean> companyBargainSelect(int id) {
 		SqlSession session = fa.openSession(true);
-		List<CompanyBargainBean> bargain = session.selectList("companyBargainMapper.companyBargainSelect",bean);
+		List<CompanyBargainBean> bargain = session.selectList("companyBargainMapper.companyBargainById",id);
 		
 		session.close();
 		return bargain;
