@@ -13,7 +13,7 @@
 <script src="../js/register.js"></script>
 <script src="../js/public/jquery.1.9.1.js"></script>
 </head>
-<body class="bgf4">
+<body class="bgf4" onchange="checkUserName()">
 
 	<div class="login-box f-mt10 f-pb50">
 		<div class="main bgf">
@@ -38,12 +38,12 @@
 							<span class="intelligent-label f-fl"><b class="ftx04">*</b>用户角色：
 							</span> <select class="required" id="role" name="role"
 								data-valid="isNonEmpty" data-error="角色不能为空">
-								<option></option>
 								<option value="包租婆" style="height:">包租婆</option>
 								<option value="抢租客">抢租客</option>
 							</select> <span class="ie8 icon-close close hide"></span> <label
 								class="icon-sucessfill blank hide"></label> <label class="focus"
 								id="err"><span>选择你的角色</span></label> <label class="focus valid"></label>
+								
 						</div>
 						<div class="item col-xs-12">
 							<span class="intelligent-label f-fl"><b class="ftx04">*</b>用户名：</span>
@@ -51,11 +51,10 @@
 								<input type="text" maxlength="20" class="txt03 f-r3 required"
 									tabindex="1" data-valid="isNonEmpty||between:3-20||isUname"
 									data-error="用户名不能为空||用户名长度3-20位||只能输入字母、数字、下划线，且以字母开头"
-									id="name" name="name" onblur="checkUserName()" /> <span
-									class="ie8 icon-close close hide"></span> <label id="num"
-									class="icon-sucessfill blank hide" style="display: none;"></label>
-								<label class="focus" id="err"><span>3-20位，字母、数字、下划线的组合，以字母开头</span></label>
-								<label class="focus valid"></label>
+									id="name" name="name" /> <label id="num"
+									class="icon-sucessfill blank hide"></label>
+								<label class="focus" id="err"><span>3-20位，字母、数字、下划线组合，以字母开头</span></label>
+								<label class="focus valid" id="info"></label>
 
 							</div>
 						</div>
@@ -297,13 +296,12 @@
 				dataType : "json",
 				success : function(masage) {
 					if (masage == "用户名已存在") {
+					    $("#num").hide();
 						$("#btn_part1").hide();
-						$("#err").html(masage).css("color", "red");
-						$("#num").hide();
+						$("#info").html(masage).css("color", "red");
 					}else{
 					    $("#num").show();
-						$("#btn_part1").show();
-						
+						$("#btn_part1").show();	
 					}
 				}
 			});

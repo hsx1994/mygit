@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.woniu.cbd.bean.BargainBean;
+import com.woniu.cbd.bean.CompanyBargainBean;
 import com.woniu.cbd.bean.OtherParkingBean;
 import com.woniu.cbd.dao.IOtherParkingDao;
 import com.woniu.cbd.service.IOtherParkingService;
@@ -95,9 +96,9 @@ public class OtherParkingServiceImpl implements IOtherParkingService {
 	}
 	//企业查看自己的所有车位
 	@Override
-	public List<OtherParkingBean> showCompanyParkingAll(int id) {
-		List<OtherParkingBean> bean=dao.showCompanyParkingAll(id);
-		return bean;
+	public List<CompanyBargainBean> showCompanyParkingAll(int id) {
+		List<CompanyBargainBean> parking=dao.showCompanyParkingAll(id);
+		return parking;
 	}
     //企业查看单个车位
 	@Override

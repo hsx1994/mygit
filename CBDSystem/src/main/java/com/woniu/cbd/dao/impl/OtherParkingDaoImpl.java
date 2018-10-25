@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.woniu.cbd.bean.CompanyBargainBean;
 import com.woniu.cbd.bean.OtherParkingBean;
 import com.woniu.cbd.dao.IOtherParkingDao;
 
@@ -54,9 +55,9 @@ public class OtherParkingDaoImpl implements IOtherParkingDao {
 	
 	    // 查看企业的所有车位,使用了查询合约的懒加载
 		@Override
-		public List<OtherParkingBean> showCompanyParkingAll(int id) {
+		public List<CompanyBargainBean> showCompanyParkingAll(int id) {
 			SqlSession session = fa.openSession(true);
-			List<OtherParkingBean> bean = session.selectList("companyBargainMapper.findCompanyBargainById", id);
+			List<CompanyBargainBean> bean = session.selectList("companyBargainMapper.findCompanyBargainById", id);
 			session.close();
 			return bean;
 		}

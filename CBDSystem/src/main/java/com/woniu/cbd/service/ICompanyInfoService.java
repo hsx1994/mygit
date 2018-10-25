@@ -40,6 +40,12 @@ public interface ICompanyInfoService {
 	 * @return
 	 */
 	public int findIdByLid(int lid);
+	/**
+	 * 根据企业ID查询企业信息
+	 * @param id
+	 * @return
+	 */
+	public CompanyInfoBean findById(Integer id);
 		
 
 }

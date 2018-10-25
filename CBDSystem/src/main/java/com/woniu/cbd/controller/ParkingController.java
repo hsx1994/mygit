@@ -80,7 +80,6 @@ public class ParkingController {
 
 		List<ParkingBean> parking = new ArrayList<ParkingBean>();
 		parking.add(bean);
-		System.out.println(bean);
 		boolean num = park.addParking(parking);
 		String result = "redirect:/jsp/LookOneUser.jsp";
 		if (num) {

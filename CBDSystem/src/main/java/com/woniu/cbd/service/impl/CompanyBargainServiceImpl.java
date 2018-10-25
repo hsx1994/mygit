@@ -43,8 +43,8 @@ public class CompanyBargainServiceImpl implements ICompanyBargainService {
 	}
 
 	@Override
-	public List<CompanyBargainBean> companyBargainSelect(CompanyBargainBean bean) {
-		List<CompanyBargainBean> bargain = dao.companyBargainSelect(bean);
+	public List<CompanyBargainBean> companyBargainSelect(int id) {
+		List<CompanyBargainBean> bargain = dao.companyBargainSelect(id);
 		return bargain;
 	}
 

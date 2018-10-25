@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -87,7 +86,7 @@ public class UserController {
 	//查看个人信息
 	@RequestMapping("look.do")
 	public @ResponseBody UserBean findUserInfo(Integer id) {
-		UserBean bean = user.findUserInfo(id);
+		UserBean bean = user.findById(id);
 		return bean;
 	}
 
@@ -98,12 +97,20 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("companyUpdate.do")
-	public String updateCompany(@Validated CompanyInfoBean company) {
-		boolean row = user.updateCompany(company);
-		if (row) {
-			return "/three.jsp";
-		} else {
-			return "/ModificationPersonal.jsp";
+	public @ResponseBody String updateCompany(CompanyInfoBean company) {
+		System.out.println(company);
+		String newPwd = Md5pwdUtil.md5(company.getComLogin().getPassword(), company.getComLogin().getName());
+		LoginBean login = company.getComLogin();
+		login.setPassword(newPwd);
+		boolean check = ls.updatePwd(login);
+		if(!check){
+			return "密码修改失败";
 		}
+		boolean row = user.updateCompany(company);
+		String result = "修改失败";
+		if (row) {
+			result = "修改成功";
+		}
+		return result;
 	}
 }

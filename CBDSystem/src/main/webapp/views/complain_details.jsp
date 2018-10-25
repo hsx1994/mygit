@@ -107,7 +107,7 @@
                     <th align="center" valign="middle" class="borderright">联系电话</th>
                 </tr>
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                    <td align="center" valign="middle" class="borderright borderbottom">${complain.user.realName }</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${complain.user.login.name }</td>
                     <td align="center" valign="middle" class="borderright borderbottom">${complain.user.realName }</td>
                     <td align="center" valign="middle" class="borderright borderbottom">${complain.user.idcard }</td>
                     <td align="center" valign="middle" class="borderright borderbottom">${complain.user.job }</td>
@@ -159,7 +159,7 @@
                     <th align="center" valign="middle" class="borderright">联系电话</th>
                 </tr>
                 <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                    <td align="center" valign="middle" class="borderright borderbottom">${complain.buser.realName }</td>
+                    <td align="center" valign="middle" class="borderright borderbottom">${complain.user.login.name }</td>
                     <td align="center" valign="middle" class="borderright borderbottom">${complain.buser.realName }</td>
                     <td align="center" valign="middle" class="borderright borderbottom">${complain.buser.idcard }</td>
                     <td align="center" valign="middle" class="borderright borderbottom">${complain.buser.job }</td>

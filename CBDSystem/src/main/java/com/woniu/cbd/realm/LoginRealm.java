@@ -73,12 +73,6 @@ public class LoginRealm extends AuthorizingRealm {
 			Session session = SecurityUtils.getSubject().getSession();
 			session.setAttribute("login", loginUser);
 			session.setAttribute("id", currentId);
-			
-			
-//			LoginBean lo =(LoginBean) session.getAttribute("login");
-//			String roleName = lo.getRole();
-			
-			
 			return info;
 		} else {
 			return null;

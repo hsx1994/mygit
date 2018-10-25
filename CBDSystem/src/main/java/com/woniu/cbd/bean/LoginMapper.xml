@@ -22,7 +22,7 @@
 	</select>
 
 	<resultMap type="LoginBean" id="map">
-		<id property="id" column="l_id"></id>
+		<id property="id" column="t_id"></id>
 		<result property="name" column="l_name" />
 		<result property="password" column="l_password" />
 		<result property="role" column="l_role" />

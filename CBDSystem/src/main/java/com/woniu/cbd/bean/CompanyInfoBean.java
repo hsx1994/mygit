@@ -89,6 +89,10 @@ public class CompanyInfoBean implements Serializable {
 	public void setComLogin(LoginBean comLogin) {
 		this.comLogin = comLogin;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "CompanyInfoBean [id=" + id + ", address=" + address
+				+ ", contact=" + contact + ", tel=" + tel + ", email=" + email
+				+ "]";
+	}
 }

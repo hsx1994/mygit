@@ -10,6 +10,10 @@ function searchCompany(pages){
 		dataType:"html",
 		success:function(data){
 			$("#aaa").html(data)
+			$("#nextPage").attr("onclick","searchCompany("+$("#next").val()+")");
+			$("#prePage").attr("onclick","searchCompany("+$("#pre").val()+")");
+			$("#firstPage").attr("onclick","searchCompany("+$("#first").val()+")");
+			$("#lastPage").attr("onclick","searchCompany("+$("#last").val()+")");
 		}
 	})
 	
