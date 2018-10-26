@@ -50,7 +50,7 @@
     </tr>
     <tr>
         <td align="left" valign="top">
-            <form method="post" action="/CBDSystem/companyBargainAdd.do">
+            <form method="post" action="/CBDSystem/companyBargainAdd.do" enctype="multipart/form-data">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">合&nbsp; 同&nbsp; 编&nbsp; 号：</td>
@@ -92,7 +92,7 @@
                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">合 同 复 印 件：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="img" value="${bean.img }" class="text-word" id="4">
+                            <input type="file" name="bargainCopy" value="${bean.img }" class="text-word" id="4">
                         </td>
                     </tr>
                  </table>

@@ -4,13 +4,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
@@ -21,6 +25,7 @@ import com.woniu.cbd.bean.CompanyOrderBean;
 import com.woniu.cbd.service.ICompanyBargainService;
 import com.woniu.cbd.service.ICompanyInfoService;
 import com.woniu.cbd.service.ICompanyOrderService;
+import com.woniu.cbd.util.FileUpUtil;
 import com.woniu.cbd.util.RegularExpression;
 
 @Controller
@@ -33,7 +38,8 @@ public class CompanyBargainController {
 	private ICompanyOrderService orderService;
 
 	@RequestMapping("/companyBargainAdd.do")
-	public @ResponseBody String companyBargainAdd(CompanyBargainBean bean,String[] parkingNumber,String[] address) {
+	public @ResponseBody String companyBargainAdd(HttpServletRequest request,CompanyBargainBean bean,String[] parkingNumber,String[] address,
+			@RequestParam(value="barginCopy", required=true) MultipartFile[] barginCopy) {
 		if(bean.getContact() == null || bean.getEndTime() == null || bean.getImg() == null ||
 				bean.getNumber() == null || bean.getStartTime() == null || bean.getTel() == null ||
 				parkingNumber == null || address == null){
@@ -57,6 +63,7 @@ public class CompanyBargainController {
 			return "联系人电话格式不合格";
 		}
 		bean.setCompany(company);
+		bean.setImg(FileUpUtil.fileUpUtil(barginCopy, request, "/images/bargain").get(0));
 		String result = "添加失败";
 		boolean re = service.companyBargainAdd(bean);
 		if (re) {

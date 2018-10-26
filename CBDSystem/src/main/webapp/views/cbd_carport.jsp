@@ -46,7 +46,7 @@
                             <input name="" type="hidden" value="查询" class="text-but" >
                         </form>
                     </td>
-                    <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a href="add_carport.jsp" target="mainFrame" onFocus="this.blur()" class="add">添加车位</a></td>
+                    <!-- <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a href="add_carport.jsp" target="mainFrame" onFocus="this.blur()" class="add">添加车位</a></td> -->
                 </tr>
             </table>
         </td>

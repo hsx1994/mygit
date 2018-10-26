@@ -26,6 +26,7 @@ import com.woniu.cbd.bean.OtherParkingBean;
 import com.woniu.cbd.service.IBargainService;
 import com.woniu.cbd.service.IOtherParkingService;
 import com.woniu.cbd.util.FileUpUtil;
+import com.woniu.cbd.util.RegularExpression;
 
 @Controller
 public class BargainController {
@@ -44,16 +45,25 @@ public class BargainController {
 			@RequestParam(value="parkingImg", required=true) MultipartFile[] parkingImg,
 			@RequestParam(value="barginCopy", required=true) MultipartFile[] barginCopy) {
 		String result = "添加失败";
-		
-		if(parkingAddress == null || parkingNumber == null || startNumber == null ||
-				endNumber == null || parkingImg == null || price == null || barginCopy == null
+		if(parkingNumber == null && (startNumber == null || endNumber == null)){
+			return "编号输入不能为空";
+		}
+		if(parkingAddress == null || parkingImg == null || price == null || barginCopy == null ||
+				bean.getAddress() == null || bean.getCompany() == null || bean.getContact() == null ||
+				bean.getEndTime() == null || bean.getStartTime() == null || bean.getNumber() == null ||
+				bean.getTel() == null
 		   ){
 			return "输入不能为空";
 		}
-		if(parkingAddress.length < 1 || parkingNumber.length <1 || startNumber.trim().length() < 1 ||
-				endNumber.trim().length() < 1 || parkingImg.length < 1|| price.length< 1 || barginCopy.length < 1
+		if(	endNumber.trim().length() < 1 || parkingImg.length < 1|| price.length< 1 || barginCopy.length < 1 ||
+				bean.getAddress().trim().length() < 1 || bean.getCompany().trim().length() < 1 ||
+				bean.getContact().trim().length() < 1 || bean.getNumber().trim().length() < 1 ||
+				bean.getTel().trim().length() < 1
 		   ){
 			return "输入不能为空字符";
+		}
+		if(!RegularExpression.testTel(bean.getTel())){
+			return "联系人电话格式不正确";
 		}
 		bean.setImg(FileUpUtil.fileUpUtil(barginCopy, request, "/images/bargain").get(0));
 		boolean re = service.bargainAdd(bean);
