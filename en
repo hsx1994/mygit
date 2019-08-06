@@ -1,0 +1,23 @@
+SN	As-Is
+	To-Be
+1	Only retrieve the records of Active students in current academic year (CP_STUD_PROFILE.STUDENT_STATUS_ICODE = ‘A’)
+Records of Inactive students will not be written into the temporary tables.	No change required.
+2
+	Do not retrieve Primary students having 2 VR/MCs or more in the current year results (CP_STUD_HIST_RES_MARKS.ABSENT_ICODE where CP_STUD_HIST_RES_MARKS.SUBJECT_ACTIVE_IND = ‘Y’)	This rule is to be lifted.
+Include Primary students having 2 VR/MCs or more in the current year results as well.
+3	Do not retrieve records of Primary and Secondary students having null EASA overall average (CP_STUD_HIST_RES_AGGREGATES.EASS_OVERALL_PERCENTAGES_NO =  NULL)
+The EASA overall average can be null for the following scenarios:
+•	No marks have been entered for all subjects, thus no average can be computed. For this scenario, schools will not be allowed to confirm results.
+•	System errors (i.e. aggregate batch computation is not successful). For this scenario, schools will be prompted via the My Jobs page and will be required to resubmit the aggregate batch computation before they can confirm results.
+•	However for Secondary students, the overall average can be null in a specific business case where students are not taking the English subject.	This rule is to be lifted.
+Include Primary and Secondary students having NULL value in EASA overall average as well.
+4	Do not retrieve records of JC/CI students having null A-level Ranking Points only (CP_STUD_HIST_RES_AGGREGATES.RANKING_POINTS_NO). The ranking points can be null for the following scenarios:
+•	No marks have been entered for all subjects, thus no average can be computed. For this scenario, schools will not be allowed to confirm results.
+•	System errors (i.e. aggregate batch computation is not successful). For this scenario, schools will be prompted via the My Jobs page and will be required to resubmit the aggregate batch computation before they can confirm results.
+	This rule is to be lifted.
+Include JC/CI students having NULL value in A-level Ranking Points as well.
+5	For students with the pending transfer-in status, their records will be in the existing school instead of the new school.	No change required.
+6	For Primary students having 2 VR/MCs or more for one of the following subjects (EL/FEL, Math/FMA, Sci/FSC, MT/FMT), the EASA overall average will be replaced with NULL value. 
+Otherwise, retrieve the value in EASA overall average as it is.	This rule is to be added to the existing logic.
+7	Display integer value (without decimal points) for EASA overall average which currently has 2 decimal points; retrieve EASA overall average value from column OVERALL_PERCENTAGES_NO under table CP_STUD_HIST_RES_AGGREGATES.
+This rule is to be added to the existing logic.
