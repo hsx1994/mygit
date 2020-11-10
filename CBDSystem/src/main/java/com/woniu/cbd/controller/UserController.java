@@ -16,7 +16,6 @@ import com.woniu.cbd.bean.UserBean;
 import com.woniu.cbd.service.ILoginService;
 import com.woniu.cbd.service.IUserService;
 import com.woniu.cbd.util.Md5pwdUtil;
-import com.woniu.cbd.util.PhoneCodeUtil;
 import com.woniu.cbd.util.RegularExpression;
 
 @Controller
